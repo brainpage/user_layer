@@ -1,0 +1,39 @@
+# Map the user to the phone user
+ - Link Weibo/QQ User ID
+ 
+First time load 
+  - Sends phone UUID
+  -> RCV SHA1 Hash
+  -> Send commands to server with SHA1 Hash
+/phone_users
+
+Feed:
+  - Req Params: Since
+   If since = 0 or doesn't exist, return last 20 (number TBD).
+  - Re: JSON
+   -> "text"
+   -> time
+   -> related user
+   -> behavior of feed??
+/feeds
+
+People/Things
+  - CRUD
+  - Attributes: name, phone number, email
+  - Location information
+/cares
+TYPE
+
+App
+  - Add, List, Delete
+/cares/:care_id/apps
+
+
+Notify Me When The Following Happens:
+[] The weather changes dramatically since yseterday
+[] When it starts raining or snowing
+[] There is a severe weather warning
+[] When the air quality is very bad
+
+
+
