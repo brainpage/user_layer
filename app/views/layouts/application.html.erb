@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>UserLayer</title>
+  <%= stylesheet_link_tag    "application" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body style="padding-top: 60px">
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="container">
+        <h3><%= link_to "BrainPage", "/" %></h3>
+        <ul class="nav">
+          <li><%= link_to "Feed", feeds_path%></li>
+          <li><%= link_to "My People", cares_path(:type=>"people") %></li>
+
+          <li><%= link_to "My Things", cares_path(:type=>"things") %></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="content">
+      <div class="row">
+       <div class="span1">&nbsp;</div>
+       <div class="span4">
+         <% unless current_user.nil? %>
+          <h3>Cares</h3>
+          <ul>
+            <% for @care in current_user.cares %>
+            <li><%= link_to @care.name, care_path(@care)  %></li>
+          <% end %>
+        </ul>
+      <% end %>
+        </div>
+
+        <div class="span1">&nbsp;</div>
+        <div class="span11">
+
+        <% unless flash[:notice].blank? %>
+  <div class="alert-message info">
+    <%= content_tag :div, flash[:notice] %>
+  </div>
+<% end %>
+
+<% unless flash[:error].blank? %>
+  <div class="alert-message error">
+    <%= content_tag :div, flash[:error] %>
+  </div>
+<% end %>
+
+<% unless flash[:alert].blank? %>
+  <div class="alert-message warning">
+    <%= content_tag :div, flash[:alert] %>
+  </div>
+<% end %>
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,9 @@
+<div class="row">
+  <div class="span5">
+    <%= link_to "Back To #{@care.name} trackers", care_path(@care) %>
+  </div>
+  <div class="span5 offset1">
+    <%= link_to "Delete This App", care_app_path(@app, :care_id=>@care), :method=>:delete %>
+  </div>
+</div>
+<iframe src="<%= @app.url -%>edit_web" class="span12" style="height: 500px; border: 5px; overflow:hidden" scrolling=no/>No Iframe

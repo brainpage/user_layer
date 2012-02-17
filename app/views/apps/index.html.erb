@@ -1,0 +1,10 @@
+<table>
+  <tbody>
+    <% for @app in @apps -%>
+      <tr><td><%= @app.app_list.name %></td><td><%= link_to "Edit", edit_app_path(@app) %></td></tr> 
+    <% end -%>
+  </tbody>
+</table>
+<%= link_to 'Add', new_app_path %>
+
+

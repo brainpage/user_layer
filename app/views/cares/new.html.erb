@@ -1,0 +1,7 @@
+<h1>Add Something You Care About</h1>
+<%= form_for :care, :url=>cares_path do |f| %>
+  Name:
+  <%= f.text_field "name" %>
+  <%= submit_tag "Add" %>
+<% end %>
+
