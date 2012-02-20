@@ -35,5 +35,10 @@ gem 'devise'
 
 group :test do
   # Pretty printed test output
-  gem 'turn', '0.8.2', :require => false
+  #gem 'turn', '0.8.2', :require => false
+  gem 'ruby-debug19', :require => 'ruby-debug'
+  gem 'rspec', '>=2.0.0'
+  gem 'rspec-rails', '>=2.0.0'
+  gem 'ZenTest', '~> 4.5.0'
+  gem 'factory_girl_rails'
 end
