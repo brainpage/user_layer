@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120211024119) do
+ActiveRecord::Schema.define(:version => 20120221012335) do
 
   create_table "app_lists", :force => true do |t|
     t.string   "name"
@@ -31,10 +31,14 @@ ActiveRecord::Schema.define(:version => 20120211024119) do
 
   create_table "cares", :force => true do |t|
     t.integer  "owner_id"
-    t.text     "name"
+    t.string   "name"
+    t.string   "phone_number"
+    t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "cares", ["owner_id"], :name => "index_cares_on_owner_id"
 
   create_table "feeds", :force => true do |t|
     t.integer  "app_id"
@@ -44,6 +48,19 @@ ActiveRecord::Schema.define(:version => 20120211024119) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "mobile_devices", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "uuid"
+    t.string   "name"
+    t.string   "platform"
+    t.string   "version"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "mobile_devices", ["user_id"], :name => "index_mobile_devices_on_user_id"
+  add_index "mobile_devices", ["uuid"], :name => "index_mobile_devices_on_uuid"
 
   create_table "users", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
@@ -62,7 +79,7 @@ ActiveRecord::Schema.define(:version => 20120211024119) do
   end
 
   add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true
-  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["email"], :name => "index_users_on_email"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
 end

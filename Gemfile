@@ -33,7 +33,7 @@ gem 'devise'
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
-group :test do
+group :development, :test do
   # Pretty printed test output
   #gem 'turn', '0.8.2', :require => false
   gem 'ruby-debug19', :require => 'ruby-debug'

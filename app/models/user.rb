@@ -9,4 +9,12 @@ class User < ActiveRecord::Base
   has_many :apps
   has_many :feeds
   has_many :cares, :foreign_key=>:owner_id
+  
+  def self.create_mobile_user
+    User.new.tap do |user|
+      user.save(:validate => false)
+      user.reset_authentication_token!
+      user.cares.create(:owner => user, :name => "self")
+    end
+  end
 end

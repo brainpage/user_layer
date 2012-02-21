@@ -3,7 +3,7 @@ UserLayer::Application.routes.draw do
 
   get "cares/new"
 
-  resources :feeds
+  resources :feeds, :mobile_users
 
   resources :cares do 
     resources :apps
