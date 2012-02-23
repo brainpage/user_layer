@@ -1,0 +1,7 @@
+<%= form_for :sensor, :url=>geocode_sensor_weathers_path, :remote=>true, :html=>{:id=>"new_weather_location"} do |f| %>
+  Location: <%= f.text_field "location" %>
+  <%= submit_tag "Add" %>
+<% end %>
+<div id="choose_location">
+
+</div>

@@ -9,4 +9,5 @@ class User < ActiveRecord::Base
   has_many :apps
   has_many :feeds
   has_many :cares, :foreign_key=>:owner_id
+  has_many :sensors, :foreign_key=>:owner_id
 end

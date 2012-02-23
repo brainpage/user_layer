@@ -1,0 +1,7 @@
+<h4>Choose your location:</h4>
+<% for @location in @locations %>
+       <div id="<%= "#{@location[:lat]}-#{@location[:lng]}" %>">
+         <span><%= @location[:description] %> (<%= @location[:lat] %>, <%= @location[:lng] %>)</span>
+       <%= link_to "Add", sensor_weathers_path(:description=>@location[:description], :lat=>@location[:lat], :lng=>@location[:lng]), :method=>:post %>
+     </div>
+<% end %>

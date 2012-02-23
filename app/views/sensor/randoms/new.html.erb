@@ -1,0 +1,8 @@
+<%= form_for :sensor, :url=>sensor_randoms_path do |f| %>
+    <div class="control-group">
+      Min: <%= f.text_field "min" %>
+      Max: <%= f.text_field "max" %>
+      Frequency: <%= f.text_field "frequency" %>
+    </div>
+  <%= submit_tag "Create" %>
+<% end %> 

@@ -1,7 +1,6 @@
 UserLayer::Application.routes.draw do
-  get "cares/index"
 
-  get "cares/new"
+
 
   resources :feeds
 
@@ -10,6 +9,15 @@ UserLayer::Application.routes.draw do
   end
   namespace :api do
     resource :feeds
+  end
+  resources :sensors
+  namespace :sensor do
+    resources :weathers do
+      collection do
+        post "geocode"
+      end
+    end
+    resources :randoms
   end
   devise_for :users
   root :to=>"apps#index"

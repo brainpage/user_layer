@@ -1,0 +1,2 @@
+module Sensor::RandomsHelper
+end

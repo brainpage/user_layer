@@ -1,0 +1,2 @@
+module Sensor::WeathersHelper
+end
