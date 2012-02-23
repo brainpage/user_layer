@@ -2,7 +2,7 @@ UserLayer::Application.routes.draw do
 
 
 
-  resources :feeds
+  resources :feeds, :mobile_users
 
   resources :cares do 
     resources :apps

@@ -1,8 +1,8 @@
 class FeedsController < ApplicationController
-  #before_filter :authenticate_user!, :except=>:create
+  before_filter :authenticate_user!, :except=>:create
   def index
-    #@feeds = current_user.feeds.all(:limit=>10)
-    Feed.create(:event => "Hello hello")
-    render :json => Feed.all.to_json
+    @feeds = current_user.feeds.since(params[:since])
+    #Feed.create(:event => "Hello hello")
+    render :json => @feeds.to_json
   end
 end

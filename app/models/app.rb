@@ -5,8 +5,8 @@ class App < ActiveRecord::Base
   validates_presence_of :care_id
   validates_presence_of :app_list_id
   validates_presence_of :app_token
-  before_validation :create_remote_app, :on=>:create
-  after_destroy :delete_remote_app
+  #before_validation :create_remote_app, :on=>:create
+  #after_destroy :delete_remote_app
   def app_create_resource
     @app_create_resource ||= RestClient::Resource.new "http://#{self.app_list.url}.dev"
   end

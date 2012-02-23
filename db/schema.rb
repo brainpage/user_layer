@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120220084835) do
+ActiveRecord::Schema.define(:version => 20120221012335) do
 
   create_table "app_lists", :force => true do |t|
     t.string   "name"
@@ -44,6 +44,19 @@ ActiveRecord::Schema.define(:version => 20120220084835) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "mobile_devices", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "uuid"
+    t.string   "name"
+    t.string   "platform"
+    t.string   "version"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "mobile_devices", ["user_id"], :name => "index_mobile_devices_on_user_id"
+  add_index "mobile_devices", ["uuid"], :name => "index_mobile_devices_on_uuid"
 
   create_table "sensors", :force => true do |t|
     t.string   "stype"
