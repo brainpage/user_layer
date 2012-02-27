@@ -13,7 +13,7 @@ set :default_environment, {
 require 'bundler/capistrano'
 
 # main details
-set :application, "sensocol.com"
+set :application, "user_layer"
 
 set :user, "app"
 set :rvm_type, :user
