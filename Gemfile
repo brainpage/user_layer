@@ -18,7 +18,7 @@ end
 
 gem 'jquery-rails'
 gem 'twitter-bootstrap-rails'
-gem 'simple_form'
+#gem 'simple_form'
 gem 'rest-client'
 gem 'devise'
 gem 'faraday'

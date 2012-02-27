@@ -1,0 +1,2 @@
+module Rsi::FeedsHelper
+end
