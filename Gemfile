@@ -5,10 +5,6 @@ gem 'rails', '3.1.3'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
-gem 'mysql'
-gem 'unicorn'
-
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -40,6 +36,7 @@ gem 'omniauth-twitter', :git => 'https://github.com/arunagw/omniauth-twitter.git
 gem 'omniauth-google-oauth2', :git => 'https://github.com/zquestz/omniauth-google-oauth2.git'
 
 group :development, :test do
+  gem 'mongrel', '>= 1.2.0.pre2'
   gem 'capistrano'
   gem 'sqlite3'
   # Pretty printed test output
@@ -49,4 +46,9 @@ group :development, :test do
   gem 'rspec-rails', '>=2.0.0'
   gem 'ZenTest', '~> 4.5.0'
   gem 'factory_girl_rails'
+end
+
+group :production do
+  gem 'mysql'
+  gem 'unicorn'
 end
