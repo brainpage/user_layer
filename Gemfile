@@ -6,10 +6,8 @@ gem 'rails', '3.1.3'
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
-
-group :production do
-  gem 'mysql'
-end
+gem 'mysql'
+gem 'unicorn'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -29,21 +27,21 @@ gem 'faraday_middleware'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
-# Use unicorn as the web server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
+# Gems used only for assets and not required
+# in production environments by default.
+group :assets do
+  gem 'sass-rails',   '~> 3.1.5'
+  gem 'coffee-rails', '~> 3.1.1'
+  gem 'uglifier', '>= 1.0.3'
+end
 
 gem 'omniauth'
 gem 'omniauth-twitter', :git => 'https://github.com/arunagw/omniauth-twitter.git'
 gem 'omniauth-google-oauth2', :git => 'https://github.com/zquestz/omniauth-google-oauth2.git'
 
-
 group :development, :test do
+  gem 'capistrano'
+  gem 'sqlite3'
   # Pretty printed test output
   #gem 'turn', '0.8.2', :require => false
   gem 'ruby-debug19', :require => 'ruby-debug'
