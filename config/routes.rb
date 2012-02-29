@@ -25,6 +25,9 @@ UserLayer::Application.routes.draw do
   namespace :rsi do
     resources :feeds
   end
+  
+  match 'auth/:provider/callback' => 'rsi/sessions#create'
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

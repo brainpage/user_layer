@@ -7,6 +7,9 @@ gem 'rails', '3.1.3'
 
 gem 'sqlite3'
 
+group :production do
+  gem 'mysql'
+end
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -34,6 +37,11 @@ gem 'faraday_middleware'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
+
+gem 'omniauth'
+gem 'omniauth-twitter', :git => 'https://github.com/arunagw/omniauth-twitter.git'
+gem 'omniauth-google-oauth2', :git => 'https://github.com/zquestz/omniauth-google-oauth2.git'
+
 
 group :development, :test do
   # Pretty printed test output

@@ -4,7 +4,7 @@ class Rsi::FeedsController < ApplicationController
   SECRET_KEY = "ea1020da-cea9-4cef-848e-6a5121af11d4"
   
   def index
-    render :text => "hello"
+    
   end
   
   protected
