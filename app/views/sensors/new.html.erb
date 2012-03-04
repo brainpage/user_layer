@@ -1,0 +1,6 @@
+<%= form_for :sensor, :url=>sensors_path do |f| %>
+  Name: <%= f.text_field :name %>
+  Description: <%= f.text_area :description %>
+  Public? <%= f.check_box :public %>
+  <%= submit_tag "Create" %>
+<% end %>

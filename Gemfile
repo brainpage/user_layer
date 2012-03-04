@@ -23,6 +23,8 @@ gem 'rest-client'
 gem 'devise'
 gem 'faraday'
 gem 'faraday_middleware'
+
+gem 'mysql'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

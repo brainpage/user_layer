@@ -36,4 +36,60 @@ Notify Me When The Following Happens:
 [] When the air quality is very bad
 
 
+Web Request ->
+   IP Address + Info about Browser and OS/Computer
+
+
+Desktop Request ->
+   IP Address + OS/Computer
+
+
+-> Decide Plan for Next Week
+-> Agree/finalize login system
+
+1. Finish Data Collection (Erlang/TCP Objective - C...MAC)
+2. Implement other desktop features (like fading of screen...MAC) (Thurs.)
+3. Web app:
+--> Landing Page (Register/Login) (Thurs.)
+--> "RSI" App.  Configuration (how often to take breaks).
+-----> Various graphs of computer of usage.  How much per day?
+-----> Compare time to friends usage
+--> COmpare mouse vs. keyboard
+--> What software you are using?  Percentage time on different software.  (Group by fields)
+  (Allow people to indicate their profession? Compare software usage?)
+--> Security setting. (Allow your data into "aggregate data")
+--> Do we want feed and any other features?  Social? Invitation (facebook/weibo integration)
+4. Windows Version (Research windows? How hard?  Basic functionality (tracking, status bar, cover window). Thurs.)
+6. Set up servers.
+5. Release + Start Marketing
+Market: How?  Friends to try.
+- "Lifehacker"
+
+China Server
+
+AWS (Everyone else)
+
+MySQL Cluster.  Geographic Replication
+
+Rails (User Facing App).
+--> User/Settings
+--> Feed
+
+
+Sensor Collection
+--> TCP
+--> Sensor Data Processing
+
+Webbrowser: I log in.
+Store my IP + Computer Information (expire after x time if no activity)
+Desktop makes request
+Can it find IP + Computer Information that is active
+If yes.  Return user hash.  If no. Go to the website to login.
+
+App Loads
+App Calls bp.com/sensors/computer/get_data_token
+--> if user logged in with this 
+     current.sensors.computer.token
+  if not logged in
+    Sensor.create(:uuid => random, :owner_id => nil, :last_ip =>  :physical_info => )
 
