@@ -25,6 +25,13 @@ UserLayer::Application.routes.draw do
   end
   devise_for :users
   root :to=>"apps#index"
+  
+  namespace :rsi do
+    resources :feeds
+  end
+  
+  match 'auth/:provider/callback' => 'rsi/sessions#create'
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

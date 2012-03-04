@@ -1,0 +1,2 @@
+module Rsi::SessionsHelper
+end
