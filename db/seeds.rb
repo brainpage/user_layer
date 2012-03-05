@@ -14,5 +14,5 @@ user = User.create(:email => "guolei@gmail.com", :password => "111111", :passwor
 care = Care.create!(:name => "Mother", :phone_number => "13800138000", :owner => user)
 jp = User.create(:email => "jpalley@gmail.com", :password=>"jonathan", :password_confirmation => "jonathan")
 app = App.create!(:care => care, :app_list => al, :app_token => "fo93ro3")
-feed = Feed.create(:app => app, :user => user, :event => "明天将会大幅度降温6到8度，外出请注意保暖")
+feed = Feed.create(:originator => app, :user => user, :text => "明天将会大幅度降温6到8度，外出请注意保暖")
 

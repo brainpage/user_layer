@@ -1,7 +1,6 @@
 class Feed < ActiveRecord::Base
   belongs_to :user
-  belongs_to :app
-  
+  belongs_to :originator, :polymorphic => true 
   scope :since, lambda{|time| where(time.blank? ? "1=1" : ["created_at > ?", Time.zone.parse(time) + 1.second])}
   
   def as_json(options = {})
