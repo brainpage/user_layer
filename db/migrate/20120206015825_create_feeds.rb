@@ -1,9 +1,9 @@
 class CreateFeeds < ActiveRecord::Migration
   def change
     create_table :feeds do |t|
-      t.integer :app_id
+     t.references :creator, :polymorphic => true 
       t.string :event_id
-      t.text :event
+      t.text :text
       t.integer :user_id
 
       t.timestamps

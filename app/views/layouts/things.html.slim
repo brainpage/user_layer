@@ -1,0 +1,47 @@
+doctype html
+html 
+  head
+    title BrainPage
+    = stylesheet_link_tag "application"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
+
+  body style="padding-top: 60px"
+    .navbar.navbar-fixed-top
+      .navbar-inner
+        .container
+          a.brand href="#" BrainPage 
+          ul.nav 
+            li = link_to "Feed", feeds_path
+            li = link_to "Analysis", cares_path
+
+          ul.nav.pull-right
+            li: a href="#" Settings 
+    .container
+      .row
+        .span2 
+          .well
+            ul.nav.nav-list
+              li.nav-header  People
+              li.active 
+                i.icon-user
+                | Me
+              li.nav-header Things
+              - for sensor in current_user.sensors
+                li = link_to sensor.name, sensor_path(sensor)
+        .span8 
+
+        - unless flash[:notice].blank?
+            .alert-message.info
+              div = flash[:notice]
+
+        - unless flash[:error].blank?
+            .alert-message.error
+              div = flash[:error]
+
+        - unless flash[:alert].blank?
+            .alert-message.warning
+              div = flash[:alert]
+                
+        = yield

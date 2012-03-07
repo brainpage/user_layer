@@ -7,7 +7,11 @@ UserLayer::Application.routes.draw do
   namespace :api do
     resource :feeds
   end
-  resources :sensors
+  resources :sensors do
+      collection do
+          get "sensocol_demo"
+    end
+  end
   namespace :sensor do
     resources :weathers do
       collection do
