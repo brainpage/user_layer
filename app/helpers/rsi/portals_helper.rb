@@ -1,0 +1,2 @@
+module Rsi::PortalsHelper
+end

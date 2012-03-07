@@ -23,6 +23,8 @@ gem 'faraday_middleware'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
+gem 'slim'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -48,7 +50,7 @@ group :development, :test do
   gem 'factory_girl_rails'
 end
 
-group :production do
-  gem 'mysql'
-  gem 'unicorn'
-end
+#group :production do
+#  gem 'mysql'
+#  gem 'unicorn'
+#end
