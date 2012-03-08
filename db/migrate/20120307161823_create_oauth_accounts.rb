@@ -8,6 +8,6 @@ class CreateOauthAccounts < ActiveRecord::Migration
     end
     
     add_index :oauth_accounts, :user_id
-    add_index :oauth_accounts, :provider, :uuid, :unique => true
+    add_index :oauth_accounts, [:provider, :uuid], :unique => true
   end
 end
