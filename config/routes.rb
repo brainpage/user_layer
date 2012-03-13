@@ -24,7 +24,10 @@ UserLayer::Application.routes.draw do
   root :to=>"apps#index"
   
   namespace :rsi do
-    resources :feeds, :portals
+    resources :feeds, :accounts
+    resources :portals do
+      get :land
+    end
   end
   
   match 'auth/:provider/callback' => 'rsi/sessions#create'

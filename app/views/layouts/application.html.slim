@@ -7,25 +7,19 @@ html
 		= csrf_meta_tags
 	
 	body style="padding-top:50px"
-    
+    	= image_tag "p10.jpg", :id => "bg"
+
 		.navbar.navbar-fixed-top
 			.navbar-inner
 				.container
-					= link_to("Brainpage", "/", :class => "brand")
 					
 					ul.nav
-						li.active = link_to "Feeds", feeds_path
-						li = link_to "My People", cares_path(:type=>"people")
-						li = link_to "My Things", cares_path(:type=>"things")
+						li.active = link_to "Home", feeds_path
 					
 					ul.nav.pull-right
-						li.dropdown
-							a.dropdown-toggle href="#" data-toggle="dropdown"
-								| Login
-								b.caret
-							ul.dropdown-menu
-								li = link_to "Facebook"
-								li = link_to "Twitter"
+						li = link_to "Blog"
+						li = link_to "About Us"
+						
 		.container
 			= yield
 			

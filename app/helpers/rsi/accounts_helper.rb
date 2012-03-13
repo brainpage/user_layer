@@ -1,0 +1,2 @@
+module Rsi::AccountsHelper
+end

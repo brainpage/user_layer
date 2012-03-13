@@ -1,0 +1,49 @@
+.top.row-fluid
+  .pull-right
+    | GuoLei
+  .logo
+    | Brainpage
+
+.row-fluid
+  .span4
+    .row-fluid
+      .span3.b.c5
+        .video
+          = image_tag "video.png", :height => "40px"
+      .span9.b.c1
+        .p 
+          | Bringing YOU Benefits
+          br from YOUR Data
+    .row-fluid
+      .span12.b.c2
+        .p
+          | Why should Google/Facebook/AT&T have all the fun with your data? BrainPage takes all the digital data being collected about what you do and enables you to analyze and improve your life. 
+    .row-fluid
+      .span7.b.c3
+        .p Learn more ...
+
+  .span5
+    .row-fluid
+      .span12.b.c3
+        .p RSI Protection
+
+  .span3
+    .row-fluid
+      .span12.b.c8
+        .p
+          | Join Us Now
+          = form_tag rsi_accounts_path, :class => "form-horizontal"
+          label.control-label Email
+          = text_field_tag :email, "",:class => "span2"
+          br
+          label.control-label Password
+          = password_field_tag :password,"", :class => "span2"
+          br  
+          label.control-label 
+          = submit_tag "Register", :class => "btn"
+    .b.c8
+      .p Or Login With
+      .p style="text-align: center"
+        = image_tag "facebook.png" 
+        br
+        = image_tag "twitter.png"

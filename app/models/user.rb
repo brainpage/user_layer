@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   has_many :cares, :foreign_key=>:owner_id
   has_many :sensors, :foreign_key=>:owner_id
   
-  delegate :name, :email, :image, :to => :active_oauth_account, :allow_nil => true
+  delegate :name, :image, :to => :active_oauth_account, :allow_nil => true
   
   def self.create_mobile_user
     User.new.tap do |user|

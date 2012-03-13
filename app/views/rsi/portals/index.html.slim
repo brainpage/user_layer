@@ -1,19 +1,5 @@
-.alert.alert-info
-	
-	- if current_user.blank?
-		.pull-right
-			.btn-group
-				a.btn.dropdown-toggle data-toggle="dropdown" href="#"
-					| Login with my account of ...
-					span.caret
-				ul.dropdown-menu
-					li = link_to "Gmail", "/auth/google_oauth2"
-					li = link_to "Facebook"
-					li = link_to "Twitter"
-				
-	h3 
-		- unless current_user.try(:image).blank?
-			= image_tag(current_user.image)
-		| Welcome to brainpage 
-		= current_user.try(:name)
-		
+.top.row-fluid
+  .pull-right
+    | GuoLei
+  .logo
+    | Brainpage		
