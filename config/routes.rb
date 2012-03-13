@@ -10,6 +10,7 @@ UserLayer::Application.routes.draw do
   resources :sensors do
       collection do
           get "sensocol_demo"
+          get "test_data"
     end
   end
   namespace :sensor do

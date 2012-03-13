@@ -27,4 +27,8 @@ class SensorsController < ApplicationController
         @uuid = Digest::SHA1.hexdigest "hi"
         @token = Digest::SHA1.hexdigest "world"
   end
+
+  def test_data
+    render :text=> {:x => [1331552445, 13315524333], :y=>[35, 50]}.to_json
+  end
 end

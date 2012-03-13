@@ -1,5 +1,5 @@
 class Sensor::RandomsController < ApplicationController
-  before_filter :authenticate_user!
+  #before_filter :authenticate_user!
   def new
 
   end
@@ -13,5 +13,9 @@ class Sensor::RandomsController < ApplicationController
       flash[:error] = "Error creating randomness sensor"
       render :action => :new
     end 
+  end
+
+  def index
+    
   end
 end
