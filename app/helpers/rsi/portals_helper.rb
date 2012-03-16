@@ -1,2 +1,3 @@
 module Rsi::PortalsHelper
+  
 end

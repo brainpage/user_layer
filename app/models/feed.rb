@@ -8,7 +8,7 @@ class Feed < ActiveRecord::Base
   end
   
   def content
-    self.event
+    self.text
   end
   
   def ownerName

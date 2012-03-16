@@ -26,7 +26,14 @@ UserLayer::Application.routes.draw do
   namespace :rsi do
     resources :feeds, :accounts
     resources :portals do
-      get :land
+      collection do 
+        get :land
+      end
+    end
+    resources :groups do
+      member do
+        get :join
+      end
     end
   end
   

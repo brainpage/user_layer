@@ -32,6 +32,8 @@ gem 'slim'
 gem 'omniauth'
 gem 'omniauth-twitter', :git => 'https://github.com/arunagw/omniauth-twitter.git'
 gem 'omniauth-google-oauth2', :git => 'https://github.com/zquestz/omniauth-google-oauth2.git'
+gem 'omniauth-facebook'
+
 
 group :development, :test do
   gem 'mongrel', '>= 1.2.0.pre2'

@@ -1,9 +1,3 @@
-.top.row-fluid
-  .pull-right
-    | GuoLei
-  .logo
-    | Brainpage
-
 .row-fluid
   .span4
     .row-fluid
@@ -34,16 +28,16 @@
           | Join Us Now
           = form_tag rsi_accounts_path, :class => "form-horizontal"
           label.control-label Email
-          = text_field_tag :email, "",:class => "span2"
+          = text_field_tag :email, "",:class => "login-input"
           br
           label.control-label Password
-          = password_field_tag :password,"", :class => "span2"
+          = password_field_tag :password,"", :class => "login-input"
           br  
           label.control-label 
           = submit_tag "Register", :class => "btn"
     .b.c8
       .p Or Login With
       .p style="text-align: center"
-        = image_tag "facebook.png" 
+        = link_to image_tag("facebook.png"), "/auth/facebook"
         br
         = image_tag "twitter.png"
