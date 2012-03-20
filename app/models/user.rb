@@ -27,6 +27,21 @@ class User < ActiveRecord::Base
     end
   end
   
+  def self.build_user(params)
+    user = self.find_by_email(params[:email])
+    
+    if user.blank?
+      user = self.create!(:email => params[:email], :password => params[:password], :password_confirmation => params[:password])
+    else
+      raise "Wrong password!" unless user.valid_password?(params[:password])
+    end
+    user
+  end
+  
+  def after_token_authentication
+    self.reset_authentication_token!
+  end 
+  
   def active_oauth_account
     self.oauth_accounts.order("updated_at desc").first
   end
@@ -34,6 +49,14 @@ class User < ActiveRecord::Base
   def create_activity_group
     self.own_activity_groups.create({}).tap do |group|
       group.activity_group_users.create(:user => self)
+    end
+  end
+  
+  def add_sensor(sensor_uuid)
+    sensor = Sensor.find_by_uuid(sensor_uuid)
+    unless sensor.blank?
+      sensor.update_attribute(:owner_id, self.id)
+      self.feeds.create(:text => "Added to your things!", :originator => sensor)
     end
   end
   

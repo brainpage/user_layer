@@ -1,12 +1,55 @@
 .row-fluid
-  .span4
-    | Hello
-  .span5
-    | Hello
+  .span6
+    .title 
+      = link_to "Updates", rsi_portals_path, :class => "active"
+    ul.feeds
+      li.row-fluid
+          .span2.feed-icon
+              = image_tag "setting.png"
+          .span10
+            .content  You have set up your account successfully.<br />Your data is being collected to help you improve your health.
+            .sub 
+              =link_to "Change Settings"
+              span 10 minutes ago 
+              
+              
+	  li.row-fluid
+	      .span2.feed-icon
+	        = image_tag "smile.png"
+	      .span10
+	        .content  Welcome to Brainpage<br />Be there without being there
+	        .sub 
+	          =link_to "About Brainpage"
+	          span 6-10 03:50
   .span3
-    .b.c2
-      .p 
-        = link_to "Invite Friends", rsi_groups_path, :method => :post, :class => "fb-link"
+    .title 
+      = link_to "Analysis"
+
+    .b.c8
+      .p.f11 
+        = link_to "Work strength of day"
+      #line-holder
+      script
+	    | var r = Raphael("line-holder");
+	    | r.linechart(20, 10, 240,120, [9,10,11,12,13, 14],[10,20,5,20,17, 12], { axis: "0 0 1 1",  smooth: true });
+
+    .b.c8
+      .p.f11 Time on applications
+    .b.c8
+      .p.f11 Time by category
+    .b.c8
+      .p.f11 Compare with friends
+
+  .span3
+    .title 
+      = link_to "Activities"
+    .b.c10     
+      .p.f11 User Facebook Less for Charity
+      .p.f8 Complete with your friends to see who use facebook less. The loser will donate money to charity.
+    .b.c10
+      .p
+        = link_to "Begin Now", rsi_groups_path, :method => :post, :class => "go"
+
 
 
 

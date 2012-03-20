@@ -20,7 +20,13 @@ UserLayer::Application.routes.draw do
     end
     resources :randoms
   end
+    
   devise_for :users
+  as :user do
+    get 'signin' => 'rsi/portals#land', :as => :new_user_session
+  end
+  
+  
   root :to=>"apps#index"
   
   namespace :rsi do
@@ -37,7 +43,7 @@ UserLayer::Application.routes.draw do
     end
   end
   
-  match 'auth/:provider/callback' => 'rsi/sessions#create'
+  match 'auth/:provider/callback' => 'rsi/accounts#create'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
