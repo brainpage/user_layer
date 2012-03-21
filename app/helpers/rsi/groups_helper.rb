@@ -1,2 +1,0 @@
-module Rsi::GroupsHelper
-end

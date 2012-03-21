@@ -36,7 +36,7 @@ UserLayer::Application.routes.draw do
         get :land
       end
     end
-    resources :groups do
+    resources :activities do
       member do
         get :join
       end

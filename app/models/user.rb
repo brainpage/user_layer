@@ -13,11 +13,13 @@ class User < ActiveRecord::Base
   has_many :cares, :foreign_key=>:owner_id
   has_many :sensors, :foreign_key=>:owner_id
   
-  has_many :activity_group_users
-  has_many :activity_groups, :through => :activity_group_users
-  has_many :own_activity_groups, :class_name => "ActivityGroup", :foreign_key => :creator_id
+  has_many :activity_users
+  has_many :activities, :through => :activity_users
+  has_many :own_activities, :class_name => "Activity", :foreign_key => :creator_id
   
   delegate :name, :image, :to => :active_oauth_account, :allow_nil => true
+  
+  after_create :generate_welcome_feed
   
   def self.create_mobile_user
     User.new.tap do |user|
@@ -46,24 +48,28 @@ class User < ActiveRecord::Base
     self.oauth_accounts.order("updated_at desc").first
   end
   
-  def create_activity_group
-    self.own_activity_groups.create({}).tap do |group|
-      group.activity_group_users.create(:user => self)
+  def create_activity(time_span, money_account)
+    self.own_activities.create({:time_span => time_span, :money_account => money_account}).tap do |act|
+      act.activity_users.create(:user => self)
     end
   end
   
   def add_sensor(sensor_uuid)
     sensor = Sensor.find_by_uuid(sensor_uuid)
-    unless sensor.blank?
+    if sensor.present? and sensor.owner_id != self.id
       sensor.update_attribute(:owner_id, self.id)
-      self.feeds.create(:text => "Added to your things!", :originator => sensor)
+      self.feeds.create(:text_key => :add_sensor, :originator => sensor, :hook_method => :change_sensor_setting)
     end
   end
   
-  def join_group(group_code)
-    group = ActivityGroup.find_by_code(group_code)
-    unless group.blank?
-      group.activity_group_users.create(:user => self)
+  def join_activity(token)
+    act = Activity.find_by_token(token)
+    unless act.blank?
+      act.activity_users.create(:user => self)
     end
+  end
+  
+  def generate_welcome_feed
+    Feed.create(:text_key => :welcome, :hook_method => :about_company, :user => self)
   end
 end

@@ -6,16 +6,16 @@ describe User do
   end
   
   it "should have many activity groups" do
-    ag = Factory(:activity_group, :creator => @user)
-    Factory(:activity_group_user, :activity_group => ag, :user => @user)
-    @user.reload.should have(1).activity_groups
-    @user.should have(1).own_activity_groups
+    act = Factory(:activity, :creator => @user)
+    Factory(:activity_user, :activity => act, :user => @user)
+    @user.reload.should have(1).activities
+    @user.should have(1).own_activities
   end
   
   it "should create activity_group" do
-    @user.create_activity_group
-    @user.should have(1).own_activity_groups
-    @user.should have(1).activity_groups
+    @user.create_activity(2, 10)
+    @user.should have(1).own_activities
+    @user.should have(1).activities
   end
   
   describe "build_user" do
@@ -38,13 +38,14 @@ describe User do
   
   it "should add sensor" do
     sensor = Factory(:sensor, :uuid => "1234")
-    @user.add_sensor("1234")
+    lambda{@user.add_sensor("1234")}.should change(@user.feeds, :count).by(1)
     sensor.reload.owner.should == @user
+    @user.reload.feeds.first.originator.should == sensor
   end
   
   it "should join group" do
-    group = Factory(:activity_group, :code => "abc")
-    @user.join_group("abc")
-    group.reload.users.should be_include(@user)
+    act = Factory(:activity, :token => "abc")
+    @user.join_activity("abc")
+    act.reload.users.should be_include(@user)
   end
 end

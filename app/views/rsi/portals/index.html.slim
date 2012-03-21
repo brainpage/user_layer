@@ -3,24 +3,16 @@
     .title 
       = link_to "Updates", rsi_portals_path, :class => "active"
     ul.feeds
-      li.row-fluid
+      - for feed in @feeds 
+        li.row-fluid
           .span2.feed-icon
-              = image_tag "setting.png"
+              = image_tag "#{feed.text_key}.png"
           .span10
-            .content  You have set up your account successfully.<br />Your data is being collected to help you improve your health.
+            .content =feed.text
             .sub 
-              =link_to "Change Settings"
-              span 10 minutes ago 
+              = send feed.hook_method, feed
+              span =time_ago_in_words(feed.created_at) 
               
-              
-	  li.row-fluid
-	      .span2.feed-icon
-	        = image_tag "smile.png"
-	      .span10
-	        .content  Welcome to Brainpage<br />Be there without being there
-	        .sub 
-	          =link_to "About Brainpage"
-	          span 6-10 03:50
   .span3
     .title 
       = link_to "Analysis"
@@ -48,9 +40,16 @@
       .p.f8 Complete with your friends to see who use facebook less. The loser will donate money to charity.
     .b.c10
       .p
-        = link_to "Begin Now", rsi_groups_path, :method => :post, :class => "go"
+        a href="#newAct" data-toggle="modal" class="go" Begin Now
 
-
-
-
-	   
+/ Create activity form
+#newAct.modal.hide
+  .modal-header
+    a class="close" data-dismiss="modal" x
+    h3 Begin competition  
+  .modal-body
+    = form_tag rsi_activities_path
+    p This competition will last for #{select_tag :time_span, options_for_select([1,2,3]), :class=>"span1"} days
+    p The loser will donate #{select_tag :money_account, options_for_select([10,20,50,100]), :class=>"span1"} dollars to the charity
+    p style="text-align:center"
+      = submit_tag "Go to invite friends", :class=>"btn btn-primary btn-large"
