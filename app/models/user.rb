@@ -58,18 +58,30 @@ class User < ActiveRecord::Base
     sensor = Sensor.find_by_uuid(sensor_uuid)
     if sensor.present? and sensor.owner_id != self.id
       sensor.update_attribute(:owner_id, self.id)
-      self.feeds.create(:text_key => :add_sensor, :originator => sensor, :hook_method => :change_sensor_setting)
+      self.feeds.create(:xtype => :add_sensor, :originator => sensor)
     end
   end
   
   def join_activity(token)
     act = Activity.find_by_token(token)
-    unless act.blank?
+    if act.present? and !act.users.include?(self)
       act.activity_users.create(:user => self)
+      
+      act.users.each do |user|
+        Feed.create(:xtype => :join_activity, :user => user, :referer => self, :originator => act)      
+      end
+      
+      unless self.sensor_added?
+        self.feeds.create(:xtype => :alert_sensor_install, :originator => act)
+      end
     end
   end
   
   def generate_welcome_feed
-    Feed.create(:text_key => :welcome, :hook_method => :about_company, :user => self)
+    Feed.create(:xtype => :welcome, :user => self)
+  end
+  
+  def sensor_added?
+    self.feeds.xtype(:add_sensor).present?
   end
 end

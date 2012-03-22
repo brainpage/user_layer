@@ -1,0 +1,20 @@
+.row-fluid
+  .span8
+    .b.c8
+      .p
+        .f11 #{@activity.creator.try(:name)} invited you to join "Use facebook less for charity"
+        .p #{@activity.users.count} players, 5 days left
+    
+    div style="text-align:center"
+      = link_to "Join Now", join_rsi_activity_path(@activity.token), :method => :post, :class => "btn btn-primary btn-large", :style=>"width:200px"
+
+    ul.feeds
+      = render :partial => "user", :collection => @activity.users
+
+  .span4
+    .b.c8
+      .p 
+        .f13 What is this?
+        | Complete with your friends to see who use facebook less. The loser will donate money to charity.
+    .b.c8
+      .p =link_to "More About Brainpage"

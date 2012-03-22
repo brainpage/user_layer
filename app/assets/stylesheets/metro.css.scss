@@ -13,15 +13,15 @@ img#bg{position:fixed; top:0; left:0; width:100%; height:100%;}
 
 .container{ position:relative;width:1170px !important;}
 
-.top{margin:15px 0 }
+.top{margin-bottom:25px}
 .top .pull-right{margin-top:-15px !important;width:300px}
-.logo{font-size:50px; color:#fcfcfc}
+.logo{font-size:50px; color:#fcfcfc; line-height:50px}
 .user-name{font-size: $font-size; color: #fcfcfc; text-align:right; height:50px; line-height: 50px}
 
 .navbar{@include opacity; font-weight:bold; z-index:1}
 
 .title{font-size: $font-size * 1.3;margin: 10px 2px 20px 2px}
-.title a{color: white}
+.title a{color: white; margin-right:30px}
 .title .active{border-bottom: 2px solid #ffffff;}
 .title .active:hover{text-decoration: none}
 
@@ -43,7 +43,8 @@ img#bg{position:fixed; top:0; left:0; width:100%; height:100%;}
 .c9{background-color: #66cc00;}
 .c10{background-color: #336633;}
      
-.f11{font-size: $font-size * 1.1}
+.f13{font-size: $font-size * 1.3; line-height: $line-height * 1.3}
+.f11{font-size: $font-size * 1.1; line-height: $line-height * 1.1}
 .f8{font-size: $font-size * 0.8; line-height: $line-height * 0.8}
   
 .video{padding:10px 0 4px 0;text-align:center;}
@@ -61,4 +62,6 @@ img#bg{position:fixed; top:0; left:0; width:100%; height:100%;}
 #line-holder svg, #line-holder div{height: 160px !important}
 
 .go{background: url(image_path('arrow.png')) no-repeat scroll right center; }
-.fb-link{background: url(image_path('facebook-small.png')) no-repeat scroll right center; }
+.fb-link{background: url(image_path('facebook-small.png')) no-repeat scroll right center; padding-right:40px}
+
+.money{font-size: $font-size * 1.8; color: blue; text-align: center; margin:15px;}

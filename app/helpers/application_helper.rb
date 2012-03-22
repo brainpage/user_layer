@@ -1,3 +1,3 @@
 module ApplicationHelper
-  include FeedHook
+  include FeedRender
 end

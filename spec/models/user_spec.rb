@@ -43,9 +43,34 @@ describe User do
     @user.reload.feeds.first.originator.should == sensor
   end
   
-  it "should join group" do
-    act = Factory(:activity, :token => "abc")
-    @user.join_activity("abc")
-    act.reload.users.should be_include(@user)
+  describe "join_activity" do
+    before do
+      @act = @user.create_activity(5, 50)
+      @new_user = Factory(:user, :email => "new_user@example.com")     
+    end
+    
+    it "should join activity" do
+      @new_user.join_activity(@act.token)
+      @act.reload.users.should be_include(@new_user)
+    end
+    
+    it "should generate feed for related users" do
+      lambda{@new_user.join_activity(@act.token)}.should change(@user.feeds, :count).by(1)
+      @user.reload.feeds.first.referer.should == @new_user
+    end
+    
+    it "should generate alert_sensor_install feed for user if no sensor added" do
+      @new_user.join_activity(@act.token)
+      @new_user.feeds.xtype(:alert_sensor_install).should_not be_blank
+    end
+  end
+  
+  describe "sensor_added" do
+    it "should be true if has feed with xtype of add_sensor" do
+      @user.should_not be_sensor_added
+      
+      @user.add_sensor(Factory(:sensor).uuid)
+      @user.reload.should be_sensor_added
+    end
   end
 end

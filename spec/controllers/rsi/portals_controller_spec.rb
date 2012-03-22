@@ -7,10 +7,12 @@ describe Rsi::PortalsController do
     sign_in @user = Factory(:user)
     
     @user.add_sensor(Factory(:sensor).uuid)
+    act = @user.create_activity(3,20)
+    Factory(:user, :email => "new@example.com").join_activity(act.token)
   end
   
   it "should respond to index" do
     get :index
     response.should be_success
-  end
+  end 
 end

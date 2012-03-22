@@ -14,8 +14,8 @@ class Activity < ActiveRecord::Base
       :app_id => Rails.configuration.fb_key,
       :name => "User facebook less for charity",
       :description => "Compete with me to see who use facebook less. The loser will donate money to charity.",
-      :link => "http://signup.brainpage.com?token=#{self.token}",
-      :redirect_uri => "http://localhost:3000/rsi/portals"
+      :link => "http://signup.brainpage.com/act/#{self.token}",
+      :redirect_uri => "http://localhost:3000/rsi/activities"
     }
   
     "http://www.facebook.com/dialog/send?#{options.to_param}"
