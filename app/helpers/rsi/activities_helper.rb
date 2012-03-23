@@ -1,0 +1,2 @@
+module Rsi::ActivitiesHelper
+end

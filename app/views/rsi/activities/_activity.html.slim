@@ -1,0 +1,10 @@
+- current = activity == @activity
+
+div class="b #{current ? "c8" : "c10"}"
+  .p 
+    .f11 User Facebook Less
+    div 1 players, 2 days left
+    .money 
+      = "$ #{activity.money_account}"
+    .f8
+      | Created by #{{activity.creator.try(:name)}}, #{{time_ago_in_words activity.created_at}} 

@@ -1,0 +1,67 @@
+$opacity: 0.7;
+$font-size: 20px;
+$line-height: 25px;
+@mixin opacity{filter:alpha(Opacity= $opacity * 100);-moz-opacity: $opacity; opacity: $opacity;}
+@mixin low-opacity{filter:alpha(Opacity= $opacity * 0.5 * 100);-moz-opacity: $opacity * 0.5; opacity: $opacity * 0.5;}
+
+body{ margin:0; padding:0;height:100%;}
+input, button, select, submit{font-size:16px;}
+p{font-size: $font-size * 0.9 !important}
+.btn-large{font-size: $font-size * 0.85 !important}
+
+img#bg{position:fixed; top:0; left:0; width:100%; height:100%;}
+
+.container{ position:relative;width:1170px !important;}
+
+.top{margin-bottom:25px}
+.top .pull-right{margin-top:-15px !important;width:300px}
+.logo{font-size:50px; color:#fcfcfc; line-height:50px}
+.user-name{font-size: $font-size; color: #fcfcfc; text-align:right; height:50px; line-height: 50px}
+
+.navbar{@include opacity; font-weight:bold; z-index:1}
+
+.title{font-size: $font-size * 1.3;margin: 10px 2px 20px 2px}
+.title a{color: white; margin-right:30px}
+.title .active{border-bottom: 2px solid #ffffff;}
+.title .active:hover{text-decoration: none}
+
+.b{@include opacity; margin-bottom: 10px; font-size:18px;line-height:25px;  background: no-repeat scroll 15px center; width:100%;  color:White; }
+.b a{color: white;display: block}
+.p{padding: 10px 15px;}
+
+.login-input{width:140px !important}
+.control-label{width:60px !important;margin-right:10px;}
+
+.c1{background-color: #cc9900;}
+.c2{background-color: #00cccc;}
+.c3{background-color: #003399;}
+.c4{background-color: #009933;}
+.c5{background-color: #cccc00;}
+.c6{background-color: #009966;}
+.c7{background-color: #cc3333;}
+.c8{background-color: #669933;}
+.c9{background-color: #66cc00;}
+.c10{background-color: #336633;}
+     
+.f13{font-size: $font-size * 1.3; line-height: $line-height * 1.3}
+.f11{font-size: $font-size * 1.1; line-height: $line-height * 1.1}
+.f8{font-size: $font-size * 0.8; line-height: $line-height * 0.8}
+  
+.video{padding:10px 0 4px 0;text-align:center;}
+
+.form-horizontal{margin:10px 0 10px 0;}
+.form-horizontal input{margin-bottom: 10px;}
+
+.feeds{padding:1px 0 0 0; margin:0;}
+.feeds li{list-style: none; font-size: $font-size; margin-top:20px; color: white;line-height: $line-height}
+.feeds .feed-icon{width:48px;}
+.feeds .sub{color: #669966; font-size: 80%; }
+.feeds .sub span{margin-left:20px}
+.feeds .content{}
+
+#line-holder svg, #line-holder div{height: 160px !important}
+
+.go{background: url(image_path('arrow.png')) no-repeat scroll right center; }
+.fb-link{background: url(image_path('facebook-small.png')) no-repeat scroll right center; padding-right:40px}
+
+.money{font-size: $font-size * 1.8; color: blue; text-align: center; margin:15px;}

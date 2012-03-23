@@ -6,9 +6,9 @@ class OauthAccount < ActiveRecord::Base
   
   def self.build_for_user(user, auth_hash)
     if user.blank?
-      user = User.new.tap{|u| u.save(:validate => false)} 
+      user = User.new(:email => auth_hash.info.email).tap{|u| u.save(:validate => false)} 
     end
-    
+   
     data = {
       :user => user,
       :provider => auth_hash.provider,

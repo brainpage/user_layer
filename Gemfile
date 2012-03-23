@@ -32,6 +32,8 @@ gem 'slim'
 gem 'omniauth'
 gem 'omniauth-twitter', :git => 'https://github.com/arunagw/omniauth-twitter.git'
 gem 'omniauth-google-oauth2', :git => 'https://github.com/zquestz/omniauth-google-oauth2.git'
+gem 'omniauth-facebook'
+
 
 group :development, :test do
   gem 'mongrel', '>= 1.2.0.pre2'
@@ -39,7 +41,7 @@ group :development, :test do
   gem 'sqlite3'
   # Pretty printed test output
   #gem 'turn', '0.8.2', :require => false
-#  gem 'ruby-debug19', :require => 'ruby-debug'
+  gem 'ruby-debug19', :require => 'ruby-debug'
   gem 'rspec', '>=2.0.0'
   gem 'rspec-rails', '>=2.0.0'
   gem 'ZenTest', '~> 4.5.0'

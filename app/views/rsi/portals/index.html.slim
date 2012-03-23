@@ -1,19 +1,39 @@
-.alert.alert-info
-	
-	- if current_user.blank?
-		.pull-right
-			.btn-group
-				a.btn.dropdown-toggle data-toggle="dropdown" href="#"
-					| Login with my account of ...
-					span.caret
-				ul.dropdown-menu
-					li = link_to "Gmail", "/auth/google_oauth2"
-					li = link_to "Facebook"
-					li = link_to "Twitter"
-				
-	h3 
-		- unless current_user.try(:image).blank?
-			= image_tag(current_user.image)
-		| Welcome to brainpage 
-		= current_user.try(:name)
-		
+.row-fluid
+  .span6
+    .title 
+      = link_to "Updates", rsi_portals_path, :class => "active"
+    ul.feeds
+      - for feed in @feeds 
+        li.row-fluid
+          = render_feed feed 
+              
+  .span3
+    .title 
+      = link_to "Analysis"
+
+    .b.c8
+      .p.f11 
+        = link_to "Work strength of day"
+      #line-holder
+      script
+	    | var r = Raphael("line-holder");
+	    | r.linechart(20, 10, 240,120, [9,10,11,12,13, 14],[10,20,5,20,17, 12], { axis: "0 0 1 1",  smooth: true });
+
+    .b.c8
+      .p.f11 Time on applications
+    .b.c8
+      .p.f11 Time by category
+    .b.c8
+      .p.f11 Compare with friends
+
+  .span3
+    .title 
+      = link_to "Activities", rsi_activities_path
+    .b.c10     
+      .p.f11 User Facebook Less for Charity
+      .p.f8 Complete with your friends to see who use facebook less. The loser will donate money to charity.
+    .b.c10
+      .p
+        a href="#newAct" data-toggle="modal" class="go" Begin Now
+
+= render "rsi/activities/new"

@@ -1,0 +1,20 @@
+= render "navbar"
+  
+.row-fluid
+  .span8
+    .b.c8
+      .p
+        .pull-right 
+          = link_to "Invite More Friends", @activity.fb_invite_link, :class=>"fb-link"
+        .f11 You spend 6:30 hours daily, the 1th.
+      
+    ul.feeds
+      = render :partial => "user", :collection => @activity.users
+
+  .span4
+    = render @activities
+    .b.c10
+      .p 
+        a href="#newAct" data-toggle="modal" class="go" Create New Activity
+
+= render "new"
