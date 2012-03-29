@@ -1,0 +1,2 @@
+module Rsi::ChartsHelper
+end
