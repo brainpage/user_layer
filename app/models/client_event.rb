@@ -1,4 +1,6 @@
 class ClientEvent < ActiveRecord::Base
+  scope :day, lambda{|day| time = day.to_i.days.ago; where(["created_at >= ? and created_at < ?", time.beginning_of_day, time.end_of_day])}
+
   def self.build(msg)
     if msg["code"] == "update" and msg["data"].present?
       self.create(msg["data"].extract!("dur", "app", "dst", "keys", "msclks", "scrll", "mnum"))
@@ -6,7 +8,7 @@ class ClientEvent < ActiveRecord::Base
   end
   
   def as_json(options = {})
-    super({:only => [:id], :methods => [:timestamp, :point]})
+    super({:only => [:app], :methods => [:timestamp, :point]})
   end
   
   def point

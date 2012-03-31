@@ -5,6 +5,6 @@ class Rsi::ChartsController < ApplicationController
   
   def data
 
-    render :json => ClientEvent.all.to_json
+    render :json => ClientEvent.day(params[:day] || 0).to_json
   end
 end
