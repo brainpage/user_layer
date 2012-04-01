@@ -66,9 +66,14 @@ img#bg{position:fixed; top:0; left:0; width:100%; height:100%;z-index:-9999;}
 
 .money{font-size: $font-size * 1.8; color: blue; text-align: center; margin:15px;}
 
+#line-chart{margin-bottom: 20px}
 
 svg {
   font: 10px sans-serif;
+}
+
+#line-chart text{
+  font-size: 12px;
 }
 
 .line path {
@@ -87,6 +92,13 @@ svg {
   shape-rendering: crispEdges;
 }
 
-.pie path{
+#pie-chart path{
   @include opacity;
 }
+
+#pie-chart text{
+  fill: white;
+  font-size: 14px;
+}
+
+#pie-chart .center-label{font-size: 20px; fill: white;}

@@ -1,31 +1,23 @@
-<div class="title">
-	<%= link_to "Home", rsi_portals_path %>
-	<%= link_to "Analysis", "#", :class => "active" %>
-	<%= link_to "Activities", rsi_activities_path %>
-</div>
-
-<script>
-
-	var margin = {top: 10, right: 10, bottom: 10, left: 10},
-		width = 960 - margin.left - margin.right,
+function drawChart(){
+	var margin = {top: 10, right: 10, bottom: 10, left: 30},
+		width = 1170 - margin.left - margin.right,
 		height = 80,
 		days = 3,
 		all_data = [];
-   
+
 	var formatDate = d3.time.format("%Y-%m-%d %H:%M:%S");
-	
-	var svg = d3.select(".container").append("svg").attr("class", "line").attr("width", width).attr("height", (height + 10) * days);
+
+	var svg = d3.select("#line-chart").append("svg").attr("class", "line").attr("width", width).attr("height", (height + 10) * days);
 
 	var x = d3.time.scale().range([0, width]),
-   		y = d3.scale.linear().range([height, 0]),
+		y = d3.scale.linear().range([height, 0]),
 		y_brush = d3.scale.linear().range([svg.attr("height"), 0]);
 
-   	
 	svg.append("defs").append("clipPath")
-             .attr("id", "clip")
-             .append("rect")
-             .attr("width", width)
-             .attr("height", height);
+	         .attr("id", "clip")
+	         .append("rect")
+	         .attr("width", width)
+	         .attr("height", height);
 
 	var w = 300,
 	    h = 300,
@@ -33,7 +25,7 @@
 	    color = d3.scale.category20(),
 	    donut = d3.layout.pie(),
 	    arc = d3.svg.arc().innerRadius(r * .3).outerRadius(r);
-	
+
 	var vis = null,
 		arcs = null;
 
@@ -47,14 +39,13 @@
 	       	.x(function(d) { return x(d.timestamp); })
 	       	.y0(height)
 	       	.y1(function(d) { return y(d.point); });
-		
-		d3.json("http://localhost:3000/rsi/charts/data?day=" + day, function(data) {
+
+		d3.json("http://192.168.96.175:3000/rsi/charts/data?day=" + day, function(data) {
 			if (data.length > 0){
 				all_data = all_data.concat(data);
-				
+
 				var stage = svg.append("g")
 			   		.attr("transform", "translate(" + margin.left + "," + (margin.top + height * day) + ")");
-
 
 		   		data.forEach(function(d) {
 		   			d.timestamp = formatDate.parse(d.timestamp);
@@ -74,25 +65,25 @@
 			day < days - 1 ? draw(day + 1) : drawBrush();
 	   	});
 	}
-	
+
 	function drawBrush(){
 		svg.append("g")
 		     .attr("class", "brush")
 		     .call(d3.svg.brush().x(x).y(y_brush)
 		     .on("brush", brush));
-		
+
 		drawPie(all_data);
 	}	
-	
+
 	function brush() {
 	   console.log(d3.event.target.extent());
 		var extent = d3.event.target.extent();
 		var from = extent[0][0],
 			to = extent[1][0];
+			
 		drawPie(all_data.filter(function(d){return d.timestamp - from > 0 && d.timestamp - to < 0}));
-
 	}
-	
+
 	function beginningOfDay(time){
 		var begin = new Date(time);
 		begin.setHours(0);
@@ -100,7 +91,7 @@
 		begin.setSeconds(0);
 		return begin;
 	}
-	
+
 	function endOfDay(time){
 		var end = new Date(time);
 		end.setHours(23);
@@ -108,153 +99,79 @@
 		end.setSeconds(59);
 		return end;
 	}
-	
-	
-	
+
 	function drawPie(data){
-	
-		
 		var nest = d3.nest()
 		    .key(function(d) { return d.app; })
 		    .entries(data);
-		
+
 		update(nest.map(function(d){return {name: d.key, value: d.values.length}}));
-        //
-		//var labels = nest.map(function(d){return d.key}),
-		//	values = nest.map(function(d){return d.values.length});
-        //
-		//	vis = d3.select("body")
-		//	  .append("svg").attr("class", "pie")
-		//	    .data([values])
-		//	    .attr("width", w)
-		//	    .attr("height", h);
-	    //
-        //
-		// arcs = vis.selectAll("g.arc")
-		//    .data(donut)
-		//  .enter().append("g")
-		//    .attr("class", "arc")
-		//    .attr("transform", "translate(" + r + "," + r + ")");
-        //
-		//arcs.append("path")
-		//    .attr("fill", function(d, i) { return color(i); })
-		//    .attr("d", arc);
-        //
-		//arcs.append("text")
-		//    .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
-		//    .attr("dy", ".35em")
-		//    .attr("text-anchor", "middle")
-		//    .text(function(d, i) { return labels[i]; });		
 	}
-	
+
+	function removeSmallData(data){
+		var total = 0;
+		data.map(function(d){total += d.value});
+		if(total > 0){
+			data = data.filter(function(d){return d.value / total > 0.01})
+		}
+		return data;
+	}
+
 	var w = 450;
 	var h = 300;
-	var r = 100;
+	var r = 120;
 	var ir = 45;
 	var textOffset = 14;
-	var tweenDuration = 250;
+	var tweenDuration = 300;
 
-	//OBJECTS TO BE POPULATED WITH DATA LATER
 	var lines, valueLabels, nameLabels;
 	var pieData = [];    
 	var oldPieData = [];
 	var filteredPieData = [];
 
-	//D3 helper function to populate pie slice parameters from array data
-	var donut = d3.layout.pie().value(function(d){
-	  return d.value;
-	});
+	var donut = d3.layout.pie().value(function(d){return d.value;});
 
-	//D3 helper function to create colors from an ordinal scale
 	var color = d3.scale.category20();
 
-	//D3 helper function to draw arcs, populates parameter "d" in path object
 	var arc = d3.svg.arc()
 	  .startAngle(function(d){ return d.startAngle; })
 	  .endAngle(function(d){ return d.endAngle; })
 	  .innerRadius(ir)
 	  .outerRadius(r);
 
-	///////////////////////////////////////////////////////////
-	// GENERATE FAKE DATA /////////////////////////////////////
-	///////////////////////////////////////////////////////////
+	var vis = d3.select("#pie-chart").append("svg:svg").attr("width", w).attr("height", h);
+	
+	var centerLabel = vis.append("svg:g")	  
+	  .attr("transform", "translate(" + (w/2) + "," + (h/2) + ")")
+	  .append("svg:text")
+	  .attr("dy", 5)
+	  .attr("class", "center-label")
+	  .attr("text-anchor", "middle") 
+	  .text("Loading Apps...");
 
-	var arrayRange = 100000; //range of potential values for each item
-	var arraySize;
-	var streakerDataAdded;
-
-	function fillArray() {
-	  return {
-	    port: "port",
-	    octetTotalCount: Math.ceil(Math.random()*(arrayRange))
-	  };
-	}
-
-	///////////////////////////////////////////////////////////
-	// CREATE VIS & GROUPS ////////////////////////////////////
-	///////////////////////////////////////////////////////////
-
-	var vis = d3.select("body").append("svg:svg")
-	  .attr("width", w)
-	  .attr("height", h);
-
-	//GROUP FOR ARCS/PATHS
 	var arc_group = vis.append("svg:g")
 	  .attr("class", "arc")
 	  .attr("transform", "translate(" + (w/2) + "," + (h/2) + ")");
 
-	//GROUP FOR LABELS
 	var label_group = vis.append("svg:g")
 	  .attr("class", "label_group")
 	  .attr("transform", "translate(" + (w/2) + "," + (h/2) + ")");
 
-	//GROUP FOR CENTER TEXT  
-	var center_group = vis.append("svg:g")
-	  .attr("class", "center_group")
-	  .attr("transform", "translate(" + (w/2) + "," + (h/2) + ")");
-
-	//PLACEHOLDER GRAY CIRCLE
+	//placeholder
 	var paths = arc_group.append("svg:circle")
 	    .attr("fill", "transparent")
 	    .attr("r", r);
 
-	///////////////////////////////////////////////////////////
-	// CENTER TEXT ////////////////////////////////////////////
-	///////////////////////////////////////////////////////////
-
-	//WHITE CIRCLE BEHIND LABELS
-	var whiteCircle = center_group.append("svg:circle")
-	  .attr("fill", "transparent")
-	  .attr("r", ir);
-
-
-	//TOTAL TRAFFIC VALUE
-	var totalValue = center_group.append("svg:text")
-	  .attr("class", "total")
-	  .attr("text-anchor", "middle") // text-align: right
-	  .text("Loading Apps...");
-
-
-	///////////////////////////////////////////////////////////
-	// STREAKER CONNECTION ////////////////////////////////////
-	///////////////////////////////////////////////////////////
-
-	//var updateInterval = window.setInterval(update, 1500);
-
-	// to run each time data is generated
 	function update(data) {
-  
-	  streakerDataAdded = data;
+	  data = removeSmallData(data);
 
 	  oldPieData = filteredPieData;
-	  pieData = donut(streakerDataAdded);
+	  pieData = donut(data);
 
-	  var totalOctets = 0;
-	  filteredPieData = pieData.filter(filterData);
+	  filteredPieData =  pieData.filter(filterData);
 	  function filterData(element, index, array) {
-	    element.name = streakerDataAdded[index].name;
-	    element.value = streakerDataAdded[index].value;
-	    totalOctets += element.value;
+	    element.name = data[index].name;
+	    element.value = data[index].value;
 	    return (element.value > 0);
 	  }
 
@@ -263,7 +180,7 @@
 	    //REMOVE PLACEHOLDER CIRCLE
 	    arc_group.selectAll("circle").remove();
 
-	    totalValue.text("Apps");
+	    centerLabel.text("Apps");
 
 	    //DRAW ARC PATHS
 	    paths = arc_group.selectAll("path").data(filteredPieData);
@@ -291,7 +208,7 @@
 	      .attr("x2", 0)
 	      .attr("y1", -r-3)
 	      .attr("y2", -r-8)
-	      .attr("stroke", "gray")
+	      .attr("stroke", "white")
 	      .attr("transform", function(d) {
 	        return "rotate(" + (d.startAngle+d.endAngle)/2 * (180/Math.PI) + ")";
 	      });
@@ -302,14 +219,20 @@
 	      });
 	    lines.exit().remove();
 
+		function calcArc(d){
+			return Math.cos(((d.startAngle+d.endAngle - Math.PI)/2)) * (r+textOffset) + "," + Math.sin((d.startAngle+d.endAngle - Math.PI)/2) * (r+textOffset);
+		}
+		
+		function calcPos(d){
+			return (d.startAngle+d.endAngle)/2 < Math.PI ? "beginning" : "end";
+		}
+
 	    //DRAW LABELS WITH PERCENTAGE VALUES
 	    valueLabels = label_group.selectAll("text.value").data(filteredPieData);
 
 	    valueLabels.enter().append("svg:text")
 	      .attr("class", "value")
-	      .attr("transform", function(d) {
-	        return "translate(" + Math.cos(((d.startAngle+d.endAngle - Math.PI)/2)) * (r+textOffset) + "," + Math.sin((d.startAngle+d.endAngle - Math.PI)/2) * (r+textOffset) + ")";
-	      });
+	      .attr("transform", function(d) {return "translate(" + calcArc(d) + ")";});
 
 	    valueLabels.transition().duration(tweenDuration).attrTween("transform", textTween);
 
@@ -317,34 +240,18 @@
 
 
 	    //DRAW LABELS WITH ENTITY NAMES
-	    nameLabels = label_group.selectAll("text.units").data(filteredPieData)
+	    nameLabels = label_group.selectAll("text.units")
+		  .data(filteredPieData)
 	      .attr("dy", 5)
-	      .attr("text-anchor", function(d){
-	        if ((d.startAngle+d.endAngle)/2 < Math.PI ) {
-	          return "beginning";
-	        } else {
-	          return "end";
-	        }
-	      }).text(function(d){
-		console.log(d);
-	        return d.name;
-	      });
+	      .attr("text-anchor", calcPos)
+	      .text(function(d){return d.name;});
 
 	    nameLabels.enter().append("svg:text")
 	      .attr("class", "units")
-	      .attr("transform", function(d) {
-	        return "translate(" + Math.cos(((d.startAngle+d.endAngle - Math.PI)/2)) * (r+textOffset) + "," + Math.sin((d.startAngle+d.endAngle - Math.PI)/2) * (r+textOffset) + ")";
-	      })
+	      .attr("transform", function(d) {return "translate(" + calcArc(d) + ")";})
 	      .attr("dy", 5)
-	      .attr("text-anchor", function(d){
-	        if ((d.startAngle+d.endAngle)/2 < Math.PI ) {
-	          return "beginning";
-	        } else {
-	          return "end";
-	        }
-	      }).text(function(d){
-	        return d.name;
-	      });
+	      .attr("text-anchor", calcPos)
+		  .text(function(d){return d.name;});
 
 	    nameLabels.transition().duration(tweenDuration).attrTween("transform", textTween);
 
@@ -405,5 +312,5 @@
 	    return "translate(" + Math.cos(val) * (r+textOffset) + "," + Math.sin(val) * (r+textOffset) + ")";
 	  };
 	}
-	
-</script>
+}
+
