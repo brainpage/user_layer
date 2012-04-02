@@ -3,15 +3,31 @@
   = link_to "Analysis", "#", :class => "active"
   = link_to "Activities", rsi_activities_path
 
-.b.c8
+.b.c10
   .p Daily data of computer usage
   
 #line-chart
 
-.b.c8
+.b.c10
   .p Percentage of applications
 
-#pie-chart
+.row-fluid
+  .span6
+    #pie-chart
+  .span6
+    .tabbable.tabs-right
+      ul.nav.nav-tabs
+        li.active 
+          a data-toggle="tab" href="#keys-bar" Keystokes
+        li
+          a data-toggle="tab" href="#msclks-bar" Mouse Clicks
+        li
+          a data-toggle="tab" href="#dst-bar" Mouse moved distance
+      .tab-content
+        #keys-bar.tab-pane.active
+        #msclks-bar.tab-pane
+        #dst-bar.tab-pane
+
 
 script
   | drawChart();

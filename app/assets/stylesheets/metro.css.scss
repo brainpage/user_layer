@@ -3,9 +3,10 @@ $font-size: 20px;
 $line-height: 25px;
 @mixin opacity{filter:alpha(Opacity= $opacity * 100);-moz-opacity: $opacity; opacity: $opacity;fill-opacity: $opacity;}
 @mixin low-opacity{filter:alpha(Opacity= $opacity * 0.5 * 100);-moz-opacity: $opacity * 0.5; opacity: $opacity * 0.5;}
+@mixin font{font-family: 'Marmelad', sans-serif; font-weight: 400 !important}
 
-body{ margin:0; padding:0;height:100%;}
-input, button, select, submit{font-size:16px;}
+body{ margin:0; padding:0;height:100%; @include font;}
+input, button, select, submit{font-size:16px; @include font;}
 p{font-size: $font-size * 0.9 !important}
 .btn-large{font-size: $font-size * 0.85 !important}
 
@@ -69,7 +70,7 @@ img#bg{position:fixed; top:0; left:0; width:100%; height:100%;z-index:-9999;}
 #line-chart{margin-bottom: 20px}
 
 svg {
-  font: 10px sans-serif;
+  @include font; 
 }
 
 #line-chart text{
@@ -94,11 +95,41 @@ svg {
 
 #pie-chart path{
   @include opacity;
+   cursor: pointer;
 }
 
-#pie-chart text{
+svg text{
   fill: white;
   font-size: 14px;
 }
 
-#pie-chart .center-label{font-size: 20px; fill: white;}
+#pie-chart .center-label{font-size: 20px; fill: white; }
+
+.bar rect {
+  fill: steelblue;
+}
+
+.bar text.value {
+  font-size:12px;
+}
+
+.axis {
+  shape-rendering: crispEdges;
+}
+
+.axis path {
+  fill: none;
+}
+
+.x.axis line {
+  stroke: #fff;
+  stroke-opacity: .8;
+}
+
+.y.axis path {
+  stroke: black;
+}
+
+svg rect{@include opacity;}
+
+.tabs-right .nav-tabs .active{background-color: #009966 !important;}

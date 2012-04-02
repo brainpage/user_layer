@@ -4,7 +4,10 @@ class Rsi::ChartsController < ApplicationController
   end
   
   def data
-
-    render :json => ClientEvent.day(params[:day] || 0).to_json
+    if params[:type] == "bar"
+      render :json => [{:name => "firefox", :value => 100}, {:name => "vmware", :value => 200}, {:name => "qq", :value => 150}].to_json
+    else
+      render :json => ClientEvent.day(params[:day] || 0).to_json
+    end
   end
 end
