@@ -18,7 +18,7 @@ class ClientEvent < ActiveRecord::Base
   
   def apps
     self.client_apps.map do |t|
-      {:name => t.app, :dur => t.dur, :keys => t.keys, :msclks => t.msclks, :dst => t.dst}
+      {:name => t.app, :dur => t.dur, :keys => t.keys, :msclks => t.msclks, :dst => t.dst, :point => rand(50)}
     end
   end
   

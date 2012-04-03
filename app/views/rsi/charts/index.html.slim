@@ -15,7 +15,7 @@
   .span6
     #pie-chart
   .span6
-    .tabbable.tabs-right
+    .tabbable.tabs-right style="margin-top:20px"
       ul.nav.nav-tabs
         li.active 
           a data-toggle="tab" href="#keys-bar" Keystokes
@@ -23,11 +23,15 @@
           a data-toggle="tab" href="#msclks-bar" Mouse Clicks
         li
           a data-toggle="tab" href="#dst-bar" Mouse moved distance
-      .tab-content
+      .tab-content.bar-chart
         #keys-bar.tab-pane.active
         #msclks-bar.tab-pane
         #dst-bar.tab-pane
 
+.b.c10
+  .p Details of
+
+#zoom-line
 
 script
   | drawChart();
