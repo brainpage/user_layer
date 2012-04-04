@@ -105,13 +105,7 @@ svg text{
 
 #pie-chart .center-label{font-size: 20px; fill: white; }
 
-.bar rect {
-  fill: steelblue;
-}
 
-.bar text.value {
-  font-size:12px;
-}
 
 .axis {
   shape-rendering: crispEdges;
@@ -127,13 +121,14 @@ svg text{
 }
 
 .y.axis path {
-  stroke: black;
+  stroke: steelblue;
 }
 
+.bar-chart{margin-top: 40px}
 .bar-chart rect{@include opacity;}
 
 #zoom-line path {
-  fill: steelblue;
+  @include opacity;
 }
 
 #zoom-line .axis path, #zoom-line .axis line {
@@ -148,4 +143,9 @@ svg text{
   shape-rendering: crispEdges;
 }
 
-.tabs-right .nav-tabs .active{background-color: #009966 !important;}
+.nav-tabs li{font-size: 16px}
+.nav-tabs > .active > a, .nav-tabs > .active > a:hover{background-color: #669933 !important; border: none; color: white; }
+.tabs-right .nav-tabs a{border:none !important}
+.tabs-right .nav-tabs{border-left:none !important}
+.tabs-right .nav-tabs > li > a:hover{background-color: #669933 !important; border-color: none !important}
+.tabs-right .nav-tabs > li > a{-moz-border-radius: 0 !important; padding:15px}
