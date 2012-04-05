@@ -130,8 +130,11 @@ bp.rsi.PieChart.prototype.draw = function(data, fresh) {
 
 	if(this.filteredPieData.length > 0 ){
 		this.centerLabel.text("Apps");
-		
-		this.arc_group.selectAll("path").data([]).exit().remove();
+				
+		if(!fresh){
+			// Clear path when mask, otherwise the color can't be filled accordingly.
+			this.arc_group.selectAll("path").data([]).exit().remove();
+		}
 		
 		//DRAW ARC PATHS
 		var paths = this.arc_group.selectAll("path").data(this.filteredPieData);

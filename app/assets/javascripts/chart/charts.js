@@ -29,7 +29,7 @@ function drawChart(){
 	
 	lineChart.afterBrush = function(data){
 		var apps = [];
-		data.forEach(function(d) {apps = apps.concat(d.apps) });
+		data.forEach(function(d) {if(d.apps.length > 0){apps = apps.concat(d.apps)} });
 		
 		var colors = d3.scale.category20();
 		var nest = d3.nest()
