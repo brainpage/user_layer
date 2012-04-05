@@ -77,6 +77,11 @@ svg {
   font-size: 12px;
 }
 
+#line-chart .value-line path{
+	fill: none;
+	stroke: steelblue;
+}
+
 .line path {
   fill: steelblue;
 }
@@ -105,8 +110,6 @@ svg text{
 
 #pie-chart .center-label{font-size: 20px; fill: white; }
 
-
-
 .axis {
   shape-rendering: crispEdges;
 }
@@ -127,9 +130,6 @@ svg text{
 .bar-chart{margin-top: 40px}
 .bar-chart rect{@include opacity;}
 
-#zoom-line path {
-  @include opacity;
-}
 
 #zoom-line .axis path, #zoom-line .axis line {
   fill: none;

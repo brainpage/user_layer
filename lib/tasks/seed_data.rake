@@ -11,7 +11,7 @@ task :generate_test_data => :environment do
     next if time.hour > 2 and time.hour < 7
     
     rd = rand(5)
-    unless rd == 0
+    if rd == 0
       event = ClientEvent.create(:point => rand(50), :created_at => time)
       
       if rd == 1

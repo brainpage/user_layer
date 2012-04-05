@@ -22,13 +22,13 @@ bp.rsi.ZoomChart = function(domId){
 	var x = this.x, y = this.y, x2 = this.x2, y2 = this.y2;
 
 	this.area = d3.svg.area()
-	    .interpolate("monotone")
+	    .interpolate("basis")
 	    .x(function(d) { return x(d.time); })
 	    .y0(height)
 	    .y1(function(d) { return y(d.point); });
 
 	this.area2 = d3.svg.area()
-	    .interpolate("monotone")
+	    .interpolate("basis")
 	    .x(function(d) { return x2(d.time); })
 	    .y0(height2)
 	    .y1(function(d) { return y2(d.point); });
@@ -60,6 +60,7 @@ bp.rsi.ZoomChart.prototype.draw = function(data, app){
     });
 
     data = flatten_array.filter(function(d){return d.name == app.name});
+	data = bp.chart.Utils.makeConsecutive(data);
 
 	this.x.domain(d3.extent(data.map(function(d) { return d.time; })));
 	this.y.domain([0, d3.max(data.map(function(d) { return d.point; }))]);

@@ -21,23 +21,25 @@ bp.rsi.LineChart.prototype.draw = function(){
 	function draw(day){
 		d3.json(line.chart.url + day, function(data) {
 			if (data.length > 0){
+				line.chart.data = line.chart.data.concat(data);
+				
 				var xAxis = d3.svg.axis().scale(line.x).orient("bottom");
 
 			    var area = d3.svg.area()
-			       	.interpolate("monotone")
+			       	.interpolate("basis")
 			       	.x(function(d) { return line.x(d.time); })
-			       	.y0(line.height - 10)
+			       	.y0(line.height)
 			       	.y1(function(d) { return line.y(d.point); });
-
-				line.chart.data = line.chart.data.concat(data);
 
 				var stage = line.svg.append("g")
 			   		.attr("transform", "translate(" + line.margin.left + "," + (line.margin.top + line.height * day) + ")");
+	
+			    data.forEach(function(d) {
+			    	d.time = new Date(d.time * 1000);
+			    	d.point = +d.point;
+			    });
 
-		   	   data.forEach(function(d) {
-			   	   d.time = new Date(d.time * 1000);
-		   	       d.point = +d.point;
-		   	   });
+				data = bp.chart.Utils.makeConsecutive(data);
 
 		   		line.x.domain([bp.chart.Utils.beginningOfDay(data[0].time), bp.chart.Utils.endOfDay(data[0].time)]); 
 		   		line.y.domain([0, d3.max(data.map(function(d) { return d.point; }))]);
@@ -46,7 +48,7 @@ bp.rsi.LineChart.prototype.draw = function(){
 
 		   	    stage.append("g")
 		   	         .attr("class", "x axis")
-		   	         .attr("transform", "translate(0," + (line.height - 10) + ")")
+		   	         .attr("transform", "translate(0," + (line.height) + ")")
 		   	         .call(xAxis);
 			}
 			day < line.chart.days - 1 ? draw(day + 1) : drawBrush();
@@ -68,6 +70,7 @@ bp.rsi.LineChart.prototype.draw = function(){
 			to = extent[1][0];
 
 		var data = line.chart.data.filter(function(d){return d.time - from > 0 && d.time - to < 0});
+		
 		line.afterBrush(data);
 	}
 }

@@ -7,7 +7,7 @@ bp.chart.Utils = {};
 
 function drawChart(){	
 	var chart = {
-		days: 1,
+		days: 3,
 		url: "http://192.168.96.175:3000/rsi/charts/data?day=",
 		data: [],
 		color: {}
@@ -17,6 +17,7 @@ function drawChart(){
 
 	var pieChart = new bp.rsi.PieChart("#pie-chart");
 	pieChart.mousedown = function(d){
+		$('#app-detail').text("Detail of " + d.name + " (click again to restore)");
 		zoomChart.draw(chart.data, d);
 	}
 	

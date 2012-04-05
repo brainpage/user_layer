@@ -28,3 +28,29 @@ bp.chart.Utils.hashLength = function(hash){
 	for (var i in hash) count++;
 	return count;
 }
+
+//Add datapoint with 0 point, so that the chart makes sense.
+bp.chart.Utils.makeConsecutive = function(data){	
+	var zeroAdded = [],
+		pre = null,
+		interval = 60, //Seconds
+		dst = 0,
+		tmpTime;
+	
+	data.sort(function(a, b) { return a.time - b.time; });			
+	data.forEach(function(d) {
+	    if(pre != null && ((dst = Math.round((d.time - pre) / (1000 * interval), 0)) > 1)){
+	    
+			for(var i = 1; i < dst; i++){
+				tmpTime = new Date(pre);
+				tmpTime.setSeconds(pre.getSeconds() + interval * i)
+			
+	    		zeroAdded.push({time: tmpTime, point: 0, apps: []});
+	    	}
+	    }
+		zeroAdded.push(d);
+	    pre = d.time;
+	});
+	
+	return zeroAdded;
+}
