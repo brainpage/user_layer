@@ -3,7 +3,7 @@ $font-size: 20px;
 $line-height: 25px;
 @mixin opacity{filter:alpha(Opacity= $opacity * 100);-moz-opacity: $opacity; opacity: $opacity;fill-opacity: $opacity;}
 @mixin low-opacity{filter:alpha(Opacity= $opacity * 0.5 * 100);-moz-opacity: $opacity * 0.5; opacity: $opacity * 0.5;}
-@mixin font{font-family: 'Marmelad', sans-serif; font-weight: 400 !important}
+@mixin font{font-family: 'Marmelad', sans-serif; font-weight: 400 !important; color: white}
 
 body{ margin:0; padding:0;height:100%; @include font;}
 input, button, select, submit{font-size:16px; @include font;}
@@ -123,11 +123,7 @@ svg text{
   stroke-opacity: .8;
 }
 
-.y.axis path {
-  stroke: steelblue;
-}
-
-.bar-chart{margin-top: 40px}
+.bar-chart{margin-top: 15px}
 .bar-chart rect{@include opacity;}
 
 
@@ -143,9 +139,13 @@ svg text{
   shape-rendering: crispEdges;
 }
 
-.nav-tabs li{font-size: 16px}
+.nav-tabs li{font-size: 16px; min-width: 200px;}
 .nav-tabs > .active > a, .nav-tabs > .active > a:hover{background-color: #669933 !important; border: none; color: white; }
-.tabs-right .nav-tabs a{border:none !important}
-.tabs-right .nav-tabs{border-left:none !important}
-.tabs-right .nav-tabs > li > a:hover{background-color: #669933 !important; border-color: none !important}
-.tabs-right .nav-tabs > li > a{-moz-border-radius: 0 !important; padding:15px}
+.nav-tabs a{border:none !important}
+.nav-tabs{border-bottom:none !important}
+.nav-tabs > li > a:hover{background-color: #669933 !important; border-color: none !important}
+.nav-tabs > li > a{-moz-border-radius: 0 !important; padding:15px}
+
+.your, .total{@include opacity; @include font; padding: 10px;margin: 0 3px; width: 10px !important; text-align: center; }
+.your{background: steelblue}
+.total{background: #003399}

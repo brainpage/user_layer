@@ -23,13 +23,13 @@ bp.rsi.ZoomChart = function(domId){
 
 	this.area = d3.svg.area()
 	    .interpolate("basis")
-	    .x(function(d) { return x(d.time); })
+	    .x(function(d) { return x(d.t); })
 	    .y0(height)
 	    .y1(function(d) { return y(d.point); });
 
 	this.area2 = d3.svg.area()
 	    .interpolate("basis")
-	    .x(function(d) { return x2(d.time); })
+	    .x(function(d) { return x2(d.t); })
 	    .y0(height2)
 	    .y1(function(d) { return y2(d.point); });
 
@@ -50,19 +50,20 @@ bp.rsi.ZoomChart = function(domId){
    	    .attr("transform", "translate(" + margin2.left + "," + margin2.top + ")");
 };
 
-bp.rsi.ZoomChart.prototype.draw = function(data, app){
+bp.rsi.ZoomChart.prototype.draw = function(data, app){	
 	var flatten_array = [];
 	data.forEach(function(i) { 
 		i.apps.forEach(function(d){
-			d.time = i.time;
+			d.t = i.t;
 			flatten_array.push(d);
 		});
     });
 
-    data = flatten_array.filter(function(d){return d.name == app.name});
+    data = flatten_array.filter(function(d){return bp.chart.Utils.trim(d.v) == app.name});
+
 	data = bp.chart.Utils.makeConsecutive(data);
 
-	this.x.domain(d3.extent(data.map(function(d) { return d.time; })));
+	this.x.domain(d3.extent(data.map(function(d) { return d.t; })));
 	this.y.domain([0, d3.max(data.map(function(d) { return d.point; }))]);
 	this.x2.domain(this.x.domain());
 	this.y2.domain(this.y.domain());

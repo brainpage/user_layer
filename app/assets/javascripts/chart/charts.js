@@ -7,8 +7,8 @@ bp.chart.Utils = {};
 
 function drawChart(){	
 	var chart = {
-		days: 3,
-		url: "http://192.168.96.175:3000/rsi/charts/data?day=",
+		days: 1,
+		url: "http://10.0.0.7:8088/query",
 		data: [],
 		color: {}
 	}
@@ -22,6 +22,22 @@ function drawChart(){
 	}
 	
 	var keysBarChart = new bp.rsi.BarChart("#keys-bar");
+	
+	
+  var test = [
+	
+	{name: "firefox", color: "#98df8a", value: 64034},
+	{name: "firefox", color: "#98df8a", total: 100000},
+	{name: "Vim", color: "#aec7e8", value: 346164}, 
+	{name: "Vim", color: "#aec7e8", total: 150000},
+  	{name: "qq", color: "#c5b0d5", value: 42129}, 
+	{name: "qq", color: "#c5b0d5", total: 80000}, 
+	{name: "skype", color: "#9467bd", value: 183197},
+	{name: "skype", color: "#9467bd", total: 100000}
+  ];
+  
+  keysBarChart.draw(test);
+	
 	var msclksBarChart = new bp.rsi.BarChart("#msclks-bar");
 	var dstBarChart = new bp.rsi.BarChart("#dst-bar");
 	
@@ -33,7 +49,7 @@ function drawChart(){
 		
 		var colors = d3.scale.category20();
 		var nest = d3.nest()
-		    .key(function(d) { return d.name; })
+		    .key(function(d) { return d.v; })
 		    .entries(apps);
 
 		apps = nest.map(function(d){
@@ -42,7 +58,7 @@ function drawChart(){
 				msclks = 0;
 				dst = 0;
 			d.values.forEach(function(w) { 
-				dur += parseFloat(w.dur);
+				dur += parseFloat(w.d);
 				keys += +w.keys;
 				msclks += +w.msclks;
 				dst += +w.dst;
@@ -50,18 +66,18 @@ function drawChart(){
 			
 			var color = chart.color[d.key] == null ? (chart.color[d.key] = colors(bp.chart.Utils.hashLength(chart.color))) : chart.color[d.key];
 			
-			return {name: d.key, color: color, dur: dur, keys: keys, msclks: msclks, dst: dst}
+			return {name: d.key, value: dur, color: color, dur: dur, keys: keys, msclks: msclks, dst: dst}
 		});
 		apps = bp.chart.Utils.removeSmallData(apps);
 		apps.sort(function(a, b) { return b.name.localeCompare(a.name); });
 		
-		pieChart.draw(apps.map(function(d){return {name: d.name, color: d.color, value: d.dur}}), true);
+		pieChart.draw(apps.map(function(d){return {name: bp.chart.Utils.trim(d.name), color: d.color, value: d.dur}}), true);
 		
-		keysBarChart.draw(apps.map(function(d){return {name: d.name, color: d.color, value: d.keys}}));
-	    msclksBarChart.draw(apps.map(function(d){return {name: d.name, color: d.color, value: d.msclks}}));
-	    dstBarChart.draw(apps.map(function(d){return {name: d.name, color: d.color, value: d.dst}}));
+		keysBarChart.draw(apps.map(function(d){return {name: bp.chart.Utils.trim(d.name), color: d.color, value: d.keys}}));
+	    msclksBarChart.draw(apps.map(function(d){return {name: bp.chart.Utils.trim(d.name), color: d.color, value: d.msclks}}));
+	    dstBarChart.draw(apps.map(function(d){return {name: bp.chart.Utils.trim(d.name), color: d.color, value: d.dst}}));
 	};
 	
-	lineChart.draw();
+//	lineChart.draw();
 }
 

@@ -54,3 +54,7 @@ bp.chart.Utils.makeConsecutive = function(data){
 	
 	return zeroAdded;
 }
+
+bp.chart.Utils.trim = function(name){
+	return name.split(".").pop();
+}
