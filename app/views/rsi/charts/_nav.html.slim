@@ -1,0 +1,13 @@
+.title
+  = link_to "Home", rsi_portals_path
+  = link_to "Analysis", "#", :class => "active"
+  = link_to "Activities", rsi_activities_path
+
+.tabbable.bar-chart
+  ul.nav.nav-tabs
+    li.active 
+      a href="#{rsi_charts_path}" My Analysis
+    li
+      a href="#{rsi_friends_path}" Compare with friends
+    li
+      a data-toggle="tab" href="#dst-bar" People similar with me

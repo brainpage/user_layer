@@ -1,14 +1,11 @@
-.title
-  = link_to "Home", rsi_portals_path
-  = link_to "Analysis", "#", :class => "active"
-  = link_to "Activities", rsi_activities_path
+= render "nav"
 
-.b.c10
+.b.c8
   .p Daily data of computer usage
   
 #line-chart
 
-.b.c10
+.b.c8
   .p Percentage of applications
 
 .row-fluid
@@ -29,7 +26,7 @@
         #msclks-bar.tab-pane
         #dst-bar.tab-pane
 
-.b.c10
+.b.c8
   .p id="app-detail" Click pie chart to see detail of application.
 
 #zoom-line

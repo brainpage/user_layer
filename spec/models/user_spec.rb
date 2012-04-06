@@ -73,4 +73,14 @@ describe User do
       @user.reload.should be_sensor_added
     end
   end
+  
+  describe "accept_invite" do
+    it "should become friend" do
+      @user.fb_invite_link
+      friend = Factory(:user, :email => "friend@example.com")
+      friend.accept_invite(@user.invite_token)
+      @user.friends.should be_include(friend)
+      friend.friends.should be_include(@user)
+    end
+  end
 end

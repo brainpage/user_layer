@@ -3,7 +3,7 @@ $font-size: 20px;
 $line-height: 25px;
 @mixin opacity{filter:alpha(Opacity= $opacity * 100);-moz-opacity: $opacity; opacity: $opacity;fill-opacity: $opacity;}
 @mixin low-opacity{filter:alpha(Opacity= $opacity * 0.5 * 100);-moz-opacity: $opacity * 0.5; opacity: $opacity * 0.5;}
-@mixin font{font-family: 'Marmelad', sans-serif; font-weight: 400 !important; color: white}
+@mixin font{font-family: 'Marmelad', sans-serif; font-weight: 400 !important; }
 
 body{ margin:0; padding:0;height:100%; @include font;}
 input, button, select, submit{font-size:16px; @include font;}
@@ -140,7 +140,7 @@ svg text{
 }
 
 .nav-tabs li{font-size: 16px; min-width: 200px;}
-.nav-tabs > .active > a, .nav-tabs > .active > a:hover{background-color: #669933 !important; border: none; color: white; }
+.nav-tabs > .active > a, .nav-tabs > .active > a:hover{background-color: #336633 !important; border: none; color: white; }
 .nav-tabs a{border:none !important}
 .nav-tabs{border-bottom:none !important}
 .nav-tabs > li > a:hover{background-color: #669933 !important; border-color: none !important}

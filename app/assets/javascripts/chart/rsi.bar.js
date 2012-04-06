@@ -17,11 +17,11 @@ bp.rsi.BarChart = function(domId){
 		.attr("transform", "translate(0,1)");
 		
 	var tip = this.svg.append("g").attr("class", "tip")
-		.attr("transform", "translate(" + (this.width / 3) + ",-10)")	
-		.append("rect").attr("transform", "translate(0, -15)").attr("fill", "steelblue").attr("width", 20).attr("height", 20)	
-		.append("text").attr("transform", "translate(24, 0)").text("You")
-		.append("rect").attr("transform", "translate(70, -15)").attr("fill", "#003399").attr("width", 20).attr("height", 20)
-		.append("text").attr("transform", "translate(94, 0)").text("Global Average");
+		.attr("transform", "translate(" + (this.width / 3) + ",-10)");	
+	tip.append("rect").attr("transform", "translate(0, -15)").attr("fill", "steelblue").attr("width", 20).attr("height", 20);	
+	tip.append("text").attr("transform", "translate(24, 0)").text("You");
+	tip.append("rect").attr("transform", "translate(70, -15)").attr("fill", "#003399").attr("width", 20).attr("height", 20);
+	tip.append("text").attr("transform", "translate(94, 0)").text("Global Average");
 };
 
 bp.rsi.BarChart.prototype.draw = function(data){
