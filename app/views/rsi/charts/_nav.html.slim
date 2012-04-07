@@ -5,9 +5,9 @@
 
 .tabbable.bar-chart
   ul.nav.nav-tabs
-    li.active 
+    li class="#{controller_name == "charts" ? "active" : ""}"
       a href="#{rsi_charts_path}" My Analysis
-    li
+    li class="#{controller_name == "friends" ? "active" : ""}"
       a href="#{rsi_friends_path}" Compare with friends
     li
       a data-toggle="tab" href="#dst-bar" People similar with me

@@ -1,7 +1,7 @@
 bp.rsi.BarChart = function(domId){
-	var margin = [30, 10, 30, 100];
+	var margin = [30, 10, 30, 80];
 	
-	this.width = 600 - margin[1] - margin[3];
+	this.width = 680 - margin[1] - margin[3];
 	this.height = 250 - margin[0] - margin[2];
 
 	this.svg = d3.select(domId).append("svg")
