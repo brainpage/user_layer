@@ -17,17 +17,19 @@ bp.rsi.LineChart = function(domId, chart){
 bp.rsi.LineChart.prototype.draw = function(){
 	var line = this;
 	//draw(0);
-	var app = 'var app = interval_by_feature(sensor.first.feature("app").aggregate).with("dst", sensor.first.feature("dst").weighted_sum).with("keys", sensor.first.feature("keys").weighted_sum).with("point", sensor.first.feature("keys").weighted_sum).with("msclks", sensor.first.feature("msclks").weighted_sum).from_last(hour); result.by_time(60).excluding(sensor.first.feature("dst-avg").at_val(5)).with("apps", app).with("point", sensor.first.feature("dst").weighted_sum).from_last(day)'
+	//var app = 'var app = interval_by_feature(sensor.first.feature("app").aggregate).with("dst", sensor.first.feature("dst").weighted_sum).with("keys", sensor.first.feature("keys").weighted_sum).with("point", sensor.first.feature("keys").weighted_sum).with("msclks", sensor.first.feature("msclks").weighted_sum).from_last(hour); result.by_time(60).excluding(sensor.first.feature("dst-avg").at_val(5)).with("apps", app).with("point", sensor.first.feature("dst").weighted_sum).from_last(day)'
+	var app = 0;
 	
 	
-	$.ajax({url: line.chart.url, data: {q: app}, dataType: "jsonp", jsonp : "callback", jsonpCallback: "draw", success: draw});
-	
+//	$.ajax({url: line.chart.url, data: {q: app}, dataType: "jsonp", jsonp : "callback", jsonpCallback: "draw", success: draw});
+	draw(0);
 
 	function draw(data){
-		
 		var day = 0;
 		
-	//	d3.json(line.chart.url + app, function(data) {
+		
+		
+		d3.json(line.chart.url + "?q=0", function(data) {
 			if (data.length > 0){
 				line.chart.data = line.chart.data.concat(data);
 				
@@ -35,7 +37,7 @@ bp.rsi.LineChart.prototype.draw = function(){
 
 			    var area = d3.svg.area()
 			       	.interpolate("basis")
-			       	.x(function(d) { return line.x(d.time); })
+			       	.x(function(d) { return line.x(d.t); })
 			       	.y0(line.height)
 			       	.y1(function(d) { return line.y(d.point); });
 
@@ -43,13 +45,13 @@ bp.rsi.LineChart.prototype.draw = function(){
 			   		.attr("transform", "translate(" + line.margin.left + "," + (line.margin.top + line.height * day) + ")");
 	
 			    data.forEach(function(d) {
-			    	d.time = new Date(d.t * 1000);
+			    	d.t = new Date(d.t * 1000);
 			    	d.point = +d.point;
 			    });
 
 				data = bp.chart.Utils.makeConsecutive(data);
 
-		   		line.x.domain([bp.chart.Utils.beginningOfDay(data[0].time), bp.chart.Utils.endOfDay(data[0].time)]); 
+		   		line.x.domain([bp.chart.Utils.beginningOfDay(data[0].t), bp.chart.Utils.endOfDay(data[0].t)]); 
 		   		line.y.domain([0, d3.max(data.map(function(d) { return d.point; }))]);
 
 		   	    stage.append("path").data([data]).attr("d", area);
@@ -61,7 +63,7 @@ bp.rsi.LineChart.prototype.draw = function(){
 			}
 		//	day < line.chart.days - 1 ? draw(day + 1) : drawBrush();
 		drawBrush();
-	   //	});
+	   	});
 	}
 
 	function drawBrush(){
@@ -78,7 +80,7 @@ bp.rsi.LineChart.prototype.draw = function(){
 		var from = extent[0][0],
 			to = extent[1][0];
 
-		var data = line.chart.data.filter(function(d){return d.time - from > 0 && d.time - to < 0});
+		var data = line.chart.data.filter(function(d){return d.t - from > 0 && d.t - to < 0});
 		
 		line.afterBrush(data);
 	}

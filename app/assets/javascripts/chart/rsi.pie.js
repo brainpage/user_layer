@@ -1,6 +1,6 @@
 bp.rsi.PieChart = function(domId){
 	var w = 450, h = 300,  ir = 45;
-	this.r = 120;
+	this.r = r = 120;
 	this.textOffset = 14;
 	this.tweenDuration = 300;
 
@@ -62,6 +62,7 @@ bp.rsi.PieChart.prototype.draw = function(data, fresh) {
 		element.name = data[index].name;
 		element.value = data[index].value;
 		element.color = data[index].color;
+		element.mask = data[index].mask;
 		return (element.value > 0);
 	}
 	
@@ -133,7 +134,7 @@ bp.rsi.PieChart.prototype.draw = function(data, fresh) {
 				
 		if(!fresh){
 			// Clear path when mask, otherwise the color can't be filled accordingly.
-			this.arc_group.selectAll("path").data([]).exit().remove();
+		//	this.arc_group.selectAll("path").data([]).exit().remove();
 		}
 		
 		//DRAW ARC PATHS
@@ -141,18 +142,10 @@ bp.rsi.PieChart.prototype.draw = function(data, fresh) {
 		paths.enter().append("svg:path")
 			.attr("stroke", "white")
 			.attr("stroke-width", 0.5)
+			.attr("class", function(d){return d.mask ? "mask" : "unmask"})
 			.attr("fill", function(d) {return d.color; })
-			.on("mousedown", function(d) {
-				
-				$("html,body").scrollTop($(document).height());		   
-				if(pieObject.mask){
-					pieObject.mask = false;
-			    	pieObject.draw(pieObject.originData, false);
-			    }else{
-					pieObject.mask = true;
-			    	pieObject.draw([d], false);
-			    }
-			
+			.on("mousedown", function(d) {				
+				$("html,body").scrollTop($(document).height());		 			   			
 				pieObject.mousedown(d);  
 			})
 			.transition()

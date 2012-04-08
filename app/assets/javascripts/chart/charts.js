@@ -8,7 +8,7 @@ bp.chart.Utils = {};
 function drawChart(){	
 	var chart = {
 		days: 1,
-		url: "http://10.0.0.7:8088/query",
+		url: "http://localhost:3000/rsi/charts/data",
 		data: [],
 		color: {}
 	}
@@ -23,20 +23,7 @@ function drawChart(){
 	
 	var keysBarChart = new bp.rsi.BarChart("#keys-bar");
 	
-	
-  var test = [
-	
-	{name: "firefox", color: "#98df8a", value: 64034},
-	{name: "firefox", color: "#98df8a", total: 100000},
-	{name: "Vim", color: "#aec7e8", value: 346164}, 
-	{name: "Vim", color: "#aec7e8", total: 150000},
-  	{name: "qq", color: "#c5b0d5", value: 42129}, 
-	{name: "qq", color: "#c5b0d5", total: 80000}, 
-	{name: "skype", color: "#9467bd", value: 183197},
-	{name: "skype", color: "#9467bd", total: 100000}
-  ];
-  
-  keysBarChart.draw(test);
+
 	
 	var msclksBarChart = new bp.rsi.BarChart("#msclks-bar");
 	var dstBarChart = new bp.rsi.BarChart("#dst-bar");
@@ -78,6 +65,6 @@ function drawChart(){
 	    dstBarChart.draw(apps.map(function(d){return {name: bp.chart.Utils.trim(d.name), color: d.color, value: d.dst}}));
 	};
 	
-//	lineChart.draw();
+	lineChart.draw();
 }
 

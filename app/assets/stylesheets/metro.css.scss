@@ -98,7 +98,7 @@ svg {
   shape-rendering: crispEdges;
 }
 
-#pie-chart path{
+#pie-chart path.unmask{
   @include opacity;
    cursor: pointer;
 }
@@ -133,18 +133,20 @@ svg text{
   shape-rendering: crispEdges;
 }
 
+#zoom-line path{@include opacity;}
+
 #zoom-line .brush .extent {
   stroke: #fff;
   fill-opacity: .125;
   shape-rendering: crispEdges;
 }
 
-.nav-tabs li{font-size: 16px; min-width: 200px;}
+.nav-tabs li{font-size: 16px; }
 .nav-tabs > .active > a, .nav-tabs > .active > a:hover{background-color: #336633 !important; border: none; color: white; }
 .nav-tabs a{border:none !important}
 .nav-tabs{border-bottom:none !important}
 .nav-tabs > li > a:hover{background-color: #669933 !important; border-color: none !important}
-.nav-tabs > li > a{-moz-border-radius: 0 !important; padding:15px}
+.nav-tabs > li > a{-moz-border-radius: 0 !important; padding:15px 20px}
 
 .your, .total{@include opacity; @include font; padding: 10px;margin: 0 3px; width: 10px !important; text-align: center; }
 .your{background: steelblue}

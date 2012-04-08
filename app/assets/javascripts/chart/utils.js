@@ -37,19 +37,19 @@ bp.chart.Utils.makeConsecutive = function(data){
 		dst = 0,
 		tmpTime;
 	
-	data.sort(function(a, b) { return a.time - b.time; });			
+	data.sort(function(a, b) { return a.t - b.t; });			
 	data.forEach(function(d) {
-	    if(pre != null && ((dst = Math.round((d.time - pre) / (1000 * interval), 0)) > 1)){
+	    if(pre != null && ((dst = Math.round((d.t - pre) / (1000 * interval), 0)) > 1)){
 	    
 			for(var i = 1; i < dst; i++){
 				tmpTime = new Date(pre);
 				tmpTime.setSeconds(pre.getSeconds() + interval * i)
 			
-	    		zeroAdded.push({time: tmpTime, point: 0, apps: []});
+	    		zeroAdded.push({t: tmpTime, point: 0, apps: []});
 	    	}
 	    }
 		zeroAdded.push(d);
-	    pre = d.time;
+	    pre = d.t;
 	});
 	
 	return zeroAdded;

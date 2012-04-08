@@ -9,16 +9,16 @@ class ClientEvent < ActiveRecord::Base
   end
   
   def as_json(options = {})
-    super({:only => [:point], :methods => [:time, :apps]})
+    super({:only => [:point], :methods => [:t, :apps]})
   end
   
-  def time
+  def t
     self.created_at.to_i
   end
   
   def apps
     self.client_apps.map do |t|
-      {:name => t.app, :dur => t.dur, :keys => t.keys, :msclks => t.msclks, :dst => t.dst, :point => rand(50)}
+      {:v => t.app, :d => t.dur, :keys => t.keys, :msclks => t.msclks, :dst => t.dst, :point => rand(50)}
     end
   end
   
