@@ -7,9 +7,10 @@ bp.chart.Utils = {};
 
 function drawChart(){	
 	var chart = {
-		days: 1,
-		url: "http://localhost:3000/rsi/charts/data",
-		data: [],
+		days: 3,
+		url: "http://192.168.96.175:3000/rsi/charts/data",
+		dataByTime: null,
+		dataByApp: null,
 		color: {}
 	}
 	
@@ -17,52 +18,41 @@ function drawChart(){
 
 	var pieChart = new bp.rsi.PieChart("#pie-chart");
 	pieChart.mousedown = function(d){
-		$('#app-detail').text("Detail of " + d.name + " (click again to restore)");
-		zoomChart.draw(chart.data, d);
+		$('#app-detail').text("Detail of " + d.key + " (click again to restore)");
+		
+		var data = chart.dataByApp.filter(d.v).top(Infinity);
+		zoomChart.draw(data, d);
 	}
 	
 	var keysBarChart = new bp.rsi.BarChart("#keys-bar");
-	
-
 	
 	var msclksBarChart = new bp.rsi.BarChart("#msclks-bar");
 	var dstBarChart = new bp.rsi.BarChart("#dst-bar");
 	
 	var lineChart = new bp.rsi.LineChart("#line-chart", chart);
 	
-	lineChart.afterBrush = function(data){
-		var apps = [];
-		data.forEach(function(d) {if(d.apps.length > 0){apps = apps.concat(d.apps)} });
+	var colors = d3.scale.category20();
+	
+	lineChart.afterBrush = function(fromTime, toTime){
 		
-		var colors = d3.scale.category20();
-		var nest = d3.nest()
-		    .key(function(d) { return d.v; })
-		    .entries(apps);
-
-		apps = nest.map(function(d){
-			var dur = 0;
-				keys = 0;
-				msclks = 0;
-				dst = 0;
-			d.values.forEach(function(w) { 
-				dur += parseFloat(w.d);
-				keys += +w.keys;
-				msclks += +w.msclks;
-				dst += +w.dst;
-			});
-			
-			var color = chart.color[d.key] == null ? (chart.color[d.key] = colors(bp.chart.Utils.hashLength(chart.color))) : chart.color[d.key];
-			
-			return {name: d.key, value: dur, color: color, dur: dur, keys: keys, msclks: msclks, dst: dst}
-		});
-		apps = bp.chart.Utils.removeSmallData(apps);
-		apps.sort(function(a, b) { return b.name.localeCompare(a.name); });
+		var group;
+		if(fromTime != null){
+			group = chart.dataByTime.filter([bp.chart.Utils.secondsOfDay(fromTime), bp.chart.Utils.secondsOfDay(toTime)]).top(Infinity);
+		}else{
+			group = chart.dataByTime.top(Infinity)
+		}
 		
-		pieChart.draw(apps.map(function(d){return {name: bp.chart.Utils.trim(d.name), color: d.color, value: d.dur}}), true);
+		group = crossfilter(group).dimension(function(d) { return d.v; }).group();
 		
-		keysBarChart.draw(apps.map(function(d){return {name: bp.chart.Utils.trim(d.name), color: d.color, value: d.keys}}));
-	    msclksBarChart.draw(apps.map(function(d){return {name: bp.chart.Utils.trim(d.name), color: d.color, value: d.msclks}}));
-	    dstBarChart.draw(apps.map(function(d){return {name: bp.chart.Utils.trim(d.name), color: d.color, value: d.dst}}));
+		var pieData = group.reduceSum(function(d) { return parseFloat(d.d); }).all();
+		pieData.forEach(function(d){
+			d.color = chart.color[d.key] == null ? (chart.color[d.key] = colors(bp.chart.Utils.hashLength(chart.color))) : chart.color[d.key];
+		})
+		pieChart.draw(pieData, true);
+	
+		keysBarChart.draw(group.reduceSum(function(d){return d.keys; }).all());
+	    msclksBarChart.draw(group.reduceSum(function(d){return d.msclks; }).all());
+	    dstBarChart.draw(group.reduceSum(function(d){return d.dst; }).all());		
 	};
 	
 	lineChart.draw();

@@ -58,3 +58,7 @@ bp.chart.Utils.makeConsecutive = function(data){
 bp.chart.Utils.trim = function(name){
 	return name.split(".").pop();
 }
+
+bp.chart.Utils.secondsOfDay = function(date){
+	return date.getHours() * 3600 + date.getMinutes() * 60 + date.getSeconds();
+}

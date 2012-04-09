@@ -51,16 +51,7 @@ bp.rsi.ZoomChart = function(domId){
 };
 
 bp.rsi.ZoomChart.prototype.draw = function(data, app){	
-	var flatten_array = [];
-	data.forEach(function(i) { 
-		i.apps.forEach(function(d){
-			d.t = i.t;
-			flatten_array.push(d);
-		});
-    });
-
-    data = flatten_array.filter(function(d){return bp.chart.Utils.trim(d.v) == app.name});
-
+	
 	data = bp.chart.Utils.makeConsecutive(data);
 
 	this.x.domain(d3.extent(data.map(function(d) { return d.t; })));

@@ -6,7 +6,7 @@ bp.rsi.PieChart = function(domId){
 
 	this.lines = [];
 	this.valueLabels = [];
-	this.nameLabels = [];
+	this.keyLabels = [];
 	this.pieData = [];    
 	this.oldPieData = [];
 	this.filteredPieData = [];
@@ -59,7 +59,7 @@ bp.rsi.PieChart.prototype.draw = function(data, fresh) {
 	
 	this.filteredPieData = this.pieData.filter(filterData);
 	function filterData(element, index, array) {
-		element.name = data[index].name;
+		element.key = data[index].key;
 		element.value = data[index].value;
 		element.color = data[index].color;
 		element.mask = data[index].mask;
@@ -192,21 +192,21 @@ bp.rsi.PieChart.prototype.draw = function(data, fresh) {
 		this.valueLabels.exit().remove();
 		
 		//DRAW LABELS WITH ENTITY NAMES
-		this.nameLabels = this.label_group.selectAll("text.units")
+		this.keyLabels = this.label_group.selectAll("text.units")
 			.data(this.filteredPieData)
 			.attr("dy", 5)
 			.attr("text-anchor", calcPos)
-			.text(function(d){return d.name;});
+			.text(function(d){return d.key;});
 		
-		this.nameLabels.enter().append("svg:text")
+		this.keyLabels.enter().append("svg:text")
 			.attr("class", "units")
 			.attr("transform", function(d) {return "translate(" + calcArc(d) + ")";})
 			.attr("dy", 5)
 			.attr("text-anchor", calcPos)
-			.text(function(d){return d.name;});
+			.text(function(d){return d.key;});
 		
-		this.nameLabels.transition().duration(this.tweenDuration).attrTween("transform", textTween);
-		this.nameLabels.exit().remove();	
+		this.keyLabels.transition().duration(this.tweenDuration).attrTween("transform", textTween);
+		this.keyLabels.exit().remove();	
 	}  
 }
 

@@ -31,10 +31,7 @@ html
               = image_tag current_user.image
               = link_to "Logout", destroy_user_session_path, :method => :delete
       .top
-
-
-	    .logo
-	      | Brainpage
+	    .logo = yield :head
 
       = yield
 			

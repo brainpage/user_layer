@@ -31,7 +31,7 @@ bp.rsi.BarChart.prototype.draw = function(data){
 		x = d3.scale.ordinal().rangeRoundBands([0, this.width], .1);
 
 	// Set the scale domain.
-	x.domain(data.map(function(d) { return d.name; }));
+	x.domain(data.map(function(d) { return d.key; }));
 	y.domain([0, d3.max(data, function(d) { return d.value; })]);
 	
 	var xAxis = d3.svg.axis().scale(x).orient("bottom").tickSize(0);
@@ -46,10 +46,10 @@ bp.rsi.BarChart.prototype.draw = function(data){
 	   .attr("transform", function(d) {
 			var tx, ty;
 			if(d.total == null){
-				tx = x(d.name);
+				tx = x(d.key);
 				ty = y(d.value);
 			}else{
-				tx = x(d.name) + x.rangeBand() / 2;
+				tx = x(d.key) + x.rangeBand() / 2;
 				ty = y(d.total);
 			}
 			return "translate(" + tx + "," + ty + ")"; 
@@ -59,16 +59,6 @@ bp.rsi.BarChart.prototype.draw = function(data){
 	   .attr("fill", function(d) {return d.total == null ? "steelblue" : "#003399"; })
 	   .attr("height", function(d) { return height - y(d.total == null ? d.value : d.total); })
 	   .attr("width", x.rangeBand() / 2 - 2);
-
-    
-   // bar.append("text")
-   //    .attr("class", "value")
-   //    .attr("y", -10)
-   //    .attr("x", x.rangeBand() / 2)
-   //    .attr("dx", -6)
-   //    .attr("dy", ".35em")
-   //    .attr("text-anchor", "middle")
-   //    .text(function(d) { return format(d.value); });
 
 	this.xAxisArea.call(xAxis);
 	this.yAxisArea.call(yAxis);

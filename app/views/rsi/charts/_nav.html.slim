@@ -1,10 +1,7 @@
-.title
-  = link_to "Home", rsi_portals_path
-  = link_to "Analysis", "#", :class => "active"
-  = link_to "Activities", rsi_activities_path
+= content_for(:head){link_to(image_tag("http://cdn5.iconfinder.com/data/icons/super-mono-basic/green/arrow-left_basic_green.png", :alt => "Back to home page"), rsi_portals_path) + "Analysis"}
 
 .tabbable.bar-chart
-  ul.nav.nav-tabs
+  ul.nav.nav-tabs.f10
     li class="#{controller_name == "charts" ? "active" : ""}"
       a href="#{rsi_charts_path}" My Analysis
     li class="#{controller_name == "friends" ? "active" : ""}"
