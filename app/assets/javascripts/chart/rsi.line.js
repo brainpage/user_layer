@@ -103,6 +103,10 @@ bp.rsi.LineChart.prototype.draw = function(){
 
 	function brush() {
 		var extent = d3.event.target.extent();	
+		if(extent[0].getTime() == extent[1].getTime()){
+			extent[0] = null;
+			extent[1] = null;
+		}
 		line.afterBrush(extent[0], extent[1]);
 	}
 }

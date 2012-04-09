@@ -18,7 +18,7 @@ function drawChart(){
 
 	var pieChart = new bp.rsi.PieChart("#pie-chart");
 	pieChart.mousedown = function(d){
-		$('#app-detail').text("Detail of " + d.key + " (click again to restore)");
+		$('#app-detail').text("Detail of " + d.key);
 		
 		var data = chart.dataByApp.filter(d.v).top(Infinity);
 		zoomChart.draw(data, d);
@@ -34,12 +34,12 @@ function drawChart(){
 	var colors = d3.scale.category20();
 	
 	lineChart.afterBrush = function(fromTime, toTime){
-		
+	
 		var group;
 		if(fromTime != null){
 			group = chart.dataByTime.filter([bp.chart.Utils.secondsOfDay(fromTime), bp.chart.Utils.secondsOfDay(toTime)]).top(Infinity);
 		}else{
-			group = chart.dataByTime.top(Infinity)
+			group = chart.dataByTime.filterAll().top(Infinity)
 		}
 		
 		group = crossfilter(group).dimension(function(d) { return d.v; }).group();

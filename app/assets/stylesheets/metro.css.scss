@@ -8,16 +8,18 @@ $line-height: 25px;
 body{ margin:0; padding:0;height:100%; @include font;}
 input, button, select, submit{font-size:16px; @include font;}
 p{font-size: $font-size * 0.9 !important}
+li{list-style: none}
 .btn-large{font-size: $font-size * 0.85 !important}
 
 img#bg{position:fixed; top:0; left:0; width:100%; height:100%;z-index:-9999;}
 
 .container{ position:relative;width:1170px !important;}
 
-.top{margin:10px 0 30px 0}
+.top{margin:10px 0 20px 0}
 .top .pull-right{margin-top:-15px !important;width:300px}
 .logo{font-size:50px; color:#fcfcfc; line-height:50px}
 .user-name{font-size: $font-size; color: #fcfcfc; text-align:right; height:50px; line-height: 50px}
+.home{font-size: 22px !important; color: white; margin-left:25px}
 
 .navbar{@include opacity; font-weight:bold; z-index:1}
 
@@ -64,7 +66,7 @@ img#bg{position:fixed; top:0; left:0; width:100%; height:100%;z-index:-9999;}
 #line-holder svg, #line-holder div{height: 160px !important}
 
 .go{background: url(image_path('arrow.png')) no-repeat scroll right center; }
-.fb-link{background: url(image_path('facebook-small.png')) no-repeat scroll right center; padding-right:40px}
+.fb-link{background: url(image_path('facebook-small.png')) no-repeat scroll left center; padding-left:40px}
 
 .money{font-size: $font-size * 1.8; color: blue; text-align: center; margin:15px;}
 
@@ -149,8 +151,12 @@ svg text{
 .nav-tabs > li > a:hover{background-color: #669933 !important; border-color: none !important}
 .nav-tabs > li > a{-moz-border-radius: 0 !important; padding:15px 20px}
 
+.light > .active > a, .light > .active > a:hover{background-color: #669933 !important;}
+
 .your, .total{@include opacity; @include font; padding: 10px;margin: 0 3px; width: 10px !important; text-align: center; }
 .your{background: steelblue}
 
 .logo img{@include opacity; width:40px; height:40px; margin-right: 10px;}
 .total{background: #003399}
+
+#cloud{@include opacity;}

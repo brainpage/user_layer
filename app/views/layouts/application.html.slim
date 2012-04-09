@@ -5,22 +5,12 @@ html
     = stylesheet_link_tag "application"
     = javascript_include_tag "application"
     = csrf_meta_tags
+
     link href='http://fonts.googleapis.com/css?family=Marmelad' rel='stylesheet' type='text/css'
 	
   body style="padding-top:20px"
 
     = image_tag "p10.jpg", :id => "bg"
-    
-    /.navbar.navbar-fixed-top
-    /  .navbar-inner
-    /    .container
-    /    	
-    /      ul.nav
-    /        li.active = link_to "Home", feeds_path
-    /      
-    /      ul.nav.pull-right
-    /        li = link_to "Blog"
-    /        li = link_to "About Us"
           	
     .container
       .pull-right style="width:200px"

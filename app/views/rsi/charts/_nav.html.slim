@@ -1,10 +1,10 @@
-= content_for(:head){link_to(image_tag("http://cdn5.iconfinder.com/data/icons/super-mono-basic/green/arrow-left_basic_green.png", :alt => "Back to home page"), rsi_portals_path) + "Analysis"}
+= content_for(:head){("Analysis" + link_to("Home", rsi_portals_path, :class => "home")).html_safe}
 
 .tabbable.bar-chart
   ul.nav.nav-tabs.f10
     li class="#{controller_name == "charts" ? "active" : ""}"
       a href="#{rsi_charts_path}" My Analysis
     li class="#{controller_name == "friends" ? "active" : ""}"
-      a href="#{rsi_friends_path}" Compare with friends
+      a href="#{rsi_friends_path}" Friends App Cloud
     li
       a data-toggle="tab" href="#dst-bar" People similar with me
