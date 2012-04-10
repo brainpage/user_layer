@@ -1,0 +1,2 @@
+class RelationNeighbour < UserRelation
+end

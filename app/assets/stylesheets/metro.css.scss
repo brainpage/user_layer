@@ -127,7 +127,7 @@ svg text{
 }
 
 .bar-chart{margin-top: 15px}
-.bar-chart rect{@include opacity;}
+.bar-chart rect, #time-chart rect{@include opacity;}
 
 
 #zoom-line .axis path, #zoom-line .axis line {

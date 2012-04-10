@@ -1,0 +1,2 @@
+class RelationFriend < UserRelation
+end

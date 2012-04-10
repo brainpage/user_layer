@@ -62,3 +62,5 @@ bp.chart.Utils.trim = function(name){
 bp.chart.Utils.secondsOfDay = function(date){
 	return date.getHours() * 3600 + date.getMinutes() * 60 + date.getSeconds();
 }
+
+

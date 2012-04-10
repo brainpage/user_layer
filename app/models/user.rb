@@ -55,7 +55,11 @@ class User < ActiveRecord::Base
   end
   
   def friends
-    UserRelation.where(:inviter_id => self.id).map(&:invitee) + UserRelation.where(:invitee_id => self.id).map(&:inviter)
+    users_in_relation RelationFriend
+  end
+  
+  def neighbours
+    users_in_relation RelationNeighbour
   end
   
   def add_sensor(sensor_uuid)
@@ -83,7 +87,7 @@ class User < ActiveRecord::Base
   
   def accept_invite(token)
     user = User.find_by_invite_token(token)
-    UserRelation.create(:inviter => user, :invitee => self)
+    RelationFriend.create(:user => user, :client_user => self)
   end
   
   def generate_welcome_feed
@@ -106,5 +110,10 @@ class User < ActiveRecord::Base
     }
   
     "http://www.facebook.com/dialog/send?#{options.to_param}"
+  end
+  
+  private 
+  def users_in_relation(relation)
+    relation.where(:user_id => self.id).map(&:client_user) + relation.where(:client_user_id => self.id).map(&:user)
   end
 end

@@ -7,12 +7,20 @@ bp.chart.Utils = {};
 
 function drawChart(){	
 	var chart = {
-		days: 3,
-		url: "http://192.168.96.175:3000/rsi/charts/data",
+		days: 1,
+		url: "http://localhost:3000/rsi/charts/data",
 		dataByTime: null,
 		dataByApp: null,
-		color: {}
+		color: {},
+		colors: d3.scale.category20(),
+		
+		getColor: function(app){
+			return this.color[app] == null ? (this.color[app] = this.colors(bp.chart.Utils.hashLength(this.color))) : this.color[app];
+		}
 	}
+	
+	var timeChart = new bp.rsi.TimeChart("#time-chart");
+	timeChart.draw(chart);
 	
 	var zoomChart = new bp.rsi.ZoomChart("#zoom-line");
 
@@ -46,7 +54,7 @@ function drawChart(){
 		
 		var pieData = group.reduceSum(function(d) { return parseFloat(d.d); }).all();
 		pieData.forEach(function(d){
-			d.color = chart.color[d.key] == null ? (chart.color[d.key] = colors(bp.chart.Utils.hashLength(chart.color))) : chart.color[d.key];
+			d.color = chart.getColor(d.key);
 		})
 		pieChart.draw(pieData, true);
 	
