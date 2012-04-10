@@ -1,22 +1,25 @@
 $opacity: 0.7;
 $font-size: 20px;
 $line-height: 25px;
-@mixin opacity{filter:alpha(Opacity= $opacity * 100);-moz-opacity: $opacity; opacity: $opacity;}
+@mixin opacity{filter:alpha(Opacity= $opacity * 100);-moz-opacity: $opacity; opacity: $opacity;fill-opacity: $opacity;}
 @mixin low-opacity{filter:alpha(Opacity= $opacity * 0.5 * 100);-moz-opacity: $opacity * 0.5; opacity: $opacity * 0.5;}
+@mixin font{font-family: 'Marmelad', sans-serif; font-weight: 400 !important; }
 
-body{ margin:0; padding:0;height:100%;}
-input, button, select, submit{font-size:16px;}
+body{ margin:0; padding:0;height:100%; @include font;}
+input, button, select, submit{font-size:16px; @include font;}
 p{font-size: $font-size * 0.9 !important}
+li{list-style: none}
 .btn-large{font-size: $font-size * 0.85 !important}
 
-img#bg{position:fixed; top:0; left:0; width:100%; height:100%;}
+img#bg{position:fixed; top:0; left:0; width:100%; height:100%;z-index:-9999;}
 
 .container{ position:relative;width:1170px !important;}
 
-.top{margin-bottom:25px}
+.top{margin:10px 0 20px 0}
 .top .pull-right{margin-top:-15px !important;width:300px}
 .logo{font-size:50px; color:#fcfcfc; line-height:50px}
 .user-name{font-size: $font-size; color: #fcfcfc; text-align:right; height:50px; line-height: 50px}
+.home{font-size: 22px !important; color: white; margin-left:25px}
 
 .navbar{@include opacity; font-weight:bold; z-index:1}
 
@@ -26,7 +29,7 @@ img#bg{position:fixed; top:0; left:0; width:100%; height:100%;}
 .title .active:hover{text-decoration: none}
 
 .b{@include opacity; margin-bottom: 10px; font-size:18px;line-height:25px;  background: no-repeat scroll 15px center; width:100%;  color:White; }
-.b a{color: white;display: block}
+.b a, .nav-tabs a{color: white;display: block}
 .p{padding: 10px 15px;}
 
 .login-input{width:140px !important}
@@ -45,6 +48,7 @@ img#bg{position:fixed; top:0; left:0; width:100%; height:100%;}
      
 .f13{font-size: $font-size * 1.3; line-height: $line-height * 1.3}
 .f11{font-size: $font-size * 1.1; line-height: $line-height * 1.1}
+.f10, .f10 a{font-size: $font-size; line-height: $line-height}
 .f8{font-size: $font-size * 0.8; line-height: $line-height * 0.8}
   
 .video{padding:10px 0 4px 0;text-align:center;}
@@ -62,6 +66,97 @@ img#bg{position:fixed; top:0; left:0; width:100%; height:100%;}
 #line-holder svg, #line-holder div{height: 160px !important}
 
 .go{background: url(image_path('arrow.png')) no-repeat scroll right center; }
-.fb-link{background: url(image_path('facebook-small.png')) no-repeat scroll right center; padding-right:40px}
+.fb-link{background: url(image_path('facebook-small.png')) no-repeat scroll left center; padding-left:40px}
 
 .money{font-size: $font-size * 1.8; color: blue; text-align: center; margin:15px;}
+
+#line-chart{margin-bottom: 20px}
+
+svg {
+  @include font; 
+}
+
+#line-chart text{
+  font-size: 12px;
+}
+
+#line-chart .value-line path{
+	fill: none;
+	stroke: steelblue;
+}
+
+.line path {
+  fill: steelblue;
+}
+
+.axis path, .axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.brush .extent {
+  stroke: #fff;
+  fill-opacity: .125;
+  shape-rendering: crispEdges;
+}
+
+#pie-chart path.unmask{
+  @include opacity;
+   cursor: pointer;
+}
+
+svg text{
+  fill: white;
+  font-size: 14px;
+}
+
+.center-label{font-size: 20px !important; fill: white; }
+
+.axis {
+  shape-rendering: crispEdges;
+}
+
+.axis path {
+  fill: none;
+}
+
+.x.axis line {
+  stroke: #fff;
+  stroke-opacity: .8;
+}
+
+.bar-chart{margin-top: 15px}
+.bar-chart rect{@include opacity;}
+
+
+#zoom-line .axis path, #zoom-line .axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+#zoom-line path{@include opacity;}
+
+#zoom-line .brush .extent {
+  stroke: #fff;
+  fill-opacity: .125;
+  shape-rendering: crispEdges;
+}
+
+.nav-tabs li{font-size: 16px; }
+.nav-tabs > .active > a, .nav-tabs > .active > a:hover{background-color: #336633 !important; border: none; color: white; }
+.nav-tabs a{border:none !important}
+.nav-tabs{border-bottom:none !important}
+.nav-tabs > li > a:hover{background-color: #669933 !important; border-color: none !important}
+.nav-tabs > li > a{-moz-border-radius: 0 !important; padding:15px 20px}
+
+.light > .active > a, .light > .active > a:hover{background-color: #669933 !important;}
+
+.your, .total{@include opacity; @include font; padding: 10px;margin: 0 3px; width: 10px !important; text-align: center; }
+.your{background: steelblue}
+
+.logo img{@include opacity; width:40px; height:40px; margin-right: 10px;}
+.total{background: #003399}
+
+#cloud{@include opacity;}

@@ -54,6 +54,10 @@ class User < ActiveRecord::Base
     end
   end
   
+  def friends
+    UserRelation.where(:inviter_id => self.id).map(&:invitee) + UserRelation.where(:invitee_id => self.id).map(&:inviter)
+  end
+  
   def add_sensor(sensor_uuid)
     sensor = Sensor.find_by_uuid(sensor_uuid)
     if sensor.present? and sensor.owner_id != self.id
@@ -77,11 +81,30 @@ class User < ActiveRecord::Base
     end
   end
   
+  def accept_invite(token)
+    user = User.find_by_invite_token(token)
+    UserRelation.create(:inviter => user, :invitee => self)
+  end
+  
   def generate_welcome_feed
     Feed.create(:xtype => :welcome, :user => self)
   end
   
   def sensor_added?
     self.feeds.xtype(:add_sensor).present?
+  end
+  
+  def fb_invite_link
+    self.update_attribute(:invite_token, Digest::SHA1.hexdigest(Time.now.to_s)[0,20]) if self.invite_token.blank?
+    
+    options = {
+      :app_id => Rails.configuration.fb_key,
+      :name => "Protect your health",
+      :description => "Compete with me to see who use facebook less. The loser will donate money to charity.",
+      :link => "http://signup.brainpage.com/f/#{self.invite_token}",
+      :redirect_uri => "http://localhost:3000/rsi/friends"
+    }
+  
+    "http://www.facebook.com/dialog/send?#{options.to_param}"
   end
 end

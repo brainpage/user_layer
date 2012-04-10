@@ -1,0 +1,2 @@
+module Rsi::FriendsHelper
+end

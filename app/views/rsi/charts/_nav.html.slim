@@ -1,0 +1,10 @@
+= content_for(:head){("Analysis" + link_to("Home", rsi_portals_path, :class => "home")).html_safe}
+
+.tabbable.bar-chart
+  ul.nav.nav-tabs.f10
+    li class="#{controller_name == "charts" ? "active" : ""}"
+      a href="#{rsi_charts_path}" My Analysis
+    li class="#{controller_name == "friends" ? "active" : ""}"
+      a href="#{rsi_friends_path}" Friends App Cloud
+    li
+      a data-toggle="tab" href="#dst-bar" People similar with me

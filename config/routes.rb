@@ -43,10 +43,23 @@ UserLayer::Application.routes.draw do
         post :join
       end
     end
+    resources :charts do
+      collection do
+        get :data
+      end
+    end
+    
+    resources :friends do
+      member do
+        get :invite
+        post :join
+      end
+    end
   end
   
   match 'auth/:provider/callback' => 'rsi/accounts#create'
   match 'act/:token' => 'rsi/activities#invite'
+  match 'f/:token' => 'rsi/friends#invite'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

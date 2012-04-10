@@ -1,0 +1,41 @@
+= render "rsi/charts/nav"
+
+.row-fluid
+  .span3
+    .b.c10 
+	  .p
+	    = link_to "Invite Friends", current_user.fb_invite_link, :class=>"fb-link"
+    .b.c8
+      .p.f11 Recommended Applications By Friends
+      .p =link_to "Firefox"
+      .p Excel
+  .span9
+    .tabbable.pull-right
+      ul.nav.nav-tabs.light
+        li class="#{params[:t].blank? ? "active" : ""}"
+          a href="#{rsi_friends_path}" Past Week
+        li class="#{params[:t] == "month" ? "active" : ""}"
+          a href="#{rsi_friends_path(:t => "month")}" Past Month
+        li class="#{params[:t] == "all" ? "active" : ""}"
+          a href="#{rsi_friends_path(:t => "all")}" All The Time
+
+	div style="clear:both"
+    #cloud style="width:600px; height:120px;background-color:#ffffcc;"
+      ul
+        li
+          a href="#" style="color:#000;" rel="20" HTML
+        li
+          a href="#" style="color:#000;" rel="10" Firefox
+        li
+          a href="#" style="color:#000;" rel="15" vmware
+        li
+          a href="#" style="color:#000;" rel="18" chrome
+        li
+          a href="#" style="color:#000;" rel="5" QQ
+    	li
+          a href="#" style="color:#000;" rel="1" CSS
+
+script
+  | $(function(){
+      $('#cloud').tagcloud({centrex:300,centrey:60});
+    });
