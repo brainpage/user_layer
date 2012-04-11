@@ -6,19 +6,21 @@ bp.chart = {};
 bp.chart.Utils = {};
 
 function drawChart(){	
-	var chart = {
-		days: 3,
-		url: "http://192.168.96.175:3000/rsi/charts/data",
-		dataByTime: null,
-		dataByApp: null,
-		color: {}
-	}
+	var chart = new bp.rsi.ChartObject({days: 3});
+	chart.width = 1170;
+	
+	var timeChart = new bp.rsi.TimeChart("#time-chart");
+	timeChart.draw(chart);
 	
 	var zoomChart = new bp.rsi.ZoomChart("#zoom-line");
 
 	var pieChart = new bp.rsi.PieChart("#pie-chart");
 	pieChart.mousedown = function(d){
 		$('#app-detail').text("Detail of " + d.key);
+		$("html,body").scrollTop($(document).height());			
+		
+		d3.selectAll("#pie-chart .pie-item").attr("fill", function(d){return d.color}).attr("stroke-width", 1);
+		d3.selectAll("#pie-chart ." + d.key).attr("fill", "black").attr("stroke-width", 2);
 		
 		var data = chart.dataByApp.filter(d.v).top(Infinity);
 		zoomChart.draw(data, d);
@@ -31,24 +33,9 @@ function drawChart(){
 	
 	var lineChart = new bp.rsi.LineChart("#line-chart", chart);
 	
-	var colors = d3.scale.category20();
-	
 	lineChart.afterBrush = function(fromTime, toTime){
-	
-		var group;
-		if(fromTime != null){
-			group = chart.dataByTime.filter([bp.chart.Utils.secondsOfDay(fromTime), bp.chart.Utils.secondsOfDay(toTime)]).top(Infinity);
-		}else{
-			group = chart.dataByTime.filterAll().top(Infinity)
-		}
-		
-		group = crossfilter(group).dimension(function(d) { return d.v; }).group();
-		
-		var pieData = group.reduceSum(function(d) { return parseFloat(d.d); }).all();
-		pieData.forEach(function(d){
-			d.color = chart.color[d.key] == null ? (chart.color[d.key] = colors(bp.chart.Utils.hashLength(chart.color))) : chart.color[d.key];
-		})
-		pieChart.draw(pieData, true);
+		var group = getGroup(chart, fromTime, toTime);
+		pieChart.draw(getPieData(group, chart), true);
 	
 		keysBarChart.draw(group.reduceSum(function(d){return d.keys; }).all());
 	    msclksBarChart.draw(group.reduceSum(function(d){return d.msclks; }).all());
@@ -58,3 +45,37 @@ function drawChart(){
 	lineChart.draw();
 }
 
+function drawPortalChart(){	
+	var chart = new bp.rsi.ChartObject({days: 1});
+	chart.width = 580;
+	chart.fit = true;
+	
+	var pieChart = new bp.rsi.PieChart("#pie-chart");
+	
+	var lineChart = new bp.rsi.LineChart("#line-chart", chart);
+	lineChart.afterBrush = function(fromTime, toTime){
+		pieChart.draw(getPieData(getGroup(chart, fromTime, toTime), chart), true);
+	};
+	
+	lineChart.draw();
+}
+
+function getGroup(chart, fromTime, toTime){
+	var group;
+	if(fromTime != null){
+		group = chart.dataByTime.filter([bp.chart.Utils.secondsOfDay(fromTime), bp.chart.Utils.secondsOfDay(toTime)]).top(Infinity);
+	}else{
+		group = chart.dataByTime.filterAll().top(Infinity)
+	}
+	
+	return crossfilter(group).dimension(function(d) { return d.v; }).group();
+}
+
+function getPieData(group, chart){	
+	var pieData = group.reduceSum(function(d) { return parseFloat(d.d); }).all();
+	pieData.forEach(function(d){
+		d.color = chart.getColor(d.key);
+	})
+	
+	return pieData;
+}

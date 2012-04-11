@@ -38,8 +38,6 @@ bp.rsi.PieChart = function(domId){
 	this.label_group = this.vis.append("svg:g")
 	  .attr("class", "label_group")
 	  .attr("transform", "translate(" + (w/2) + "," + (h/2) + ")");
-
-	this.mask = false;
 };
 
 bp.rsi.PieChart.prototype.draw = function(data, fresh) {
@@ -142,10 +140,9 @@ bp.rsi.PieChart.prototype.draw = function(data, fresh) {
 		paths.enter().append("svg:path")
 			.attr("stroke", "white")
 			.attr("stroke-width", 0.5)
-			.attr("class", function(d){return d.mask ? "mask" : "unmask"})
+			.attr("class", function(d){return "pie-item "+d.key})
 			.attr("fill", function(d) {return d.color; })
-			.on("mousedown", function(d) {				
-				$("html,body").scrollTop($(document).height());		 			   			
+			.on("mousedown", function(d) {									 			   			
 				pieObject.mousedown(d);  
 			})
 			.transition()

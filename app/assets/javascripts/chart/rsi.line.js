@@ -1,6 +1,6 @@
 bp.rsi.LineChart = function(domId, chart){
 	this.margin = {top: 10, right: 10, bottom: 10, left: 30};
-	this.width = 1170 - this.margin.left - this.margin.right;
+	this.width = chart.width - this.margin.left - this.margin.right;
 	this.height = 90;
 	
 	this.chart = chart;
@@ -19,14 +19,14 @@ bp.rsi.LineChart.prototype.draw = function(){
 	var line = this;
 	//draw(0);
 	//var app = 'var app = interval_by_feature(sensor.first.feature("app").aggregate).with("dst", sensor.first.feature("dst").weighted_sum).with("keys", sensor.first.feature("keys").weighted_sum).with("point", sensor.first.feature("keys").weighted_sum).with("msclks", sensor.first.feature("msclks").weighted_sum).from_last(hour); result.by_time(60).excluding(sensor.first.feature("dst-avg").at_val(5)).with("apps", app).with("point", sensor.first.feature("dst").weighted_sum).from_last(day)'
-	var app = 0;
 	
 	
 //	$.ajax({url: line.chart.url, data: {q: app}, dataType: "jsonp", jsonp : "callback", jsonpCallback: "draw", success: draw});
+	
 	draw(0);
 
-	function draw(day){
-	//	var day = 0;
+	function draw(data){
+		var day = 0;
 		
 		var stage = line.svg.append("g")
 	   		.attr("transform", "translate(" + line.margin.left + "," + (line.margin.top + line.height * day) + ")");
@@ -70,18 +70,21 @@ bp.rsi.LineChart.prototype.draw = function(){
 
 				data = bp.chart.Utils.makeConsecutive(data);
 
-		   		line.x.domain([bp.chart.Utils.beginningOfDay(data[0].t), bp.chart.Utils.endOfDay(data[0].t)]); 
+		   		line.x.domain(line.chart.fit ? d3.extent(data.map(function(d) { return d.t; })) : [bp.chart.Utils.beginningOfDay(data[0].t), bp.chart.Utils.endOfDay(data[0].t)]); 
 		   		line.y.domain([0, d3.max(data.map(function(d) { return d.point; }))]);
 
 		   	    stage.append("path").data([data]).attr("d", area);
-
-		   	    stage.append("g")
-		   	         .attr("class", "x axis")
-		   	         .attr("transform", "translate(0," + (line.height) + ")")
-		   	         .call(xAxis);
+				
+				if(!line.chart.fit){
+					stage.append("g")
+			   	         .attr("class", "x axis")
+			   	         .attr("transform", "translate(0," + (line.height) + ")")
+			   	         .call(xAxis);
+				}
+		   	    
 			}
-			day < line.chart.days - 1 ? draw(day + 1) : drawBrush();
-		//drawBrush();
+		//	day < line.chart.days - 1 ? draw(day + 1) : drawBrush();
+		drawBrush();
 	   	});
 	}
 

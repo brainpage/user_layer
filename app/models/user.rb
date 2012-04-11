@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
   has_many :activity_users
   has_many :activities, :through => :activity_users
   has_many :own_activities, :class_name => "Activity", :foreign_key => :creator_id
+  has_one :setting, :class_name => "UserSetting"
   
   delegate :name, :image, :to => :active_oauth_account, :allow_nil => true
   
@@ -55,7 +56,11 @@ class User < ActiveRecord::Base
   end
   
   def friends
-    UserRelation.where(:inviter_id => self.id).map(&:invitee) + UserRelation.where(:invitee_id => self.id).map(&:inviter)
+    users_in_relation RelationFriend
+  end
+  
+  def neighbours
+    users_in_relation RelationNeighbour
   end
   
   def add_sensor(sensor_uuid)
@@ -83,7 +88,7 @@ class User < ActiveRecord::Base
   
   def accept_invite(token)
     user = User.find_by_invite_token(token)
-    UserRelation.create(:inviter => user, :invitee => self)
+    RelationFriend.create(:user => user, :client_user => self)
   end
   
   def generate_welcome_feed
@@ -106,5 +111,14 @@ class User < ActiveRecord::Base
     }
   
     "http://www.facebook.com/dialog/send?#{options.to_param}"
+  end
+  
+  def rsi_interval
+    self.setting.try(:rsi_interval) || UserSetting.default_rsi_interval
+  end
+  
+  private 
+  def users_in_relation(relation)
+    relation.where(:user_id => self.id).map(&:client_user) + relation.where(:client_user_id => self.id).map(&:user)
   end
 end
