@@ -3,6 +3,7 @@ $font-size: 20px;
 $line-height: 25px;
 @mixin opacity{filter:alpha(Opacity= $opacity * 100);-moz-opacity: $opacity; opacity: $opacity;fill-opacity: $opacity;}
 @mixin low-opacity{filter:alpha(Opacity= $opacity * 0.5 * 100);-moz-opacity: $opacity * 0.5; opacity: $opacity * 0.5;}
+@mixin high-opacity{filter:alpha(Opacity= $opacity * 1.2 * 100) !important;-moz-opacity: $opacity * 1.2 !important; opacity: $opacity * 1.2 !important;fill-opacity: $opacity * 1.2 !important;}
 @mixin font{font-family: 'Marmelad', sans-serif; font-weight: 400 !important; }
 
 body{ margin:0; padding:0;height:100%; @include font;}
@@ -14,7 +15,7 @@ li{list-style: none}
 img#bg{position:fixed; top:0; left:0; width:100%; height:100%;z-index:-9999;}
 
 .container{ position:relative;width:1170px !important;}
-
+.clear{clear:both}
 .top{margin:10px 0 20px 0}
 .top .pull-right{margin-top:-15px !important;width:300px}
 .logo{font-size:50px; color:#fcfcfc; line-height:50px}
@@ -85,6 +86,8 @@ svg {
 	stroke: steelblue;
 }
 
+#time-chart .label{font-size: 14px;}
+
 .line path {
   fill: steelblue;
 }
@@ -129,6 +132,7 @@ svg text{
 .bar-chart{margin-top: 15px}
 .bar-chart rect, #time-chart rect{@include opacity;}
 
+.time-tip rect{@include high-opacity}
 
 #zoom-line .axis path, #zoom-line .axis line {
   fill: none;

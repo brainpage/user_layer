@@ -8,7 +8,7 @@ bp.chart.Utils = {};
 function drawChart(){	
 	var chart = {
 		days: 1,
-		url: "http://localhost:3000/rsi/charts/data",
+		url: "http://192.168.96.175:3000/rsi/charts/data",
 		dataByTime: null,
 		dataByApp: null,
 		color: {},

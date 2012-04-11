@@ -32,7 +32,7 @@ bp.rsi.TimeChart.prototype.draw = function(chart){
 				item = layers[map[app.v]][index];
 				item.y = Math.round(app.d / 60, 0);	
 				item.color = chart.getColor(app.v);
-				item.day = d.t;
+				item.day = bp.chart.Utils.shortDate(new Date(d.t * 1000));
 				item.app = app.v;
 				item.duration = app.d / 60;	
 			})
@@ -51,8 +51,10 @@ bp.rsi.TimeChart.prototype.draw = function(chart){
 		data = layers;
 
     	var p = 20,
+		margin = {top: 30, left: 10, right: 10, bottom: 20},
+		yw = 50, // width of y axis
         w = 1160,
-        h = 200 - .5 - p,
+        h = 500 - .5 - p - margin.top - margin.bottom,
         mx = m,
         my = d3.max(data, function(d) {
           return d3.max(d, function(d) {
@@ -64,7 +66,7 @@ bp.rsi.TimeChart.prototype.draw = function(chart){
             return d.y;
           });
         }),
-        x = function(d) { return d.x * (w -50)/ mx; },
+        x = function(d) { return d.x * (w - yw)/ mx; },
         y0 = function(d) { return h - d.y0 * h / my; },
         y1 = function(d) { return h - (d.y + d.y0) * h / my; },
         y2 = function(d) { return d.y * h / mz; }; // or `my` to not rescale
@@ -73,10 +75,10 @@ bp.rsi.TimeChart.prototype.draw = function(chart){
     var vis = d3.select("#time-chart")
       .append("svg")
         .attr("width", w)
-        .attr("height", h + p);
+        .attr("height", h + p + margin.top + margin.bottom);
 
    var yAxisArea = vis.append("g").attr("class", "y axis")
-   		.attr("transform", "translate(50,1)");
+   		.attr("transform", "translate(" + yw + ", " + margin.top + ")");
 
     var y = d3.scale.linear().domain([0, my]).range([h, 0]);
 	var yAxis = d3.svg.axis().scale(y).orient("left");	
@@ -100,7 +102,7 @@ bp.rsi.TimeChart.prototype.draw = function(chart){
         .data(function(d) { return d; })
       .enter().append("g")
         .attr("class", "bar")
-        .attr("transform", function(d) { return "translate(" + (x(d) + 50) + ",0)"; });
+        .attr("transform", function(d) { return "translate(" + (x(d) + yw) + "," + margin.top + ")"; });
     
     bars.append("rect")
         .attr("width", x({x: .9}))
@@ -115,31 +117,70 @@ bp.rsi.TimeChart.prototype.draw = function(chart){
 		.attr("class", function(d){return d.app;})
         .attr("height", function(d) { return y0(d) - y1(d); });
 
-
+		var preSelected = null;
 		function mouseover(d, i) {
+			d3.selectAll("." + d.app).attr("fill", "black").attr("stroke", "white").attr("stroke-width", 2);
+			if(preSelected != null && preSelected.app != d.app){
+				d3.selectAll("." + preSelected.app).attr("fill", preSelected.color).attr("stroke", "none");
+			}
 		
-			vis.append("g").attr("class", "time-tip")
-				.attr("transform", "translate(" + (x(d) + 50) + ","+ y1(d) + ")")
-				.append("text")
-				.text("hello");
-		 	d3.selectAll("." + d.app).attr("fill", "red").attr("stroke", "white").attr("stroke-width", 2);		
+			var tip = vis.append("g").attr("class", "time-tip")
+				.attr("transform", "translate(" + (x(d) + 50) + ","+ margin.top + ")");
+			var right = x(d) + yw > w/2,
+				height = 100, width = 280,
+				tx, ty;
+				
+				tip.append("rect")
+				.attr("stroke", "white")
+				.attr("width", 0)
+				.attr("x", right ? 0 : 35)
+		        .attr("y", ty = (y0(d) + y1(d))/2 - height / 2 )
+		        .attr("height", height)
+		      	.transition()
+		        .delay(200)
+		        .attr("x", tx = right ? -width : 35)
+				.attr("width", width);
+
+				var total = 0,
+					dayTotal = 0,
+				 	days = 0;
+				
+				data[map[d.app]].forEach(function(d){
+					if(d.duration != null){
+						total += d.duration;
+						days++;
+					}
+				})
+				data.forEach(function(layer){
+					if(layer[i].duration != null){
+						dayTotal += layer[i].duration;
+					}
+				})
+				
+				var f = bp.chart.Utils.formatMinutes;
+				tip.append("text").attr("x", tx + 10).attr("y", ty + 30).attr("class", "f11").transition().delay(300).text(d.app);
+				tip.append("text").attr("x", tx + 10).attr("y", ty + 60).attr("class", "f10").transition().delay(300)
+					.text(f(d.duration) + " of " + f(dayTotal) + " on " + d.day);
+				tip.append("text").attr("x", tx + 10).attr("y", ty + 85).attr("class", "f9").transition().delay(300)
+					.text(f(total) + " in " + days + " days, avg "+ f(Math.round(total/days, 0)));		 			
 		 }
 		
 		function mouseout(d, i) {
-		   d3.selectAll("." + d.app).attr("fill", d.color).attr("stroke", "none");
+			d3.selectAll(".time-tip").remove();
+			preSelected = d;		   
 		}
     
     var labels = vis.selectAll("text.label")
         .data(data[0])
       .enter().append("text")
         .attr("class", "label")
-		.attr("transform", function(d) { return "translate(" + 50 + ",0)"; })
+		.attr("transform", function(d) { return "translate(" + yw + ", " + margin.top + ")"; })
         .attr("x", x )
         .attr("y", h + 6)
         .attr("dx", x({x: .9}))
         .attr("dy", ".71em")
         .attr("text-anchor", "middle")
-        .text(function(d, i) { var date = new Date(dates[i] * 1000); return (date.getMonth() + 1) + "-" + date.getDate(); });
+        .text(function(d, i) {return i % 2 == 0 ? "" : bp.chart.Utils.shortDate(new Date(dates[i] * 1000))});
     
     vis.append("line")
         .attr("x1", 0)

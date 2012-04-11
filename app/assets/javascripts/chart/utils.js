@@ -63,4 +63,17 @@ bp.chart.Utils.secondsOfDay = function(date){
 	return date.getHours() * 3600 + date.getMinutes() * 60 + date.getSeconds();
 }
 
+bp.chart.Utils.shortDate = function(date){
+	return (date.getMonth() + 1) + "-" + date.getDate();
+}
+
+bp.chart.Utils.formatMinutes = function(minutes){
+	var min = minutes % 60;
+	var hour = (minutes - min) / 60; 
+	if(hour == 0){return min + "m";}
+	
+	if(min < 10){min = "0" + min};
+	return hour + "h:" + min + "m";
+}
+
 

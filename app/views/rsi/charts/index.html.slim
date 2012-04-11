@@ -1,44 +1,49 @@
 = render "nav"
 
-.b.c8
-  .p 
-    .row-fluid
-      .span4 Time Spent
-      .span8 
-        #time-tip
-
-#time-chart
-
-.b.c8
-  .p Daily data of computer usage
+.tabbable
+  ul.nav.nav-tabs.pull-right.light
+    li.active 
+      a data-toggle="tab" href="#time-trend" Time Trend
+    li
+      a data-toggle="tab" href="#detail" Detail Analysis
   
-#line-chart
 
-.b.c8
-  .p Percentage of applications
+  .tab-content
+	#time-trend.tab-pane.active
+	  .b.f13 style="width:400px" Time in the past 30 days
+	  #time-chart
+	#detail.tab-pane
 
-.row-fluid
-  .span5
-    #pie-chart
-  .span7
-    .tabbable.bar-chart
-      ul.nav.nav-tabs
-        li.active 
-          a data-toggle="tab" href="#keys-bar" Keystokes
-        li
-          a data-toggle="tab" href="#msclks-bar" Mouse Clicks
-        li
-          a data-toggle="tab" href="#dst-bar" Mouse moved distance
-      .tab-content
-		
-        #keys-bar.tab-pane.active
-        #msclks-bar.tab-pane
-        #dst-bar.tab-pane
-
-.b.c8
-  .p id="app-detail" Click pie chart to see detail of application.
-
-#zoom-line
+      .b.c8
+        .p Daily data of computer usage
+        
+      #line-chart
+      
+      .b.c8
+        .p Percentage of applications
+      
+      .row-fluid
+        .span5
+          #pie-chart
+        .span7
+          .tabbable.bar-chart
+            ul.nav.nav-tabs
+              li.active 
+                a data-toggle="tab" href="#keys-bar" Keystokes
+              li
+                a data-toggle="tab" href="#msclks-bar" Mouse Clicks
+              li
+                a data-toggle="tab" href="#dst-bar" Mouse moved distance
+            .tab-content
+      		
+              #keys-bar.tab-pane.active
+              #msclks-bar.tab-pane
+              #dst-bar.tab-pane
+      
+      .b.c8
+        .p id="app-detail" Click pie chart to see detail of application.
+      
+      #zoom-line
 
 script
   | drawChart();
