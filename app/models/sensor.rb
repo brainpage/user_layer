@@ -3,7 +3,9 @@ class Sensor < ActiveRecord::Base
   has_many :feeds, :as => :originator
   has_many :sensor_subscribers
   has_many :apps, :through => :sensor_subscribers
+  has_many :features
   validates_presence_of :stype
+
   validates_presence_of :uuid
   
   def self.generate_uid
