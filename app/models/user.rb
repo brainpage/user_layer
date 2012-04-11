@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
   has_many :activity_users
   has_many :activities, :through => :activity_users
   has_many :own_activities, :class_name => "Activity", :foreign_key => :creator_id
+  has_one :setting, :class_name => "UserSetting"
   
   delegate :name, :image, :to => :active_oauth_account, :allow_nil => true
   
@@ -110,6 +111,10 @@ class User < ActiveRecord::Base
     }
   
     "http://www.facebook.com/dialog/send?#{options.to_param}"
+  end
+  
+  def rsi_interval
+    self.setting.try(:rsi_interval) || UserSetting.default_rsi_interval
   end
   
   private 

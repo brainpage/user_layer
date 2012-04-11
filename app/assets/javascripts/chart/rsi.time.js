@@ -3,9 +3,14 @@ bp.rsi.TimeChart = function(domId){
 }
 
 bp.rsi.TimeChart.prototype.draw = function(chart){
+	var query = 'sensor.find("0cc32a1ae063af9b70583bd56f9bcaa6dcbe5873").by_time(day).with(feature("app").aggregate).excluding(feature("dst-avg").at_val(5)).from_last(30*day)';
 	
-	d3.json(chart.url + "?type=time", function(data) {
-		data = data.sort(function(a, b){return b.t - a.t});
+	$.ajax({url: chart.url, data: {q: query}, dataType: "jsonp", jsonp : "callback", jsonpCallback: "doDraw", success: doDraw});
+	
+	function doDraw(data){
+		
+	//d3.json(chart.url + "?type=time", function(data) {
+		data = data.sort(function(a, b){return a.t - b.t});
 		
 		var layers = [];
 		var dates = [];
@@ -14,6 +19,7 @@ bp.rsi.TimeChart.prototype.draw = function(chart){
 		var layer_index = 0;
 		data.forEach(function(d){
 			d.app.forEach(function(app){
+				app.v = bp.chart.Utils.trim(app.v);
 				if(map[app.v] == null){
 					map[app.v] = layer_index++;
 					layers.push([]);
@@ -45,7 +51,7 @@ bp.rsi.TimeChart.prototype.draw = function(chart){
 		}
 	
 	    var n = layers.length, // number of layers
-        m = dates.length, // number of samples per layer
+        m = 30, // dates.length, // number of samples per layer
 
         color = d3.interpolateRgb("#aad", "#556");
 		data = layers;
@@ -119,10 +125,7 @@ bp.rsi.TimeChart.prototype.draw = function(chart){
 
 		var preSelected = null;
 		function mouseover(d, i) {
-			d3.selectAll("." + d.app).attr("fill", "black").attr("stroke", "white").attr("stroke-width", 2);
-			if(preSelected != null && preSelected.app != d.app){
-				d3.selectAll("." + preSelected.app).attr("fill", preSelected.color).attr("stroke", "none");
-			}
+			
 		
 			var tip = vis.append("g").attr("class", "time-tip")
 				.attr("transform", "translate(" + (x(d) + 50) + ","+ margin.top + ")");
@@ -162,7 +165,12 @@ bp.rsi.TimeChart.prototype.draw = function(chart){
 				tip.append("text").attr("x", tx + 10).attr("y", ty + 60).attr("class", "f10").transition().delay(300)
 					.text(f(d.duration) + " of " + f(dayTotal) + " on " + d.day);
 				tip.append("text").attr("x", tx + 10).attr("y", ty + 85).attr("class", "f9").transition().delay(300)
-					.text(f(total) + " in " + days + " days, avg "+ f(Math.round(total/days, 0)));		 			
+					.text(f(total) + " in " + days + " days, avg "+ f(Math.round(total/days, 0)));		 
+					
+			    d3.selectAll("." + d.app).attr("fill", "black").attr("stroke", "white").attr("stroke-width", 2);
+			    if(preSelected != null && preSelected.app != d.app){
+			   		d3.selectAll("." + preSelected.app).attr("fill", preSelected.color).attr("stroke", "none");
+			    }
 		 }
 		
 		function mouseout(d, i) {
@@ -180,12 +188,14 @@ bp.rsi.TimeChart.prototype.draw = function(chart){
         .attr("dx", x({x: .9}))
         .attr("dy", ".71em")
         .attr("text-anchor", "middle")
-        .text(function(d, i) {return i % 2 == 0 ? "" : bp.chart.Utils.shortDate(new Date(dates[i] * 1000))});
+        .text(function(d, i) {return bp.chart.Utils.shortDate(new Date(dates[i] * 1000))});
     
     vis.append("line")
         .attr("x1", 0)
         .attr("x2", w - x({x: .1}))
         .attr("y1", h)
         .attr("y2", h);
-	});
+//	});
+	
+}
 }

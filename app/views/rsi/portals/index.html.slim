@@ -2,37 +2,47 @@
 
 .row-fluid
   .span6
-    .title 
+    .title style="margin-top:10px"
       = link_to "Updates", rsi_portals_path, :class => "active"
     ul.feeds
       - for feed in @feeds 
         li.row-fluid
           = render_feed feed 
               
-  .span3
+  .span6
     .title 
       = link_to "Analysis", rsi_charts_path
 
     .b.c8
-      .p.f11 
-        = link_to "Work strength of day"
-      #line-holder
-      
-    .b.c8
-      .p.f11 Time on applications
-    .b.c8
-      .p.f11 Time by category
-    .b.c8
-      .p.f11 Compare with friends
+      .p
+        .pull-right
+          = link_to "View More", rsi_charts_path 
+        | Activities Today
 
-  .span3
+    #line-chart
+    #pie-chart style="margin-top:-40px;text-align:center"
+
+	.title 
+      = link_to "Settings", rsi_settings_path    
+	.b.c8     
+      .p 
+        | Notify me after I keep working for
+        span id="interval"
+          = current_user.rsi_interval
+        | minutes
+        .p style="margin:10px"
+          #interval-slider
+
     .title 
       = link_to "Activities", rsi_activities_path
-    .b.c10     
-      .p.f11 User Facebook Less for Charity
-      .p.f8 Complete with your friends to see who use facebook less. The loser will donate money to charity.
-    .b.c10
-      .p
-        a href="#newAct" data-toggle="modal" class="go" Begin Now
+
+    .b.c8     
+      .p 
+        | User Facebook Less for Charity 
+        .f8 Coming soon
 
 = render "rsi/activities/new"
+
+script
+  | drawPortalChart();
+  | $("#interval-slider").slider({value: #{current_user.rsi_interval}, min: 10, max:60, step: 5, slide: function(event, ui) { $("#interval").text(ui.value)}, change: function(event, ui){$.post('#{rsi_settings_path.html_safe}', {value: ui.value})}});

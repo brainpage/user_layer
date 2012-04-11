@@ -30,7 +30,7 @@ UserLayer::Application.routes.draw do
   root :to=>"apps#index"
   
   namespace :rsi do
-    resources :feeds, :accounts
+    resources :accounts, :settings
     resources :portals do
       collection do 
         get :land

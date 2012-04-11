@@ -9,7 +9,7 @@ class Rsi::ChartsController < ApplicationController
     elsif params[:type] == "time"
       apps = ["firefox", "qq", "textmate", "eclipse", "skype", "word"]
       result = []
-      0.upto(30){|i|
+      0.upto(10){|i|
          w = [
            [{:v => "firefox", :d => rand(200) * 60}, {:v => "qq", :d => rand(150) * 60}, {:v => "textmate", :d => rand(100)*60}, {:v => "skype", :d => rand(100) * 60}],
            [{:v => "firefox", :d => rand(200) * 60}, {:v => "word", :d => rand(150) * 60}, {:v => "eclipse", :d => rand(100)*60}, {:v => "skype", :d => rand(100) * 60}],          

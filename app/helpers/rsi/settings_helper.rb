@@ -1,0 +1,2 @@
+module Rsi::SettingsHelper
+end

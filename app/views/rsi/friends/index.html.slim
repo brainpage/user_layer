@@ -16,22 +16,22 @@
           a href="#{rsi_friends_path(:t => "all")}" All The Time
 
 	div style="clear:both"
-    #cloud style="width:600px; height:120px;background-color:#ffffcc;"
+    #cloud style="width:800px; height:600px;background-color:#669933;"
       ul
         li
-          a href="#" style="color:#000;" rel="20" HTML
+          a href="#" style="color:red;" rel="20" HTML
         li
-          a href="#" style="color:#000;" rel="10" Firefox
+          a href="#" style="color:blue;" rel="10" Firefox
         li
-          a href="#" style="color:#000;" rel="15" vmware
+          a href="#" style="color:white;" rel="15" vmware
         li
-          a href="#" style="color:#000;" rel="18" chrome
+          a href="#" style="color:black;" rel="18" chrome
         li
-          a href="#" style="color:#000;" rel="5" QQ
+          a href="#" style="color:#fff;" rel="5" QQ
     	li
-          a href="#" style="color:#000;" rel="1" CSS
+          a href="#" style="color:#fff;" rel="1" CSS
 
 script
   | $(function(){
-      $('#cloud').tagcloud({centrex:300,centrey:60});
+      $('#cloud').tagcloud({centrex:400,centrey:300});
     });

@@ -68,8 +68,8 @@ bp.chart.Utils.shortDate = function(date){
 }
 
 bp.chart.Utils.formatMinutes = function(minutes){
-	var min = minutes % 60;
-	var hour = (minutes - min) / 60; 
+	var min = Math.round(minutes % 60, 0);
+	var hour = Math.round((minutes - min) / 60, 0); 
 	if(hour == 0){return min + "m";}
 	
 	if(min < 10){min = "0" + min};
