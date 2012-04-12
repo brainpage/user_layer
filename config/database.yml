@@ -22,7 +22,7 @@ test:
 production:
   adapter: mysql
   database: user_layer_production
-  username: root
-  password:
+  username: user_layer
+  password: ap95734h7ksdfjlz
   pool: 5
   timeout: 5000

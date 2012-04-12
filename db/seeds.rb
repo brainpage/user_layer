@@ -17,6 +17,6 @@ jp = User.create(:email => "jpalley@gmail.com", :password=>"jonathan", :password
 
 #rsi = AppList.create(:name => "Stop RSI", :description => "Analyze and stop RSI", :url=>"rsi")
 
-random = Sensor.create(:stype=>"random", :uuid =>"10-120-5-0-e97fcc2346bde64e0482e252acc826b7")
+#random = Sensor.create(:stype=>"random", :uuid =>"10-120-5-0-e97fcc2346bde64e0482e252acc826b7")
 
 
