@@ -1,5 +1,5 @@
 group :development do
-  source 'http://ruby.taobao.org/'
+ # source 'http://ruby.taobao.org/'
 end
 gem 'rails', '3.1.3'
 
