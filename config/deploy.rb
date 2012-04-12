@@ -18,9 +18,9 @@ set :application, "user_layer"
 set :user, "app"
 set :rvm_type, :user
 set :deploy_to, "/home/app/applications/user_layer"
-role :web, "brainpage.com"
-role :app, "brainpage.com"
-role :db,  "brainpage.com", :primary => true
+role :web, "50.112.132.214"
+role :app, "50.112.132.214"
+role :db,  "50.112.132.214", :primary => true
 
 # server details
 default_run_options[:pty] = true
