@@ -37,9 +37,9 @@ gem 'omniauth-facebook'
 gem 'capistrano'
 
 group :development, :test do
-  gem 'mongrel', '>= 1.2.0.pre2'
-  gem 'capistrano'
-  gem 'sqlite3'
+  #gem 'mongrel', '>= 1.2.0.pre2'
+  #gem 'capistrano'
+  #gem 'sqlite3'
   # Pretty printed test output
   #gem 'turn', '0.8.2', :require => false
 #  gem 'ruby-debug19', :require => 'ruby-debug'
