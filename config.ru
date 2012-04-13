@@ -3,9 +3,7 @@
 require ::File.expand_path('../config/environment',  __FILE__)
 
 if Rails.env.production?
-  map '/rsi' do
-    run UserLayer::Application
-  end
+  run UserLayer::Application
 else
   run UserLayer::Application
 end
