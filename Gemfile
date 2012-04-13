@@ -1,7 +1,9 @@
-group :development do
- # source 'http://ruby.taobao.org/'
+if `hostname` =~ /^ip/
+  source 'http://rubygems.org'
+else
+  source 'http://ruby.taobao.org'
 end
-source 'http://rubygems.org'
+
 gem 'rails', '3.1.3'
 
 # Bundle edge Rails instead:

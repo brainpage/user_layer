@@ -85,3 +85,6 @@ end
 after 'deploy:setup', :custom_setup
 after 'deploy:update_code', 'deploy:symlink_shared'
 after 'deploy:restart', 'deploy:cleanup'
+
+#grant all privileges on user_layer_production.* to user_layer@'10.0.0.%' IDENTIFIED BY 'ap95734h7ksdfjlz'
+#Setup database correctly: 
