@@ -1,6 +1,6 @@
 # RVM bootstrap
 #$:.unshift(File.expand_path('./lib' ,ENV['rvm_path']))
-
+#require 'bundler/capistrano'
 #require 'rvm/capistrano'
 #set :rvm_ruby_string, '1.9.2-p290'
 
@@ -36,6 +36,7 @@ set :repository, "git@github.com:ecoinventions/user_layer.git"
 set :branch, "master"
 set :git_enable_submodules, 1
 
+load "deploy/assets"
 # tasks
 namespace :bundle do
   desc "Run bundler, installing gems"
