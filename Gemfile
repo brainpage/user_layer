@@ -52,7 +52,7 @@ group :development, :test do
   gem 'factory_girl_rails'
 end
 
-#group :production do
+group :production do
 #  gem 'mysql'
-#  gem 'unicorn'
-#end
+  gem 'unicorn'
+end
