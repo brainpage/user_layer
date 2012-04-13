@@ -14,7 +14,7 @@ require 'bundler/capistrano'
 
 # main details
 set :application, "user_layer"
-
+set :bundle_flags, "--deployment --quiet --binstubs --shebang ruby-local-exec"
 set :user, "app"
 set :rvm_type, :user
 set :deploy_to, "/home/app/applications/user_layer"
