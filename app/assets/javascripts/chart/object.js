@@ -1,8 +1,8 @@
 bp.rsi.ChartObject = function(data){
 	this.days = data.days;
-//	this.url = "http://10.0.0.7:8088/query";
-	this.url = "http://localhost:3000/rsi/charts/data";	
 	this.crossdomain = false;
+	this.url = "/db/query";
+//	this.url = "http://localhost:3000/rsi/charts/data";	
 	this.dataByTime = null;
 	this.dataByApp = null;
 	this.color = {};

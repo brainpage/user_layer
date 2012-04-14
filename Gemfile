@@ -1,7 +1,9 @@
-group :development do
- # source 'http://ruby.taobao.org/'
+if `hostname` =~ /^ip/
+  source 'http://rubygems.org'
+else
+  source 'http://ruby.taobao.org'
 end
-source 'http://rubygems.org'
+
 gem 'rails', '3.1.3'
 
 # Bundle edge Rails instead:
@@ -10,7 +12,7 @@ gem 'rails', '3.1.3'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.1.5'
+  gem 'sass-rails',   '3.1.4'
   gem 'coffee-rails', '~> 3.1.1'
   gem 'uglifier', '>= 1.0.3'
 end
@@ -50,7 +52,7 @@ group :development, :test do
   gem 'factory_girl_rails'
 end
 
-#group :production do
+group :production do
 #  gem 'mysql'
-#  gem 'unicorn'
-#end
+  gem 'unicorn'
+end

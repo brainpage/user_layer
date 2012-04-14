@@ -1,6 +1,6 @@
 # RVM bootstrap
 #$:.unshift(File.expand_path('./lib' ,ENV['rvm_path']))
-
+#require 'bundler/capistrano'
 #require 'rvm/capistrano'
 #set :rvm_ruby_string, '1.9.2-p290'
 
@@ -14,7 +14,7 @@ require 'bundler/capistrano'
 
 # main details
 set :application, "user_layer"
-
+set :bundle_flags, "--deployment --quiet --binstubs --shebang ruby-local-exec"
 set :user, "app"
 set :rvm_type, :user
 set :deploy_to, "/home/app/applications/user_layer"
@@ -36,6 +36,7 @@ set :repository, "git@github.com:ecoinventions/user_layer.git"
 set :branch, "master"
 set :git_enable_submodules, 1
 
+load "deploy/assets"
 # tasks
 namespace :bundle do
   desc "Run bundler, installing gems"
@@ -85,3 +86,6 @@ end
 after 'deploy:setup', :custom_setup
 after 'deploy:update_code', 'deploy:symlink_shared'
 after 'deploy:restart', 'deploy:cleanup'
+
+#grant all privileges on user_layer_production.* to user_layer@'10.0.0.%' IDENTIFIED BY 'ap95734h7ksdfjlz'
+#Setup database correctly: 
