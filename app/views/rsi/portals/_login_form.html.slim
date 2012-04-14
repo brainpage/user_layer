@@ -1,15 +1,15 @@
-= form_tag rsi_accounts_path, :class => "form-horizontal"
+= form_tag rsi_accounts_path(:act => act), :class => "form-horizontal"
 .row-fluid
   .span4
     .login-label Email
   .span8
-    = text_field_tag :email, "",:class => "login-input"
+    = text_field_tag "#{act}[email]", "",:class => "login-input"
 
 .row-fluid
   .span4
     .login-label Password
   .span8
-    = password_field_tag :password,"", :class => "login-input"
+    = password_field_tag "#{act}[password]","", :class => "login-input"
 
 .row-fluid
   .span4 &nbsp;

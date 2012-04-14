@@ -1,7 +1,7 @@
 bp.rsi.ChartObject = function(data){
 	this.days = data.days;
 	this.crossdomain = false;
-	this.url = "/db/query";
+	this.url = "http://www.brainpage.com/db/query";
 //	this.url = "http://localhost:3000/rsi/charts/data";	
 	this.dataByTime = null;
 	this.dataByApp = null;

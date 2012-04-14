@@ -20,6 +20,10 @@ class User < ActiveRecord::Base
   
   delegate :name, :image, :to => :active_oauth_account, :allow_nil => true
   
+  def display_name
+    self.name || self.email
+  end
+  
   after_create :generate_welcome_feed
   
   def self.create_mobile_user

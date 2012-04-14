@@ -34,6 +34,7 @@ UserLayer::Application.routes.draw do
     resources :accounts do
       collection do
         get :check
+        post :pwd
       end
     end
     

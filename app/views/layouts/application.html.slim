@@ -16,12 +16,11 @@ html
       .pull-right style="width:200px"
         - if current_user.present?
           .row-fluid
-			.span4
-			  = link_to "Settings", rsi_settings_path
-            .span5.user-name =current_user.name
+            .span9.user-name 
+              = link_to "Settings", rsi_settings_path
+              =current_user.display_name
             .span3 
-              = image_tag current_user.image
-              = link_to "Logout", destroy_user_session_path, :method => :delete
+              = image_tag current_user.image unless current_user.image.blank?
       .top
 	    .logo = yield :head
 

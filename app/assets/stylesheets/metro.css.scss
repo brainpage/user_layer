@@ -1,9 +1,9 @@
-$opacity: 0.7;
+$opacity: 0.8;
 $font-size: 20px;
 $line-height: 25px;
 @mixin opacity{filter:alpha(Opacity= $opacity * 100);-moz-opacity: $opacity; opacity: $opacity;fill-opacity: $opacity;}
 @mixin low-opacity{filter:alpha(Opacity= $opacity * 0.5 * 100);-moz-opacity: $opacity * 0.5; opacity: $opacity * 0.5;}
-@mixin high-opacity{filter:alpha(Opacity= $opacity * 1.2 * 100) !important;-moz-opacity: $opacity * 1.2 !important; opacity: $opacity * 1.2 !important;fill-opacity: $opacity * 1.2 !important;}
+@mixin high-opacity{filter:alpha(Opacity= $opacity * 1.1 * 100) !important;-moz-opacity: $opacity * 1.1 !important; opacity: $opacity * 1.1 !important;fill-opacity: $opacity * 1.1 !important;}
 @mixin font{font-family: 'Marmelad', sans-serif; font-weight: 400 !important; }
 
 body{ margin:0; padding:0;height:100%; @include font;}
@@ -19,7 +19,8 @@ img#bg{position:fixed; top:0; left:0; width:100%; height:100%;z-index:-9999;}
 .top{margin:10px 0 20px 0}
 .top .pull-right{margin-top:-15px !important;width:300px}
 .logo{font-size:50px; color:#fcfcfc; line-height:50px}
-.user-name{font-size: $font-size; color: #fcfcfc; text-align:right; height:50px; line-height: 50px}
+.user-name{font-size:16px; color: #fcfcfc; text-align:right; height:50px; line-height: 50px; margin-right:10px;}
+.user-name a{margin-right:20px; color: white}
 .home{font-size: 22px !important; color: white; margin-left:25px}
 
 .navbar{@include opacity; font-weight:bold; z-index:1}
@@ -29,23 +30,23 @@ img#bg{position:fixed; top:0; left:0; width:100%; height:100%;z-index:-9999;}
 .title .active{border-bottom: 2px solid #ffffff;}
 .title .active:hover{text-decoration: none}
 
-.b{@include opacity; margin-bottom: 10px; font-size:18px;line-height:25px;  background: no-repeat scroll 15px center; width:100%;  color:White; }
+.b{margin-bottom: 10px; font-size:18px;line-height:25px;  background: no-repeat scroll 15px center; width:100%;  color:White; }
 .b a, .nav-tabs a{color: white;display: block}
 .p{padding: 10px 15px;}
 
 .login-input{width:140px !important}
 .login-label{text-align:right; font-size:16px}
 
-.c1{background-color: #cc9900;}
-.c2{background-color: #00cccc;}
-.c3{background-color: #003399;}
-.c4{background-color: #009933;}
-.c5{background-color: #cccc00;}
-.c6{background-color: #009966;}
-.c7{background-color: #cc3333;}
-.c8{background-color: #669933;}
-.c9{background-color: #66cc00;}
-.c10{background-color: #336633;}
+.c1{@include opacity; background-color: #cc9900;}
+.c2{@include opacity; background-color: #00cccc;}
+.c3{@include opacity; background-color: #003399;}
+.c4{@include opacity; background-color: #009933;}
+.c5{@include opacity; background-color: #cccc00;}
+.c6{@include opacity; background-color: #009966;}
+.c7{@include opacity; background-color: #cc3333;}
+.c8{@include opacity; background-color: #669933;}
+.c9{@include opacity; background-color: #66cc00;}
+.c10{@include opacity; background-color: #336633;}
      
 .f13{font-size: $font-size * 1.3; line-height: $line-height * 1.3}
 .f11{font-size: $font-size * 1.1; line-height: $line-height * 1.1}

@@ -6,7 +6,7 @@
       .p Notification Settings
     
 	- if @setting.send_alert
-      .p
+      .b.p
         | Notify me after I keep working for
         span id="interval"
           = current_user.rsi_interval
@@ -24,9 +24,38 @@
   .span6
     .b.c8
       .p Account Settings
-    .p.pull-right
-      = link_to "Clear My Data", alert_rsi_settings_path, :method => :post, :class => "btn btn-large", :confirm => "Are you sure?"
+    
+    - if flash[:notice].present?
+      div.alert.alert-info
+        = flash[:notice]
+    - if current_user.active_oauth_account.blank?
+      = form_tag pwd_rsi_accounts_path, :class => "form-horizontal"
+	  .b
+	    .row-fluid
+	      .span4
+	        .login-label New Password
+	      .span8
+	        = password_field_tag :password, "",:class => "login-input"
+        
+	    .row-fluid
+	      .span4
+	        .login-label Confirmation
+	      .span8
+	        = password_field_tag :password_confirmation,"", :class => "login-input"
       
-
+	  .row-fluid
+	    .span4 &nbsp;
+	    .span8
+	      = submit_tag "Change Password", :class => "btn btn-large"
+    
+    .row-fluid style="margin-top: 20px"
+      .span5 &nbsp;
+      .span4
+        .b.c8 
+          .p = link_to "Clear My Data", alert_rsi_settings_path, :method => :post, :confirm => "Are you sure?"
+      .span3
+        .b.c8 
+          .p = link_to "Logout", destroy_user_session_path, :method => :delete
+ 
 script
   | $("#interval-slider").slider({value: #{current_user.rsi_interval}, min: 10, max:60, step: 5, slide: function(event, ui) { $("#interval").text(ui.value)}, change: function(event, ui){$.post('#{rsi_settings_path.html_safe}', {value: ui.value})}});

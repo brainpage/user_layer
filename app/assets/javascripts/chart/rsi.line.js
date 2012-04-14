@@ -17,16 +17,10 @@ bp.rsi.LineChart = function(domId, chart){
 
 bp.rsi.LineChart.prototype.draw = function(){
 	var line = this;
-	//draw(0);
-	//var app = 'var app = interval_by_feature(sensor.first.feature("app").aggregate).with("dst", sensor.first.feature("dst").weighted_sum).with("keys", sensor.first.feature("keys").weighted_sum).with("point", sensor.first.feature("keys").weighted_sum).with("msclks", sensor.first.feature("msclks").weighted_sum).from_last(hour); result.by_time(60).excluding(sensor.first.feature("dst-avg").at_val(5)).with("apps", app).with("point", sensor.first.feature("dst").weighted_sum).from_last(day)'
 	
-	
-//	$.ajax({url: line.chart.url, data: {q: app}, dataType: "jsonp", jsonp : "callback", jsonpCallback: "draw", success: draw});
-	
-	draw(0);
+	drawForDay(0);
 
-	function draw(data){
-		var day = 0;
+	function drawForDay(day){
 		
 		var stage = line.svg.append("g")
 	   		.attr("transform", "translate(" + line.margin.left + "," + (line.margin.top + line.height * day) + ")");
@@ -45,13 +39,19 @@ bp.rsi.LineChart.prototype.draw = function(){
 				timeStr = padStr(now.getFullYear()) + "-" + padStr(1 + now.getMonth()) + "-" + padStr(now.getDate());
 		}
 		stage.append("text").attr("transform", "translate("+ line.width / 3 + ", " + line.height + ")").attr("class", "center-label").text("Loading data of " + timeStr + "...");
+
+		var app = 'var app = result.by_time(60).excluding(sensor.first.feature("dst-avg").at_val(5)).with("apps", app).with("point", sensor.first.feature("dst").weighted_sum).from_last(' + day.toString() + '*day)'
+
+		if(line.chart.crossdomain){
+			$.ajax({url: line.chart.url, data: {q: app}, dataType: "jsonp", jsonp : "callback", jsonpCallback: "doDraw", success: doDraw});			
+		}else{
+			d3.json(line.chart.url + "?q="+app, doDraw);
+		}
 		
-		d3.json(line.chart.url + "?q="+day, function(data) {
+		function doDraw(data){
 			stage.select("text").remove();
 			
 			if (data.length > 0){
-				
-				
 				var xAxis = d3.svg.axis().scale(line.x).orient("bottom");
 
 			    var area = d3.svg.area()
@@ -83,9 +83,9 @@ bp.rsi.LineChart.prototype.draw = function(){
 				}
 		   	    
 			}
-		//	day < line.chart.days - 1 ? draw(day + 1) : drawBrush();
-		drawBrush();
-	   	});
+			day < line.chart.days - 1 ? drawForDay(day + 1) : drawBrush();
+		}
+	
 	}
 
 	function drawBrush(){

@@ -28,7 +28,7 @@
       .span12.b.c8
         .p
           | Join Us Now
-          = render "login_form", :submit_text => "Register"
+          = render "login_form", :submit_text => "Register", :act => "reg"
         .p.f9 style="margin-top:-20px"
           = link_to "I've got an account, Login", "#", :onclick => "$('#login-form').modal('show')"
     .b.c8
@@ -41,5 +41,5 @@
     a.close data-dismiss="modal" x
     h3 User Login
   .modal-body
-    = render "login_form", :submit_text => "Login"
+    = render "login_form", :submit_text => "Login", :act => "login"
     

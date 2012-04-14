@@ -3,12 +3,12 @@ bp.rsi.TimeChart = function(domId){
 }
 
 bp.rsi.TimeChart.prototype.draw = function(chart){
-	var query = 'sensor.find("0cc32a1ae063af9b70583bd56f9bcaa6dcbe5873").by_time(day).with(feature("app").aggregate).excluding(feature("dst-avg").at_val(5)).from_last(30*day)';
+	var query = 'sensor.find("0cc32a1ae063af9b70583bd56f9bcaa6dcbe5873").by_time(day).with(feature("app").aggregate).excluding(feature("dst-avg").at_val(5)).from_last(30*day).cache("app-time")';
 	
 	if(chart.crossdomain){
 		$.ajax({url: chart.url, data: {q: query}, dataType: "jsonp", jsonp : "callback", jsonpCallback: "doDraw", success: doDraw});
 	}else{
-		d3.json(chart.url + "?t=time&q=" + query, doDraw);		
+		d3.json(chart.url + "?q=" + query, doDraw);		
 	}
 	
 	function doDraw(data){
@@ -22,6 +22,7 @@ bp.rsi.TimeChart.prototype.draw = function(chart){
 		var layer_index = 0;
 		data.forEach(function(d){
 			d.app.forEach(function(app){
+				if(app.d < 0){app.d = 0;}
 				app.v = bp.chart.Utils.trim(app.v);
 				if(map[app.v] == null){
 					map[app.v] = layer_index++;
