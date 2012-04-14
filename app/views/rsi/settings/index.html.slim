@@ -1,1 +1,32 @@
 = content_for(:head){("Settings" + link_to("Home", rsi_portals_path, :class => "home")).html_safe}
+
+.row-fluid
+  .span6
+    .b.c8     
+      .p Notification Settings
+    
+	- if @setting.send_alert
+      .p
+        | Notify me after I keep working for
+        span id="interval"
+          = current_user.rsi_interval
+        | minutes
+        .p style="margin:10px"
+          #interval-slider
+
+    .p
+      = link_to (@setting.send_alert ? "Don't notify me" : "Notify me"), alert_rsi_settings_path, :method => :post, :class => "btn btn-large"
+
+    .b.c8 style="margin-top:20px"
+      .p 
+        = link_to "View Data Analysis", rsi_charts_path
+
+  .span6
+    .b.c8
+      .p Account Settings
+    .p.pull-right
+      = link_to "Clear My Data", alert_rsi_settings_path, :method => :post, :class => "btn btn-large", :confirm => "Are you sure?"
+      
+
+script
+  | $("#interval-slider").slider({value: #{current_user.rsi_interval}, min: 10, max:60, step: 5, slide: function(event, ui) { $("#interval").text(ui.value)}, change: function(event, ui){$.post('#{rsi_settings_path.html_safe}', {value: ui.value})}});

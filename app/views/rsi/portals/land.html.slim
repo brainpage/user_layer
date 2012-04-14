@@ -1,3 +1,5 @@
+= content_for(:head){"Brainpage"}
+
 .row-fluid
   .span4
     .row-fluid
@@ -26,18 +28,19 @@
       .span12.b.c8
         .p
           | Join Us Now
-          = form_tag rsi_accounts_path, :class => "form-horizontal"
-          label.control-label Email
-          = text_field_tag :email, "",:class => "login-input"
-          br
-          label.control-label Password
-          = password_field_tag :password,"", :class => "login-input"
-          br  
-          label.control-label 
-          = submit_tag "Register", :class => "btn"
+          = render "login_form"
+        .p
+          | I've got an account
+          = link_to "Login", "#", :onclick => "$('#login-form').modal('show')"
     .b.c8
       .p Or Login With
       .p style="text-align: center"
         = link_to image_tag("facebook.png"), "/auth/facebook"
-        br
-        = image_tag "twitter.png"
+
+#login-form.modal.hide
+  .modal-header
+    a.close data-dismiss="modal" x
+    h3 User Login
+  .modal-body
+    = render "login_form"
+    

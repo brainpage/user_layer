@@ -83,4 +83,5 @@ describe User do
       friend.friends.should be_include(@user)
     end
   end
+
 end

@@ -22,6 +22,13 @@ module FeedRender
     }
   end
   
+  def xtype_accept_invite(feed)
+    {
+      :content => "Your friend #{feed.referer.try(:name)} just accepted your invitation.",
+      :sub => link_to("Check Application Cloud", rsi_friends_path)
+    }
+  end
+  
   def xtype_add_sensor(feed)
     {
       :content => "You have set up your account successfully. <br />Your data is being collected to help you improve your health.",

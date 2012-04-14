@@ -88,7 +88,10 @@ class User < ActiveRecord::Base
   
   def accept_invite(token)
     user = User.find_by_invite_token(token)
-    RelationFriend.create(:user => user, :client_user => self)
+    unless user.blank?
+      rf = RelationFriend.create(:user => user, :client_user => self)
+      user.feeds.create(:xtype => :accept_invite, :originator => rf, :referer => self)
+    end
   end
   
   def generate_welcome_feed

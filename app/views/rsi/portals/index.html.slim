@@ -22,17 +22,6 @@
     #line-chart
     #pie-chart style="margin-top:-40px;text-align:center"
 
-	.title 
-      = link_to "Settings", rsi_settings_path    
-	.b.c8     
-      .p 
-        | Notify me after I keep working for
-        span id="interval"
-          = current_user.rsi_interval
-        | minutes
-        .p style="margin:10px"
-          #interval-slider
-
     .title 
       = link_to "Activities", rsi_activities_path
 
@@ -45,4 +34,3 @@
 
 script
   | drawPortalChart();
-  | $("#interval-slider").slider({value: #{current_user.rsi_interval}, min: 10, max:60, step: 5, slide: function(event, ui) { $("#interval").text(ui.value)}, change: function(event, ui){$.post('#{rsi_settings_path.html_safe}', {value: ui.value})}});

@@ -18,4 +18,8 @@ class Rsi::AccountsController < ApplicationController
     
     redirect_to rsi_portals_path 
   end
+  
+  def check
+    render :text => User.find_by_email(params[:value]).blank? ? 0 : 1
+  end
 end

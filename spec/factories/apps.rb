@@ -2,6 +2,6 @@
 
 FactoryGirl.define do
   factory :app do
-    app_token "12345"
+    #app_token "12345"
   end
 end
