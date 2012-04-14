@@ -1,9 +1,18 @@
 = form_tag rsi_accounts_path, :class => "form-horizontal"
-label.control-label Email
-= text_field_tag :email, "",:class => "login-input"
-br
-label.control-label Password
-= password_field_tag :password,"", :class => "login-input"
-br  
-label.control-label 
-= submit_tag "Register", :class => "btn", :id => "btn-submit"
+.row-fluid
+  .span4
+    .login-label Email
+  .span8
+    = text_field_tag :email, "",:class => "login-input"
+
+.row-fluid
+  .span4
+    .login-label Password
+  .span8
+    = password_field_tag :password,"", :class => "login-input"
+
+.row-fluid
+  .span4 &nbsp;
+  .span8
+    = submit_tag submit_text, :class => "btn btn-large", :id => "btn-submit"
+
