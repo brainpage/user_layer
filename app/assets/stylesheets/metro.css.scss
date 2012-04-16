@@ -3,7 +3,7 @@ $font-size: 20px;
 $line-height: 25px;
 @mixin opacity{filter:alpha(Opacity= $opacity * 100);-moz-opacity: $opacity; opacity: $opacity;fill-opacity: $opacity;}
 @mixin low-opacity{filter:alpha(Opacity= $opacity * 0.5 * 100);-moz-opacity: $opacity * 0.5; opacity: $opacity * 0.5;}
-@mixin high-opacity{filter:alpha(Opacity= $opacity * 1.1 * 100) !important;-moz-opacity: $opacity * 1.1 !important; opacity: $opacity * 1.1 !important;fill-opacity: $opacity * 1.1 !important;}
+@mixin high-opacity{filter:alpha(Opacity= $opacity * 1.2 * 100) !important;-moz-opacity: $opacity * 1.2 !important; opacity: $opacity * 1.2 !important;fill-opacity: $opacity * 1.2 !important;}
 @mixin font{font-family: 'Marmelad', sans-serif; font-weight: 400 !important; }
 
 body{ margin:0; padding:0;height:100%; @include font;}
@@ -16,19 +16,44 @@ img#bg{position:fixed; top:0; left:0; width:100%; height:100%;z-index:-9999;}
 
 .container{ position:relative;width:1170px !important;}
 .clear{clear:both}
-.top{margin:10px 0 20px 0}
-.top .pull-right{margin-top:-15px !important;width:300px}
-.logo{font-size:50px; color:#fcfcfc; line-height:50px}
-.user-name{font-size:16px; color: #fcfcfc; text-align:right; height:50px; line-height: 50px; margin-right:10px;}
-.user-name a{margin-right:20px; color: white}
-.home{font-size: 22px !important; color: white; margin-left:25px}
 
-.navbar{@include opacity; font-weight:bold; z-index:1}
+.navbar{color: white;  font-size:20px;}
+.navbar-inner{@include high-opacity;}
+.navbar a{color: white}
+.navbar .brand{font-size:24px !important}
+.navbar .pull-right{font-size:18px; }
+.navbar .dropdown-menu, .navbar .dropdown-menu a{color: #333;}
 
+.main{margin-top:60px;}
 .title{font-size: $font-size * 1.3;margin: 30px 0 15px 0}
 .title a{color: white; margin-right:30px}
 .title .active{border-bottom: 2px solid #ffffff;}
 .title .active:hover{text-decoration: none}
+
+.modal-header{background-color: whiteSmoke !important}
+
+.login-form{width:360px}
+.login-form .modal-body{padding-bottom: 2px;}
+.login-form .modal-footer{padding: 8px 15px 5px 15px;}
+.login-form .control-group{margin-bottom:5px;}
+.login-form .control-label{width:70px}
+.login-form .controls{margin-left:80px}
+.login-form .span2{width:150px;margin-right: 5px}
+.login-form .btn{margin-top:0}
+.login-form a{display: inline}
+.login-form .footer-text{line-height: 30px;}
+.login-form img{vertical-align:middle;}
+.login-form .error{color: #B94A48}
+#login-tip{line-height:32px}
+
+.reg-form{padding:25px 20px 5px 20px;}
+.reg-form span{margin:0 10px 0 20px}
+.reg-form .input{height:30px; display:inline}
+.reg-form .btn{margin-top: 0; margin-left:10px}
+.reg-form a{display: inline !important}
+.reg-form .facebook{font-weight: bold}
+.reg-form img{vertical-align:middle;margin-left:10px}
+
 
 .b{margin-bottom: 10px; font-size:18px;line-height:25px;  background: no-repeat scroll 15px center; width:100%;  color:White; }
 .b a, .nav-tabs a{color: white;display: block}
@@ -167,3 +192,5 @@ svg text{
 #cloud{@include opacity;}
 
 #interval{margin: 0 10px; font-size:120%}
+
+.modal-body{color: #333 !important}

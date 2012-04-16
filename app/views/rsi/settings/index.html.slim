@@ -1,5 +1,3 @@
-= content_for(:head){("Settings" + link_to("Home", rsi_portals_path, :class => "home")).html_safe}
-
 .row-fluid
   .span6
     .b.c8     
@@ -53,9 +51,7 @@
       .span4
         .b.c8 
           .p = link_to "Clear My Data", alert_rsi_settings_path, :method => :post, :confirm => "Are you sure?"
-      .span3
-        .b.c8 
-          .p = link_to "Logout", destroy_user_session_path, :method => :delete
+
  
 script
   | $("#interval-slider").slider({value: #{current_user.rsi_interval}, min: 10, max:60, step: 5, slide: function(event, ui) { $("#interval").text(ui.value)}, change: function(event, ui){$.post('#{rsi_settings_path.html_safe}', {value: ui.value})}});

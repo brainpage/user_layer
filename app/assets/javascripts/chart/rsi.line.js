@@ -40,7 +40,7 @@ bp.rsi.LineChart.prototype.draw = function(){
 		}
 		stage.append("text").attr("transform", "translate("+ line.width / 3 + ", " + line.height + ")").attr("class", "center-label").text("Loading data of " + timeStr + "...");
 
-		var app = 'var app = result.by_time(60).excluding(sensor.first.feature("dst-avg").at_val(5)).with("apps", app).with("point", sensor.first.feature("dst").weighted_sum).from_last(' + day.toString() + '*day)'
+		var app = 'var app = sensor.find("0cc32a1ae063af9b70583bd56f9bcaa6dcbe5873").by_feature(feature("app").aggregate).with(feature("dst")).with(feature("keys").weighted_sum).with(feature("msclks").weighted_sum).with("point", feature("dst-avg").weighted_sum).with(feature("scrll").weighted_sum);sensor.find("0cc32a1ae063af9b70583bd56f9bcaa6dcbe5873").by_time(60).with("apps", app).with("point", feature("dst-avg").weighted_sum).by_day(1,' + day.toString() + ')'
 
 		if(line.chart.crossdomain){
 			$.ajax({url: line.chart.url, data: {q: app}, dataType: "jsonp", jsonp : "callback", jsonpCallback: "doDraw", success: doDraw});			

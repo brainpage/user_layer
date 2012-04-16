@@ -34,17 +34,6 @@ class User < ActiveRecord::Base
     end
   end
   
-  def self.build_user(params)
-    user = self.find_by_email(params[:email])
-    
-    if user.blank?
-      user = self.create!(:email => params[:email], :password => params[:password], :password_confirmation => params[:password])
-    else
-      raise "Wrong password!" unless user.valid_password?(params[:password])
-    end
-    user
-  end
-  
   def after_token_authentication
     self.reset_authentication_token!
   end 
@@ -75,6 +64,10 @@ class User < ActiveRecord::Base
     end
   end
   
+  def sensor_added?
+    self.feeds.xtype(:add_sensor).present?
+  end
+    
   def join_activity(token)
     act = Activity.find_by_token(token)
     if act.present? and !act.users.include?(self)
@@ -83,11 +76,13 @@ class User < ActiveRecord::Base
       act.users.each do |user|
         Feed.create(:xtype => :join_activity, :user => user, :referer => self, :originator => act)      
       end
-      
-      unless self.sensor_added?
-        self.feeds.create(:xtype => :alert_sensor_install, :originator => act)
-      end
     end
+  end
+  
+  def alert_client_install
+    unless self.sensor_added?
+      self.feeds.create(:xtype => :alert_client_install)
+    end    
   end
   
   def accept_invite(token)
@@ -100,10 +95,6 @@ class User < ActiveRecord::Base
   
   def generate_welcome_feed
     Feed.create(:xtype => :welcome, :user => self)
-  end
-  
-  def sensor_added?
-    self.feeds.xtype(:add_sensor).present?
   end
   
   def fb_invite_link

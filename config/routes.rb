@@ -31,6 +31,8 @@ UserLayer::Application.routes.draw do
   root :to=>"apps#index"
   
   namespace :rsi do
+    resources :sessions
+    
     resources :accounts do
       collection do
         get :check

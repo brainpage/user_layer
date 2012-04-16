@@ -8,21 +8,47 @@ html
 
     link href='http://fonts.googleapis.com/css?family=Marmelad' rel='stylesheet' type='text/css'
 	
-  body style="padding-top:20px"
+  body
 
     = image_tag "p10.jpg", :id => "bg"
-          	
-    .container
-      .pull-right style="width:200px"
-        - if current_user.present?
-          .row-fluid
-            .span9.user-name 
-              = link_to "Settings", rsi_settings_path
-              =current_user.display_name
-            .span3 
-              = image_tag current_user.image unless current_user.image.blank?
-      .top
-	    .logo = yield :head
+    
+    .navbar.navbar-fixed-top
+      .navbar-inner
+        .container
+          a.btn.btn-navbar data-toggle="collapse" data-target=".nav-collapse"
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.brand href="#" Brainpage
+          .nav-collapse
+            ul.nav
+              = li_for("portals"){link_to("Home", rsi_portals_path)}
+              - if current_user.present?
+                = li_for("charts", "friends"){link_to "Analysis", rsi_charts_path}
+                - if controller_name == "settings"
+                  li.active
+                    = link_to "Settings", "#"
+           
+	        ul.nav.pull-right
+	          - unless current_user.try(:image).blank?
+	            li
+	              = image_tag current_user.image
+	          li.dropdown id="menu"
+	            a.dropdown-toggle href="#menu" data-toggle="dropdown"
+	              = current_user.blank? ? "Login" : current_user.display_name
+	              b.caret
+	            ul.dropdown-menu
+	              - if current_user.blank?
+	                li.login-form
+					  = render "rsi/portals/login_form", :submit_text => "Login", :act => "login"
+	              - else
+	                li 
+	                  = link_to "Settings", rsi_settings_path
+	                li.divider
+	                li
+	                  = link_to "Logout", destroy_user_session_path, :method => :delete
+
+    .main.container
 
       = yield
 			
