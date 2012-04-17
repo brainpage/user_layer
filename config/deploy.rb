@@ -32,7 +32,7 @@ set :keep_releases, "5"
 # repo details
 set :scm, :git
 set :scm_username, "jpalley"
-set :repository, "git@github.com:ecoinventions/user_layer.git"
+set :repository, "git@github.com:brainpage/user_layer.git"
 set :branch, "master"
 set :git_enable_submodules, 1
 
