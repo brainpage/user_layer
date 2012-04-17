@@ -31,12 +31,27 @@ UserLayer::Application.routes.draw do
   root :to=>"apps#index"
   
   namespace :rsi do
-    resources :accounts, :settings
+    resources :sessions
+    
+    resources :accounts do
+      collection do
+        get :check
+        post :pwd
+      end
+    end
+    
+    resources :settings do
+      collection do
+        post :alert
+      end
+    end
+    
     resources :portals do
       collection do 
         get :land
       end
     end
+    
     resources :activities do
       member do
         get :invite

@@ -3,19 +3,31 @@ class Rsi::AccountsController < ApplicationController
     if request.env['omniauth.auth'].present?
       @user = OauthAccount.build_for_user(current_user, request.env['omniauth.auth'])
     else
-      begin
-        @user = User.build_user(params)
-      rescue Exception => e
-        @user = nil
-        flash[:error] = e.message
-      end
+      @user = User.new(:email => params[:email], :password => params[:password], :password_confirmation => params[:password])
     end
     
-    unless @user.blank?
+    if @user.save
       sign_in @user     
       call_user_hook(@user)
+      @user.alert_client_install
+      redirect_to rsi_portals_path
+    else
+      flash[:error] = @user.errors.full_messages.join(" and ")
+      redirect_to "/signin"
     end
-    
-    redirect_to rsi_portals_path 
+  end
+  
+  def check
+    render :text => User.find_by_email(params[:value]).blank? ? 0 : 1
+  end
+  
+  def pwd
+    if current_user.update_attributes(params) 
+      flash[:notice] = "Update successfully!"
+      sign_in current_user
+    else
+      flash[:notice] = current_user.errors[:password]
+    end
+    redirect_to rsi_settings_path
   end
 end

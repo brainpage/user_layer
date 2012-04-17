@@ -20,6 +20,10 @@ class User < ActiveRecord::Base
   
   delegate :name, :image, :to => :active_oauth_account, :allow_nil => true
   
+  def display_name
+    self.name || self.email
+  end
+  
   after_create :generate_welcome_feed
   
   def self.create_mobile_user
@@ -28,17 +32,6 @@ class User < ActiveRecord::Base
       user.reset_authentication_token!
       user.cares.create(:owner => user, :name => "self")
     end
-  end
-  
-  def self.build_user(params)
-    user = self.find_by_email(params[:email])
-    
-    if user.blank?
-      user = self.create!(:email => params[:email], :password => params[:password], :password_confirmation => params[:password])
-    else
-      raise "Wrong password!" unless user.valid_password?(params[:password])
-    end
-    user
   end
   
   def after_token_authentication
@@ -71,6 +64,10 @@ class User < ActiveRecord::Base
     end
   end
   
+  def sensor_added?
+    self.feeds.xtype(:add_sensor).present?
+  end
+    
   def join_activity(token)
     act = Activity.find_by_token(token)
     if act.present? and !act.users.include?(self)
@@ -79,24 +76,25 @@ class User < ActiveRecord::Base
       act.users.each do |user|
         Feed.create(:xtype => :join_activity, :user => user, :referer => self, :originator => act)      
       end
-      
-      unless self.sensor_added?
-        self.feeds.create(:xtype => :alert_sensor_install, :originator => act)
-      end
     end
+  end
+  
+  def alert_client_install
+    unless self.sensor_added?
+      self.feeds.create(:xtype => :alert_client_install)
+    end    
   end
   
   def accept_invite(token)
     user = User.find_by_invite_token(token)
-    RelationFriend.create(:user => user, :client_user => self)
+    unless user.blank?
+      rf = RelationFriend.create(:user => user, :client_user => self)
+      user.feeds.create(:xtype => :accept_invite, :originator => rf, :referer => self)
+    end
   end
   
   def generate_welcome_feed
     Feed.create(:xtype => :welcome, :user => self)
-  end
-  
-  def sensor_added?
-    self.feeds.xtype(:add_sensor).present?
   end
   
   def fb_invite_link

@@ -1,0 +1,15 @@
+- if flash[:error].present?
+  .alert.alert-error
+    = flash[:error]
+
+= form_tag rsi_accounts_path, :class => "form-inline" 
+span Email
+= text_field_tag :email, "", :class => "input"
+span Password
+= password_field_tag :password, "", :class => "input span2"
+= submit_tag "Join Now", :class => "btn btn-large"
+.pull-right
+  .facebook
+    | Or Login With 
+    = link_to image_tag("facebook-big.png"), "/auth/facebook"
+| </form>

@@ -1,8 +1,6 @@
-= content_for(:head){"Brainpage"}
-
 .row-fluid
   .span6
-    .title style="margin-top:10px"
+    .title
       = link_to "Updates", rsi_portals_path, :class => "active"
     ul.feeds
       - for feed in @feeds 
@@ -11,7 +9,7 @@
               
   .span6
     .title 
-      = link_to "Analysis", rsi_charts_path
+      = link_to "Analysis", rsi_charts_path, :class => "active"
 
     .b.c8
       .p
@@ -22,27 +20,6 @@
     #line-chart
     #pie-chart style="margin-top:-40px;text-align:center"
 
-	.title 
-      = link_to "Settings", rsi_settings_path    
-	.b.c8     
-      .p 
-        | Notify me after I keep working for
-        span id="interval"
-          = current_user.rsi_interval
-        | minutes
-        .p style="margin:10px"
-          #interval-slider
-
-    .title 
-      = link_to "Activities", rsi_activities_path
-
-    .b.c8     
-      .p 
-        | User Facebook Less for Charity 
-        .f8 Coming soon
-
-= render "rsi/activities/new"
-
 script
   | drawPortalChart();
-  | $("#interval-slider").slider({value: #{current_user.rsi_interval}, min: 10, max:60, step: 5, slide: function(event, ui) { $("#interval").text(ui.value)}, change: function(event, ui){$.post('#{rsi_settings_path.html_safe}', {value: ui.value})}});
+
