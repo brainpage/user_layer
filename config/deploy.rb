@@ -3,7 +3,7 @@
 #require 'bundler/capistrano'
 #require 'rvm/capistrano'
 #set :rvm_ruby_string, '1.9.2-p290'
-
+`ssh-add`
 # rbenv
 set :default_environment, {
   "PATH" => "/home/`whoami`/.rbenv/shims:/home/`whoami`/.rbenv/bin:$PATH",
