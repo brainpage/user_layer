@@ -1,11 +1,11 @@
 class CreateAppPercentiles < ActiveRecord::Migration
   def change
-    create_table :app_percentiles do |t|
-      t.string :app
+    create_table :percentiles do |t|
+      t.string :category
       t.integer :value, :percentile
       t.timestamps
     end
     
-    add_index :app_percentiles, [:app, :value]
+    add_index :percentiles, [:category, :value]
   end
 end
