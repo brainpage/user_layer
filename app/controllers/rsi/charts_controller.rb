@@ -1,4 +1,7 @@
 class Rsi::ChartsController < ApplicationController
+  before_filter :check_sensor_hook, :only => [:index]
+  before_filter :authenticate_user!
+  
   def index
     
   end

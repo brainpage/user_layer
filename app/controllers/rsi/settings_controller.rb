@@ -1,4 +1,5 @@
 class Rsi::SettingsController < ApplicationController
+  before_filter :check_sensor_hook, :only => [:index]
   before_filter :authenticate_user!
   before_filter :find_setting
   

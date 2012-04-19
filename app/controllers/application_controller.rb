@@ -12,4 +12,14 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  protected
+  def check_sensor_hook
+    if (uuid = params[:connect_to_sensor]).present? && Sensor.find_by_uuid(uuid).present?
+      if current_user.blank? 
+        add_user_hook(:sensor_uuid, :add_sensor, uuid) 
+      else
+        current_user.add_sensor(uuid)
+      end
+    end 
+  end
 end
