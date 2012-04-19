@@ -75,6 +75,7 @@ UserLayer::Application.routes.draw do
   match 'auth/:provider/callback' => 'rsi/accounts#create'
   match 'act/:token' => 'rsi/activities#invite'
   match 'f/:token' => 'rsi/friends#invite'
+  match 'db/query' => 'rsi/charts#data'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
