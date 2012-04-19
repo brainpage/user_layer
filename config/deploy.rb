@@ -88,12 +88,13 @@ namespace :deploy do
   
     run_locally "rake assets:precompile"
     run_locally "cd public; tar -zcvf assets.tar.gz assets"
+    #run "cd #{shared_path}; rm assets.tar.gz; rm -rf assets;"
     top.upload "public/assets.tar.gz", "#{shared_path}", :via => :scp
     run "cd #{shared_path}; tar -zxvf assets.tar.gz"
     run_locally "rm public/assets.tar.gz"
     run_locally "rm -rf public/assets"
   
-    symlink
+    create_symlink
     restart
   end
   
