@@ -52,12 +52,13 @@ bp.rsi.BarChart.prototype.draw = function(data){
 				tx = x(d.key) + x.rangeBand() / 2;
 				ty = y(d.total);
 			}
+			if(isNaN(ty)){ty = 0};
 			return "translate(" + tx + "," + ty + ")"; 
 		});
     
 	bar.append("rect")	   
 	   .attr("fill", function(d) {return d.total == null ? "steelblue" : "#003399"; })
-	   .attr("height", function(d) { return height - y(d.total == null ? d.value : d.total); })
+	   .attr("height", function(d) {var v = y(d.total == null ? d.value : d.total); return height - (isNaN(v) ? height : v); })
 	   .attr("width", x.rangeBand() / 2 - 2);
 
 	this.xAxisArea.call(xAxis);

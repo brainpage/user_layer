@@ -19,8 +19,6 @@ bp.rsi.TimeChart.prototype.draw = function(chart){
 		var dates = [];
 		var map = {};
 		
-		console.log(data);
-		
 		var layer_index = 0;
 		data.forEach(function(d){
 			if(d.app != null && d.app.length > 0){

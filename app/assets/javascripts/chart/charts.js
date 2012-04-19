@@ -6,7 +6,7 @@ bp.chart = {};
 bp.chart.Utils = {};
 
 function drawChart(){	
-	var chart = new bp.rsi.ChartObject({days: 3});
+	var chart = new bp.rsi.ChartObject({days: 1});
 	chart.width = 1170;
 	
 	var timeChart = new bp.rsi.TimeChart("#time-chart");
@@ -21,8 +21,8 @@ function drawChart(){
 		
 		d3.selectAll("#pie-chart .pie-item").attr("fill", function(d){return d.color}).attr("stroke-width", 1);
 		d3.selectAll("#pie-chart ." + d.key).attr("fill", "black").attr("stroke-width", 2);
-		
-		var data = chart.dataByApp.filter(d.v).top(Infinity);
+	
+		var data = chart.dataByApp.filter(d.key).top(Infinity);
 		zoomChart.draw(data, d);
 	}
 	
