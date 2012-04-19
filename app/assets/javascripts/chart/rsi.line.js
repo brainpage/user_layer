@@ -51,7 +51,7 @@ bp.rsi.LineChart.prototype.draw = function(){
 		function doDraw(data){
 			stage.select("text").remove();
 			
-			if (data.length > 0){
+			if (data != null && data.length > 0){
 				var xAxis = d3.svg.axis().scale(line.x).orient("bottom");
 
 			    var area = d3.svg.area()
@@ -64,7 +64,9 @@ bp.rsi.LineChart.prototype.draw = function(){
 			    	d.t = new Date(d.t * 1000);
 			    	d.point = +d.point;
 			
-					d.apps.forEach(function(w){w.t = d.t; w.seconds = bp.chart.Utils.secondsOfDay(w.t);})
+					if(d.apps != null){
+						d.apps.forEach(function(w){w.t = d.t; w.seconds = bp.chart.Utils.secondsOfDay(w.t);})
+					}					
 					line.rawData = line.rawData.concat(d.apps);
 			    });
 
