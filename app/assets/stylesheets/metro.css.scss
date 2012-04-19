@@ -16,7 +16,7 @@ img#bg{position:fixed; top:0; left:0; width:100%; height:100%;z-index:-9999;}
 
 .container{ position:relative;width:1170px !important;}
 .clear{clear:both}
-
+.brand{color:red !important}
 .navbar{color: white;  font-size:20px;}
 .navbar-inner{@include high-opacity;}
 .navbar a{color: white}
