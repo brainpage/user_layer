@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
     self.name || self.email
   end
   
-  after_create :generate_welcome_feed
+  after_create :generate_welcome_feed, :reset_authentication_token!
   
   def self.create_mobile_user
     User.new.tap do |user|

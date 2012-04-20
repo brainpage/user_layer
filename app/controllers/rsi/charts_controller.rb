@@ -30,4 +30,8 @@ class Rsi::ChartsController < ApplicationController
       end
     end
   end
+  
+  def average
+    render :json => ProcessedData.all.to_json
+  end
 end

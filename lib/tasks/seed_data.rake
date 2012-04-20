@@ -22,4 +22,11 @@ task :generate_test_data => :environment do
       end
     end
   end
+  
+  ProcessedData.delete_all
+  %w{com.apple.Terminal org.vim.MacVim com.apple.dt.Xcode firefox com.google.chrome}.each do |t|
+    %w{keys msclks scrll dst}.each do |i|
+      ProcessedData.create(:category => "#{t}:#{i}", :value => rand(1000) + 200)
+    end
+  end
 end

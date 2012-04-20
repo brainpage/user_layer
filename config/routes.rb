@@ -60,7 +60,7 @@ UserLayer::Application.routes.draw do
     end
     resources :charts do
       collection do
-        get :data
+        get :data, :average
       end
     end
     

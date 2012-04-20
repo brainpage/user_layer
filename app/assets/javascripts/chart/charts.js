@@ -9,6 +9,8 @@ function drawChart(){
 	var chart = new bp.rsi.ChartObject({days: 1});
 	chart.width = 1170;
 	
+	getGlobalAverage(chart);
+	
 	var timeChart = new bp.rsi.TimeChart("#time-chart");
 	timeChart.draw(chart);
 	
@@ -22,7 +24,7 @@ function drawChart(){
 		d3.selectAll("#pie-chart .pie-item").attr("fill", function(d){return d.color}).attr("stroke-width", 1);
 		d3.selectAll("#pie-chart ." + d.key).attr("fill", "black").attr("stroke-width", 2);
 	
-		var data = chart.dataByApp.filter(d.key).top(Infinity);
+		var data = chart.dataByApp.filter(d.origin_key).top(Infinity);
 		zoomChart.draw(data, d);
 	}
 	
@@ -37,12 +39,18 @@ function drawChart(){
 		var group = getGroup(chart, fromTime, toTime);
 		pieChart.draw(getPieData(group, chart), true);
 	
-		keysBarChart.draw(group.reduceSum(function(d){return d.keys; }).all());
-	    msclksBarChart.draw(group.reduceSum(function(d){return d.msclks; }).all());
-	    dstBarChart.draw(group.reduceSum(function(d){return d.dst; }).all());		
+		keysBarChart.draw(group, "keys", chart);
+	    msclksBarChart.draw(group, "msclks", chart);
+	    dstBarChart.draw(group, "dst", chart);		
 	};
 	
 	lineChart.draw();
+}
+
+function getGlobalAverage(chart){
+	d3.json(chart.avg_url, function(data){
+		chart.global_avg = data;
+	});
 }
 
 function drawPortalChart(){	

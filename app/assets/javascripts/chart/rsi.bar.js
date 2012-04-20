@@ -24,13 +24,49 @@ bp.rsi.BarChart = function(domId){
 	tip.append("text").attr("transform", "translate(94, 0)").text("Global Average");
 };
 
-bp.rsi.BarChart.prototype.draw = function(data){
+bp.rsi.BarChart.prototype.draw = function(group, attr, chart){
+	var filtered = [];
+	
+	var add = function(p, v){
+		p.count++;
+		p.total += (v[attr] == null ? 0 : v[attr]);
+		return p;
+	}
+	var remove = function(p, v){
+		p.count--
+		p.total -= (v[attr] == null ? 0 : v[attr]);
+		return p;
+	}
+	var initial = function(p, v){
+		return {count: 0, total: 0};
+	}
+	
+	var raw = group.reduce(add, remove, initial).all();
+	raw = raw.map(function(d){
+		return {key: d.key, value: (d.value.total / d.value.count)};
+	});
+	raw = bp.chart.Utils.removeSmallData(raw);
+	
+	var data = [];
+	raw.forEach(function(d){
+		if(d.value > 0){
+			var item = {key: bp.chart.Utils.trim(d.key), value: d.value};
+			data.push(item);	
+
+			var item_avg = {key: bp.chart.Utils.trim(d.key)}
+			var avg = chart.global_avg.filter(function(w){return w.category == d.key + ":" + attr}).pop();		
+			if(avg != null){item_avg.average = avg.value;}
+			data.push(item_avg);
+		}				
+	});
+	
 	var format = d3.format(",.0f");
 	
 	var y = d3.scale.linear().range([this.height, 0]),
 		x = d3.scale.ordinal().rangeRoundBands([0, this.width], .1);
 
 	// Set the scale domain.
+
 	x.domain(data.map(function(d) { return d.key; }));
 	y.domain([0, d3.max(data, function(d) { return d.value; })]);
 	
@@ -45,20 +81,20 @@ bp.rsi.BarChart.prototype.draw = function(data){
 	   .attr("class", "bar")
 	   .attr("transform", function(d) {
 			var tx, ty;
-			if(d.total == null){
+			if(d.average == null){
 				tx = x(d.key);
 				ty = y(d.value);
 			}else{
 				tx = x(d.key) + x.rangeBand() / 2;
-				ty = y(d.total);
+				ty = y(d.average);
 			}
 			if(isNaN(ty)){ty = 0};
 			return "translate(" + tx + "," + ty + ")"; 
 		});
     
 	bar.append("rect")	   
-	   .attr("fill", function(d) {return d.total == null ? "steelblue" : "#003399"; })
-	   .attr("height", function(d) {var v = y(d.total == null ? d.value : d.total); return height - (isNaN(v) ? height : v); })
+	   .attr("fill", function(d) {return d.average == null ? "steelblue" : "#003399"; })
+	   .attr("height", function(d) {var v = y(d.average == null ? d.value : d.average); return height - (isNaN(v) ? height : v); })
 	   .attr("width", x.rangeBand() / 2 - 2);
 
 	this.xAxisArea.call(xAxis);

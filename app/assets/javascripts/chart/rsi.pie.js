@@ -57,10 +57,10 @@ bp.rsi.PieChart.prototype.draw = function(data, fresh) {
 	
 	this.filteredPieData = this.pieData.filter(filterData);
 	function filterData(element, index, array) {
-		element.key = data[index].key;
+		element.origin_key = data[index].key;
+		element.key = bp.chart.Utils.trim(data[index].key);
 		element.value = data[index].value;
 		element.color = data[index].color;
-		element.mask = data[index].mask;
 		return (element.value > 0);
 	}
 	
@@ -128,12 +128,9 @@ bp.rsi.PieChart.prototype.draw = function(data, fresh) {
 	//var color = d3.scale.category20();
 
 	if(this.filteredPieData.length > 0 ){
-		this.centerLabel.text("Apps");
-				
-		if(!fresh){
-			// Clear path when mask, otherwise the color can't be filled accordingly.
-		//	this.arc_group.selectAll("path").data([]).exit().remove();
-		}
+		this.filteredPieData = bp.chart.Utils.removeSmallData(this.filteredPieData);
+		
+		this.centerLabel.text("Apps");		
 		
 		//DRAW ARC PATHS
 		var paths = this.arc_group.selectAll("path").data(this.filteredPieData);
