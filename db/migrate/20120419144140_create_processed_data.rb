@@ -6,6 +6,7 @@ class CreateProcessedData < ActiveRecord::Migration
       t.float :value
       t.integer :samples
       t.string :type
+      t.boolean :is_all_time
       t.timestamps
     end
     add_index :processed_data, :category
