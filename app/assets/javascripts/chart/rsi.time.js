@@ -3,15 +3,15 @@ bp.rsi.TimeChart = function(domId){
 }
 
 bp.rsi.TimeChart.prototype.draw = function(chart){
-	var query = 'sensor.find("0cc32a1ae063af9b70583bd56f9bcaa6dcbe5873").by_time(day).with(feature("app").aggregate).excluding(feature("dst-avg").at_val(5)).from_last(30*day).cache("app-time")';
-	
+	var query = 'sensor.find("0cc32a1ae063af9b70583bd56f9bcaa6dcbe5873").by_time(day).with(feature("app").aggregate).excluding(feature("dst-avg").at_val(5)).from_last(30*day).cache("app-time-new")';
+
 	if(chart.crossdomain){
-		$.ajax({url: chart.url, data: {q: query}, dataType: "jsonp", jsonp : "callback", jsonpCallback: "doDraw", success: doDraw});
+		$.ajax({url: chart.url, data: {q: query}, dataType: "jsonp", jsonp : "callback", jsonpCallback: "doTimeDraw", success: doTimeDraw});
 	}else{
-		d3.json(chart.url + "?q=" + query, doDraw);		
+		d3.json(chart.url + "?q=" + query, doTimeDraw);		
 	}
-	
-	function doDraw(data){
+
+	function doTimeDraw(data){
 		
 		data = data.sort(function(a, b){return a.t - b.t});
 		
@@ -21,14 +21,16 @@ bp.rsi.TimeChart.prototype.draw = function(chart){
 		
 		var layer_index = 0;
 		data.forEach(function(d){
-			d.app.forEach(function(app){
-				if(app.d < 0){app.d = 0;}
-				app.v = bp.chart.Utils.trim(app.v);
-				if(map[app.v] == null){
-					map[app.v] = layer_index++;
-					layers.push([]);
-				}
-			})
+			if(d.app != null && d.app.length > 0){
+				d.app.forEach(function(app){
+					if(app.d < 0){app.d = 0;}
+					app.v = bp.chart.Utils.trim(app.v);
+					if(map[app.v] == null){
+						map[app.v] = layer_index++;
+						layers.push([]);
+					}
+				})
+			}			
 		});
 		
 		var item;
@@ -37,15 +39,16 @@ bp.rsi.TimeChart.prototype.draw = function(chart){
 			layers.forEach(function(layer){
 				layer[index] = {x: index, y:0, y0: 0}
 			})
-			
-			d.app.forEach(function(app){
-				item = layers[map[app.v]][index];
-				item.y = Math.round(app.d / 60, 0);	
-				item.color = chart.getColor(app.v);
-				item.day = bp.chart.Utils.shortDate(new Date(d.t * 1000));
-				item.app = app.v;
-				item.duration = app.d / 60;	
-			})
+			if(d.app != null && d.app.length > 0){
+				d.app.forEach(function(app){
+					item = layers[map[app.v]][index];
+					item.y = Math.round(app.d / 60, 0);	
+					item.color = chart.getColor(app.v);
+					item.day = bp.chart.Utils.shortDate(new Date(d.t * 1000));
+					item.app = app.v;
+					item.duration = app.d / 60;	
+				})
+			}
 		});
 		
 		for(var i=1; i< layers.length; i++){
@@ -66,16 +69,16 @@ bp.rsi.TimeChart.prototype.draw = function(chart){
         w = 1160,
         h = 500 - .5 - p - margin.top - margin.bottom,
         mx = m,
-        my = d3.max(data, function(d) {
+        my = d3.max([d3.max(data, function(d) {
           return d3.max(d, function(d) {
             return d.y0 + d.y;
           });
-        }),
-        mz = d3.max(data, function(d) {
+        }), 1]),
+        mz = d3.max([d3.max(data, function(d) {
           return d3.max(d, function(d) {
             return d.y;
           });
-        }),
+        }), 1]),
         x = function(d) { return d.x * (w - yw)/ mx; },
         y0 = function(d) { return h - d.y0 * h / my; },
         y1 = function(d) { return h - (d.y + d.y0) * h / my; },
@@ -199,4 +202,5 @@ bp.rsi.TimeChart.prototype.draw = function(chart){
 			.attr("y2", h);
 	
 	}
+
 }

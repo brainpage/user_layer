@@ -51,7 +51,6 @@ bp.rsi.ZoomChart = function(domId){
 };
 
 bp.rsi.ZoomChart.prototype.draw = function(data, app){	
-	
 	data = bp.chart.Utils.makeConsecutive(data);
 
 	this.x.domain(d3.extent(data.map(function(d) { return d.t; })));

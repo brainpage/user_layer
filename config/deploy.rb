@@ -36,7 +36,7 @@ set :repository, "git@github.com:brainpage/user_layer.git"
 set :branch, "master"
 set :git_enable_submodules, 1
 
-load "deploy/assets"
+#load "deploy/assets"
 # tasks
 namespace :bundle do
   desc "Run bundler, installing gems"
@@ -73,7 +73,34 @@ namespace :deploy do
   # task :init_whenever, :role => :app do
   #   run "cd #{release_path} && RAILS_ENV=production whenever -i --update-crontab #{application}"
   # end
+  
+ #task :ln_assets do
+ #  run <<-CMD
+ #    rm -rf #{latest_release}/public/assets &&
+ #    mkdir -p #{shared_path}/assets &&
+ #    ln -s #{shared_path}/assets #{latest_release}/public/assets
+ #  CMD
+ #end
+ #
+ #task :assets do
+ #  update_code
+ #  ln_assets
+ #
+ #  run_locally "rake assets:precompile"
+ #  run_locally "cd public; tar -zcvf assets.tar.gz assets"
+ #  #run "cd #{shared_path}; rm assets.tar.gz; rm -rf assets;"
+ #  top.upload "public/assets.tar.gz", "#{shared_path}", :via => :scp
+ #  run "cd #{shared_path}; tar -zxvf assets.tar.gz"
+ #  run_locally "rm public/assets.tar.gz"
+ #  run_locally "rm -rf public/assets"
+ #
+ #  create_symlink
+ #  restart
+ #end
+  
 end
+
+
 
 desc "custom_setup"
 task :custom_setup, :role => :app do
