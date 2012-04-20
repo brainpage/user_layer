@@ -70,6 +70,8 @@ UserLayer::Application.routes.draw do
         post :join
       end
     end
+    
+    get "screen_saver" => "screen_saver#index"
   end
   
   match 'auth/:provider/callback' => 'rsi/accounts#create'

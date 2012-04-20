@@ -1,0 +1,2 @@
+module Rsi::ScreenSaverHelper
+end

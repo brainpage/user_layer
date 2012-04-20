@@ -3,3 +3,7 @@ class ProcessedData < ActiveRecord::Base
     super(:only => [:category, :value])
   end
 end
+
+class Mean < ProcessedData
+end
+
