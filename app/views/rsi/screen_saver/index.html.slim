@@ -5,10 +5,24 @@ head
     = csrf_meta_tags
 
     link href='http://fonts.googleapis.com/css?family=Marmelad' rel='stylesheet' type='text/css'
+
+	style
+	  | body{background-color:black; color:white}
+	  | h1{font-size: 80px;text-align: center; margin-top:20%;}
+	  | h2{font-size: 40px; text-align: center; margin-top:10%;}
+	  | #content{font-size:32px; text-align: center;margin-top:50px; line-height:40px;}
 html
-  body style="background-color:black; color:white"
+  body
 
-    #take_a_break  
+    #break style="display:none"
       h1 
-        Hi World
+        | Take A Break ...
+    
+    #past style="display:none"
+      h2
+        | In the past #{params[:t].to_i / 60} minutes:
 
+    #content style="display:none";
+
+script
+  | $(document).ready(showMessageEffect(#{params[:t]}));

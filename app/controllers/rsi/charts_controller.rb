@@ -1,6 +1,6 @@
 class Rsi::ChartsController < ApplicationController
   before_filter :check_sensor_hook, :only => [:index]
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :only => [:index]
   
   def index
     
@@ -33,5 +33,13 @@ class Rsi::ChartsController < ApplicationController
   
   def average
     render :json => ProcessedData.all.to_json
+  end
+  
+  def percent
+    hash = {}
+    %w{keys msclks dst scrll}.each do |i|
+      hash[i] = Percentile.of("#{i}:all:#{Time.now.to_date().to_s()}", params[i])
+    end
+    render :json => hash.to_json
   end
 end

@@ -45,7 +45,7 @@ bp.rsi.LineChart.prototype.draw = function(){
 		var cacheName = getDayStr(day);
 		stage.append("text").attr("transform", "translate("+ line.width / 3 + ", " + line.height + ")").attr("class", "center-label").text("Loading data of " + timeStr + "...");
 
-		var app = 'var app = sensor.find("0cc32a1ae063af9b70583bd56f9bcaa6dcbe5873").by_feature(feature("app").aggregate).with(feature("dst")).with(feature("keys").weighted_sum).with(feature("msclks").weighted_sum).with("point", feature("dst-avg").weighted_sum).with(feature("scrll").weighted_sum);sensor.find("0cc32a1ae063af9b70583bd56f9bcaa6dcbe5873").by_time(60).with("apps", app).with("point", feature("dst-avg").weighted_sum).by_day(1,' + day.toString() + ').cache("line-' + cacheName + '")'
+		var app = 'var app = sensor.find("0cc32a1ae063af9b70583bd56f9bcaa6dcbe5873").by_feature(feature("app").aggregate).with(feature("dst").weighted_sum).with(feature("keys").weighted_sum).with(feature("msclks").weighted_sum).with("point", feature("point").weighted_sum).with(feature("scrll").weighted_sum);sensor.find("0cc32a1ae063af9b70583bd56f9bcaa6dcbe5873").by_time(60).with("apps", app).with("point", feature("point").weighted_sum).by_day(1,' + day.toString() + ').cache("line-' + cacheName + '")'
 
 		if(line.chart.crossdomain){
 			$.ajax({url: line.chart.url, data: {q: app}, dataType: "jsonp", jsonp : "callback", jsonpCallback: "doDraw", success: doDraw});			
@@ -67,14 +67,13 @@ bp.rsi.LineChart.prototype.draw = function(){
 	
 			    data.forEach(function(d) {
 			    	d.t = new Date(d.t * 1000);
-			    	d.point = Math.random(100) * 1000; //+d.point;
+			    	d.point = (isNaN(d.point) ? 0 : +d.point);
 			
 					if(d.apps != null){
 						d.apps.forEach(function(w){w.t = d.t; w.seconds = bp.chart.Utils.secondsOfDay(w.t);})
 						line.rawData = line.rawData.concat(d.apps);
 					}					
 			    });
-
 				//data = bp.chart.Utils.makeConsecutive(data);
 
 		   		line.x.domain(line.chart.fit ? d3.extent(data.map(function(d) { return d.t; })) : [bp.chart.Utils.beginningOfDay(data[0].t), bp.chart.Utils.endOfDay(data[0].t)]); 

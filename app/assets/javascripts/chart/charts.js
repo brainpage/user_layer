@@ -75,7 +75,8 @@ function getGroup(chart, fromTime, toTime){
 	}else{
 		group = chart.dataByTime.filterAll().top(Infinity)
 	}
-	
+	console.log(fromTime, toTime);
+console.log(group);
 	return crossfilter(group).dimension(function(d) { return d.v; }).group();
 }
 
@@ -84,6 +85,5 @@ function getPieData(group, chart){
 	pieData.forEach(function(d){
 		d.color = chart.getColor(d.key);
 	})
-	
 	return pieData;
 }
