@@ -3,7 +3,13 @@ class Rsi::AccountsController < ApplicationController
     if request.env['omniauth.auth'].present?
       @user = OauthAccount.build_for_user(current_user, request.env['omniauth.auth'])
     else
-      @user = User.new(:email => params[:email], :password => params[:password], :password_confirmation => params[:password])
+      @user = User.find_by_email(params[:email])
+      if @user.present? and @user.valid_password?(params[:password])
+        sign_in @user
+        redirect_to rsi_portals_path
+      else
+        @user = User.new(:email => params[:email], :password => params[:password], :password_confirmation => params[:password])
+      end
     end
     
     if @user.save

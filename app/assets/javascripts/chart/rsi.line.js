@@ -50,7 +50,7 @@ bp.rsi.LineChart.prototype.draw = function(){
 		
 		stage.append("text").attr("transform", "translate("+ line.width / 3 + ", " + line.height + ")").attr("class", "center-label").text("Loading data of " + timeStr + "...");
 
-		var app = 'var app=sensor.find("' + line.chart.sensor_uuid + '").by_feature(feature("app").aggregate).with(feature("dst").weighted_sum).with(feature("keys").weighted_sum).with(feature("msclks").weighted_sum).with("point", feature("act").weighted_sum).with(feature("scrll").weighted_sum); sensor.find("' + line.chart.sensor_uuid + '").by_time(60).with("apps", app).with("point", feature("act").weighted_sum).from(' + from + ').to('+ to + ').cache("line-chart")'
+		var app = 'var app=sensor.find("' + line.chart.sensor_uuid + '").by_feature(feature("app").aggregate).with(feature("dst").weighted_sum).with(feature("keys").weighted_sum).with(feature("msclks").weighted_sum).with("point", feature("act").weighted_sum).with(feature("scrll").weighted_sum);sensor.find("' + line.chart.sensor_uuid + '").by_time(60).with("apps", app).with("point", feature("act").weighted_sum).from(' + from + ').to('+ to + ').cache("line-chart")'
 
 		if(line.chart.crossdomain){
 			$.ajax({url: line.chart.url, data: {q: app}, dataType: "jsonp", jsonp : "callback", jsonpCallback: "doDraw", success: doDraw});			
