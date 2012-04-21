@@ -127,7 +127,7 @@ bp.rsi.PieChart.prototype.draw = function(data, fresh) {
 	
 	//var color = d3.scale.category20();
 
-	if(this.filteredPieData.length > 0 ){
+//	if(this.filteredPieData.length > 0 ){		
 		this.filteredPieData = bp.chart.Utils.removeSmallData(this.filteredPieData);
 		
 		this.centerLabel.text("Apps");		
@@ -164,14 +164,12 @@ bp.rsi.PieChart.prototype.draw = function(data, fresh) {
 			.attr("x2", 0)
 			.attr("y1", -r-3)
 			.attr("y2", -r-8)
-			.attr("stroke", "white")
-			.attr("transform", function(d) {
-				return "rotate(" + (d.startAngle+d.endAngle)/2 * (180/Math.PI) + ")";
-			});
+			.attr("stroke", "white");
 		this.lines.transition()
 			.duration(this.tweenDuration)
 			.attr("transform", function(d) {
-				return "rotate(" + (d.startAngle+d.endAngle)/2 * (180/Math.PI) + ")";
+			
+				return "rotate(" + (d.key == "" ? -1 : (d.startAngle+d.endAngle)/2 * (180/Math.PI)) + ")";
 			});
 		this.lines.exit().remove();
 		
@@ -201,6 +199,6 @@ bp.rsi.PieChart.prototype.draw = function(data, fresh) {
 		
 		this.keyLabels.transition().duration(this.tweenDuration).attrTween("transform", textTween);
 		this.keyLabels.exit().remove();	
-	}  
+	
 }
 
