@@ -52,11 +52,12 @@ bp.rsi.LineChart.prototype.draw = function(){
 
 		var app = 'var app=sensor.find("' + line.chart.sensor_uuid + '").by_feature(feature("app").aggregate).with(feature("dst").weighted_sum).with(feature("keys").weighted_sum).with(feature("msclks").weighted_sum).with("point", feature("act").weighted_sum).with(feature("scrll").weighted_sum);sensor.find("' + line.chart.sensor_uuid + '").by_time(60).with("apps", app).with("point", feature("act").weighted_sum).from(' + from + ').to('+ to + ').cache("line-chart")'
 
+		var options = {url:line.chart.url, data: {q: app}, success: doDraw};
 		if(line.chart.crossdomain){
-			$.ajax({url: line.chart.url, data: {q: app}, dataType: "jsonp", jsonp : "callback", jsonpCallback: "doDraw", success: doDraw});			
-		}else{
-			d3.json(line.chart.url + "?q="+app.replace(";","%3b"), doDraw);
+			options.dataType = "jsonp";
+			options.jsonpCallback = "doDraw";
 		}
+		$.ajax(options);
 		
 		function doDraw(data){
 			stage.select("text").remove();
