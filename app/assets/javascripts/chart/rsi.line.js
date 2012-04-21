@@ -55,7 +55,7 @@ bp.rsi.LineChart.prototype.draw = function(){
 		if(line.chart.crossdomain){
 			$.ajax({url: line.chart.url, data: {q: app}, dataType: "jsonp", jsonp : "callback", jsonpCallback: "doDraw", success: doDraw});			
 		}else{
-			d3.json(line.chart.url + "?q="+app, doDraw);
+			d3.json(line.chart.url + "?q="+app.replace(";","%3b"), doDraw);
 		}
 		
 		function doDraw(data){
