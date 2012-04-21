@@ -10,16 +10,19 @@
   .span6
     .title 
       = link_to "Analysis", rsi_charts_path, :class => "active"
-
-    .b.c8
-      .p
-        .pull-right
-          = link_to "View More", rsi_charts_path 
-        | Activities Today
-
-    #line-chart
-    #pie-chart style="margin-top:-40px;text-align:center"
-
-script
-  | drawPortalChart();
+	
+	- if @uuid.blank?
+	  = download_rsi_client
+	- else
+      .b.c8
+        .p
+          .pull-right
+            = link_to "View More", rsi_charts_path 
+          | Activities Today
+      
+      #line-chart
+      #pie-chart style="margin-top:-40px;text-align:center"
+ 
+      script
+        | drawPortalChart("#{@uuid}");
 

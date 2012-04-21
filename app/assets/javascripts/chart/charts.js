@@ -5,9 +5,10 @@ bp.rsi = {};
 bp.chart = {};
 bp.chart.Utils = {};
 
-function drawChart(){	
+function drawChart(sensor_uuid){	
 	var chart = new bp.rsi.ChartObject({days: 1});
 	chart.width = 1170;
+	chart.sensor_uuid = sensor_uuid
 	
 	getGlobalAverage(chart);
 	
@@ -53,10 +54,11 @@ function getGlobalAverage(chart){
 	});
 }
 
-function drawPortalChart(){	
+function drawPortalChart(sensor_uuid){	
 	var chart = new bp.rsi.ChartObject({days: 1});
 	chart.width = 580;
 	chart.fit = true;
+	chart.sensor_uuid = sensor_uuid;
 	
 	var pieChart = new bp.rsi.PieChart("#pie-chart");
 	
@@ -75,8 +77,7 @@ function getGroup(chart, fromTime, toTime){
 	}else{
 		group = chart.dataByTime.filterAll().top(Infinity)
 	}
-	console.log(fromTime, toTime);
-console.log(group);
+
 	return crossfilter(group).dimension(function(d) { return d.v; }).group();
 }
 

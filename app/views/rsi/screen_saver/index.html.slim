@@ -25,4 +25,4 @@ html
     #content style="display:none";
 
 script
-  | $(document).ready(showMessageEffect(#{params[:t]}));
+  | $(document).ready(showMessageEffect(#{params[:t]},"#{current_user.sensor_uuid}"));

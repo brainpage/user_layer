@@ -1,7 +1,7 @@
-function showMessageEffect(time){	
+function showMessageEffect(time, sensor_uuid){	
 	var url = "http://brainpage.com/db/query";
 	var pUrl = "/rsi/charts/percent"
-	var prefix = 'sensor.find("0cc32a1ae063af9b70583bd56f9bcaa6dcbe5873").by_time(' + time + ').from_last(' + time + ')';
+	var prefix = 'sensor.find("' + sensor_uuid + '").by_time(' + time + ').from_last(' + time + ')';
 	var app = prefix + '.by_feature(feature("app").aggregate)';
 	var attr = prefix + '.with(feature("dst").weighted_sum).with(feature("keys").weighted_sum).with(feature("msclks").weighted_sum).with(feature("scrll").weighted_sum)';
 	

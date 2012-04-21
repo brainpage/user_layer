@@ -3,7 +3,7 @@ bp.rsi.TimeChart = function(domId){
 }
 
 bp.rsi.TimeChart.prototype.draw = function(chart){
-	var query = 'sensor.find("0cc32a1ae063af9b70583bd56f9bcaa6dcbe5873").by_time(day).with(feature("app").aggregate).excluding(feature("dst-avg").at_val(5)).from_last(30*day).cache("app-time-new")';
+	var query = 'sensor.find("' + chart.sensor_uuid + '").by_time(day).with(feature("app").aggregate).excluding(feature("dst-avg").at_val(5)).from_last(30*day).cache("app-time-new")';
 
 	if(chart.crossdomain){
 		$.ajax({url: chart.url, data: {q: query}, dataType: "jsonp", jsonp : "callback", jsonpCallback: "doTimeDraw", success: doTimeDraw});

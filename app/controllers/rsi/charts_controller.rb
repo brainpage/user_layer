@@ -3,7 +3,7 @@ class Rsi::ChartsController < ApplicationController
   before_filter :authenticate_user!, :only => [:index]
   
   def index
-    
+    @uuid = current_user.sensor_uuid
   end
   
   def data
