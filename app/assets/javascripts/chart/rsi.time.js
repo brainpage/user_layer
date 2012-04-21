@@ -2,7 +2,7 @@ bp.rsi.TimeChart = function(domId){
 	
 }
 
-bp.rsi.TimeChart.prototype.draw = function(chart){
+bp.rsi.TimeChart.prototype.draw = function(chart, callback){
 	var query = 'sensor.find("' + chart.sensor_uuid + '").by_time(day).with(feature("app").aggregate).excluding(feature("dst-avg").at_val(5)).from_last(30*day).cache("app-time-new")';
 
 	if(chart.crossdomain){
@@ -12,6 +12,7 @@ bp.rsi.TimeChart.prototype.draw = function(chart){
 	}
 
 	function doTimeDraw(data){
+		callback();
 		
 		data = data.sort(function(a, b){return a.t - b.t});
 		

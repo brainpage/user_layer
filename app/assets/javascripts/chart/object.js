@@ -1,9 +1,9 @@
 bp.rsi.ChartObject = function(data){
 	this.days = data.days;
-	this.crossdomain = false;
-	//this.url = "http://www.brainpage.com/db/query";
+	this.crossdomain = true;
+	this.url = "http://www.brainpage.com/db/query";
 	this.avg_url = "/rsi/charts/average";
-	this.url = "/db/query";	
+	//this.url = "/db/query";	
 	this.dataByTime = null;
 	this.dataByApp = null;
 	this.color = {};

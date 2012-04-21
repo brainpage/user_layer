@@ -13,7 +13,6 @@ function drawChart(sensor_uuid){
 	getGlobalAverage(chart);
 	
 	var timeChart = new bp.rsi.TimeChart("#time-chart");
-	timeChart.draw(chart);
 	
 	var zoomChart = new bp.rsi.ZoomChart("#zoom-line");
 
@@ -45,7 +44,7 @@ function drawChart(sensor_uuid){
 	    dstBarChart.draw(group, "dst", chart);		
 	};
 	
-	lineChart.draw();
+	timeChart.draw(chart, function(){lineChart.draw();});
 }
 
 function getGlobalAverage(chart){

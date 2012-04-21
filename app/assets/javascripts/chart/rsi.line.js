@@ -45,7 +45,7 @@ bp.rsi.LineChart.prototype.draw = function(){
 		var cacheName = getDayStr(day);
 		stage.append("text").attr("transform", "translate("+ line.width / 3 + ", " + line.height + ")").attr("class", "center-label").text("Loading data of " + timeStr + "...");
 
-		var app = 'var my=sensor.find("' + line.chart.sensor_uuid + '");var app=my.by_feature(feature("app").aggregate).with(feature("dst").weighted_sum).with(feature("keys").weighted_sum).with(feature("msclks").weighted_sum).with("point", feature("scrll").weighted_sum).with(feature("scrll").weighted_sum); my.by_time(60).with("apps", app).with("point", feature("scrll").weighted_sum).by_day(1,' + day.toString() + ').cache("line-' + cacheName + '")'
+		var app = 'var my=sensor.find("' + line.chart.sensor_uuid + '");var app=my.by_feature(feature("app").aggregate).with(feature("dst").weighted_sum).with(feature("keys").weighted_sum).with(feature("msclks").weighted_sum).with("point", feature("act").weighted_sum).with(feature("scrll").weighted_sum); my.by_time(60).with("apps", app).with("point", feature("act").weighted_sum).by_day(1,' + day.toString() + ').cache("line-' + cacheName + '")'
 
 		if(line.chart.crossdomain){
 			$.ajax({url: line.chart.url, data: {q: app}, dataType: "jsonp", jsonp : "callback", jsonpCallback: "doDraw", success: doDraw});			
