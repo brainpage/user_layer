@@ -52,6 +52,8 @@ html
 	                  = link_to "Logout", destroy_user_session_path, :method => :delete
 
     .main.container
-
+      = render "rsi/portals/wizard" unless current_user.blank?
       = yield
+
+
 			

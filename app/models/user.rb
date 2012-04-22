@@ -84,12 +84,6 @@ class User < ActiveRecord::Base
     end
   end
   
-  def alert_client_install
-    unless self.sensor_added?
-      self.feeds.create(:xtype => :alert_client_install)
-    end    
-  end
-  
   def accept_invite(token)
     user = User.find_by_invite_token(token)
     unless user.blank?

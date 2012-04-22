@@ -15,7 +15,6 @@ class Rsi::AccountsController < ApplicationController
     if @user.save
       sign_in @user     
       call_user_hook(@user)
-      @user.alert_client_install
       redirect_to rsi_portals_path
     else
       flash[:error] = @user.errors.full_messages.join(" and ")
