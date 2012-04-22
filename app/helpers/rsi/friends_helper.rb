@@ -9,7 +9,7 @@ module Rsi::FriendsHelper
       if (color = $color_hash[k]).blank?
         $color_hash[k] = color = $colors[rand(10)]
       end
-      content_tag(:div, :class => "b #{color}", :style => "width:#{v}%"){k}
+      content_tag(:div, :class => "b #{color}", :style => "width:#{v}%"){k.split(".").last}
     end.join("").html_safe
   end
 end

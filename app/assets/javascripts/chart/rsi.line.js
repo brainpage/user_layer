@@ -77,7 +77,7 @@ bp.rsi.LineChart.prototype.draw = function(){
 			    	d.point = (isNaN(d.point) ? 0 : +d.point);
 			
 					if(d.apps != null){
-						d.apps.forEach(function(w){w.t = d.t; w.seconds = bp.chart.Utils.secondsOfDay(w.t);})
+						d.apps.forEach(function(w){w.t = d.t; w.seconds = bp.chart.Utils.secondsOfDay(w.t); if(isNaN(w.point)){w.point = 0}})
 						line.rawData = line.rawData.concat(d.apps);
 					}	
 							
