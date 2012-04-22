@@ -83,10 +83,15 @@ bp.rsi.LineChart.prototype.draw = function(){
 							
 			    });
 			
+			console.log("Data is:");
+			console.log(data);
+			
 				//data = bp.chart.Utils.makeConsecutive(data);
 
 		   		line.x.domain(line.chart.fit ? d3.extent($.map(data, function(d) { return d.t; })) : [bp.chart.Utils.beginningOfDay(data[0].t), bp.chart.Utils.endOfDay(data[0].t)]); 
 		   		line.y.domain([0, d3.max($.map(data, function(d) { return d.point; }))]);
+		console.log("After:")
+		console.log(data);
 
 		   	    stage.append("path").data([data]).attr("d", area);
 				
