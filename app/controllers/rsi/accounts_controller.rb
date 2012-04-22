@@ -6,7 +6,7 @@ class Rsi::AccountsController < ApplicationController
       @user = User.find_by_email(params[:email])
       if @user.present? and @user.valid_password?(params[:password])
         sign_in @user
-        redirect_to rsi_portals_path
+        redirect_to rsi_portals_path and return
       else
         @user = User.new(:email => params[:email], :password => params[:password], :password_confirmation => params[:password])
       end

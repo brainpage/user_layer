@@ -71,9 +71,8 @@ bp.rsi.LineChart.prototype.draw = function(){
 			       	.y0(line.height)
 			       	.y1(function(d) { return line.y(d.point); });
 	
-			    data.forEach(function(d) {
+			    $.each(data, function(index, d) {
 			    	d.t = new Date(d.t * 1000);
-					
 					
 			    	d.point = (isNaN(d.point) ? 0 : +d.point);
 			

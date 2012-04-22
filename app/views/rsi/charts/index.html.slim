@@ -1,10 +1,8 @@
-= render "nav"
-
 - if @uuid.blank?
   = download_rsi_client
 - else
   .tabbable
-    ul.nav.nav-tabs.pull-right.light
+    ul.nav.nav-tabs
       li.active 
         a data-toggle="tab" href="#time-trend" Time Trend
       li

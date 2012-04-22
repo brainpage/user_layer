@@ -24,7 +24,9 @@ html
             ul.nav
               = li_for("portals"){link_to("Home", rsi_portals_path)}
               - if current_user.present?
-                = li_for("charts", "friends"){link_to "Analysis", rsi_charts_path}
+                li.divider-vertical
+                = li_for("charts"){link_to "My Analysis", rsi_charts_path}
+				= li_for("friends"){link_to "Friends App", rsi_friends_path(:day => 7)}
                 - if controller_name == "settings"
                   li.active
                     = link_to "Settings", "#"

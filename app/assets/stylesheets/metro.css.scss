@@ -4,12 +4,13 @@ $line-height: 25px;
 @mixin opacity{filter:alpha(Opacity= $opacity * 100);-moz-opacity: $opacity; opacity: $opacity;fill-opacity: $opacity;}
 @mixin low-opacity{filter:alpha(Opacity= $opacity * 0.5 * 100);-moz-opacity: $opacity * 0.5; opacity: $opacity * 0.5;}
 @mixin high-opacity{filter:alpha(Opacity= $opacity * 1.2 * 100) !important;-moz-opacity: $opacity * 1.2 !important; opacity: $opacity * 1.2 !important;fill-opacity: $opacity * 1.2 !important;}
-@mixin font{font-family: 'Marmelad', sans-serif; font-weight: 400 !important; }
+@mixin font{font-family: 'Marmelad', sans-serif;  }
 
 body{ margin:0; padding:0;height:100%; @include font; background: #669933; color: #333}
 input, button, select, submit{font-size:16px; @include font;}
 p{font-size: $font-size * 0.9 !important}
 li{list-style: none}
+img{vertical-align:middle; margin-top:-5px;}
 .btn-large{font-size: $font-size * 0.85 !important}
 
 img#bg{position:fixed; top:0; left:0; width:100%; height:100%;z-index:-9999;}
@@ -49,7 +50,6 @@ img#bg{position:fixed; top:0; left:0; width:100%; height:100%;z-index:-9999;}
 .login-form .btn{margin-top:0}
 .login-form a{display: inline}
 .login-form .footer-text{line-height: 30px;}
-.login-form img{vertical-align:middle;}
 .login-form .error{color: #B94A48}
 #login-tip{line-height:32px}
 
@@ -58,7 +58,7 @@ img#bg{position:fixed; top:0; left:0; width:100%; height:100%;z-index:-9999;}
 .reg-form .input{height:30px; display:inline}
 .reg-form .btn{margin-top: 0; margin-left:10px}
 .reg-form a{display: inline !important}
-.reg-form img{vertical-align:middle;margin-left:10px}
+.reg-form img{margin-left:10px}
 
 hr.soften {
   height: 1px;
@@ -90,8 +90,8 @@ hr.soften {
 .c10{@include opacity; background-color: #336633;}
      
 .f13{font-size: $font-size * 1.3; line-height: $line-height * 1.3}
-.f11{font-size: $font-size * 1.1; line-height: $line-height * 1.1}
-.f10, .f10 a{font-size: $font-size; line-height: $line-height}
+.f11{font-size: $font-size * 1.1 !important; line-height: $line-height * 1.1 !important}
+.f10, .f10 a{font-size: $font-size !important; line-height: $line-height !important}
 .f8{font-size: $font-size * 0.8; line-height: $line-height * 0.8}
   
 .video{padding:10px 0 4px 0;text-align:center;}
@@ -110,6 +110,13 @@ hr.soften {
 
 .go{background: url(image_path('arrow.png')) no-repeat scroll right center; }
 .fb-link{background: url(image_path('facebook-small.png')) no-repeat scroll left center; padding-left:40px}
+.invite{width:300px; margin: 0 auto}
+
+.app-cloud{margin:20px 5px}
+.app-cloud .user{padding:10px;height: 45px; line-height:45px}
+.app-cloud .soften{margin:20px 0 !important}
+.app-cloud .app div{float:left; padding:10px 0; text-align: center; overflow-x: hidden; margin-top: 10px;}
+.app-cloud .app div:hover{overflow-x: visible; background:#000 !important; z-index:100}
 
 .money{font-size: $font-size * 1.8; color: blue; text-align: center; margin:15px;}
 
