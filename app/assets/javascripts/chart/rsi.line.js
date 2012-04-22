@@ -77,7 +77,7 @@ bp.rsi.LineChart.prototype.draw = function(){
 			    	d.point = (isNaN(d.point) ? 0 : +d.point);
 			
 					if(d.apps != null){
-						d.apps.forEach(function(w){w.t = d.t; w.seconds = bp.chart.Utils.secondsOfDay(w.t); if(isNaN(w.point)){w.point = 0}})
+						$.each(d.apps, function(w){w.t = d.t; w.seconds = bp.chart.Utils.secondsOfDay(w.t); if(isNaN(w.point)){w.point = 0}})
 						line.rawData = line.rawData.concat(d.apps);
 					}	
 							
@@ -85,8 +85,8 @@ bp.rsi.LineChart.prototype.draw = function(){
 			
 				//data = bp.chart.Utils.makeConsecutive(data);
 
-		   		line.x.domain(line.chart.fit ? d3.extent(data.map(function(d) { return d.t; })) : [bp.chart.Utils.beginningOfDay(data[0].t), bp.chart.Utils.endOfDay(data[0].t)]); 
-		   		line.y.domain([0, d3.max(data.map(function(d) { return d.point; }))]);
+		   		line.x.domain(line.chart.fit ? d3.extent($.map(data, function(d) { return d.t; })) : [bp.chart.Utils.beginningOfDay(data[0].t), bp.chart.Utils.endOfDay(data[0].t)]); 
+		   		line.y.domain([0, d3.max($.map(data, function(d) { return d.point; }))]);
 
 		   	    stage.append("path").data([data]).attr("d", area);
 				
