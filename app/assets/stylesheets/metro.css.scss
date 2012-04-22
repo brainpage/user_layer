@@ -21,7 +21,7 @@ img#bg{position:fixed; top:0; left:0; width:100%; height:100%;z-index:-9999;}
 .navbar{color: white;  font-size:20px;}
 .navbar-inner{@include high-opacity;}
 .navbar a{color: white}
-.navbar .brand{font-size:24px !important; background: url(image_path('logo.png')) no-repeat scroll left center; padding-left:40px;}
+.navbar .brand{font-size:24px !important; background: url('/assets/logo.png') no-repeat scroll left center; padding-left:40px;}
 .navbar .pull-right{font-size:18px; }
 .navbar .dropdown-menu, .navbar .dropdown-menu a{color: #333;}
 
@@ -112,7 +112,7 @@ hr.soften {
 #line-holder svg, #line-holder div{height: 160px !important}
 
 .go{background: url(image_path('arrow.png')) no-repeat scroll right center; }
-.fb-link{background: url(image_path('facebook-small.png')) no-repeat scroll left center; padding-left:40px}
+.fb-link{background: url('/assets/facebook-small.png') no-repeat scroll left center; padding-left:40px}
 .invite{width:300px; margin: 0 auto}
 
 .app-cloud{margin:20px 0}
