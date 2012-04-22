@@ -19,11 +19,12 @@ html
             span.icon-bar
             span.icon-bar
             span.icon-bar
-          a.brand href="#" Brainpage
+          =link_to "Brainpage", (current_user.blank? ? home_path : rsi_portals_path), :class => "brand"
           .nav-collapse
             ul.nav
-              = li_for("portals"){link_to("Home", rsi_portals_path)}
+              
               - if current_user.present?
+                = li_for("portals"){link_to("Home", rsi_portals_path)}
                 li.divider-vertical
                 = li_for("charts"){link_to "My Analysis", rsi_charts_path}
 				= li_for("friends"){link_to "Friends App", rsi_friends_path(:day => 7)}

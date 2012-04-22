@@ -30,6 +30,7 @@ UserLayer::Application.routes.draw do
   
   root :to=>"apps#index"
   
+  
   namespace :rsi do
     resources :sessions
     
@@ -78,6 +79,7 @@ UserLayer::Application.routes.draw do
   match 'act/:token' => 'rsi/activities#invite'
   match 'f/:token' => 'rsi/friends#invite'
   match 'db/query' => 'rsi/charts#data'
+  match 'home' => 'rsi/portals#land'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
