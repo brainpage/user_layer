@@ -26,15 +26,15 @@ function showMessageEffect(time, sensor_uuid){
 		appData = appData.filter(function(d){return d.d > 180})
 						.map(function(d){return {name: bp.chart.Utils.trim(d.v), time: Math.floor(d.d / 60)}})
 						
-		messages.push("You use " + appData.length + " apps");
+		messages.push("You used " + appData.length + " apps");
+	
+		messages.push("You typed more than " + data.keys + "% of people");
+		messages.push("You clicked the mouse more than " + data.msclks + "% of people");
+		messages.push("You moved the mouse farther than " + data.dst + "% of people");
+		messages.push("You scrolled farther than " + data.scrll + "% of people");
 		appData.forEach(function(d, i){
 			messages.push((i==0 ? "You spent " : "") + d.time + " minutes on " + d.name);
 		});
-		
-		messages.push("You typed more than " + data.keys + "% people");
-		messages.push("You clicked mouse more than " + data.msclks + "% people");
-		messages.push("You moved mouse farther than " + data.dst + "% people");
-		messages.push("You scrolled farther than " + data.scrll + "% people");
 		
 		messages.push("<a href='/rsi/charts'>Click here to see more statistics</a>");
 	
