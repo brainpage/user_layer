@@ -3,10 +3,10 @@ bp.rsi.TimeChart = function(domId){
 }
 
 bp.rsi.TimeChart.prototype.draw = function(chart, callback){
-	var query = 'sensor.find("' + chart.sensor_uuid + '").by_time(day).with(feature("app").aggregate).excluding(feature("dst-avg").at_val(5)).from_last(30*day).cache("app-time-new")';
+	var query = 'sensor.find("' + chart.sensor_uuid + '").by_time(day).with(feature("app").aggregate).tz_offset(' + (new Date().getTimezoneOffset() * (-60)) + ').excluding(feature("dst-avg").at_val(5)).from_last(30*day).cache("app-time-new")';
 
 	if(chart.crossdomain){
-		$.ajax({url: chart.url, data: {q: query, tz: new Date().getTimezoneOffset() / -60}, dataType: "jsonp", jsonp : "callback", jsonpCallback: "doTimeDraw", success: doTimeDraw});
+		$.ajax({url: chart.url, data: {q: query}, dataType: "jsonp", jsonp : "callback", jsonpCallback: "doTimeDraw", success: doTimeDraw});
 	}else{
 		d3.json(chart.url + "?q=" + query, doTimeDraw);		
 	}
