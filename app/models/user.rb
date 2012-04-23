@@ -103,8 +103,8 @@ class User < ActiveRecord::Base
       :app_id => Rails.configuration.fb_key,
       :name => "Protect your health",
       :description => "Compete with me to see who use facebook less. The loser will donate money to charity.",
-      :link => "http://signup.brainpage.com/f/#{self.invite_token}",
-      :redirect_uri => "http://localhost:3000/rsi/friends"
+      :link => "http://brainpage.com/f/#{self.invite_token}",
+      :redirect_uri => "http://brainpage.com/rsi/friends"
     }
   
     "http://www.facebook.com/dialog/send?#{options.to_param}"
