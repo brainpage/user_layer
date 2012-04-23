@@ -6,7 +6,7 @@ bp.chart = {};
 bp.chart.Utils = {};
 
 function drawChart(sensor_uuid){	
-	var chart = new bp.rsi.ChartObject({days: 3});
+	var chart = new bp.rsi.ChartObject({days: 2});
 	chart.width = 1170;
 	chart.sensor_uuid = sensor_uuid
 	
@@ -37,6 +37,7 @@ function drawChart(sensor_uuid){
 	
 	lineChart.afterBrush = function(fromTime, toTime){
 		chart.dataByApp.filterAll();
+		chart.dataByTime.filterAll();
 		
 		var group = getGroup(chart, fromTime, toTime);
 		pieChart.draw(getPieData(group, chart), true);
@@ -73,11 +74,19 @@ function drawPortalChart(sensor_uuid){
 
 function getGroup(chart, fromTime, toTime){
 	var group;
+	
+	console.log(chart.dataByTime.filterAll().top(Infinity).map(function(d){return [d.t, d.seconds]}));
+	console.log("================")
+	console.log(fromTime, toTime)
+	console.log(bp.chart.Utils.secondsOfDay(fromTime), bp.chart.Utils.secondsOfDay(toTime));
+	
 	if(fromTime != null){
 		group = chart.dataByTime.filter([bp.chart.Utils.secondsOfDay(fromTime), bp.chart.Utils.secondsOfDay(toTime)]).top(Infinity);
 	}else{
 		group = chart.dataByTime.filterAll().top(Infinity)
 	}
+	
+	console.log(group)
 
 	return crossfilter(group.filter(function(d){return d.point > 0})).dimension(function(d) { return d.v; }).group();
 }

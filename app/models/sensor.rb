@@ -4,8 +4,10 @@ class Sensor < ActiveRecord::Base
   has_many :sensor_subscribers
   has_many :apps, :through => :sensor_subscribers
   has_many :features
+  
+  scope :computer, where(:stype => "computer")
+  
   validates_presence_of :stype
-
   validates_presence_of :uuid
   
   def self.generate_uid

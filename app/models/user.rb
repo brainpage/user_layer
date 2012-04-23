@@ -26,7 +26,11 @@ class User < ActiveRecord::Base
   end
   
   def sensor_uuid
-    self.sensors.first.try(:uuid)
+    self.sensors.computer.first.try(:uuid)
+  end
+  
+  def sensor_added?
+    self.sensor_uuid.present?
   end
   
   after_create :generate_welcome_feed, :reset_authentication_token!
@@ -67,10 +71,6 @@ class User < ActiveRecord::Base
       sensor.update_attribute(:owner_id, self.id)
       self.feeds.create(:xtype => :add_sensor, :originator => sensor)
     end
-  end
-  
-  def sensor_added?
-    self.feeds.xtype(:add_sensor).present?
   end
     
   def join_activity(token)

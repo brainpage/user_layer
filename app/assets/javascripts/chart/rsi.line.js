@@ -5,11 +5,10 @@ bp.rsi.LineChart = function(domId, chart){
 	
 	this.chart = chart;
 
-	this.svg = d3.select("#line-chart").append("svg").attr("class", "line").attr("width",this.width).attr("height", this.height * chart.days + 50);
+	this.svg = d3.select("#line-chart").append("svg").attr("class", "line").attr("width",chart.width).attr("height", this.height * chart.days + 50);
 
 	this.x = d3.time.scale().range([0, this.width]);
 	this.y = d3.scale.linear().range([this.height, 0]);
-	this.y_brush = d3.scale.linear().range([this.svg.attr("height"), 0]);
 	
 	this.afterBrush = function(fromTime, toTime){};
 	this.rawData = [];
@@ -80,7 +79,6 @@ bp.rsi.LineChart.prototype.draw = function(){
 						$.each(d.apps, function(index, w){w.t = d.t; w.seconds = bp.chart.Utils.secondsOfDay(w.t); if(isNaN(w.point)){w.point = 0}})
 						line.rawData = line.rawData.concat(d.apps);
 					}	
-							
 			    });
 			
 				//data = bp.chart.Utils.makeConsecutive(data);
@@ -99,16 +97,15 @@ bp.rsi.LineChart.prototype.draw = function(){
 		   	    
 			}
 			day < line.chart.days - 1 ? drawForDay(day + 1) : drawBrush();
-		}
-	
+		}	
 	}
 
 	function drawBrush(){
 		var height = line.height * line.chart.days;
-		line.svg.append("g")
+		line.svg.append("g").attr("transform", "translate(" + line.margin.left + ",0)")
 		     .attr("class", "brush")
 		     .call(d3.svg.brush().x(line.x).on("brush", brush))
-			.selectAll("rect")
+			.selectAll("rect")			
 		    .attr("y", line.margin.top)
 		    .attr("height", height);
 
