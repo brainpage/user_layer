@@ -100,12 +100,13 @@ class User < ActiveRecord::Base
   def fb_invite_link
     self.update_attribute(:invite_token, Digest::SHA1.hexdigest(Time.now.to_s)[0,20]) if self.invite_token.blank?
     
+    root = "http://brainpage.com/"
     options = {
       :app_id => Rails.configuration.fb_key,
       :name => "Protect your health",
       :description => "Compete with me to see who use facebook less. The loser will donate money to charity.",
-      :link => "http://brainpage.com/f/#{self.invite_token}",
-      :redirect_uri => "http://brainpage.com/rsi/friends"
+      :link => root + "f/#{self.invite_token}",
+      :redirect_uri => root + "rsi/friends"
     }
   
     "http://www.facebook.com/dialog/send?#{options.to_param}"
