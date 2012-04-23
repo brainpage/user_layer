@@ -53,8 +53,8 @@ bp.rsi.ZoomChart = function(domId){
 bp.rsi.ZoomChart.prototype.draw = function(data, app){	
 	data = bp.chart.Utils.makeConsecutive(data);
 
-	this.x.domain(d3.extent(data.map(function(d) { return d.t; })));
-	this.y.domain([0, d3.max(data.map(function(d) { return d.point; }))]);
+	this.x.domain(d3.extent($.map(data, function(d) { return d.t; })));
+	this.y.domain([0, d3.max($.map(data, function(d) { return d.point; }))]);
 	this.x2.domain(this.x.domain());
 	this.y2.domain(this.y.domain());
 	

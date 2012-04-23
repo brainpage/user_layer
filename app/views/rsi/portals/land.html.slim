@@ -1,27 +1,27 @@
 .row-fluid
-  .span6
-    .b.c8.f11 
-      .p.b STOP R.S.I.
-    ul.f10.land-list
-      li 
-        .b Smart Reminders
-        | to take the break at the RIGHT time.
+  .span6.b
+    .f20 Stop R.S.I. Now!
+    ul.ad
       li
-        .b Intelligent Insights
+        .f13 Smart Reminders  
+        | to take breaks at the RIGHT time.
+      li
+        .f13 Intelligent Insights
         | into how you work and can work better.
-      li 
-        .b Social Comparisons
-        | keep your work track.
+      li
+        .f13 Social Comparisons
+        | keep your work on track.
+  .span6
+    = image_tag "ad.jpg"
 
-hr
+hr.soften
 .b.c10
-  .b 100% Free.  Get started now:
   .reg-form
     = render "reg_form"
 
 hr.soften
 
-
+.b.c10
 .row-fluid
   .span4
     .ad-block
@@ -51,33 +51,12 @@ hr.soften
           .span6.f10
             | Work more efficiently by comparing how you use your apps to your friends and to the world.
 
-hr.soften
-
-.b.c10
-  .reg-form
-    = render "reg_form"
 
 hr.soften
 
-.b Our Values | Our Open Data Policy | Terms of Use | Home
-.row-fluid
-  .span6
-    .b.c8.f11
-      .p What We DO
-    ul.f10.land-list
-      li We collect your data
-      li Like you, we love building awesome products, Like you, we love building awesome products
-      li Simple and flexible HTML, CSS, and Javascript for popular
-
-  .span6
-    .b.c8.f11
-      .p What We DO NOT do
-    ul.f10.land-list
-      li Sell your data.
-      li Like you, we love building awesome products
-      li Simple and flexible HTML, CSS, and Javascript for popular
-
-hr.soften
-
-.footer
-  Copyright
+.f8.footer
+    | Copyright 2012, Brainpage Inc.
+    = link_to "Home"
+    = link_to "Contact"
+    = link_to "About"
+    = link_to "Data Policy"

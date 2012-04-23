@@ -6,7 +6,7 @@ bp.chart = {};
 bp.chart.Utils = {};
 
 function drawChart(sensor_uuid){	
-	var chart = new bp.rsi.ChartObject({days: 1});
+	var chart = new bp.rsi.ChartObject({days: 3});
 	chart.width = 1170;
 	chart.sensor_uuid = sensor_uuid
 	
@@ -36,6 +36,8 @@ function drawChart(sensor_uuid){
 	var lineChart = new bp.rsi.LineChart("#line-chart", chart);
 	
 	lineChart.afterBrush = function(fromTime, toTime){
+		chart.dataByApp.filterAll();
+		
 		var group = getGroup(chart, fromTime, toTime);
 		pieChart.draw(getPieData(group, chart), true);
 	
@@ -77,7 +79,7 @@ function getGroup(chart, fromTime, toTime){
 		group = chart.dataByTime.filterAll().top(Infinity)
 	}
 
-	return crossfilter(group).dimension(function(d) { return d.v; }).group();
+	return crossfilter(group.filter(function(d){return d.point > 0})).dimension(function(d) { return d.v; }).group();
 }
 
 function getPieData(group, chart){	
@@ -85,5 +87,6 @@ function getPieData(group, chart){
 	pieData.forEach(function(d){
 		d.color = chart.getColor(d.key);
 	})
+	
 	return pieData;
 }

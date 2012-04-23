@@ -8,7 +8,7 @@ module ApplicationHelper
   def download_rsi_client
     content_tag(:div, :class => "alert alert-error f10"){
       "You need to install client application to view your analysis. ".html_safe +
-      link_to("Download Now", "/")
+      link_to("Download Now", "#", :onclick => "$('#wizard-step').modal('show')")
     }
   end
 end

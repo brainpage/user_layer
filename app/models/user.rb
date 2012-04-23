@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
   has_many :activities, :through => :activity_users
   has_many :own_activities, :class_name => "Activity", :foreign_key => :creator_id
   has_one :setting, :class_name => "UserSetting"
+  has_many :app_usages
   
   delegate :name, :image, :to => :active_oauth_account, :allow_nil => true
   
@@ -83,12 +84,6 @@ class User < ActiveRecord::Base
     end
   end
   
-  def alert_client_install
-    unless self.sensor_added?
-      self.feeds.create(:xtype => :alert_client_install)
-    end    
-  end
-  
   def accept_invite(token)
     user = User.find_by_invite_token(token)
     unless user.blank?
@@ -117,6 +112,21 @@ class User < ActiveRecord::Base
   
   def rsi_interval
     self.setting.try(:rsi_interval) || UserSetting.default_rsi_interval
+  end
+  
+  def app_usage_stat(past = nil)
+    past = past.to_i
+    sql = "select app, sum(dur) as total from #{AppUsage.table_name} where user_id = #{self.id}"
+    sql << " and date >= '#{past.days.ago.beginning_of_day.to_s(:db)}'" if past > 0
+    sql << " group by app order by total desc"
+    data = AppUsage.find_by_sql(sql)
+    total = data.map{|t| t.total.to_i}.sum
+    
+    {}.tap do |hash|
+      data.each do |i|
+        hash[i.app] = i.total.to_i * 100 / total
+      end
+    end
   end
   
   private 

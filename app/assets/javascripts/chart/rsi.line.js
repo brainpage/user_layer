@@ -31,7 +31,7 @@ bp.rsi.LineChart.prototype.draw = function(){
 			now.setDate(now.getDate() - offset);
 			return padStr(now.getFullYear()) + "-" + padStr(1 + now.getMonth()) + "-" + padStr(now.getDate());
 		}		
-		var timeStr;
+		var timeStr, from, to;
 		switch(day){
 			case 0:
 				timeStr = "today";
@@ -42,16 +42,22 @@ bp.rsi.LineChart.prototype.draw = function(){
 			default:
 				timeStr = getDayStr(day)
 		}
-		var cacheName = getDayStr(day);
+		var now = new Date();
+		now.setDate(now.getDate() - day);
+		var bod = bp.chart.Utils.beginningOfDay(now), eod = bp.chart.Utils.endOfDay(now);
+		from = Math.floor(bod.getTime() / 1000), to = Math.floor(eod.getTime() / 1000);
+		
+		
 		stage.append("text").attr("transform", "translate("+ line.width / 3 + ", " + line.height + ")").attr("class", "center-label").text("Loading data of " + timeStr + "...");
 
-		var app = 'var app=sensor.find("' + line.chart.sensor_uuid + '").by_feature(feature("app").aggregate).with(feature("dst").weighted_sum).with(feature("keys").weighted_sum).with(feature("msclks").weighted_sum).with("point", feature("act").weighted_sum).with(feature("scrll").weighted_sum); sensor.find("' + line.chart.sensor_uuid + '").by_time(60).with("apps", app).with("point", feature("act").weighted_sum).by_day(1,' + day.toString() + ').cache("line-chart")'
+		var app = 'var app=sensor.find("' + line.chart.sensor_uuid + '").by_feature(feature("app").aggregate).with(feature("dst").weighted_sum).with(feature("keys").weighted_sum).with(feature("msclks").weighted_sum).with("point", feature("act").weighted_sum).with(feature("scrll").weighted_sum);sensor.find("' + line.chart.sensor_uuid + '").by_time(60).with("apps", app).with("point", feature("act").weighted_sum).from(' + from + ').to('+ to + ').cache("line-chart")'
 
+		var options = {url:line.chart.url, data: {q: app}, success: doDraw};
 		if(line.chart.crossdomain){
-			$.ajax({url: line.chart.url, data: {q: app}, dataType: "jsonp", jsonp : "callback", jsonpCallback: "doDraw", success: doDraw});			
-		}else{
-			d3.json(line.chart.url + "?q="+app, doDraw);
+			options.dataType = "jsonp";
+			options.jsonpCallback = "doDraw";
 		}
+		$.ajax(options);
 		
 		function doDraw(data){
 			stage.select("text").remove();
@@ -65,19 +71,22 @@ bp.rsi.LineChart.prototype.draw = function(){
 			       	.y0(line.height)
 			       	.y1(function(d) { return line.y(d.point); });
 	
-			    data.forEach(function(d) {
+			    $.each(data, function(index, d) {
 			    	d.t = new Date(d.t * 1000);
+					
 			    	d.point = (isNaN(d.point) ? 0 : +d.point);
 			
 					if(d.apps != null){
-						d.apps.forEach(function(w){w.t = d.t; w.seconds = bp.chart.Utils.secondsOfDay(w.t);})
+						$.each(d.apps, function(index, w){w.t = d.t; w.seconds = bp.chart.Utils.secondsOfDay(w.t); if(isNaN(w.point)){w.point = 0}})
 						line.rawData = line.rawData.concat(d.apps);
-					}					
+					}	
+							
 			    });
+			
 				//data = bp.chart.Utils.makeConsecutive(data);
 
-		   		line.x.domain(line.chart.fit ? d3.extent(data.map(function(d) { return d.t; })) : [bp.chart.Utils.beginningOfDay(data[0].t), bp.chart.Utils.endOfDay(data[0].t)]); 
-		   		line.y.domain([0, d3.max(data.map(function(d) { return d.point; }))]);
+		   		line.x.domain(line.chart.fit ? d3.extent($.map(data, function(d) { return d.t; })) : [bp.chart.Utils.beginningOfDay(data[0].t), bp.chart.Utils.endOfDay(data[0].t)]); 
+		   		line.y.domain([0, d3.max($.map(data, function(d) { return d.point; }))]);
 
 		   	    stage.append("path").data([data]).attr("d", area);
 				

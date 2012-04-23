@@ -1,0 +1,22 @@
+- unless current_user.sensor_added?
+  #wizard-step.modal
+    .modal-header
+      a.close data-dismiss='modal' x
+      h3 Begin your health journey
+    .modal-body
+      ul.f10
+        li 
+          div Download and install client app.
+          .download 
+            = link_to image_tag("apple.png") + " Mac OS", "/"
+            = link_to image_tag("windows.png") + " Windows", "/"
+        li Click "View charts" or "Settings" from menu.
+        li You are ready to go!
+    .modal-footer
+      
+
+  script
+    | $(document).ready(function(){$('#wizard-step').modal('show')});
+
+
+

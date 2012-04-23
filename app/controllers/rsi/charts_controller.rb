@@ -32,7 +32,7 @@ class Rsi::ChartsController < ApplicationController
   end
   
   def average
-    render :json => ProcessedData.all.to_json
+    render :json => ProcessedData.all_time.to_json
   end
   
   def percent

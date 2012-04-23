@@ -45,7 +45,7 @@ group :development, :test do
   #gem 'sqlite3'
   # Pretty printed test output
   #gem 'turn', '0.8.2', :require => false
-  #gem 'ruby-debug19', :require => 'ruby-debug'
+  gem 'ruby-debug19', :require => 'ruby-debug'
   gem 'rspec', '>=2.0.0'
   gem 'rspec-rails', '>=2.0.0'
   gem 'ZenTest', '~> 4.5.0'

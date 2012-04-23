@@ -2,7 +2,7 @@ bp.chart.Utils.removeSmallData = function(data){
 	var total = 0;
 	data.map(function(d){total += d.value});
 	if(total > 0){
-		data = data.filter(function(d){return (d.value / total > 0.01);})
+		data.forEach(function(d){if(d.value / total < 0.01){d.key = "";}});
 	}
 	return data;
 }

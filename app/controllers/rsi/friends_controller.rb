@@ -2,7 +2,7 @@ class Rsi::FriendsController < ApplicationController
   before_filter :authenticate_user!, :except => [:invite, :join]
   
   def index
-    @friends = current_user.friends
+    @friends = [current_user] + current_user.friends
   end
   
   def invite

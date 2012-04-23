@@ -18,24 +18,6 @@ describe User do
     @user.should have(1).activities
   end
   
-  describe "build_user" do
-    it "should create new user if email not exist" do
-      lambda{User.build_user({:email => "new@example.com", :password => "111111"})}.should change(User, :count).by(1)
-    end
-    
-    it "should raise create error" do
-      lambda{User.build_user({:password => "111111"})}.should_not be_blank
-    end
-    
-    it "should return user if mail exist" do
-      User.build_user({:email => "test@example.com", :password => "111111"}).should == @user
-    end
-    
-    it "should raise error if mail and password doesn't match" do
-      lambda{User.build_user({:email => "test@example.com", :password => "123456"})}.should raise_error("Wrong password!")
-    end
-  end
-  
   it "should add sensor" do
     sensor = Factory(:sensor, :uuid => "1234")
     lambda{@user.add_sensor("1234")}.should change(@user.feeds, :count).by(1)
@@ -59,10 +41,7 @@ describe User do
       @user.reload.feeds.first.referer.should == @new_user
     end
     
-    it "should generate alert_sensor_install feed for user if no sensor added" do
-      @new_user.join_activity(@act.token)
-      @new_user.feeds.xtype(:alert_sensor_install).should_not be_blank
-    end
+    
   end
   
   describe "sensor_added" do
@@ -81,6 +60,18 @@ describe User do
       friend.accept_invite(@user.invite_token)
       @user.friends.should be_include(friend)
       friend.friends.should be_include(@user)
+    end
+  end
+  
+  describe "app_usage_stat" do
+    it "should get percentage of app usages" do
+      Factory(:app_usage, :user => @user, :app => "firefox", :dur => 200, :date => 1.day.ago)
+      Factory(:app_usage, :user => @user, :app => "firefox", :dur => 100, :date => 10.day.ago)
+      Factory(:app_usage, :user => @user, :app => "qq", :dur => 200, :date => 1.day.ago)
+      Factory(:app_usage, :user => Factory(:user, :email=>"random@test.com"), :app => "firefox", :dur => 100, :date => 1.day.ago)
+
+      @user.app_usage_stat.should == {"firefox" => 60, "qq" => 40}
+      @user.app_usage_stat(7).should == {"firefox" => 50, "qq" => 50}
     end
   end
 

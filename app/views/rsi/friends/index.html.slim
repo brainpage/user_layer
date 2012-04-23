@@ -1,37 +1,17 @@
-= render "rsi/charts/nav"
+.tabbable
+  ul.nav.nav-tabs
+    li class="#{params[:day].to_i == 7 ? "active" : ""}"
+      a href="#{rsi_friends_path(:day => 7)}" Past Week
+    li class="#{params[:day].to_i == 30 ? "active" : ""}"
+      a href="#{rsi_friends_path(:day => 30)}" Past Month
+    li class="#{params[:day].blank? ? "active" : ""}"
+      a href="#{rsi_friends_path}" All The Time
 
-.row-fluid
-  .span3
-    .b.c10 
-	  .p
-	    = link_to "Invite Friends", current_user.fb_invite_link, :class=>"fb-link"
-  .span9
-    .tabbable.pull-right
-      ul.nav.nav-tabs.light
-        li class="#{params[:t].blank? ? "active" : ""}"
-          a href="#{rsi_friends_path}" Past Week
-        li class="#{params[:t] == "month" ? "active" : ""}"
-          a href="#{rsi_friends_path(:t => "month")}" Past Month
-        li class="#{params[:t] == "all" ? "active" : ""}"
-          a href="#{rsi_friends_path(:t => "all")}" All The Time
-
-	div style="clear:both"
-    #cloud style="width:800px; height:600px;background-color:#669933;"
-      ul
-        li
-          a href="#" style="color:red;" rel="20" HTML
-        li
-          a href="#" style="color:blue;" rel="10" Firefox
-        li
-          a href="#" style="color:white;" rel="15" vmware
-        li
-          a href="#" style="color:black;" rel="18" chrome
-        li
-          a href="#" style="color:#fff;" rel="5" QQ
-    	li
-          a href="#" style="color:#fff;" rel="1" CSS
+.app-cloud
+  = render :partial => "user", :collection => @friends
 
 script
-  | $(function(){
-      $('#cloud').tagcloud({centrex:400,centrey:300, fps: 20});
-    });
+  | $(document).ready(expandOnHover('app'));
+
+.b.c8.f11.invite
+  .p = link_to " Invite Friends", current_user.fb_invite_link, :class=>"fb-link"
