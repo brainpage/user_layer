@@ -66,8 +66,10 @@ UserLayer::Application.routes.draw do
     end
     
     resources :friends do
-      member do
+      collection do
         get :invite
+      end
+      member do
         post :join
       end
     end
@@ -77,7 +79,7 @@ UserLayer::Application.routes.draw do
   
   match 'auth/:provider/callback' => 'rsi/accounts#create'
   match 'act/:token' => 'rsi/activities#invite'
-  match 'f/:token' => 'rsi/friends#invite'
+  match 'f/:token' => 'rsi/friends#follow'
   match 'db/query' => 'rsi/charts#data'
   match 'home' => 'rsi/portals#land'
   

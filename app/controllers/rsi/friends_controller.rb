@@ -1,11 +1,20 @@
 class Rsi::FriendsController < ApplicationController
-  before_filter :authenticate_user!, :except => [:invite, :join]
+  before_filter :authenticate_user!, :except => [:follow, :join]
   
   def index
     @friends = [current_user] + current_user.friends
   end
   
   def invite
+    if current_user.facebook.blank?
+      session[:inviting_friend] = true
+      redirect_to "/auth/facebook"
+    else
+      redirect_to user.fb_invite_link
+    end
+  end
+  
+  def follow
     @user = User.find_by_invite_token(params[:token])
     if current_user.blank?
       session[:target] = rsi_charts_path

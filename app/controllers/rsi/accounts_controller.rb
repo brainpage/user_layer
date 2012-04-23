@@ -2,6 +2,9 @@ class Rsi::AccountsController < ApplicationController
   def create
     if request.env['omniauth.auth'].present?
       @user = OauthAccount.build_for_user(current_user, request.env['omniauth.auth'])
+      if session.delete(:inviting_friend)
+        redirect_to @user.fb_invite_link and return
+      end
     else
       @user = User.find_by_email(params[:email])
       if @user.present? and @user.valid_password?(params[:password])

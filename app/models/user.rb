@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
   has_one :setting, :class_name => "UserSetting"
   has_many :app_usages
   
-  delegate :name, :image, :to => :active_oauth_account, :allow_nil => true
+  delegate :name, :image, :to => :facebook, :allow_nil => true
   
   def display_name
     self.name || self.email
@@ -31,6 +31,10 @@ class User < ActiveRecord::Base
   
   def sensor_added?
     self.sensor_uuid.present?
+  end  
+  
+  def facebook
+    self.oauth_accounts.with_provider("facebook").first
   end
   
   after_create :generate_welcome_feed, :reset_authentication_token!
@@ -46,10 +50,7 @@ class User < ActiveRecord::Base
   def after_token_authentication
     self.reset_authentication_token!
   end 
-  
-  def active_oauth_account
-    self.oauth_accounts.order("updated_at desc").first
-  end
+
   
   def create_activity(time_span, money_account)
     self.own_activities.create({:time_span => time_span, :money_account => money_account}).tap do |act|
