@@ -19,5 +19,5 @@
 - else
 
   - @user = User.find_by_invite_token(session[:invite_token])
-
-  = link_to "Accept #{@user.display_name}'s Invitation and Join", join_rsi_friend_path(@user.invite_token), :method => :post, :class => "btn btn-primary btn-large"
+  .p
+    = link_to "Accept #{@user.display_name}'s Invitation and Join", join_rsi_friend_path(@user.invite_token), :method => :post, :class => "btn btn-primary btn-large"

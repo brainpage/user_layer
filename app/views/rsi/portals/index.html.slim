@@ -1,15 +1,13 @@
 .row-fluid
   .span6
-    .title
-      = link_to "Updates", rsi_portals_path, :class => "active"
+    .title Updates
     ul.feeds
       - for feed in @feeds 
         li.row-fluid
           = render_feed feed 
               
   .span6
-    .title 
-      = link_to "Analysis", rsi_charts_path, :class => "active"
+    .title Analysis
 	
 	- if @uuid.blank?
 	  = download_rsi_client

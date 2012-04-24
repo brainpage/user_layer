@@ -9,8 +9,6 @@ html
     link href='http://fonts.googleapis.com/css?family=Marmelad' rel='stylesheet' type='text/css'
 	
   body
-
-    = image_tag "p10.jpg", :id => "bg"
     
     .navbar.navbar-fixed-top
       .navbar-inner
@@ -43,12 +41,15 @@ html
 		                li.login-form
 						  = render "rsi/portals/login_form"
 				- else
-				  = link_to "Join Now", join_rsi_friend_path(session[:invite_token]), :method => :post
+				  li
+				    = link_to "Join Now", join_rsi_friend_path(session[:invite_token]), :method => :post
 				
 	          - else
+	            - if current_user.image.present?
+	              li = image_tag current_user.image
 	            li.dropdown id="menu"
 	              a.dropdown-toggle href="#menu" data-toggle="dropdown"
-	                = user_tag(current_user)
+	                = current_user.display_name
 	                b.caret
 	              ul.dropdown-menu
 	                li 

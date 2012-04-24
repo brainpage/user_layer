@@ -6,7 +6,7 @@ $line-height: 25px;
 @mixin high-opacity{filter:alpha(Opacity= $opacity * 1.2 * 100) !important;-moz-opacity: $opacity * 1.2 !important; opacity: $opacity * 1.2 !important;fill-opacity: $opacity * 1.2 !important;}
 @mixin font{font-family: 'Marmelad', sans-serif;  }
 
-body{ margin:0; padding:0;height:100%; @include font; background: #669933; color: #333}
+body{ margin:0; padding:0;height:100%; @include font; background: #ccffcc; color: #333}
 input, button, select, submit{font-size:16px; @include font;}
 p{font-size: $font-size * 0.9 !important}
 li{list-style: none}
@@ -27,16 +27,13 @@ img#bg{position:fixed; top:0; left:0; width:100%; height:100%;z-index:-9999;}
 
 .main{margin-top:60px;}
 .title{font-size: $font-size * 1.3;margin: 10px 0 20px 0}
-.title a{color: white; margin-right:30px}
-.title .active{border-bottom: 2px solid #ffffff;}
-.title .active:hover{text-decoration: none}
 
 .big-title{font-size: 45px !important; text-align:center; margin: 30px 0 50px 0 !important;}
 .ad-block .p{margin-bottom: 10px;}
 .ad-block img{width:180px !important;}
 
-.footer{text-align: center; margin: -10px 0 10px 0;}
-.footer a{color: white;margin:0 10px}
+.footer{text-align: center; margin: -10px 0 20px 0;}
+.footer a{margin:0 10px}
 
 .modal-header{background-color: whiteSmoke !important}
 
@@ -72,7 +69,7 @@ hr.soften {
 .land-list li{margin: 10px 0;}
 
 .b{margin-bottom: 10px; font-size:18px;line-height:25px;  background: no-repeat scroll 15px center; width:100%;  color:White; }
-.b a, .nav-tabs a{color: white;display: block}
+.b a{color: white;display: block}
 .p{padding: 10px 15px;}
 
 .login-input{width:140px !important}
@@ -103,9 +100,9 @@ hr.soften {
 .form-horizontal input{margin-bottom: 10px;}
 
 .feeds{padding:1px 0 0 0; margin:0;}
-.feeds li{list-style: none; font-size: $font-size; margin-top:20px; color: white;line-height: $line-height}
+.feeds li{list-style: none; font-size: $font-size; margin-top:20px; line-height: $line-height}
 .feeds .feed-icon{width:48px;}
-.feeds .sub{color: #669966; font-size: 80%; }
+.feeds .sub{font-size: 80%; }
 .feeds .sub span{margin-left:20px}
 .feeds .content{}
 
@@ -167,11 +164,10 @@ svg {
 }
 
 svg text{
-  fill: white;
   font-size: 14px;
 }
 
-.center-label{font-size: 20px !important; fill: white; }
+.center-label{font-size: 20px !important; }
 
 .axis {
   shape-rendering: crispEdges;
@@ -209,7 +205,7 @@ svg text{
 .nav-tabs > .active > a, .nav-tabs > .active > a:hover{background-color: #336633 !important; border: none; color: white; }
 .nav-tabs a{border:none !important}
 .nav-tabs{border-bottom:none !important}
-.nav-tabs > li > a:hover{background-color: #669933 !important; border-color: none !important}
+.nav-tabs > li > a:hover{background-color: #669933 !important; border-color: none !important; color: white}
 .nav-tabs > li > a{-moz-border-radius: 0 !important; padding:15px 20px}
 
 .light > .active > a, .light > .active > a:hover{background-color: #669933 !important;}
