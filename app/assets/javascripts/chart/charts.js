@@ -89,7 +89,8 @@ function getGroup(chart, fromTime, toTime){
 function getPieData(group, chart){	
 	var pieData = group.reduceSum(function(d) { return parseFloat(d.d); }).all();
 	pieData.forEach(function(d){
-		d.color = chart.getColor(d.key);
+		d.color = chart.getColor(bp.chart.Utils.trim(d.key));
+		
 	})
 	
 	return pieData;
