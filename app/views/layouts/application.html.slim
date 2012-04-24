@@ -17,13 +17,11 @@ html
             span.icon-bar
             span.icon-bar
             span.icon-bar
-          =link_to current_user.blank? ? "Brainpage" : "&nbsp;".html_safe, (current_user.blank? ? home_path : rsi_portals_path), :class => "brand"
+          =link_to current_user.blank? ? "Brainpage" : "Feeds", (current_user.blank? ? home_path : rsi_portals_path), :class => "brand"
           .nav-collapse
             ul.nav
               
               - if current_user.present?
-                li.divider-vertical
-                = li_for("portals"){link_to("Feeds", rsi_portals_path)}                
                 = li_for("charts"){link_to "My Analysis", rsi_charts_path}
 				= li_for("friends"){link_to "Friends App", rsi_friends_path(:day => 7)}
                 - if controller_name == "settings"

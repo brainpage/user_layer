@@ -13,6 +13,10 @@ bp.rsi.ChartObject = function(data){
 	this.colors = ["#fbcdc9", "#bcdec4", "#b2e2f0", "#fdcb9a", "#c7c1e0", "#e2d9b8", "#9ad4d2", "#edc2e3", "#9abbec", "#efe9b3", "#cfdf93"];
 	
 	this.getColor = function(app){
-		return this.color[app] == null ? (this.color[app] = this.colors[bp.chart.Utils.hashLength(this.color)]) : this.color[app];
+		len = bp.chart.Utils.hashLength(this.color);
+		if(len > this.colors.length){
+			len = len % this.colors.length;
+		}
+		return this.color[app] == null ? (this.color[app] = this.colors[len]) : this.color[app];
 	}
 }
