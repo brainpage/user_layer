@@ -10,7 +10,7 @@ bp.rsi.TimeChart.prototype.draw = function(chart, callback){
 	}else{
 		d3.json(chart.url + "?q=" + query, doTimeDraw);		
 	}
-
+	
 	function doTimeDraw(data){
 		callback();
 		
@@ -167,13 +167,13 @@ bp.rsi.TimeChart.prototype.draw = function(chart, callback){
 			})
 			
 			var f = bp.chart.Utils.formatMinutes;
-			tip.append("text").attr("x", tx + 10).attr("y", ty + 30).attr("class", "f11").transition().delay(300).text(d.app);
-			tip.append("text").attr("x", tx + 10).attr("y", ty + 60).attr("class", "f10").transition().delay(300)
+			tip.append("text").attr("fill", "white").attr("class", "f11").attr("x", tx + 10).attr("y", ty + 30).attr("class", "f11").transition().delay(300).text(d.app);
+			tip.append("text").attr("fill", "white").attr("class", "f10").attr("x", tx + 10).attr("y", ty + 60).attr("class", "f10").transition().delay(300)
 				.text(f(d.duration) + " of " + f(dayTotal) + " on " + d.day);
-			tip.append("text").attr("x", tx + 10).attr("y", ty + 85).attr("class", "f9").transition().delay(300)
+			tip.append("text").attr("fill", "white").attr("class", "f9").attr("x", tx + 10).attr("y", ty + 85).attr("class", "f9").transition().delay(300)
 				.text(f(total) + " in " + days + " days, avg "+ f(Math.round(total/days, 0)));		 
 				
-			d3.selectAll("." + d.app).attr("fill", "black").attr("stroke", "white").attr("stroke-width", 2);
+			d3.selectAll("." + d.app).attr("fill", "#868686").attr("stroke", "white").attr("stroke-width", 2);
 			if(preSelected != null && preSelected.app != d.app){
 				d3.selectAll("." + preSelected.app).attr("fill", preSelected.color).attr("stroke", "none");
 			}

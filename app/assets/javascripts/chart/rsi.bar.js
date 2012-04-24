@@ -1,7 +1,7 @@
 bp.rsi.BarChart = function(domId){
 	var margin = [30, 10, 30, 80];
 	
-	this.width = 680 - margin[1] - margin[3];
+	this.width = 1100 - margin[1] - margin[3];
 	this.height = 250 - margin[0] - margin[2];
 
 	this.svg = d3.select(domId).append("svg")
@@ -18,9 +18,9 @@ bp.rsi.BarChart = function(domId){
 		
 	var tip = this.svg.append("g").attr("class", "tip")
 		.attr("transform", "translate(" + (this.width / 3) + ",-10)");	
-	tip.append("rect").attr("transform", "translate(0, -15)").attr("fill", "steelblue").attr("width", 20).attr("height", 20);	
+	tip.append("rect").attr("transform", "translate(0, -15)").attr("fill", "#9abbec").attr("width", 20).attr("height", 20);	
 	tip.append("text").attr("transform", "translate(24, 0)").text("You");
-	tip.append("rect").attr("transform", "translate(70, -15)").attr("fill", "#003399").attr("width", 20).attr("height", 20);
+	tip.append("rect").attr("transform", "translate(70, -15)").attr("fill", "#fdcb9a").attr("width", 20).attr("height", 20);
 	tip.append("text").attr("transform", "translate(94, 0)").text("Global Average");
 };
 
@@ -93,7 +93,7 @@ bp.rsi.BarChart.prototype.draw = function(group, attr, chart){
 		});
     
 	bar.append("rect")	   
-	   .attr("fill", function(d) {return d.average == null ? "steelblue" : "#003399"; })
+	   .attr("fill", function(d) {return d.average == null ? "#9abbec" : "#fdcb9a"; })
 	   .attr("height", function(d) {var v = y(d.average == null ? d.value : d.average); return height - (isNaN(v) ? height : v); })
 	   .attr("width", x.rangeBand() / 2 - 2);
 

@@ -17,12 +17,12 @@ bp.rsi.LineChart = function(domId, chart){
 bp.rsi.LineChart.prototype.draw = function(){
 	var line = this;
 	
-	drawForDay(0);
+	drawForDay(line.chart.fromDay);
 
 	function drawForDay(day){
 		
 		var stage = line.svg.append("g")
-	   		.attr("transform", "translate(" + line.margin.left + "," + (line.margin.top + line.height * day) + ")");
+	   		.attr("transform", "translate(" + line.margin.left + "," + (line.margin.top + line.height * (day - line.chart.fromDay)) + ")");
 	
 		function padStr(i) {return (i < 10) ? "0" + i : "" + i;}
 		function getDayStr(offset){
@@ -44,8 +44,7 @@ bp.rsi.LineChart.prototype.draw = function(){
 		var now = new Date();
 		now.setDate(now.getDate() - day);
 		var bod = bp.chart.Utils.beginningOfDay(now), eod = bp.chart.Utils.endOfDay(now);
-		from = Math.floor(bod.getTime() / 1000), to = Math.floor(eod.getTime() / 1000);
-		
+		from = Math.floor(bod.getTime() / 1000), to = Math.floor(eod.getTime() / 1000);		
 		
 		stage.append("text").attr("transform", "translate("+ line.width / 3 + ", " + line.height + ")").attr("class", "center-label").text("Loading data of " + timeStr + "...");
 
@@ -96,7 +95,7 @@ bp.rsi.LineChart.prototype.draw = function(){
 				}
 		   	    
 			}
-			day < line.chart.days - 1 ? drawForDay(day + 1) : drawBrush();
+			day < line.chart.toDay ? drawForDay(day + 1) : drawBrush();
 		}	
 	}
 

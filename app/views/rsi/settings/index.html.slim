@@ -1,42 +1,40 @@
 .row-fluid
   .span6
-    .b.c8     
-      .p Notification Settings
+    .page-header
+      h2 Notification Settings
     
 	- if @setting.send_alert
-      .b.p
+      div
         | Notify me after I keep working for
         span id="interval"
           = current_user.rsi_interval
         | minutes
-        .p style="margin:10px"
+        div style="margin:10px"
           #interval-slider
-
-    .p
-      = link_to (@setting.send_alert ? "Don't notify me" : "Notify me"), alert_rsi_settings_path, :method => :post, :class => "btn btn-large"
+    hr.soften
+    = link_to (@setting.send_alert ? "Don't notify me" : "Notify me"), alert_rsi_settings_path, :method => :post, :class => "btn btn-large"
 
 
   .span6
-    .b.c8
-      .p Account Settings
+    .page-header
+      h2 Account Settings
     
     - if flash[:notice].present?
       div.alert.alert-info
         = flash[:notice]
-    - if current_user.active_oauth_account.blank?
+    - if current_user.facebook.blank?
       = form_tag pwd_rsi_accounts_path, :class => "form-horizontal"
-	  .b
-	    .row-fluid
-	      .span4
-	        .login-label New Password
-	      .span8
-	        = password_field_tag :password, "",:class => "login-input"
-        
-	    .row-fluid
-	      .span4
-	        .login-label Confirmation
-	      .span8
-	        = password_field_tag :password_confirmation,"", :class => "login-input"
+	  .row-fluid
+	    .span4
+	      .login-label New Password
+	    .span8
+	      = password_field_tag :password, "",:class => "login-input"
+      
+	  .row-fluid
+	    .span4
+	      .login-label Confirmation
+	    .span8
+	      = password_field_tag :password_confirmation,"", :class => "login-input"
       
 	  .row-fluid
 	    .span4 &nbsp;
@@ -44,8 +42,7 @@
 	      = submit_tag "Change Password", :class => "btn btn-large"
     
     .pull-right
-      .b.c8 
-        .p = link_to "Clear My Data", alert_rsi_settings_path, :method => :post, :confirm => "Are you sure?"
+      = link_to "Clear My Data", alert_rsi_settings_path, :method => :post, :class => "btn", :confirm => "Are you sure?"
 
  
 script

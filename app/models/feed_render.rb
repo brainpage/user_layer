@@ -10,7 +10,7 @@ module FeedRender
     if c = content_tag(:div, :class => "span2 feed-icon"){image_tag "#{feed.xtype}.png"}  
       c << content_tag(:div, :class => "span10") do
         content_tag(:div, spec[:content].html_safe, :class => "content") +
-        content_tag(:div, :class=>"sub"){spec[:sub].html_safe + content_tag(:span, time_ago_in_words(feed.created_at))}
+        content_tag(:div, :class=>"sub"){spec[:sub].html_safe + content_tag(:span, time_ago_in_words(feed.created_at) + " ago")}
       end      
     end
     c.html_safe

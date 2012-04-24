@@ -13,9 +13,16 @@ function expandOnHover(cls){
 		    });
 		}
 		if(max > origin){
-			dom.width(Math.min(120, max + 28));
+			dom.width(Math.min(110, max + 28));
 		}	
 	},
 	function(){$(this).width(origin)}
 	);
 };
+
+function setCellColor(cls){
+	var chart = new bp.rsi.ChartObject({});
+	$('.' + cls).each(function(index){
+		$(this).css("background-color", chart.getColor($(this).attr("id")));
+	});
+}

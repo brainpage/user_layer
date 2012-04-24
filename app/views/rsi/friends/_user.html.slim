@@ -1,6 +1,6 @@
 .row-fluid
-  .span3.b.c8
-    .user = user.display_name
+  .span3
+    .user = user_tag(user)
   .span9
     .app
       = show_app_cloud(user, params[:day])

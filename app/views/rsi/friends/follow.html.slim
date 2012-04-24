@@ -1,8 +1,0 @@
-.row-fluid
-  .span8
-    .b.c8
-      .p
-        .f11 #{@user.try(:name)} invited you to use RSI.
-    
-    div style="text-align:center"
-      = link_to "Join Now", join_rsi_friend_path(@user.invite_token), :method => :post, :class => "btn btn-primary btn-large", :style=>"width:200px"

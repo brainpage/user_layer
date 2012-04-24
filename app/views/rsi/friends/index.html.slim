@@ -11,7 +11,8 @@
   = render :partial => "user", :collection => @friends
 
 script
-  | $(document).ready(expandOnHover('app'));
+  | $(document).ready(function(){expandOnHover('app');setCellColor("app-cell")});
+  
 
-.b.c8.f11.invite
-  .p = link_to " Invite Friends", invite_rsi_friends_path, :class=>"fb-link"
+.center.invite
+  = link_to content_tag(:span, :class => "fb-link"){" Invite Friends"}, invite_rsi_friends_path, :class=>"btn btn-large btn-primary"

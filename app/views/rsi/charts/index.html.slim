@@ -3,48 +3,50 @@
 - else
   .tabbable
     ul.nav.nav-tabs
-      li.active 
-        a data-toggle="tab" href="#time-trend" Time Trend
-      li
+      li.active
         a data-toggle="tab" href="#detail" Detail Analysis
+      li
+        a data-toggle="tab" href="#time-trend" Time Trend
+      
     
     .clear
     .tab-content
-  	#time-trend.tab-pane.active
-  	  .b.c8
-  	    .p Time in the past 30 days
-  	  #time-chart
-  	#detail.tab-pane
-        .b.c8
-          .p Daily data of computer usage
-          
-        #line-chart
-        
-        .b.c8
-          .p Percentage of applications
-        
-        .row-fluid
-          .span5
-            #pie-chart
-          .span7
-            .tabbable.bar-chart
-              ul.nav.nav-tabs
-                li.active 
-                  a data-toggle="tab" href="#keys-bar" Keystokes
-                li
-                  a data-toggle="tab" href="#msclks-bar" Mouse Clicks
-                li
-                  a data-toggle="tab" href="#dst-bar" Mouse moved distance
-              .tab-content
-        		
-                #keys-bar.tab-pane.active
-                #msclks-bar.tab-pane
-                #dst-bar.tab-pane
-        
-        .b.c8
-          .p id="app-detail" Click pie chart to see detail of application.
-        
-        #zoom-line
+  	  #time-trend.tab-pane
+  	    h3 Time in the past 30 days
+  	    #time-chart.chart
 
-    script
-      | drawChart("#{@uuid}");
+  	  #detail.tab-pane.active
+          .pull-right
+            #day-slider style="width:200px;margin:10px"
+          h3 Daily computer usage        
+          
+          #line-chart.chart
+          
+          hr.soften
+          
+          .tabbable.bar-chart
+            ul.nav.nav-tabs
+              li.active
+                a data-toggle="tab" href="#time-detail" Time Percentile
+              li 
+                a data-toggle="tab" href="#keys-bar" Key Strokes
+              li
+                a data-toggle="tab" href="#msclks-bar" Mouse Clicks
+              li
+                a data-toggle="tab" href="#dst-bar" Mouse moved distance
+            .tab-content
+          	#time-detail.tab-pane.active
+                .row-fluid
+	              .span5
+                    #pie-chart.chart
+                  .span7
+                    h3 id="app-detail" Click pie chart to see detail of application.
+                    #zoom-line.chart
+                
+              #keys-bar.tab-pane.chart
+              #msclks-bar.tab-pane.chart
+              #dst-bar.tab-pane.chart
+          
+              script
+                | drawChart("#{@uuid}", 0, 0);
+                | $("#day-slider").slider({values: [0,0], min: 0, max:6, step: 1, range:true, slide: function(event, ui) {}, change: function(event, ui){drawChart("#{@uuid}", ui.values[0], ui.values[1])}});

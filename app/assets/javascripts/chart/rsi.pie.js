@@ -164,7 +164,7 @@ bp.rsi.PieChart.prototype.draw = function(data, fresh) {
 			.attr("x2", 0)
 			.attr("y1", -r-3)
 			.attr("y2", -r-8)
-			.attr("stroke", "white");
+			.attr("stroke", "black");
 		this.lines.transition()
 			.duration(this.tweenDuration)
 			.attr("transform", function(d) {
