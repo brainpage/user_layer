@@ -6,7 +6,7 @@ bp.chart = {};
 bp.chart.Utils = {};
 
 function drawChart(sensor_uuid){	
-	var chart = new bp.rsi.ChartObject({days: 2});
+	var chart = new bp.rsi.ChartObject({days: 4});
 	chart.width = 1170;
 	chart.sensor_uuid = sensor_uuid
 	
