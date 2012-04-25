@@ -37,9 +37,9 @@ gem 'omniauth-twitter', :git => 'https://github.com/arunagw/omniauth-twitter.git
 gem 'omniauth-google-oauth2', :git => 'https://github.com/zquestz/omniauth-google-oauth2.git'
 gem 'omniauth-facebook'
 gem 'capistrano'
+gem 'therubyracer', :require => 'v8'
 
-group :development, :test do
-  gem 'therubyracer', :require => 'v8'
+group :development, :test do  
   #gem 'mongrel', '>= 1.2.0.pre2'
   #gem 'capistrano'
   #gem 'sqlite3'
