@@ -56,9 +56,17 @@ html
 	                li
 	                  = link_to "Logout", destroy_user_session_path, :method => :delete
 
-    .main.container
-      = render "rsi/portals/wizard" unless current_user.blank?
-      = yield
+    .container
+      .main
+        = render "rsi/portals/wizard" unless current_user.blank?
+        = yield
+
+      .footer
+	    | Copyright 2012, Brainpage Inc.
+	    = link_to "Home"
+	    = link_to "Contact"
+	    = link_to "About"
+	    = link_to "Data Policy"
 
 
 			

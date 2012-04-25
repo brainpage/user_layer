@@ -29,7 +29,6 @@ gem 'mysql'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
-gem 'slim'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -40,6 +39,7 @@ gem 'omniauth-facebook'
 gem 'capistrano'
 
 group :development, :test do
+  gem 'therubyracer', :require => 'v8'
   #gem 'mongrel', '>= 1.2.0.pre2'
   #gem 'capistrano'
   #gem 'sqlite3'
