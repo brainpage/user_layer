@@ -9,7 +9,7 @@ function drawChart(sensor_uuid, fromDay, toDay){
 	$(".chart").empty();
 	
 	var chart = new bp.rsi.ChartObject({fromDay: fromDay, toDay: toDay});
-	chart.width = 1170;
+	chart.width = 1100;
 	chart.sensor_uuid = sensor_uuid
 	
 	getGlobalAverage(chart);

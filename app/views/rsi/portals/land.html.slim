@@ -1,53 +1,32 @@
-.row-fluid
-  .span6
-    h1 Stop R.S.I. Now!
-    ul.ad
-      li
-        h2 Smart Reminders  
-        p to take breaks at the RIGHT time.
-      li
-        h2 Intelligent Insights
-        p into how you work and can work better.
-      li
-        h2 Social Comparisons
-        p keep your work on track.
-  .span6
-    = image_tag "ad.jpg"
-
-hr.soften
-  .block.reg-form
-    = render "reg_form"
-
-.b.c10
+h1 Stop R.S.I. Now!
 .row-fluid
   .span4
     .ad-block
       .page-header
         h2 Smart Health Meter
-      .row-fluid
-        .span6
-          = image_tag "reminder.png"
-        .span6
-          | It's like a classic computer game.  The harder you work, the faster it decreases.  Reach zero and its time to take a break. 
+      p  
+        | It's like a classic computer game.  The harder you work, the faster it decreases.  Reach zero and its time to take a break.
+      = image_tag "line.png"
+            
   .span4
       .ad-block
         .page-header
 	      h2 Interactive Graphs
-        .row-fluid
-          .span6
-            = image_tag "reminder.png"
-          .span6
-            | Gain understandings into how you work (and can work better) with smart graphs.
+        p
+          | Gain understandings into how you work (and can work better) with smart graphs.
+        = image_tag "pie.png"
+            
   .span4
       .ad-block
         .page-header
 	      h2 Social Comparison
-        .row-fluid
-          .span6
-            = image_tag "reminder.png"
-          .span6
-            | Work more efficiently by comparing how you use your apps to your friends and to the world.
+        p
+          | Work more efficiently by comparing how you use your apps to your friends and to the world.
+        = image_tag "bar.png"
 
+hr.soften
+  .block.reg-form
+    = render "reg_form"
 
 hr.soften
 

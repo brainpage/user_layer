@@ -10,39 +10,24 @@ html
 	
   body
     
-    .navbar.navbar-fixed-top
-      .navbar-inner
-        .container
-          a.btn.btn-navbar data-toggle="collapse" data-target=".nav-collapse"
-            span.icon-bar
-            span.icon-bar
-            span.icon-bar
-          =link_to current_user.blank? ? "Brainpage" : "Feeds", (current_user.blank? ? home_path : rsi_portals_path), :class => "brand"
-          .nav-collapse
-            ul.nav
-              
-              - if current_user.present?
-                = li_for("charts"){link_to "My Analysis", rsi_charts_path}
-				= li_for("friends"){link_to "Friends App", rsi_friends_path(:day => 7)}
-                - if controller_name == "settings"
-                  li.active
-                    = link_to "Settings", "#"
-           
-	        ul.nav.pull-right
-	          - if current_user.blank?
-	            - if session[:invite_token].blank?
-	              li.dropdown id="menu"
-		            a.dropdown-toggle href="#menu" data-toggle="dropdown"
-		              | Login
-		              b.caret
-		            ul.dropdown-menu
-		                li.login-form
-						  = render "rsi/portals/login_form"
-				- else
-				  li
-				    = link_to "Join Now", join_rsi_friend_path(session[:invite_token]), :method => :post
-				
-	          - else
+    - if current_user.present?
+      .navbar.navbar-fixed-top
+        .navbar-inner
+          .container
+            a.btn.btn-navbar data-toggle="collapse" data-target=".nav-collapse"
+              span.icon-bar
+              span.icon-bar
+              span.icon-bar
+            =link_to "Feeds", rsi_portals_path, :class => "brand"
+            .nav-collapse
+              ul.nav
+                  = li_for("charts"){link_to "My Analysis", rsi_charts_path}
+	  			= li_for("friends"){link_to "Friends App", rsi_friends_path(:day => 7)}
+                  - if controller_name == "settings"
+                    li.active
+                      = link_to "Settings", "#"
+             
+	          ul.nav.pull-right
 	            - if current_user.image.present?
 	              li = image_tag current_user.image
 	            li.dropdown id="menu"
@@ -55,9 +40,30 @@ html
 	                li.divider
 	                li
 	                  = link_to "Logout", destroy_user_session_path, :method => :delete
-
+      
     .container
-      .main
+      - if current_user.blank?
+        .header
+          .navbar
+            ul.nav.pull-right
+	            - if current_user.blank?
+	              - if session[:invite_token].blank?
+	                li.dropdown id="menu"
+	  	            a.dropdown-toggle href="#menu" data-toggle="dropdown"
+	  	              | Login
+	  	              b.caret
+	  	            ul.dropdown-menu
+	  	                li.login-form
+	  	    			  = render "rsi/portals/login_form"
+	  	    	- else
+	  	    	  li
+	  	    	    = link_to "Join Now", join_rsi_friend_path(session[:invite_token]), :method => :post
+	  	    	li = link_to "Blog"
+          
+          .logo
+            = image_tag "logo.png"
+            | Brainpage
+      .main style="margin-top:#{current_user.blank? ? 10 : 60}px"
         = render "rsi/portals/wizard" unless current_user.blank?
         = yield
 

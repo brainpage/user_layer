@@ -3,7 +3,7 @@ bp.rsi.ZoomChart = function(domId){
 	
 	var margin = {top: 10, right: 10, bottom: 100, left: 40},
 	    margin2 = {top: 230, right: 10, bottom: 20, left: 40},
-	    width = 650 - margin.left - margin.right,
+	    width = 600 - margin.left - margin.right,
 	    height = 300 - margin.top - margin.bottom,
 	    height2 = 300 - margin2.top - margin2.bottom;
 

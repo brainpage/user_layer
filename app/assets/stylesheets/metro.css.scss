@@ -5,6 +5,7 @@ $line-height: 25px;
 @mixin low-opacity{filter:alpha(Opacity= $opacity * 0.5 * 100);-moz-opacity: $opacity * 0.5; opacity: $opacity * 0.5;}
 @mixin high-opacity{filter:alpha(Opacity= $opacity * 1.2 * 100) !important;-moz-opacity: $opacity * 1.2 !important; opacity: $opacity * 1.2 !important;fill-opacity: $opacity * 1.2 !important;}
 @mixin font{font-family: 'Marmelad', sans-serif;  }
+@mixin round{-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;}
 
 body{ margin:0; padding:0;height:100%; @include font; background: #d3e8f2; color: #222; font-size:$font-size;}
 input, button, select, submit{font-size:16px; @include font;}
@@ -27,16 +28,20 @@ h2,h3,h4,h5,h6{font-weight: normal !important}
 .navbar .pull-right{font-size:18px; }
 .navbar .dropdown-menu, .navbar .dropdown-menu a{color: #333;}
 
-.main{margin-top:60px;background:#fff; min-height:600px; padding:20px;-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;
+.main{@include round; background:#fff; min-height:600px; padding:25px 25px 40px 25px;
 -webkit-box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.125), inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
    -moz-box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.125), inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
         box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.125), inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
-.ad-block img{width:180px !important;}
-.block{@include opacity; background-color: #669933; color: white}
+.header{height:60px; margin-top:15px;}
+.header .logo{font-size:46px; line-height:46px;color:#555}
+.header img{height:50px;}
 
-.footer{text-align: right; margin-top:20px; font-size: $font-size * 0.9}
+.ad-block img{width:80% !important; text-align: center}
+.block{@include round; background-color: #8ec1da; color: white;}
+
+.footer{text-align: right; margin:20px 0; font-size: $font-size * 0.9}
 .footer a{margin:0 10px}
 
 .modal-header{background-color: whiteSmoke !important}
