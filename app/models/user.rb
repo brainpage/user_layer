@@ -127,7 +127,7 @@ class User < ActiveRecord::Base
   
   def send_weibo(content)
     return if self.weibo.blank?
-    options = {:access_token => self.weibo.token, :status => CGI::escape(content) + self.invite_link}   
+    options = {:access_token => self.weibo.token, :status => content.to_s + self.invite_link}   
     RestClient.post Rails.configuration.weibo_create_url, options
   end
   
