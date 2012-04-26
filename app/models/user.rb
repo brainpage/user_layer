@@ -19,7 +19,11 @@ class User < ActiveRecord::Base
   has_one :setting, :class_name => "UserSetting"
   has_many :app_usages
   
-  delegate :name, :image, :to => :facebook, :allow_nil => true
+  delegate :name, :image, :to => :active_oauth_account, :allow_nil => true
+  
+  def active_oauth_account
+    self.facebook || self.weibo
+  end
   
   def display_name
     self.name || self.email
