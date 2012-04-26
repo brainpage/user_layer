@@ -26,6 +26,7 @@ gem 'faraday'
 gem 'faraday_middleware'
 gem 'slim'
 gem 'mysql'
+gem 'geoip'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
@@ -47,7 +48,7 @@ group :development, :test do
   #gem 'sqlite3'
   # Pretty printed test output
   #gem 'turn', '0.8.2', :require => false
-  #gem 'ruby-debug19', :require => 'ruby-debug'
+  gem 'ruby-debug19', :require => 'ruby-debug'
   gem 'rspec', '>=2.0.0'
   gem 'rspec-rails', '>=2.0.0'
   gem 'ZenTest', '~> 4.5.0'

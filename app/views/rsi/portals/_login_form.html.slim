@@ -3,14 +3,16 @@
 .modal-body
   = form_tag rsi_sessions_path, :class => "form-horizontal", :remote => true
   .control-group
-    label.control-label Email
+    label.control-label 
+      = t :email
     .controls
       = text_field_tag :email, ""
   .control-group
-    label.control-label Password
+    label.control-label 
+      = t :password
     .controls
       = password_field_tag :password, "", :class => "span2"
-      = submit_tag "Login", :class => "btn btn-primary", :id => "btn-submit", :onclick => "$('#login-tip').html('#{image_tag("spinner.gif")} Authenticating ...')"  
+      = submit_tag t(:login), :class => "btn btn-primary", :id => "btn-submit", :onclick => "$('#login-tip').html('#{image_tag("spinner.gif")} #{t :auth} ...')"  
       #login-tip
   
   | </form>
@@ -18,7 +20,7 @@
   .pull-right
     = link_to image_tag("facebook.png"), "/auth/facebook"
   .footer-text
-    | Or Login With 
+    = t :login_with 
 
 script
   | $(document).ready(function(){$('.dropdown-menu').find('form').click(function (e) {e.stopPropagation();});})

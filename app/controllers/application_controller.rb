@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   include UserHook
   
-  #before_filter :log_activity 
+  before_filter :set_locale 
 
   def log_activity
     #We log the user's IP and computer info.  For matching purposes.
@@ -21,5 +21,14 @@ class ApplicationController < ActionController::Base
         current_user.add_sensor(uuid)
       end
     end 
+  end
+  
+  def set_locale
+    locale = session[:locale]
+    if locale.blank?
+      @geoip ||= GeoIP.new(Rails.root.join("db/GeoIP.dat"))
+      locale = @geoip.country("123.125.114.144").try(:country_name) == "China" ? :zh : :en
+    end
+    I18n.locale = locale
   end
 end

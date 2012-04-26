@@ -1,0 +1,29 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+zh:
+  email: 我的邮箱
+  password: 密码
+  logout: 退出
+  login: 登录
+  nav:
+    feed: 状态更新
+    my: 我的分析
+    friend: 好友应用
+    setting: 设置
+  register: 马上注册
+  join: 加入我们
+  home: 首页
+  contact: 联系我们
+  about: 关于我们
+  data: Data Policy
+  english: English
+  chinese: 中文
+  auth: 验证用户身份
+  login_with: ""
+  blog: Blog
+  detail: Detail Analysis
+  time_trend: Time Trend
+  past_month: Time in the past 30 days
+  daily_use: Daily computer usage 
+  time_percentile: Time Percentile

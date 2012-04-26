@@ -28,7 +28,7 @@ h2,h3,h4,h5,h6{font-weight: normal !important}
 .navbar .pull-right{font-size:18px; }
 .navbar .dropdown-menu, .navbar .dropdown-menu a{color: #333;}
 
-.main{@include round; background:#fff; min-height:600px; padding:25px 25px 40px 25px;
+.main{@include round; background:#fff; min-height:600px; padding:25px 30px 40px 30px;
 -webkit-box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.125), inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
    -moz-box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.125), inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
         box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.125), inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
@@ -36,15 +36,15 @@ h2,h3,h4,h5,h6{font-weight: normal !important}
 
 .header{height:60px; margin-top:15px;}
 .header .logo{font-size:46px; line-height:46px;color:#555}
-.header img{height:50px;}
+.header .logo img{height:50px;}
 
 .ad-block img{width:80% !important; text-align: center}
-.block{@include round; background-color: #8ec1da; color: white;}
+.block{@include round; background-color: #8ec1da; color: white; padding:10px; margin-bottom:20px}
 
-.footer{text-align: right; margin:20px 0; font-size: $font-size * 0.9}
+.footer{margin:20px 0; font-size: $font-size * 0.9}
 .footer a{margin:0 10px}
 
-.modal-header{background-color: whiteSmoke !important}
+.modal-header{background-color: hwiteSmoke !important}
 
 .login-form{width:360px}
 .login-form .modal-body{padding-bottom: 2px;}
@@ -59,8 +59,9 @@ h2,h3,h4,h5,h6{font-weight: normal !important}
 .login-form .error{color: #B94A48}
 #login-tip{line-height:32px}
 
-.reg-form{padding:25px 20px 5px 20px;}
-.reg-form span{margin:0 10px 0 20px}
+.reg-form{}
+.reg-form p{margin:20px 0;}
+.reg-form label{width: 90px;text-align:right;margin-right:10px; font-size: $font-size; color: white}
 .reg-form .input{height:30px; display:inline}
 .reg-form .btn{margin-top: 0; margin-left:10px}
 .reg-form a{display: inline !important}

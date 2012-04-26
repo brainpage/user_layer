@@ -4,21 +4,24 @@
   .tabbable
     ul.nav.nav-tabs
       li.active
-        a data-toggle="tab" href="#detail" Detail Analysis
+        a data-toggle="tab" href="#detail" 
+          = t :detail
       li
-        a data-toggle="tab" href="#time-trend" Time Trend
+        a data-toggle="tab" href="#time-trend" 
+          = t :time_trend
       
-    
     .clear
     .tab-content
   	  #time-trend.tab-pane
-  	    h3 Time in the past 30 days
+  	    h3
+          = t :past_month
   	    #time-chart.chart
 
   	  #detail.tab-pane.active
           .pull-right
             #day-slider style="width:200px;margin:10px"
-          h3 Daily computer usage        
+          h3 
+            = t :daily_use       
           
           #line-chart.chart
           
@@ -27,7 +30,8 @@
           .tabbable.bar-chart
             ul.nav.nav-tabs
               li.active
-                a data-toggle="tab" href="#time-detail" Time Percentile
+                a data-toggle="tab" href="#time-detail" 
+                  = t :time_percentile
               li 
                 a data-toggle="tab" href="#keys-bar" Key Strokes
               li

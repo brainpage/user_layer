@@ -4,14 +4,23 @@
 en:
   email: Email
   password: Password
+  logout: Logout
+  login: Login
   nav:
-    home: Home
+    feed: Feeds
     my: My Analysis
     friend: Friends App
-  login:
-    with: Or Login With
-    title: Login to Brainpage
+    setting: Settings
   register: Start Now For Free
+  join: Join Now
+  home: Home
+  contact: Contact
+  about: About
+  data: Data Policy
+  english: English
+  chinese: 中文
+  auth: Authenticate
+  login_with: Or Login With
   
     
   

@@ -43,7 +43,7 @@ UserLayer::Application.routes.draw do
     
     resources :settings do
       collection do
-        post :alert
+        post :alert, :locale
       end
     end
     

@@ -1,33 +1,36 @@
-h1 Stop R.S.I. Now!
 .row-fluid
-  .span4
-    .ad-block
-      .page-header
-        h2 Smart Health Meter
-      p  
-        | It's like a classic computer game.  The harder you work, the faster it decreases.  Reach zero and its time to take a break.
-      = image_tag "line.png"
-            
-  .span4
-      .ad-block
-        .page-header
-	      h2 Interactive Graphs
-        p
-          | Gain understandings into how you work (and can work better) with smart graphs.
-        = image_tag "pie.png"
-            
-  .span4
-      .ad-block
-        .page-header
-	      h2 Social Comparison
-        p
-          | Work more efficiently by comparing how you use your apps to your friends and to the world.
-        = image_tag "bar.png"
+  .span8
+    h1 Stop R.S.I. Now!
+    .row-fluid
+      .span6
+        .ad-block
+          .page-header
+            h2 Smart Health Meter
+          p  
+            | It's like a classic computer game.  The harder you work, the faster it decreases.  Reach zero and its time to take a break.
+          = image_tag "line.png"
+                
+      .span6
+          .ad-block
+            .page-header
+    	      h2 Interactive Graphs
+            p
+              | Gain understandings into how you work (and can work better) with smart graphs.
+            = image_tag "pie.png"
+    .row-fluid          
+      .span6
+          .ad-block
+            .page-header
+    	      h2 Social Comparison
+            p
+              | Work more efficiently by comparing how you use your apps to your friends and to the world.
+            = image_tag "bar.png"
+  .span4    
+    .page-header
+      h2 
+        = t :join
+    .reg-form
+      = render "reg_form"
 
-hr.soften
-  .block.reg-form
-    = render "reg_form"
-
-hr.soften
 
 
