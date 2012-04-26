@@ -63,7 +63,9 @@ html
           .logo
             = image_tag "logo.png"
             | Brainpage
+
       .main style="margin-top:#{current_user.blank? ? 10 : 60}px"
+
         = render "rsi/portals/wizard" unless current_user.blank?
         = yield
 

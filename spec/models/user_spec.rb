@@ -75,4 +75,11 @@ describe User do
     end
   end
 
+  describe "send_weibo" do
+    it "should create a new weibo" do
+      Factory(:oauth_account, :provider => "weibo", :token => "token", :user => @user)
+      RestClient.stub!(:post).and_return(true)
+      @user.send_weibo("Test")
+    end
+  end
 end

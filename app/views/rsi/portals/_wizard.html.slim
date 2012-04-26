@@ -1,4 +1,4 @@
-- unless current_user.sensor_added?
+- unless current_user.sensor_added? or controller_name == "friends"
   #wizard-step.modal
     .modal-header
       a.close data-dismiss='modal' x

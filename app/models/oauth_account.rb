@@ -5,8 +5,9 @@ class OauthAccount < ActiveRecord::Base
   scope :with_uuid, lambda{|uuid| where(:uuid => uuid)}
   
   def self.build_for_user(user, auth_hash)
-    if user.blank?
-      user = User.new(:email => auth_hash.info.email).tap{|u| u.save(:validate => false)} 
+    email = auth_hash.info.email
+    if user.blank?      
+      user = User.new(email.blank? ? {} : {:email => email}).tap{|u| u.save(:validate => false)} 
     end
    
     data = {
@@ -15,7 +16,7 @@ class OauthAccount < ActiveRecord::Base
       :uuid => auth_hash.uid.to_s,
       :token => auth_hash.credentials.token,
       :token_expires_at => auth_hash.credentials.expires_at,
-      :email => auth_hash.info.email,
+      :email => email,
       :name => auth_hash.info.name,
       :image => auth_hash.info.image
     }

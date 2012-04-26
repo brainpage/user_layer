@@ -68,6 +68,7 @@ UserLayer::Application.routes.draw do
     resources :friends do
       collection do
         get :invite
+        post :weibo
       end
       member do
         post :join

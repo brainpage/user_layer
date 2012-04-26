@@ -16,3 +16,15 @@ script
 
 .center.invite
   = link_to content_tag(:span, :class => "fb-link"){" Invite Friends"}, invite_rsi_friends_path, :class=>"btn btn-large btn-primary"
+  = link_to content_tag(:span, :class => "fb-link"){" Share"}, "#", :onclick => "$('#weibo-share').modal('show')", :class=>"btn btn-large btn-primary"
+
+#weibo-share.modal.hide
+  = form_tag weibo_rsi_friends_path
+  .modal-header
+    a.close data-dismiss='modal' x
+    h3 Share on weibo
+  .modal-body
+    = text_area_tag :content, "Content"
+  .modal-footer 
+    = submit_tag "Share", :class => "btn-primary"
+  |</form>

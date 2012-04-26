@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :sensor do
-    stype 'rsi'
+    stype 'computer'
     uuid "12345"
   end
 end

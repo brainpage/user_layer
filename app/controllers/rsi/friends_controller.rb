@@ -15,6 +15,11 @@ class Rsi::FriendsController < ApplicationController
     end
   end
   
+  def weibo
+    current_user.send_weibo(params[:content])
+    redirect_to :action => :index
+  end
+  
   def follow
     @user = User.find_by_invite_token(params[:token])
     if @user.blank?

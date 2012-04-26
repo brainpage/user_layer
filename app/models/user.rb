@@ -37,6 +37,10 @@ class User < ActiveRecord::Base
     self.oauth_accounts.with_provider("facebook").first
   end
   
+  def weibo
+    self.oauth_accounts.with_provider("weibo").first
+  end
+  
   after_create :generate_welcome_feed, :reset_authentication_token!
   
   def self.create_mobile_user
@@ -50,7 +54,6 @@ class User < ActiveRecord::Base
   def after_token_authentication
     self.reset_authentication_token!
   end 
-
   
   def create_activity(time_span, money_account)
     self.own_activities.create({:time_span => time_span, :money_account => money_account}).tap do |act|
@@ -97,19 +100,31 @@ class User < ActiveRecord::Base
     Feed.create(:xtype => :welcome, :user => self)
   end
   
-  def fb_invite_link
+  def generate_invite_token
     self.update_attribute(:invite_token, Digest::SHA1.hexdigest(Time.now.to_s)[0,20]) if self.invite_token.blank?
-    
-    root = "http://brainpage.com/"
+  end
+  
+  def invite_link
+    generate_invite_token
+    Rails.configuration.base_url + "f/#{self.invite_token}"
+  end
+  
+  def fb_invite_link
     options = {
       :app_id => Rails.configuration.fb_key,
       :name => "Protect your health",
       :description => "Compete with me to see who use facebook less. The loser will donate money to charity.",
-      :link => root + "f/#{self.invite_token}",
-      :redirect_uri => root + "rsi/friends"
+      :link => self.invite_link,
+      :redirect_uri => Rails.configuration.base_url + "rsi/friends"
     }
   
-    "http://www.facebook.com/dialog/send?#{options.to_param}"
+    Rails.configuration.fb_send_url + "?" + options.to_param
+  end
+  
+  def send_weibo(content)
+    return if self.weibo.blank?
+    options = {:access_token => self.weibo.token, :status => CGI::escape("#{content} #{self.invite_link}")}   
+    RestClient.post Rails.configuration.weibo_create_url, options
   end
   
   def rsi_interval
