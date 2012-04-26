@@ -11,11 +11,11 @@ class Rsi::AccountsController < ApplicationController
         sign_in @user
         redirect_to rsi_portals_path and return
       else
-        @user = User.new(:email => params[:email], :password => params[:password], :password_confirmation => params[:password])
+        @user = User.create(:email => params[:email], :password => params[:password], :password_confirmation => params[:password])
       end
     end
     
-    if @user.save
+    if @user.errors.blank?
       sign_in @user     
       call_user_hook(@user)
       redirect_to rsi_portals_path
