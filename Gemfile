@@ -33,9 +33,11 @@ gem 'mysql'
 # Gems used only for assets and not required
 # in production environments by default.
 gem 'omniauth'
-gem 'omniauth-twitter', :git => 'https://github.com/arunagw/omniauth-twitter.git'
-gem 'omniauth-google-oauth2', :git => 'https://github.com/zquestz/omniauth-google-oauth2.git'
+#gem 'omniauth-twitter', :git => 'https://github.com/arunagw/omniauth-twitter.git'
+#gem 'omniauth-google-oauth2', :git => 'https://github.com/zquestz/omniauth-google-oauth2.git'
 gem 'omniauth-facebook'
+gem 'omniauth-weibo-oauth2'
+
 gem 'capistrano'
 gem 'therubyracer', :require => 'v8'
 
