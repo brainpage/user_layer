@@ -39,6 +39,8 @@ zh:
     accept_invite: '%{name}接受了你的好友邀请'
     friend_request: '%{name}请求成为你的好友一起分享应用数据'
     setup: "恭喜你已完成所有的设置 <br />"
+    accept_request: '你接受了%{name}的好友请求'
+    deny_request: '你拒绝了%{name}的好友请求'
   see_cloud: 查看TA的应用
   accept: 接受
   deny: 拒绝

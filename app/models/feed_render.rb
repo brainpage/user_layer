@@ -33,8 +33,17 @@ module FeedRender
   def xtype_friend_request(feed)
     {
       :content => t("feed.friend_request", :name => user_tag(feed.referer)),
-      :sub => link_to(t(:accept), rsi_friends_path) + link_to(t(:deny))
+      :sub => link_to(t(:accept), rsi_relation_path(feed, :accept => true), :method => :put) +
+       link_to(t(:deny), rsi_relation_path(feed), :method => :put)
     }
+  end
+  
+  def xtype_accept_request(feed)
+    {:content => t("feed.accept_request", :name => user_tag(feed.referer)),:sub => "" }
+  end
+  
+  def xtype_deny_request(feed)
+    {:content => t("feed.deny_request", :name => user_tag(feed.referer)),:sub => ""}
   end
   
   def xtype_add_sensor(feed)

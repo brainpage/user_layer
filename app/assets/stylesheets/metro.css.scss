@@ -87,7 +87,8 @@ hr.soften {
 .feeds li{list-style: none; margin-top:20px; line-height: $line-height}
 .feeds .feed-icon{width:48px;}
 .feeds .sub{font-size: 80%; }
-.feeds .sub span{margin-left:20px}
+.feeds .sub span{margin-left:10px}
+.feeds .sub a{margin-right:15px;}
 .feeds .content{}
 
 .app-cloud{margin:20px 0}
