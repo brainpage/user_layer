@@ -7,10 +7,10 @@ module FeedRender
     spec = send("xtype_#{feed.xtype}", feed)
     return "" if spec.blank?
     
-    if c = content_tag(:div, :class => "span2 feed-icon"){image_tag "#{feed.xtype}.png"}  
-      c << content_tag(:div, :class => "span10") do
+    if c = content_tag(:div, :class => "span feed-icon"){image_tag "#{feed.xtype}.png"}  
+      c << content_tag(:div, :class => "span") do
         content_tag(:div, spec[:content].html_safe, :class => "content") +
-        content_tag(:div, :class=>"sub"){spec[:sub].html_safe + content_tag(:span, time_ago_in_words(feed.created_at) + " ago")}
+        content_tag(:div, :class=>"sub"){spec[:sub].html_safe + content_tag(:span, time_ago_in_words(feed.created_at) + t(:ago))}
       end      
     end
     c.html_safe
@@ -18,30 +18,37 @@ module FeedRender
   
   def xtype_welcome(feed)
     {
-      :content => "Welcome to brainpage <br />Be there without being there.",
-      :sub => link_to("About Brainpage")
+      :content => t("feed.welcome"),
+      :sub => link_to(t(:about))
     }
   end
   
   def xtype_accept_invite(feed)
     {
-      :content => "Your friend #{feed.referer.try(:name)} just accepted your invitation.",
-      :sub => link_to("Check Application Cloud", rsi_friends_path)
+      :content => t("feed.accept_invite", :name => user_tag(feed.referer)),
+      :sub => link_to(t(:see_cloud), rsi_friends_path)
+    }
+  end
+  
+  def xtype_friend_request(feed)
+    {
+      :content => t("feed.friend_request", :name => user_tag(feed.referer)),
+      :sub => link_to(t(:accept), rsi_friends_path) + link_to(t(:deny))
     }
   end
   
   def xtype_add_sensor(feed)
     {
-      :content => "You have set up your account successfully. <br />Your data is being collected to help you improve your health.",
-      :sub => link_to("Change Settings")
+      :content => t("feed.setup"),
+      :sub => link_to(t(:change_setting), rsi_settings_path)
     }
   end
   
   def xtype_join_activity(feed)
-    {
-      :content => "#{feed.user == feed.referer ? "You" : feed.referer.try(:name)} joined the completion of Use facebook less for charity.",
-      :sub => link_to("View Activity", rsi_activity_path(feed.originator))
-    }
+    #{
+    #  :content => "#{feed.user == feed.referer ? "You" : feed.referer.try(:name)} joined the completion of Use facebook less for charity.",
+    #  :sub => link_to("View Activity", rsi_activity_path(feed.originator))
+    #}
   end
 
 end

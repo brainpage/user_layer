@@ -20,9 +20,12 @@ class User < ActiveRecord::Base
   has_many :app_usages
   
   delegate :name, :image, :to => :active_oauth_account, :allow_nil => true
+  delegate :send_alert, :allow_stranger, :to => :setting, :allow_nil => true
+  
+  after_create :generate_welcome_feed, :reset_authentication_token!
   
   def active_oauth_account
-    self.facebook || self.weibo
+    I18n.locale.to_s == "zh" ? self.weibo : self.facebook
   end
   
   def display_name
@@ -45,7 +48,15 @@ class User < ActiveRecord::Base
     self.oauth_accounts.with_provider("weibo").first
   end
   
-  after_create :generate_welcome_feed, :reset_authentication_token!
+  def change_settings(options)
+    (self.setting || UserSetting.create(:user => self)).tap do |setting|
+      setting.update_attributes(options)
+    end
+  end
+  
+  def rsi_interval
+    self.setting.try(:rsi_interval) || UserSetting.default_rsi_interval
+  end
   
   def self.create_mobile_user
     User.new.tap do |user|
@@ -66,7 +77,7 @@ class User < ActiveRecord::Base
   end
   
   def friends
-    users_in_relation RelationFriend
+    users_in_relation RelationFriend, {:confirmed => true}
   end
   
   def neighbours
@@ -92,11 +103,13 @@ class User < ActiveRecord::Base
     end
   end
   
-  def accept_invite(token)
+  def follow_invite(token)
     user = User.find_by_invite_token(token)
     unless user.blank?
-      rf = RelationFriend.create(:user => user, :client_user => self)
-      user.feeds.create(:xtype => :accept_invite, :originator => rf, :referer => self)
+      confirmed = (user.allow_stranger != false)     
+      rf = RelationFriend.create(:user => user, :client_user => self, :confirmed => confirmed)
+      
+      user.feeds.create(:xtype => confirmed ? :accept_invite : :friend_request, :originator => rf, :referer => self)
     end
   end
   
@@ -131,10 +144,6 @@ class User < ActiveRecord::Base
     RestClient.post Rails.configuration.weibo_create_url, options
   end
   
-  def rsi_interval
-    self.setting.try(:rsi_interval) || UserSetting.default_rsi_interval
-  end
-  
   def app_usage_stat(past = nil)
     past = past.to_i
     sql = "select app, sum(dur) as total from #{AppUsage.table_name} where user_id = #{self.id}"
@@ -151,7 +160,7 @@ class User < ActiveRecord::Base
   end
   
   private 
-  def users_in_relation(relation)
-    relation.where(:user_id => self.id).map(&:client_user) + relation.where(:client_user_id => self.id).map(&:user)
+  def users_in_relation(relation, conditions = {})
+    relation.where({:user_id => self.id}.merge(conditions)).map(&:client_user) + relation.where({:client_user_id => self.id}.merge(conditions)).map(&:user)
   end
 end

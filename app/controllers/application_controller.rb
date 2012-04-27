@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  helper_method :weibo?
   include UserHook
   
   before_filter :set_locale 
@@ -10,6 +11,10 @@ class ApplicationController < ActionController::Base
     if current_user
       logger.info "not here"
     end
+  end
+  
+  def weibo?
+    I18n.locale.to_s == "zh"
   end
 
   protected

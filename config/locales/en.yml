@@ -21,6 +21,26 @@ en:
   chinese: 中文
   auth: Authenticate
   login_with: Or Login With
-  
-    
-  
+  blog: Blog
+  detail: Detail Analysis
+  time_trend: Time Trend
+  past_month: Usage in the past 30 days
+  daily_use: Daily Usage 
+  time_percentile: Time Percentile
+  key_stroke: Key Strokes
+  mouse_clicks: Mouse Clicks
+  mouse_move: Mouse Move Distance
+  mouse_scrll: Mouse Scroll Distance
+  past_week: Past Week
+  past_month: Past Month
+  all_time: All The Time
+  feed:
+    welcome: Welcome to Brainpage!
+    accept_invite: 'Your friend %{name} just accepted your invitation.'
+    friend_request: '%{name} would like to share apps with you.'
+    setup: "You have set up your account successfully. <br />Your data is being collected to help you improve your health."
+  see_cloud: "Check Apps Cloud"
+  accept: Accept
+  deny: Deny
+  change_setting: Change Settings
+  ago: " ago"

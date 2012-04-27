@@ -1,0 +1,27 @@
+$font-size: 14px;
+body{font-size:$font-size;}
+input, button, select, submit, a{font-size:$font-size;}
+p{font-size: 12px !important}
+.btn-large{font-size: 14px !important}
+
+.f11{font-size: $font-size * 1.1}
+.f10{font-size: $font-size}
+.f9{font-size: $font-size * 0.9}
+
+.footer a{font-size:12px}
+
+.navbar .brand{font-size:24px !important; }
+
+.footer{font-size: 12px}
+.reg-form label{font-size: $font-size; }
+
+.login-label{text-align:right; font-size:12px}
+.feeds .sub span {font-size: 12px !important;}
+
+svg text{
+  font-size: 12px;
+}
+
+.center-label{font-size: 20px !important; }
+
+.nav-tabs li{font-size: 14px; }

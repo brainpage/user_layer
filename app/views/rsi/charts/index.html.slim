@@ -33,11 +33,17 @@
                 a data-toggle="tab" href="#time-detail" 
                   = t :time_percentile
               li 
-                a data-toggle="tab" href="#keys-bar" Key Strokes
+                a data-toggle="tab" href="#keys-bar" 
+                  = t :key_stroke
               li
-                a data-toggle="tab" href="#msclks-bar" Mouse Clicks
+                a data-toggle="tab" href="#msclks-bar" 
+                  = t :mouse_clicks
               li
-                a data-toggle="tab" href="#dst-bar" Mouse moved distance
+                a data-toggle="tab" href="#dst-bar" 
+                  = t :mouse_move
+	          li
+	            a data-toggle="tab" href="#scrll-bar" 
+	              = t :mouse_scrll
             .tab-content
           	#time-detail.tab-pane.active
                 .row-fluid
@@ -50,6 +56,7 @@
               #keys-bar.tab-pane.chart
               #msclks-bar.tab-pane.chart
               #dst-bar.tab-pane.chart
+              #scrll-bar.tab-pane.chart
           
               script
                 | drawChart("#{@uuid}", 0, 0);

@@ -2,7 +2,7 @@ doctype html
 html 
   head
     title Smart data - Brainpage.com
-    = stylesheet_link_tag "locale/en"
+    = stylesheet_link_tag "locale/#{I18n.locale}"
     = stylesheet_link_tag "application"
     = javascript_include_tag "application"
     = csrf_meta_tags
@@ -19,11 +19,12 @@ html
               span.icon-bar
               span.icon-bar
               span.icon-bar
-            =link_to t("nav.feed"), rsi_portals_path, :class => "brand"
+            
             .nav-collapse
               ul.nav
+                  = li_for("portals"){link_to t("nav.feed"), rsi_portals_path, :class => "bg-logo"}
                   = li_for("charts"){link_to t("nav.my"), rsi_charts_path}
-	  			= li_for("friends"){link_to t("nav.friend"), rsi_friends_path(:day => 7)}
+	  			= li_for("friends"){link_to t("nav.friend"), rsi_friends_path}
                   - if controller_name == "settings"
                     li.active
                       = link_to t("nav.setting"), "#"

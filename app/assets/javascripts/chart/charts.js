@@ -31,9 +31,9 @@ function drawChart(sensor_uuid, fromDay, toDay){
 	}
 	
 	var keysBarChart = new bp.rsi.BarChart("#keys-bar");
-	
 	var msclksBarChart = new bp.rsi.BarChart("#msclks-bar");
 	var dstBarChart = new bp.rsi.BarChart("#dst-bar");
+	var scrllBarChart = new bp.rsi.BarChart("#scrll-bar");
 	
 	var lineChart = new bp.rsi.LineChart("#line-chart", chart);
 	
@@ -47,6 +47,7 @@ function drawChart(sensor_uuid, fromDay, toDay){
 		keysBarChart.draw(group, "keys", chart);
 	    msclksBarChart.draw(group, "msclks", chart);
 	    dstBarChart.draw(group, "dst", chart);		
+		scrllBarChart.draw(group, "scrll", chart);
 	};
 	
 	timeChart.draw(chart, function(){lineChart.draw();});

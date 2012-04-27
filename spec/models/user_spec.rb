@@ -53,13 +53,22 @@ describe User do
     end
   end
   
-  describe "accept_invite" do
-    it "should become friend" do
-      @user.fb_invite_link
-      friend = Factory(:user, :email => "friend@example.com")
-      friend.accept_invite(@user.invite_token)
-      @user.friends.should be_include(friend)
-      friend.friends.should be_include(@user)
+  describe "follow_invite" do
+    before do
+      @friend = Factory(:user, :email => "friend@example.com")
+    end
+    
+    it "should become friend" do      
+      @friend.follow_invite(@user.invite_token)
+      @user.friends.should be_include(@friend)
+      @friend.friends.should be_include(@user)
+    end
+    
+    it "should generate friend_request feed if not allow stranger" do
+      Factory(:user_setting, :user => @user, :allow_stranger => false)
+      @friend.follow_invite(@user.invite_token)
+      @user.friends.should_not be_include(@friend)
+      @user.feeds.xtype("friend_request").size.should == 1
     end
   end
   

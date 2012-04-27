@@ -32,7 +32,7 @@ UserLayer::Application.routes.draw do
   
   
   namespace :rsi do
-    resources :sessions
+    resources :sessions, :relations
     
     resources :accounts do
       collection do

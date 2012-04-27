@@ -7,15 +7,16 @@ class Rsi::FriendsController < ApplicationController
   
   # Force user to bind facebook account before inviting friends.
   def invite
-    if current_user.facebook.blank?
+    if current_user.active_oauth_account.blank?
       session[:inviting_friend] = true
-      redirect_to "/auth/facebook"
+      redirect_to weibo? ? "/auth/weibo" : "/auth/facebook"
     else
       redirect_to current_user.fb_invite_link
     end
   end
   
   def weibo
+    current_user.change_settings(:allow_stranger => params[:allow].to_i)
     current_user.send_weibo(params[:content])
     redirect_to :action => :index
   end
@@ -27,7 +28,7 @@ class Rsi::FriendsController < ApplicationController
     else
       if current_user.blank?
         session[:invite_token] = @user.invite_token
-        add_user_hook("accept_invite", :accept_invite, @user.invite_token)
+        add_user_hook("follow_invite", :follow_invite, @user.invite_token)
         redirect_to home_path
       else
         accept_invite_and_redirect(@user.invite_token)

@@ -17,10 +17,12 @@
       = submit_tag t(:register), :class => "btn btn-large btn-primary"
     | </form>
   .block
-    .facebook
-      | Or Login With 
-      = link_to image_tag("facebook-big.png"), "/auth/facebook"
-      = link_to "weibo", "/auth/weibo"   
+      - if weibo?
+        = link_to image_tag("weibo_login.png"), "/auth/weibo"
+      - else
+        | Or Login With 
+        = link_to image_tag("facebook-big.png"), "/auth/facebook"
+         
 
 - else
 

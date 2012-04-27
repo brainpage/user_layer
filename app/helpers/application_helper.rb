@@ -13,6 +13,7 @@ module ApplicationHelper
   end
   
   def user_tag(user)
+    return "" if user.blank?
     (user.image.blank? ? "".html_safe : image_tag(user.image)) + user.display_name
   end
 end

@@ -1,11 +1,14 @@
 .tabbable
   ul.nav.nav-tabs
     li class="#{params[:day].to_i == 7 ? "active" : ""}"
-      a href="#{rsi_friends_path(:day => 7)}" Past Week
+      a href="#{rsi_friends_path(:day => 7)}" 
+        = t :past_week
     li class="#{params[:day].to_i == 30 ? "active" : ""}"
-      a href="#{rsi_friends_path(:day => 30)}" Past Month
+      a href="#{rsi_friends_path(:day => 30)}"
+        = t :past_month
     li class="#{params[:day].blank? ? "active" : ""}"
-      a href="#{rsi_friends_path}" All The Time
+      a href="#{rsi_friends_path}" 
+        = t :all_time
 
 .app-cloud
   = render :partial => "user", :collection => @friends
@@ -15,16 +18,28 @@ script
   
 
 .center.invite
-  = link_to content_tag(:span, :class => "fb-link"){" Invite Friends"}, invite_rsi_friends_path, :class=>"btn btn-large btn-primary"
-  = link_to content_tag(:span, :class => "fb-link"){" Share"}, "#", :onclick => "$('#weibo-share').modal('show')", :class=>"btn btn-large btn-primary"
+  - if weibo?
+    = link_to image_tag("weibo_share.gif"), "#", :onclick => "$('#weibo-share').modal('show')"
+  - else
+    = link_to content_tag(:span, :class => "fb-link"){" Invite Friends"}, invite_rsi_friends_path, :class=>"btn btn-large btn-primary"
+
 
 #weibo-share.modal.hide
   = form_tag weibo_rsi_friends_path
   .modal-header
     a.close data-dismiss='modal' x
-    h3 Share on weibo
+    h3 
+      = t :weibo_share
   .modal-body
     = text_area_tag :content, "Content"
+    p 
+      = radio_button_tag(:allow, 1, true) + label_tag(:allow_1, t(:allow_tip))
+    p 
+      = radio_button_tag(:allow, 0) + label_tag(:allow_0, t(:not_allow_tip))
   .modal-footer 
-    = submit_tag "Share", :class => "btn-primary"
+    = submit_tag t(:publish), :class => "btn btn-large btn-primary"
   |</form>
+
+-if params[:share]
+  script
+    | $(document).ready(function(){$('#weibo-share').modal('show')});

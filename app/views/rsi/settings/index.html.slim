@@ -12,7 +12,7 @@
         div style="margin:10px"
           #interval-slider
     hr.soften
-    = link_to (@setting.send_alert ? "Don't notify me" : "Notify me"), alert_rsi_settings_path, :method => :post, :class => "btn btn-large"
+    = link_to (current_user.send_alert ? "Don't notify me" : "Notify me"), alert_rsi_settings_path, :method => :post, :class => "btn btn-large"
 
 
   .span6
@@ -22,7 +22,7 @@
     - if flash[:notice].present?
       div.alert.alert-info
         = flash[:notice]
-    - if current_user.facebook.blank?
+    - if current_user.active_oauth_account.blank?
       = form_tag pwd_rsi_accounts_path, :class => "form-horizontal"
 	  .row-fluid
 	    .span4

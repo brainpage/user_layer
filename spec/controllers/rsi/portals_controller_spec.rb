@@ -11,7 +11,7 @@ describe Rsi::PortalsController do
     Factory(:user, :email => "new@example.com").join_activity(act.token)
     
     link = @user.fb_invite_link
-    Factory(:user, :email => "friend@example.com").accept_invite(@user.invite_token)
+    Factory(:user, :email => "friend@example.com").follow_invite(@user.invite_token)
   end
   
   it "should respond to index" do

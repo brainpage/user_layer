@@ -9,7 +9,7 @@ zh:
   nav:
     feed: 状态更新
     my: 我的分析
-    friend: 好友应用
+    friend: 好友的应用
     setting: 设置
   register: 马上注册
   join: 加入我们
@@ -22,8 +22,69 @@ zh:
   auth: 验证用户身份
   login_with: ""
   blog: Blog
-  detail: Detail Analysis
-  time_trend: Time Trend
-  past_month: Time in the past 30 days
-  daily_use: Daily computer usage 
-  time_percentile: Time Percentile
+  detail: 活动详细分析
+  time_trend: 时间曲线
+  past_month: 过去一个月的时间分布
+  daily_use: 按天查看活动记录 
+  time_percentile: 应用时间比例
+  key_stroke: 按键频率
+  mouse_clicks: 鼠标点击频率
+  mouse_move: 鼠标移动频率
+  mouse_scrll: 鼠标滚动频率
+  past_week: 过去一周
+  past_month: 过去一个月
+  all_time: 所有时间
+  feed:
+    welcome: 欢迎来到Brainpage!
+    accept_invite: '%{name}接受了你的好友邀请'
+    friend_request: '%{name}请求成为你的好友一起分享应用数据'
+    setup: "恭喜你已完成所有的设置 <br />"
+  see_cloud: 查看TA的应用
+  accept: 接受
+  deny: 拒绝
+  change_setting: 修改设置
+  updates: 最新动态
+  analysis: 数据分析
+  view_more: " 查看详细" 
+  today: 今日数据
+  ago: 前
+  publish: 发布
+  allow_tip: 任何人可以加我为好友并分享应用数据
+  not_allow_tip: 经过我的允许才能加我为好友并分享应用数据
+  weibo_share: 与好友分享应用
+  datetime:
+    distance_in_words:
+      half_a_minute: 半分钟
+      less_than_x_seconds:
+        one:   不到1秒
+        other: "不到%{count}秒"
+      x_seconds:
+        one:   "1秒"
+        other: "%{count}秒"
+      less_than_x_minutes:
+        one:   "一分钟"
+        other: "%{count}分钟"
+      x_minutes:
+        one:   "一分钟"
+        other: "%{count}分钟"
+      about_x_hours:
+        one:   "约一小时"
+        other: "约%{count}小时"
+      x_days:
+        one:   "一天"
+        other: "%{count}天"
+      about_x_months:
+        one:   "约一个月"
+        other: "约%{count}个月"
+      x_months:
+        one:   "一个月"
+        other: "%{count}个月"
+      about_x_years:
+        one:   "约一年"
+        other: "约%{count}年"
+      over_x_years:
+        one:   "一年多"
+        other: "%{count}年多"
+      almost_x_years:
+        one:   "约一年"
+        other: "约%{count}年"
