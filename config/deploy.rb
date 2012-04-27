@@ -18,7 +18,7 @@ set :bundle_flags, "--deployment --quiet --binstubs --shebang ruby-local-exec"
 set :user, "app"
 set :rvm_type, :user
 set :deploy_to, "/home/app/applications/user_layer"
-role :web, "50.112.132.214"
+role :web, "50.112.132.214", "brainpage.cn"
 role :app, "50.112.132.214"
 role :db,  "50.112.132.214", :primary => true
 
@@ -109,9 +109,17 @@ task :custom_setup, :role => :app do
   end
 end
 
+desc "deploy the precompiled assets"
+task :deploy_assets, :except => { :no_release => true } do
+    run_locally("rake assets:clean && rake assets:precompile")
+    upload("public/assets", "#{release_path}/public/assets", :via => :scp, :recursive => true)
+    run_locally("rake assets:clean")
+end
+
 
 after 'deploy:setup', :custom_setup
 after 'deploy:update_code', 'deploy:symlink_shared'
+after 'deploy:update_code', :deploy_assets
 after 'deploy:restart', 'deploy:cleanup'
 
 #grant all privileges on user_layer_production.* to user_layer@'10.0.0.%' IDENTIFIED BY 'ap95734h7ksdfjlz'
