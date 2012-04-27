@@ -7,7 +7,7 @@ class Rsi::RelationsController < ApplicationController
     
     @feed.originator.update_attribute(:confirmed => accept)
     @feed.destroy
-    current_user.feeds.create(:xtype => accept ? :accept_request, :referer => @feed.referer)
+    current_user.feeds.create((:xtype => accept ? :accept_request : :deny_request), :referer => @feed.referer)
     redirect_to rsi_portals_path
   end
 

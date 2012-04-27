@@ -112,7 +112,9 @@ end
 desc "deploy the precompiled assets"
 task :deploy_assets, :except => { :no_release => true } do
     run_locally("rake assets:clean && rake assets:precompile")
-    upload("public/assets", "#{release_path}/public/assets", :via => :scp, :recursive => true)
+    run_locally "cd public; tar -zcvf assets.tar.gz assets"
+    upload("public/assets.tar.gz", "#{release_path}/public/assets", :via => :scp)
+    run "cd #{release_path}/public/assets; tar -zxvf assets.tar.gz"
     run_locally("rake assets:clean")
 end
 
