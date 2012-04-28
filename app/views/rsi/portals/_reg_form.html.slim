@@ -2,7 +2,7 @@
   .block
     - if flash[:error].present?
       .alert.alert-error
-        = flash[:error]
+        = flash[:error].html_safe
     
     = form_tag rsi_accounts_path, :class => "form-inline" 
     p

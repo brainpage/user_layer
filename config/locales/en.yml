@@ -44,3 +44,6 @@ en:
   deny: Deny
   change_setting: Change Settings
   ago: " ago"
+  alert: You need to install client application to view your analysis.
+  download: Download Now!
+  

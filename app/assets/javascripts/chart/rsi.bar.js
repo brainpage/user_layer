@@ -70,7 +70,9 @@ bp.rsi.BarChart.prototype.draw = function(group, attr, chart){
 	x.domain(data.map(function(d) { return d.key; }));
 	y.domain([0, d3.max(data, function(d) { return d.value; })]);
 	
-	var xAxis = d3.svg.axis().scale(x).orient("bottom").tickSize(0);
+	var even = true;
+	
+	var xAxis = d3.svg.axis().scale(x).orient("bottom").tickSize(10);
 	var yAxis = d3.svg.axis().scale(y).orient("left");
 
 	this.svg.selectAll("g.bar").data([]).exit().remove();

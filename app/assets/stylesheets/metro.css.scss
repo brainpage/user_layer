@@ -6,7 +6,7 @@ $line-height: 25px;
 @mixin font{font-family: 'Marmelad', sans-serif;  }
 @mixin round{-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;}
 
-body{ margin:0; padding:0;height:100%; @include font; background: #d3e8f2; color: #222;}
+body{ margin:0; padding:0;height:100%; @include font; background: #dfe9fd; color: #222;}
 input, button, select, submit{@include font;}
 li{list-style: none}
 img{vertical-align:middle; margin-top:-5px;}
@@ -20,7 +20,7 @@ h2,h3,h4,h5,h6{font-weight: normal !important}
 
 .bg-logo{background: url('/assets/logo.png') no-repeat scroll left center; padding-left:40px !important;}
 
-.main{@include round; background:#fff; min-height:600px; padding:25px 30px 40px 30px;
+.main{background:#fff; min-height:600px; padding:25px 30px 40px 30px;
 -webkit-box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.125), inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
    -moz-box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.125), inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
         box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.125), inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
@@ -87,7 +87,6 @@ hr.soften {
 .feeds li{list-style: none; margin-top:20px; line-height: $line-height}
 .feeds .feed-icon{width:48px;}
 .feeds .sub{font-size: 80%; }
-.feeds .sub span{margin-left:10px}
 .feeds .sub a{margin-right:15px;}
 .feeds .content{}
 

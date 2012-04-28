@@ -116,6 +116,7 @@ task :deploy_assets, :except => { :no_release => true } do
     upload("public/assets.tar.gz", "#{release_path}/public", :via => :scp)
     run "cd #{release_path}/public; tar -zxvf assets.tar.gz; rm assets.tar.gz"
     run_locally("rake assets:clean")
+    run_locally "cd public; rm assets.tar.gz"
 end
 
 

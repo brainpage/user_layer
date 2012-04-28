@@ -6,6 +6,18 @@ zh:
   password: 密码
   logout: 退出
   login: 登录
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: 不能为空！
+              taken: 已经被占用！
+              invalid: 地址无效址！
+            password:
+              blank: 不能为空！ 
+              too_short: 太短！
   nav:
     feed: 状态更新
     my: 我的分析
@@ -54,6 +66,8 @@ zh:
   allow_tip: 任何人可以加我为好友并分享应用数据
   not_allow_tip: 经过我的允许才能加我为好友并分享应用数据
   weibo_share: 与好友分享应用
+  alert: 需要安装客户端软件才能收集并分析数据!
+  download: 马上下载
   datetime:
     distance_in_words:
       half_a_minute: 半分钟

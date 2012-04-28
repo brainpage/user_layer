@@ -20,7 +20,7 @@ class Rsi::AccountsController < ApplicationController
       call_user_hook(@user)
       redirect_to rsi_portals_path
     else
-      flash[:error] = @user.errors.full_messages.join(" and ")
+      flash[:error] = @user.errors.full_messages.join("<br />")
       redirect_to "/signin"
     end
   end

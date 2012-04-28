@@ -39,7 +39,8 @@ module FeedRender
   end
   
   def xtype_accept_request(feed)
-    {:content => t("feed.accept_request", :name => user_tag(feed.referer)),:sub => "" }
+    {:content => t("feed.accept_request", :name => user_tag(feed.referer)), 
+     :sub => link_to(t(:see_cloud), rsi_friends_path) }
   end
   
   def xtype_deny_request(feed)
