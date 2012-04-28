@@ -24,7 +24,7 @@ bp.rsi.BarChart = function(domId){
 	tip.append("text").attr("transform", "translate(94, 0)").text("Global Average");
 };
 
-bp.rsi.BarChart.prototype.draw = function(group, attr, chart){
+bp.rsi.BarChart.prototype.draw = function(group, attr, chart, visible){
 	var filtered = [];
 	
 	var add = function(p, v){
@@ -45,8 +45,8 @@ bp.rsi.BarChart.prototype.draw = function(group, attr, chart){
 	raw = raw.map(function(d){
 		return {key: d.key, value: (d.value.total / d.value.count)};
 	});
-	raw = bp.chart.Utils.removeSmallData(raw);
-	
+	raw = raw.filter(function(d){return $.inArray(d.key, visible) >= 0});
+
 	var data = [];
 	raw.forEach(function(d){
 		if(d.value > 0){
@@ -72,7 +72,7 @@ bp.rsi.BarChart.prototype.draw = function(group, attr, chart){
 	
 	var even = true;
 	
-	var xAxis = d3.svg.axis().scale(x).orient("bottom").tickSize(10);
+	var xAxis = d3.svg.axis().scale(x).orient("bottom").tickSize(5);
 	var yAxis = d3.svg.axis().scale(y).orient("left");
 
 	this.svg.selectAll("g.bar").data([]).exit().remove();

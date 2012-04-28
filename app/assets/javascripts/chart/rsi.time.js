@@ -12,8 +12,7 @@ bp.rsi.TimeChart.prototype.draw = function(chart, callback){
 	}
 	
 	function doTimeDraw(data){
-		callback();
-		
+	
 		data = data.sort(function(a, b){return a.t - b.t});
 		
 		var layers = [];

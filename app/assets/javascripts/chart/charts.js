@@ -5,6 +5,8 @@ bp.rsi = {};
 bp.chart = {};
 bp.chart.Utils = {};
 
+var loadedData = {};
+
 function drawChart(sensor_uuid, fromDay, toDay){	
 	$(".chart").empty();
 	
@@ -15,10 +17,9 @@ function drawChart(sensor_uuid, fromDay, toDay){
 	getGlobalAverage(chart);
 	
 	var timeChart = new bp.rsi.TimeChart("#time-chart");
-	
 	var zoomChart = new bp.rsi.ZoomChart("#zoom-line");
-
 	var pieChart = new bp.rsi.PieChart("#pie-chart");
+	
 	pieChart.mousedown = function(d){
 		$('#app-detail').text("Detail of " + d.key);
 		$("html,body").scrollTop($(document).height());			
@@ -36,21 +37,27 @@ function drawChart(sensor_uuid, fromDay, toDay){
 	var scrllBarChart = new bp.rsi.BarChart("#scrll-bar");
 	
 	var lineChart = new bp.rsi.LineChart("#line-chart", chart);
+//	lineChart.afterDraw = function(){timeChart.draw(chart)};
 	
 	lineChart.afterBrush = function(fromTime, toTime){
 		chart.dataByApp.filterAll();
 		chart.dataByTime.filterAll();
 		
 		var group = getGroup(chart, fromTime, toTime);
-		pieChart.draw(getPieData(group, chart), true);
+		
+		var data = getPieData(group, chart);
+		data = bp.chart.Utils.removeSmallData(data);
+		pieChart.draw(data, true);
 	
-		keysBarChart.draw(group, "keys", chart);
-	    msclksBarChart.draw(group, "msclks", chart);
-	    dstBarChart.draw(group, "dst", chart);		
-		scrllBarChart.draw(group, "scrll", chart);
+		var visible = data.map(function(e){return e.key});
+		console.log(visible);
+		keysBarChart.draw(group, "keys", chart, visible);
+	    msclksBarChart.draw(group, "msclks", chart, visible);
+	    dstBarChart.draw(group, "dst", chart, visible);		
+		scrllBarChart.draw(group, "scrll", chart, visible);
 	};
 	
-	timeChart.draw(chart, function(){lineChart.draw();});
+	lineChart.draw();
 }
 
 function getGlobalAverage(chart){
@@ -90,8 +97,7 @@ function getGroup(chart, fromTime, toTime){
 function getPieData(group, chart){	
 	var pieData = group.reduceSum(function(d) { return parseFloat(d.d); }).all();
 	pieData.forEach(function(d){
-		d.color = chart.getColor(bp.chart.Utils.trim(d.key));
-		
+		d.color = chart.getColor(bp.chart.Utils.trim(d.key));		
 	})
 	
 	return pieData;

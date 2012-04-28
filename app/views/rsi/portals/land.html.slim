@@ -1,36 +1,63 @@
-.row-fluid
-  .span8
-    h1 Stop R.S.I. Now!
-    .row-fluid
-      .span6
-        .ad-block
+doctype html
+html 
+  head
+    title Smart data - Brainpage.com
+    = stylesheet_link_tag "locale/#{I18n.locale}"
+    = stylesheet_link_tag "application"
+    = csrf_meta_tags
+    link rel="shortcut icon" href="#{image_path("favicon.ico")}" type="image/x-icon"
+    link href='http://fonts.googleapis.com/css?family=Marmelad' rel='stylesheet' type='text/css'
+	
+  body style="background:white"
+    #land.container
+      .row-fluid
+        .span8
+          h1 Stop RSI, Work Better!
+          .sub Your personal assistant for healthier workstyle
+          .row-fluid
+            .span6
+              .ad-block.c.c1
+                h2 Take Breaks When Needed
+                p  
+                  | Our smart meter can learn your work intensity and notify you to take breaks when needed
+                      
+            .span6
+              .ad-block.c.c2
+          	    h2 Optimize Your Day
+                  .center = image_tag "line.png"
+                  p with our analysis of your time and application usage
+          .row-fluid          
+            .span6
+              .ad-block
+                .c.c1
+          	      h2 Improve Professional Skills
+                    p
+                      | through understanding your learning curve
+                .center = image_tag "bar.png", :style=>"height:160px"
+	        .span6
+	          .ad-block.c.c3
+	            h2 
+	              | Learn Friends' App
+	            p to find out the most suitable one for yourself
+	            .center = image_tag "pie.png"
+	      .ad-block.c.c4
+	        .row-fluid
+	          .span3 
+	            ul
+	              li What is RSI?
+	          .span9
+	            | Repetitive strain injury (RSI) (also known as repetitive stress injury, repetitive motion injuries, repetitive motion disorder (RMD), cumulative trauma disorder (CT), ...
+        .span4.company    
           .page-header
-            h2 Smart Health Meter
-          p  
-            | It's like a classic computer game.  The harder you work, the faster it decreases.  Reach zero and its time to take a break.
-          = image_tag "line.png"
-                
-      .span6
-          .ad-block
-            .page-header
-    	      h2 Interactive Graphs
-            p
-              | Gain understandings into how you work (and can work better) with smart graphs.
-            = image_tag "pie.png"
-    .row-fluid          
-      .span6
-          .ad-block
-            .page-header
-    	      h2 Social Comparison
-            p
-              | Work more efficiently by comparing how you use your apps to your friends and to the world.
-            = image_tag "bar.png"
-  .span4    
-    .page-header
-      h2 
-        = t :join
-    .reg-form
-      = render "reg_form"
+            .pull-right
+              = link_to(I18n.locale.to_s == "en" ? t(:chinese) : t(:english), locale_rsi_settings_path(:locale => (I18n.locale.to_s == "en" ? "zh" : "en")), :method => :post)
+            h2 
+              | Brainpage
+            .sub2 Your smart data
+
+          .center = link_to image_tag("weibo_login.png"), "/auth/weibo"
+      = render "layouts/footer"
+     
 
 
 

@@ -71,11 +71,4 @@ html
         = render "rsi/portals/wizard" unless current_user.blank?
         = yield
 
-      .footer
-       .pull-right
-	      | Copyright 2012, Brainpage Inc.
-	      = link_to t(:home)
-	      = link_to t(:contact)
-	      = link_to t(:about)
-	      = link_to t(:data)
-	   = link_to(I18n.locale.to_s == "en" ? t(:chinese) : t(:english), locale_rsi_settings_path(:locale => (I18n.locale.to_s == "en" ? "zh" : "en")), :method => :post)
+      = render "layouts/footer"

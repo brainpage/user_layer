@@ -1,5 +1,5 @@
 class ClientEvent < ActiveRecord::Base
-  scope :day, lambda{|day| time = day.to_i.days.ago; where(["created_at >= ? and created_at < ?", time.beginning_of_day, time.end_of_day])}
+  scope :day, lambda{|day| time = (day.is_a?(Time) ? day : day.to_i.days.ago); where(["created_at >= ? and created_at < ?", time.beginning_of_day, time.end_of_day])}
   has_many :client_apps
 
   def self.build(msg)

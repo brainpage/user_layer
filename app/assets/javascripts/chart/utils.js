@@ -1,10 +1,12 @@
 bp.chart.Utils.removeSmallData = function(data){
-	var total = 0;
+	var total = 0, other = 0;
 	data.map(function(d){total += d.value});
-	if(total > 0){
-		data.forEach(function(d){if(d.value / total < 0.01){d.key = "";}});
+	
+	var main = []
+	if(total > 0){		
+		data.forEach(function(d){if(d.value / total > 0.02){main.push(d)}});
 	}
-	return data;
+	return main;
 }
 
 bp.chart.Utils.beginningOfDay = function(time){

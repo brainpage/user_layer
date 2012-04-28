@@ -40,7 +40,7 @@ bp.rsi.PieChart = function(domId){
 	  .attr("transform", "translate(" + (w/2) + "," + (h/2) + ")");
 };
 
-bp.rsi.PieChart.prototype.draw = function(data, fresh) {
+bp.rsi.PieChart.prototype.draw = function(data, fresh) {	
 	if(fresh){
 		this.originData = data;
 	}
@@ -69,7 +69,7 @@ bp.rsi.PieChart.prototype.draw = function(data, fresh) {
 	}
 	
 	function calcPos(d){
-		return (d.startAngle+d.endAngle)/2 < Math.PI ? "beginning" : "end";
+		return ((d.startAngle+d.endAngle)/2 <= Math.PI) ? "beginning" : ((d.startAngle > 6 && d.endAngle > 6.28) ? "middle" : "end");
 	}
 	
 	function pieTween(d, i) {
@@ -125,80 +125,77 @@ bp.rsi.PieChart.prototype.draw = function(data, fresh) {
 		};
 	}
 	
-	//var color = d3.scale.category20();
-
-//	if(this.filteredPieData.length > 0 ){		
-		this.filteredPieData = bp.chart.Utils.removeSmallData(this.filteredPieData);
+	this.centerLabel.text("Apps");		
+	
+	//DRAW ARC PATHS
+	var paths = this.arc_group.selectAll("path").data(this.filteredPieData);
+	paths.enter().append("svg:path")
+		.attr("stroke", "white")
+		.attr("stroke-width", 0.5)
+		.attr("class", function(d){return "pie-item "+d.key})
+		.attr("fill", function(d) {return d.color; })
+		.on("mousedown", function(d) {									 			   			
+			pieObject.mousedown(d);  
+		})
+		.transition()
+	    .duration(this.tweenDuration)
+	    .attrTween("d", pieTween);
+	
+	paths
+		.transition()
+	    .duration(this.tweenDuration)
+	    .attrTween("d", pieTween);
+	
+	paths.exit()
+		.transition()
+	    .duration(this.tweenDuration)
+	    .attrTween("d", removePieTween)
+		.remove();
+	
+	//DRAW TICK MARK LINES FOR LABELS
+	this.lines = this.label_group.selectAll("line").data(this.filteredPieData);
+	this.lines.enter().append("svg:line")
+		.attr("x1", 0)
+		.attr("x2", 0)
+		.attr("y1", -r-3)
+		.attr("y2", -r-8)
+		.attr("stroke", "black");
+	this.lines.transition()
+		.duration(this.tweenDuration)
+		.attr("transform", function(d) {
 		
-		this.centerLabel.text("Apps");		
-		
-		//DRAW ARC PATHS
-		var paths = this.arc_group.selectAll("path").data(this.filteredPieData);
-		paths.enter().append("svg:path")
-			.attr("stroke", "white")
-			.attr("stroke-width", 0.5)
-			.attr("class", function(d){return "pie-item "+d.key})
-			.attr("fill", function(d) {return d.color; })
-			.on("mousedown", function(d) {									 			   			
-				pieObject.mousedown(d);  
-			})
-			.transition()
-		    .duration(this.tweenDuration)
-		    .attrTween("d", pieTween);
-		
-		paths
-			.transition()
-		    .duration(this.tweenDuration)
-		    .attrTween("d", pieTween);
-		
-		paths.exit()
-			.transition()
-		    .duration(this.tweenDuration)
-		    .attrTween("d", removePieTween)
-			.remove();
-		
-		//DRAW TICK MARK LINES FOR LABELS
-		this.lines = this.label_group.selectAll("line").data(this.filteredPieData);
-		this.lines.enter().append("svg:line")
-			.attr("x1", 0)
-			.attr("x2", 0)
-			.attr("y1", -r-3)
-			.attr("y2", -r-8)
-			.attr("stroke", "black");
-		this.lines.transition()
-			.duration(this.tweenDuration)
-			.attr("transform", function(d) {
-			
-				return "rotate(" + (d.key == "" ? -1 : (d.startAngle+d.endAngle)/2 * (180/Math.PI)) + ")";
-			});
-		this.lines.exit().remove();
-		
-		//DRAW LABELS WITH PERCENTAGE VALUES
-		this.valueLabels = this.label_group.selectAll("text.value").data(this.filteredPieData);
-		
-		this.valueLabels.enter().append("svg:text")
-			.attr("class", "value")
-			.attr("transform", function(d) {return "translate(" + calcArc(d) + ")";});
-		
-		this.valueLabels.transition().duration(this.tweenDuration).attrTween("transform", textTween);
-		this.valueLabels.exit().remove();
-		
-		//DRAW LABELS WITH ENTITY NAMES
-		this.keyLabels = this.label_group.selectAll("text.units")
-			.data(this.filteredPieData)
-			.attr("dy", 5)
-			.attr("text-anchor", calcPos)
-			.text(function(d){return d.key;});
-		
-		this.keyLabels.enter().append("svg:text")
-			.attr("class", "units")
-			.attr("transform", function(d) {return "translate(" + calcArc(d) + ")";})
-			.attr("dy", 5)
-			.attr("text-anchor", calcPos)
-			.text(function(d){return d.key;});
-		
-		this.keyLabels.transition().duration(this.tweenDuration).attrTween("transform", textTween);
-		this.keyLabels.exit().remove();	
+			return "rotate(" + (d.key == "" ? -1 : (d.startAngle+d.endAngle)/2 * (180/Math.PI)) + ")";
+		});
+	this.lines.exit().remove();
+	
+	console.log(this.filteredPieData);
+	
+	//DRAW LABELS WITH PERCENTAGE VALUES
+	this.valueLabels = this.label_group.selectAll("text.value").data(this.filteredPieData);
+	
+	this.valueLabels.enter().append("svg:text")
+		.attr("class", "value")
+		.attr("transform", function(d) {return "translate(" + calcArc(d) + ")";});
+	
+	this.valueLabels.transition().duration(this.tweenDuration).attrTween("transform", textTween);
+	this.valueLabels.exit().remove();
+	
+	//DRAW LABELS WITH ENTITY NAMES
+	this.keyLabels = this.label_group.selectAll("text.units")
+		.data(this.filteredPieData)
+		.attr("dy", 5)
+		.attr("text-anchor", calcPos)
+		.text(function(d){return d.key;});
+	
+	this.keyLabels.enter().append("svg:text")
+		.attr("class", "units")
+		.attr("transform", function(d) {return "translate(" + calcArc(d) + ")";})
+		.attr("dy", 5)
+		.attr("text-anchor", calcPos)
+		.text(function(d){return d.key;});
+	
+	this.keyLabels.transition().duration(this.tweenDuration).attrTween("transform", textTween);
+	this.keyLabels.exit().remove();	
 	
 }
 

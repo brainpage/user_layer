@@ -24,8 +24,7 @@ class Rsi::ChartsController < ApplicationController
         render :json => result.to_json
       else
         
-        day = params[:q] =~ /from_last\((\d+)\*day\)/ ? $1.to_i : 0
-          day = 1
+        day = (params[:q] =~ /from\((\d+)\)/ ? Time.at($1.to_i) : 0)
         render :json => ClientEvent.day(day).to_json
       end
     end

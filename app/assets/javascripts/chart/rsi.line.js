@@ -11,6 +11,7 @@ bp.rsi.LineChart = function(domId, chart){
 	this.y = d3.scale.linear().range([this.height, 0]);
 	
 	this.afterBrush = function(fromTime, toTime){};
+	this.afterDraw = function(){};
 	this.rawData = [];
 }
 
@@ -50,14 +51,25 @@ bp.rsi.LineChart.prototype.draw = function(){
 
 		var app = 'var app=sensor.find("' + line.chart.sensor_uuid + '").by_feature(feature("app").aggregate).with(feature("dst").weighted_sum).with(feature("keys").weighted_sum).with(feature("msclks").weighted_sum).with("point", feature("act").weighted_sum).with(feature("scrll").weighted_sum);sensor.find("' + line.chart.sensor_uuid + '").by_time(60).with("apps", app).with("point", feature("act").weighted_sum).from(' + from + ').to('+ to + ').cache("line-chart")'
 
-		var options = {url:line.chart.url, data: {q: app}, success: doDraw};
-		if(line.chart.crossdomain){
-			options.dataType = "jsonp";
-			options.jsonpCallback = "doDraw";
-		}
-		$.ajax(options);
+		var dateStr = getDayStr(day);
+		var data = loadedData[dateStr];
+		
+		if(data){
+			doDraw(data);
+		}else{
+			var options = {url:line.chart.url, data: {q: app}, success: doDraw};
+			if(line.chart.crossdomain){
+				options.dataType = "jsonp";
+				options.jsonpCallback = "doDraw";
+			}
+			$.ajax(options);
+		}		
 		
 		function doDraw(data){
+			console.log(data);
+		
+			loadedData[dateStr] = $.extend(true, [], data);
+			
 			stage.select("text").remove();
 			
 			if (data != null && data.length > 0){
@@ -95,7 +107,13 @@ bp.rsi.LineChart.prototype.draw = function(){
 				}
 		   	    
 			}
-			day < line.chart.toDay ? drawForDay(day + 1) : drawBrush();
+			
+			if(day < line.chart.toDay){
+				drawForDay(day + 1);
+			}else{
+				drawBrush();
+				line.afterDraw();
+			}
 		}	
 	}
 
