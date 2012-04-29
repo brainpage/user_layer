@@ -9,7 +9,7 @@ class Rsi::AccountsController < ApplicationController
       @user = User.find_by_email(params[:email])
       if @user.present? and @user.valid_password?(params[:password])
         sign_in @user
-        redirect_to rsi_portals_path and return
+        redirect_to rsi_charts_path and return
       else
         @user = User.create(:email => params[:email], :password => params[:password], :password_confirmation => params[:password])
       end
@@ -18,7 +18,7 @@ class Rsi::AccountsController < ApplicationController
     if @user.errors.blank?
       sign_in @user     
       call_user_hook(@user)
-      redirect_to rsi_portals_path
+      redirect_to rsi_charts_path
     else
       flash[:error] = @user.errors.full_messages.join("<br />")
       redirect_to "/signin"

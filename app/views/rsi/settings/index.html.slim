@@ -3,7 +3,7 @@
     .page-header
       h2 Notification Settings
     
-	- if @setting.send_alert
+	- if current_user.send_alert
       div
         | Notify me after I keep working for
         span id="interval"

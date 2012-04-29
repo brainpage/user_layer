@@ -17,6 +17,6 @@
       #login-tip
   
 .modal-footer
-  = submit_tag t(:login), :class => "btn btn-primary btn-large", :id => "btn-submit", :onclick => "$('#login-tip').html('#{image_tag("spinner.gif")} #{t :auth} ...')"  
+  = submit_tag t(:login), :class => "btn btn-primary btn-large", :id => "btn-submit", :onclick => "$('#login-tip').html('#{t :auth} ...')"  
 
 | </form>

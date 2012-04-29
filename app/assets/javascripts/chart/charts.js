@@ -32,9 +32,9 @@ function drawChart(sensor_uuid, fromDay, toDay){
 	}
 	
 	var keysBarChart = new bp.rsi.BarChart("#keys-bar");
-	var msclksBarChart = new bp.rsi.BarChart("#msclks-bar");
-	var dstBarChart = new bp.rsi.BarChart("#dst-bar");
-	var scrllBarChart = new bp.rsi.BarChart("#scrll-bar");
+	var msclksBarChart = new bp.rsi.BarChart("#msclks-bar", true);
+	var dstBarChart = new bp.rsi.BarChart("#dst-bar", true);
+	var scrllBarChart = new bp.rsi.BarChart("#scrll-bar", true);
 	
 	var lineChart = new bp.rsi.LineChart("#line-chart", chart);
 //	lineChart.afterDraw = function(){timeChart.draw(chart)};
@@ -50,7 +50,7 @@ function drawChart(sensor_uuid, fromDay, toDay){
 		pieChart.draw(data, true);
 	
 		var visible = data.map(function(e){return e.key});
-		console.log(visible);
+		
 		keysBarChart.draw(group, "keys", chart, visible);
 	    msclksBarChart.draw(group, "msclks", chart, visible);
 	    dstBarChart.draw(group, "dst", chart, visible);		
