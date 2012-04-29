@@ -1,26 +1,22 @@
+= form_tag rsi_sessions_path, :class => "form-horizontal", :remote => true
 .modal-header
-  | Login To Brainpage 
+  a.close data-dismiss='modal' x
+  h3 Login Brainpage
 .modal-body
-  = form_tag rsi_sessions_path, :class => "form-horizontal", :remote => true
+  
   .control-group
     label.control-label 
       = t :email
     .controls
-      = text_field_tag :email, ""
+      = text_field_tag :email, "", :class => "input"
   .control-group
     label.control-label 
       = t :password
     .controls
-      = password_field_tag :password, "", :class => "span2"
-      = submit_tag t(:login), :class => "btn btn-primary", :id => "btn-submit", :onclick => "$('#login-tip').html('#{image_tag("spinner.gif")} #{t :auth} ...')"  
+      = password_field_tag :password, "", :class => "input"     
       #login-tip
   
-  | </form>
 .modal-footer
-  .pull-right
-    = link_to image_tag("facebook.png"), "/auth/facebook"
-  .footer-text
-    = t :login_with 
+  = submit_tag t(:login), :class => "btn btn-primary btn-large", :id => "btn-submit", :onclick => "$('#login-tip').html('#{image_tag("spinner.gif")} #{t :auth} ...')"  
 
-script
-  | $(document).ready(function(){$('.dropdown-menu').find('form').click(function (e) {e.stopPropagation();});})
+| </form>

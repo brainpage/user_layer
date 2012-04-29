@@ -4,11 +4,12 @@ html
     title Smart data - Brainpage.com
     = stylesheet_link_tag "locale/#{I18n.locale}"
     = stylesheet_link_tag "application"
+    = javascript_include_tag "application"
     = csrf_meta_tags
     link rel="shortcut icon" href="#{image_path("favicon.ico")}" type="image/x-icon"
     link href='http://fonts.googleapis.com/css?family=Marmelad' rel='stylesheet' type='text/css'
 	
-  body style="background:white"
+  body 
     #land.container
       .row-fluid
         .span8
@@ -55,8 +56,30 @@ html
               | Brainpage
             .sub2 Your smart data
 
-          .center = link_to image_tag("weibo_login.png"), "/auth/weibo"
+          - if session[:invite_token].blank?
+
+            .center 
+              = weibo? ? link_to(image_tag("weibo_login.png"), "/auth/weibo") : link_to("Login with ".html_safe + image_tag("facebook.png"), "/auth/facebook", :class => "btn btn-primary btn-large btn-super")
+            .account 
+              p 
+                = link_to t(:create_account), "#", :onclick => "$('#reg-form').modal('show');"
+              p
+                = t :already
+                = link_to t(:login), "#", :onclick => "$('#login-form').modal('show');"
+
+            #login-form.login-form.modal.hide
+			  = render "login_form"
+			
+			#reg-form.login-form.modal.hide
+			  = render "reg_form"
+
+          - else
+ 		    .accept
+		      = link_to "Accept #{(@user = User.find_by_invite_token(session[:invite_token])).display_name}'s Invitation and Join", join_rsi_friend_path(@user.invite_token), :method => :post, :class => "btn btn-primary btn-large btn-super"
+		
       = render "layouts/footer"
+
+
      
 
 

@@ -34,6 +34,7 @@ en:
   past_week: Past Week
   past_month: Past Month
   all_time: All The Time
+  already: Already got one?
   feed:
     welcome: Welcome to Brainpage!
     accept_invite: 'Your friend %{name} just accepted your invitation.'
@@ -46,4 +47,5 @@ en:
   ago: " ago"
   alert: You need to install client application to view your analysis.
   download: Download Now!
+  create_account: Create An Brainpage Account
   

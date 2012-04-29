@@ -1,5 +1,5 @@
 $font-size: 18px;
-body{font-size:$font-size;}
+body{font-size:$font-size !important;}
 input, button, select, submit{font-size:16px;}
 p{font-size: $font-size * 0.9 !important}
 .btn-large{font-size: 20px !important}
@@ -26,4 +26,7 @@ svg text{
 
 .nav-tabs li{font-size: 16px; }
 
-#land h1{font-size: 50px !important;}
+#land h1{font-size: 40px !important;}
+#land .sub{font-size:20px;}
+#land h2{font-size:28px !important}
+#land p{font-size:18px !important;line-height:25px;}

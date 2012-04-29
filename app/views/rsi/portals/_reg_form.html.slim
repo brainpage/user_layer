@@ -1,31 +1,32 @@
-- if session[:invite_token].blank?
-  .block
-    - if flash[:error].present?
-      .alert.alert-error
-        = flash[:error].html_safe
-    
-    = form_tag rsi_accounts_path, :class => "form-inline" 
-    p
-      label 
-        = t :email
+= form_tag rsi_accounts_path, :class => "form-horizontal"
+.modal-header
+  a.close data-dismiss='modal' x
+  h3 
+    = t :create_account
+
+.modal-body
+  - if flash[:error].present?
+    .alert.alert-error
+      = flash[:error].html_safe
+  
+  .control-group
+    label.control-label 
+      = t :email
+    .controls
       = text_field_tag :email, "", :class => "input"
-    p
-      label
-        = t :password
-      = password_field_tag :password, "", :class => "input span"
-    p.center
-      = submit_tag t(:register), :class => "btn btn-large btn-primary"
-    | </form>
-  .block
-      - if weibo?
-        = link_to image_tag("weibo_login.png"), "/auth/weibo"
-      - else
-        | Or Login With 
-        = link_to image_tag("facebook-big.png"), "/auth/facebook"
-         
+  .control-group
+    label.control-label 
+      = t :password
+    .controls
+      = password_field_tag :password, "", :class => "input"
+  .control-group
+    label.control-label 
+      = t :password_confirmation
+    .controls
+      = password_field_tag :password_confirmation, "", :class => "input"
 
-- else
+.modal-footer
+  = submit_tag t(:register), :class => "btn btn-primary btn-large"
 
-  - @user = User.find_by_invite_token(session[:invite_token])
-  .accept
-    = link_to "Accept #{@user.display_name}'s Invitation and Join", join_rsi_friend_path(@user.invite_token), :method => :post, :class => "btn btn-primary btn-large"
+| </form>
+
