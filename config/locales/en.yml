@@ -40,6 +40,13 @@ en:
     accept_invite: 'Your friend %{name} just accepted your invitation.'
     friend_request: '%{name} would like to share apps with you.'
     setup: "You have set up your account successfully. <br />Your data is being collected to help you improve your health."
+  settings:
+    rsi_interval_description: "After how much work do you want to take a break?"
+    low_work: "Very little"
+    high_work: "Lots"
+    turn_off_break: "Turn off"
+    turn_on_break: "Turn on"
+    break_off_info: "Break notifications are currently turned off."
   see_cloud: "Check Apps Cloud"
   accept: Accept
   deny: Deny

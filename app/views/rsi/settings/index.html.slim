@@ -1,19 +1,22 @@
 .row-fluid
   .span6
     .page-header
-      h2 Notification Settings
+      div style="float:right"
+        = link_to (current_user.send_alert ? t("settings.turn_off_break") : t("settings.turn_on_break")), alert_rsi_settings_path, :method => :post, :class => "btn btn-large"
+      h2 Break Notifications
     
 	- if current_user.send_alert
       div
-        | Notify me after I keep working for
-        span id="interval"
-          = current_user.rsi_interval
-        | minutes
-        div style="margin:10px"
+        = t("settings.rsi_interval_description")
+        div style="margin:10px; margin-top:30px"
+          div style="float:right"
+            = t("settings.high_work")
+          div
+            = t("settings.low_work")
           #interval-slider
-    hr.soften
-    = link_to (current_user.send_alert ? "Don't notify me" : "Notify me"), alert_rsi_settings_path, :method => :post, :class => "btn btn-large"
-
+    - else
+      h3
+        = t("settings.break_off_info")
 
   .span6
     .page-header
