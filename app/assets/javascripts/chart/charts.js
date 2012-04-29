@@ -37,7 +37,7 @@ function drawChart(sensor_uuid, fromDay, toDay){
 	var scrllBarChart = new bp.rsi.BarChart("#scrll-bar", true);
 	
 	var lineChart = new bp.rsi.LineChart("#line-chart", chart);
-//	lineChart.afterDraw = function(){timeChart.draw(chart)};
+	lineChart.afterDraw = function(){timeChart.draw(chart)};
 	
 	lineChart.afterBrush = function(fromTime, toTime){
 		chart.dataByApp.filterAll();

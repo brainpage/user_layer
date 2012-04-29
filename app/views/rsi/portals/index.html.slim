@@ -1,25 +1,4 @@
-.row-fluid
-  .span6
-    .page-header
-      h2 = t :updates
-    ul.feeds
-      - for feed in @feeds 
-        li.row-fluid
-          = render_feed feed 
-              
-  .span6
-    .page-header
-      h2 
-        = t :analysis  
-        small 
-	      = link_to t(:view_more), rsi_charts_path
-	- if @uuid.blank?
-	  = download_rsi_client
-	- else
-      h3 = t :today
-      
-      #line-chart
-      #pie-chart style="margin-top:-40px;text-align:center"
- 
-      script
-        | drawPortalChart("#{@uuid}");
+ul.feeds
+  - for feed in @feeds 
+    li.row-fluid
+      = render_feed feed 
