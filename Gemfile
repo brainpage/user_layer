@@ -38,6 +38,7 @@ gem 'omniauth'
 #gem 'omniauth-google-oauth2', :git => 'https://github.com/zquestz/omniauth-google-oauth2.git'
 gem 'omniauth-facebook'
 gem 'omniauth-weibo-oauth2'
+gem 'i18n-js'
 
 gem 'capistrano'
 gem 'therubyracer', :require => 'v8'

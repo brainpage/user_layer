@@ -21,7 +21,7 @@ function drawChart(sensor_uuid, fromDay, toDay){
 	var pieChart = new bp.rsi.PieChart("#pie-chart");
 	
 	pieChart.mousedown = function(d){
-		$('#app-detail').text("Detail of " + d.key);
+		$('#app-detail').text(I18n.t("detail_of", {app: d.key}));
 		$("html,body").scrollTop($(document).height());			
 		
 		d3.selectAll("#pie-chart .pie-item").attr("fill", function(d){return d.color}).attr("stroke-width", 1);
@@ -35,9 +35,13 @@ function drawChart(sensor_uuid, fromDay, toDay){
 	var msclksBarChart = new bp.rsi.BarChart("#msclks-bar", true);
 	var dstBarChart = new bp.rsi.BarChart("#dst-bar", true);
 	var scrllBarChart = new bp.rsi.BarChart("#scrll-bar", true);
+	var kmrBarChart = new bp.rsi.BarChart("#kmr-bar", true);
 	
 	var lineChart = new bp.rsi.LineChart("#line-chart", chart);
-	lineChart.afterDraw = function(){timeChart.draw(chart)};
+	
+	if(fromDay + toDay == 0){
+		lineChart.afterDraw = function(){timeChart.draw(chart)};
+	}	
 	
 	lineChart.afterBrush = function(fromTime, toTime){
 		chart.dataByApp.filterAll();
@@ -55,6 +59,7 @@ function drawChart(sensor_uuid, fromDay, toDay){
 	    msclksBarChart.draw(group, "msclks", chart, visible);
 	    dstBarChart.draw(group, "dst", chart, visible);		
 		scrllBarChart.draw(group, "scrll", chart, visible);
+		kmrBarChart.draw(group, "kmr", chart, visible);
 	};
 	
 	lineChart.draw();

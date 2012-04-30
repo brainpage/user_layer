@@ -19,9 +19,9 @@ bp.rsi.BarChart = function(domId, short){
 	var tip = this.svg.append("g").attr("class", "tip")
 		.attr("transform", "translate(" + (this.width / 3) + ",-10)");	
 	tip.append("rect").attr("transform", "translate(0, -15)").attr("fill", "#9abbec").attr("width", 20).attr("height", 20);	
-	tip.append("text").attr("transform", "translate(24, 0)").text("You");
+	tip.append("text").attr("transform", "translate(24, 0)").text(I18n.t("you"));
 	tip.append("rect").attr("transform", "translate(70, -15)").attr("fill", "#fdcb9a").attr("width", 20).attr("height", 20);
-	tip.append("text").attr("transform", "translate(94, 0)").text("Global Average");
+	tip.append("text").attr("transform", "translate(94, 0)").text(I18n.t("global"));
 };
 
 bp.rsi.BarChart.prototype.draw = function(group, attr, chart, visible){

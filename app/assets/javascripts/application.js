@@ -8,3 +8,5 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require_tree .
+//= require i18n
+//= require i18n/translations

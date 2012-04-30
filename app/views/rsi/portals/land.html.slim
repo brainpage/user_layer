@@ -9,6 +9,8 @@ html
     link rel="shortcut icon" href="#{image_path("favicon.ico")}" type="image/x-icon"
     - if !weibo?
       link href='http://fonts.googleapis.com/css?family=Marmelad' rel='stylesheet' type='text/css'
+	script
+	  | $(document).ready(function(){$('.ad-block img').hover_caption();});
 	
   body style="background:none"
     #land.container
@@ -21,31 +23,23 @@ html
           .row-fluid
             .span6
               .ad-block.c.c1
-                h2 
-                  = t :ad_1
-                p  
-                  = t :ad_1_desc
+                h2 = t :ad_1
+                = image_tag "ad_1.jpg", :title => t(:ad_1_desc)
+
             .span6
               .ad-block.c.c2
           	    h2 = t :ad_2
-                  .center = image_tag "line.png"
-                  p 
-                    = t :ad_2_desc
+                  = image_tag("ad_2.jpg", :title => t(:ad_2_desc))
           .row-fluid          
             .span6
-              .ad-block
-                .c.c1
-          	      h2 = t :ad_3
-                    p
-                      = t :ad_3_desc
-                .center = image_tag "bar.png", :style=>"height:160px"
+              .ad-block.c.c1
+          	    h2 = t :ad_3
+                  = image_tag("ad_3.jpg", :title => t(:ad_3_desc))
 	        .span6
 	          .ad-block.c.c3
 	            h2 
 	              = t :ad_4
-	            p 
-	              = t :ad_4_desc
-	            .center = image_tag "pie.png"
+	            = image_tag "ad_4.jpg", :title => t(:ad_4_desc)
 	      
 	      - if !weibo?
 	        .ad-block.c.c4
@@ -90,7 +84,6 @@ html
       = render "layouts/footer"
 
 
-     
 
 
 

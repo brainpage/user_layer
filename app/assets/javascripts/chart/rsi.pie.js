@@ -29,7 +29,7 @@ bp.rsi.PieChart = function(domId){
 	  .attr("dy", 5)
 	  .attr("class", "center-label")
 	  .attr("text-anchor", "middle") 
-	  .text("Loading Apps...");
+	  .text(I18n.t("load_app"));
 
 	this.arc_group = this.vis.append("svg:g")
 	  .attr("class", "arc")
@@ -125,7 +125,7 @@ bp.rsi.PieChart.prototype.draw = function(data, fresh) {
 		};
 	}
 	
-	this.centerLabel.text("Apps");		
+	this.centerLabel.text(I18n.t("app"));		
 	
 	//DRAW ARC PATHS
 	var paths = this.arc_group.selectAll("path").data(this.filteredPieData);

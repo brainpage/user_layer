@@ -40,7 +40,7 @@ h2,h3,h4,h5,h6{font-weight: normal !important}
 .header .logo{font-size:46px; line-height:46px;color:#555}
 .header .logo img{height:50px;}
 
-.ad-block img{width:80% !important; text-align: center}
+.ad-block img{width:360px; text-align: center}
 .block{@include round; background-color: #8ec1da; color: white; padding:10px; margin-bottom:20px}
 
 .footer{margin:20px 0;}
@@ -188,22 +188,28 @@ svg .label{font-weight: normal !important;font-size:13px}
 #land .sub, #land .sub2{color: #3b77c3}
 #land .sub2{margin:5px; }
 #land .sub{margin-bottom:10px;}
-#land .ad-block{height:300px;}
+#land .ad-block{height:280px;}
 #land .c{margin:10px 0; color: white;padding:15px 20px;}
 #land .c1{background: #35b1f1}
 #land .c2{background: #93d00d}
 #land .c3{background: #f1c416}
 #land .c4{background: #3b77c3}
+#land img{margin-top:15px; @include opacity}
+#land .ad-block h2{color: white}
 #land p{text-align: right; margin-top:10px; width: 80%;margin-left:19%;}
-#land .company{margin-top:-15px}
+#land .company{margin-top:-45px}
 #land .account{text-align: right; margin-top:20px}
 #land .btn-super{height:40px !important;line-height:40px !important;}
 #land .logo{background:url('/assets/logo-big.png') no-repeat scroll left center; padding-left:65px; height:65px; padding-top:20px}
 #land .logo span{font-size:30px; }
+
+.hover_caption {}
+.hover_caption h3{background:#000;margin-top:10px;padding:10px; width:340px; z-index:10; color:white; @include opacity}
 
 .your, .total{ @include font; padding: 10px;margin: 0 3px; width: 10px !important; text-align: center; }
 .your{background: steelblue}
 
 .logo img{@include opacity; width:40px; height:40px; margin-right: 10px;}
 .total{background: #003399}
+
 

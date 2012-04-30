@@ -59,6 +59,15 @@ en:
   past_month: Past Month
   all_time: All The Time
   already: Already got one?
+  loading: "Loading data of %{time} ..."
+  today: today
+  yesterday: yesterday
+  view_detail: Click pie chart to see detail of application.
+  detail_of: "Detail of %{app}"
+  load_app: Loading Apps...
+  app: Apps
+  global: Global Average
+  you: You
   feed:
     welcome: Welcome to Brainpage!
     accept_invite: 'Your friend %{name} just accepted your invitation.'

@@ -14,7 +14,7 @@
     .tab-content
   	  #time-trend.tab-pane
   	    = t(:time_trend_desc).html_safe
-  	    #time-chart.chart
+  	    #time-chart
 
   	  #detail.tab-pane.active
           .pull-right
@@ -40,17 +40,21 @@
               li
                 a data-toggle="tab" href="#mouse-detail" 
                   = t :mouse_intense
+			  li
+	            a data-toggle="tab" href="#kmr-bar" 
+	              = t :kmr
             .tab-content
           	#time-detail.tab-pane.active
                 .row-fluid
 	              .span5
                     #pie-chart.chart
                   .span7
-                    h3 id="app-detail" Click pie chart to see detail of application.
+                    #app-detail
+                      = t :view_detail
                     #zoom-line.chart
                 
               #keys-bar.tab-pane.chart
-
+              #kmr-bar.tab-pane.chart
               #mouse-detail.tab-pane
                 .tabbable.tabs-left
                   ul.nav.nav-tabs 
@@ -70,4 +74,4 @@
           
               script
                 | drawChart("#{@uuid}", 0, 0);
-                | $("#day-slider").slider({values: [6,6], min: 0, max:6, step: 1, range:true, slide: function(event, ui) {}, change: function(event, ui){drawChart("#{@uuid}", 6 - ui.values[0], 6 - ui.values[1])}});
+                | $("#day-slider").slider({values: [6,6], min: 0, max:6, step: 1, range:true, slide: function(event, ui) {}, change: function(event, ui){drawChart("#{@uuid}", 6 - ui.values[1], 6 - ui.values[0])}});

@@ -34,10 +34,10 @@ bp.rsi.LineChart.prototype.draw = function(){
 		var timeStr, from, to;
 		switch(day){
 			case 0:
-				timeStr = "today";
+				timeStr = I18n.t("today");
 				break;
 			case 1:
-				timeStr = "yesterday";
+				timeStr = I18n.t("yesterday");
 				break;
 			default:
 				timeStr = getDayStr(day)
@@ -47,9 +47,9 @@ bp.rsi.LineChart.prototype.draw = function(){
 		var bod = bp.chart.Utils.beginningOfDay(now), eod = bp.chart.Utils.endOfDay(now);
 		from = Math.floor(bod.getTime() / 1000), to = Math.floor(eod.getTime() / 1000);		
 		
-		stage.append("text").attr("transform", "translate("+ line.width / 3 + ", " + line.height + ")").attr("class", "center-label").text("Loading data of " + timeStr + "...");
+		stage.append("text").attr("transform", "translate("+ line.width / 3 + ", " + line.height + ")").attr("class", "center-label").text(I18n.t("loading", {time: timeStr}));
 
-		var app = 'var app=sensor.find("' + line.chart.sensor_uuid + '").by_feature(feature("app").aggregate).with(feature("dst").weighted_sum).with(feature("keys").weighted_sum).with(feature("msclks").weighted_sum).with("point", feature("act").weighted_sum).with(feature("scrll").weighted_sum);sensor.find("' + line.chart.sensor_uuid + '").by_time(60).with("apps", app).with("point", feature("act").weighted_sum).from(' + from + ').to('+ to + ').cache("line-chart")'
+		var app = 'var app=sensor.find("' + line.chart.sensor_uuid + '").by_feature(feature("app").aggregate).with(feature("dst").weighted_sum).with(feature("kmr").weighted_sum).with(feature("keys").weighted_sum).with(feature("msclks").weighted_sum).with("point", feature("act").weighted_sum).with(feature("scrll").weighted_sum);sensor.find("' + line.chart.sensor_uuid + '").by_time(60).with("apps", app).with("point", feature("act").weighted_sum).from(' + from + ').to('+ to + ').cache("line-chart-v1")'
 
 		var dateStr = getDayStr(day);
 		var data = loadedData[dateStr];
@@ -70,9 +70,6 @@ bp.rsi.LineChart.prototype.draw = function(){
 			loadedData[dateStr] = $.extend(true, [], data);
 			
 			stage.select("text").remove();
-			
-			console.log("=============")
-			console.log(data);
 			
 			if (data != null ){
 				var xAxis = d3.svg.axis().scale(line.x).orient("bottom");

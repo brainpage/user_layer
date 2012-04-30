@@ -31,14 +31,14 @@ zh:
   stop_rsi: '离远点，电脑职业病！'
   stop_rsi_sub: 健康工作的贴心小助手
   ad_1: 休息，休息一下！
-  ad_1_desc: 根据您的工作强度来提醒您何时该从忙碌的工作中伸个懒腰、活动一下
+  ad_1_desc: 我们的客户端软件会根据您的工作强度来提醒您何时该从忙碌的工作中伸个懒腰、活动一下
   ad_2: 合理安排工作时间
   ad_2_desc: 数据图表分析显示出您的电脑使用情况，帮助您合理规划工作时间
   ad_3: 提高职业技能
   ad_3_desc: 通过与其他人的对比分析，了解自己的水平并提高
   ad_4: 找找朋友的宝贝
   ad_4_desc: 朋友在用什么好东东，你也来试试吧！
-  smart_data: 智慧你的数据
+  smart_data: 你的智慧数据
   register: 马上注册
   begin_journey: 安装向导
   step1: 下载并安装客户端软件
@@ -72,6 +72,15 @@ zh:
   past_week: 过去一周
   past_month: 过去一个月
   all_time: 所有时间
+  loading: '正在加载 %{time} 的数据 ...'
+  load_app: 正在加载应用...
+  app: 应用
+  global: 平均值
+  you: 你自己
+  today: 今天
+  yesterday: 昨天
+  view_detail: 点击饼图可查看应用详情
+  detail_of: "%{app} 使用详情"
   feed:
     welcome: 欢迎来到Brainpage!
     accept_invite: '%{name}接受了你的好友邀请'
@@ -95,7 +104,6 @@ zh:
   updates: 最新动态
   analysis: 数据分析
   view_more: " 查看详细" 
-  today: 今日数据
   ago: 前
   publish: 发布
   allow_tip: 任何人可以加我为好友并分享应用数据
