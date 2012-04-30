@@ -2,9 +2,9 @@ class Rsi::SessionsController < ApplicationController
   def create
     @user = User.find_by_email(params[:email])
     if @user.blank?
-      @error = "Email doesn't exist!"
+      @error = I18n.t(:no_mail)
     elsif !@user.valid_password?(params[:password])
-      @error = "Wrong password!"
+      @error = I18n.t(:wrong_password)
     else
       sign_in @user
     end

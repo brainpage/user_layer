@@ -1,52 +1,52 @@
-.row-fluid
-  .span6
-    .page-header
-      div style="float:right"
+tabbable
+  ul.nav.nav-tabs
+    li.active
+      a data-toggle="tab" href="#break_setting" 
+        = t :break_setting
+    li 
+      a data-toggle="tab" href="#account_setting" 
+        = t :account_setting
+  .tab-content
+    #break_setting.tab-pane.active style="width:60%"
+      .right
         = link_to (current_user.send_alert ? t("settings.turn_off_break") : t("settings.turn_on_break")), alert_rsi_settings_path, :method => :post, :class => "btn btn-large"
-      h2 Break Notifications
-    
-	- if current_user.send_alert
-      div
-        = t("settings.rsi_interval_description")
-        div style="margin:10px; margin-top:30px"
-          div style="float:right"
-            = t("settings.high_work")
-          div
-            = t("settings.low_work")
-          #interval-slider
-    - else
-      h3
+      
+	  - if current_user.send_alert
+        div
+          = t("settings.rsi_interval_description")
+          div style="margin:10px; margin-top:30px"
+            div style="float:right"
+              = t("settings.high_work")
+            div
+              = t("settings.low_work")
+            #interval-slider
+      - else
         = t("settings.break_off_info")
-
-  .span6
-    .page-header
-      h2 Account Settings
-    
-    - if flash[:notice].present?
-      div.alert.alert-info
-        = flash[:notice]
-    - if current_user.active_oauth_account.blank?
-      = form_tag pwd_rsi_accounts_path, :class => "form-horizontal"
-	  .row-fluid
-	    .span4
-	      .login-label New Password
-	    .span8
-	      = password_field_tag :password, "",:class => "login-input"
       
-	  .row-fluid
-	    .span4
-	      .login-label Confirmation
-	    .span8
-	      = password_field_tag :password_confirmation,"", :class => "login-input"
+    #account_setting.tab-pane
+      - if flash[:notice].present?
+        div.alert.alert-info
+          = flash[:notice]
+      - if current_user.active_oauth_account.blank?
+        = form_tag pwd_rsi_accounts_path, :class => "form-horizontal"
+	    .row-fluid
+	      .span4
+	        .login-label 
+	          = t :new_password
+	      .span8
+	        = password_field_tag :password, "",:class => "login-input"
       
-	  .row-fluid
-	    .span4 &nbsp;
-	    .span8
-	      = submit_tag "Change Password", :class => "btn btn-large"
-    
-    .pull-right
-      = link_to "Clear My Data", alert_rsi_settings_path, :method => :post, :class => "btn", :confirm => "Are you sure?"
-
+	    .row-fluid
+	      .span4
+	        .login-label 
+	          = t :confirmation
+	      .span8
+	        = password_field_tag :password_confirmation,"", :class => "login-input"
+      
+	    .row-fluid
+	      .span4 &nbsp;
+	      .span8
+	        = submit_tag t(:change_pwd), :class => "btn btn-large"
  
 script
   | $("#interval-slider").slider({value: #{current_user.rsi_interval}, min: 10, max:60, step: 5, slide: function(event, ui) { $("#interval").text(ui.value)}, change: function(event, ui){$.post('#{rsi_settings_path.html_safe}', {value: ui.value})}});

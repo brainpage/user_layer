@@ -1,14 +1,10 @@
-= form_tag rsi_accounts_path, :class => "form-horizontal"
+= form_tag rsi_accounts_path, :class => "form-horizontal", :remote => true
 .modal-header
   a.close data-dismiss='modal' x
   h3 
     = t :create_account
 
-.modal-body
-  - if flash[:error].present?
-    .alert.alert-error
-      = flash[:error].html_safe
-  
+.modal-body 
   .control-group
     label.control-label 
       = t :email
@@ -24,9 +20,10 @@
       = t :password_confirmation
     .controls
       = password_field_tag :password_confirmation, "", :class => "input"
+  #reg-tip.controls
 
 .modal-footer
-  = submit_tag t(:register), :class => "btn btn-primary btn-large"
+  = submit_tag t(:register), :class => "btn btn-primary btn-large", :onclick => "$('#reg-tip').html('#{t :reg} ...')" 
 
 | </form>
 

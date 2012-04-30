@@ -66,13 +66,15 @@ bp.rsi.LineChart.prototype.draw = function(){
 		}		
 		
 		function doDraw(data){
-			console.log(data);
 		
 			loadedData[dateStr] = $.extend(true, [], data);
 			
 			stage.select("text").remove();
 			
-			if (data != null && data.length > 0){
+			console.log("=============")
+			console.log(data);
+			
+			if (data != null ){
 				var xAxis = d3.svg.axis().scale(line.x).orient("bottom");
 
 			    var area = d3.svg.area()

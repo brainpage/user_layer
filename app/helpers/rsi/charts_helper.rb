@@ -6,7 +6,7 @@ module Rsi::ChartsHelper
       ti = i.days.ago
       pre = "&nbsp;"
       if ti.month != month
-        pre = "#{ti.month}."
+        pre = "#{ti.month} "
         month = ti.month
       end
       

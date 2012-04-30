@@ -7,7 +7,8 @@ html
     = javascript_include_tag "application"
     = csrf_meta_tags
     link rel="shortcut icon" href="#{image_path("favicon.ico")}" type="image/x-icon"
-    link href='http://fonts.googleapis.com/css?family=Marmelad' rel='stylesheet' type='text/css'
+    - if !weibo?
+      link href='http://fonts.googleapis.com/css?family=Marmelad' rel='stylesheet' type='text/css'
 	
   body
     
@@ -19,10 +20,10 @@ html
               span.icon-bar
               span.icon-bar
               span.icon-bar
-            
+            a.brand href="#" 
             .nav-collapse
               ul.nav
-                  = li_for("portals"){link_to t("nav.feed"), rsi_portals_path, :class => "bg-logo"}
+                  = li_for("portals"){link_to t("nav.feed"), rsi_portals_path}
                   = li_for("charts"){link_to t("nav.my"), rsi_charts_path}
 	  			= li_for("friends"){link_to t("nav.friend"), rsi_friends_path}
                   - if controller_name == "settings"
@@ -42,6 +43,11 @@ html
 	                li.divider
 	                li
 	                  = link_to t(:logout), destroy_user_session_path, :method => :delete
+        .navbar-banner
+          
+          .green
+          .yellow
+          .blue
       
     .container
       - if current_user.blank?

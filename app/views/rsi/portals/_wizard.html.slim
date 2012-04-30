@@ -2,16 +2,20 @@
   #wizard-step.modal
     .modal-header
       a.close data-dismiss='modal' x
-      h3 Begin your health journey
+      h3 
+        = t :begin_journey
     .modal-body
       ul
         li 
-          div Download and install client app.
+          div 
+            = t :step1
           .download 
-            = link_to image_tag("apple.png") + " Mac OS", "/"
-            = link_to image_tag("windows.png") + " Windows", "/"
-        li Click "View charts" or "Settings" from menu.
-        li You are ready to go!
+            = link_to image_tag("apple.png") + " Mac OS", "/rsi-mac.zip"
+            | (178KB)
+            = link_to image_tag("windows.png") + " Windows", "/rsi-windows.exe"
+            | (418KB)
+        li = t :step2
+        li = t :step3
     .modal-footer
       
 

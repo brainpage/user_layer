@@ -4,6 +4,10 @@
 en:
   email: Email
   password: Password
+  password_confirmation: Confirmation
+  new_password: New Password
+  confirmation: Confirmation
+  change_pwd: Change Password
   logout: Logout
   login: Login
   nav:
@@ -11,6 +15,17 @@ en:
     my: My Analysis
     friend: Friends App
     setting: Settings
+  stop_rsi: 'Stop RSI, Work Better!'
+  stop_rsi_sub: Your personal assistant for healthier workstyle
+  ad_1: Take Breaks When Needed
+  ad_1_desc: Our smart meter can learn your work intensity and notify you to take breaks when needed
+  ad_2: Optimize Your Day
+  add_2_desc: with our analysis of your time and application usage
+  ad_3: Improve Professional Skills
+  ad_3_desc: through understanding your learning curve
+  ad_4: Learn Friends' App
+  ad_4_desc: to find out the most suitable one for yourself
+  smart_data: Your Smart Data
   register: Start Now For Free
   join: Join Now
   home: Home
@@ -20,6 +35,15 @@ en:
   english: English
   chinese: 中文
   auth: Authenticate
+  auth_success: Success! Redirecting ...
+  reg_success: Success! Redirecting ...
+  reg: Submitting
+  no_mail: "Email doesn't exist!"
+  wrong_password: Wrong password!
+  begin_journey: Begin your health journey
+  step1: Download and install client app.
+  step2: Click "View charts" or "Settings" from menu.
+  step3: You are ready to go!
   login_with: Or Login With
   blog: Blog
   detail: Detail Analysis
@@ -29,8 +53,8 @@ en:
   time_percentile: Time Percentile
   key_stroke: Key Strokes
   mouse_clicks: Mouse Clicks
-  mouse_move: Mouse Move Distance
-  mouse_scrll: Mouse Scroll Distance
+  mouse_move: Move Distance
+  mouse_scrll: Scroll Distance
   past_week: Past Week
   past_month: Past Month
   all_time: All The Time
@@ -40,6 +64,8 @@ en:
     accept_invite: 'Your friend %{name} just accepted your invitation.'
     friend_request: '%{name} would like to share apps with you.'
     setup: "You have set up your account successfully. <br />Your data is being collected to help you improve your health."
+  break_setting: Break Notifications
+  account_setting: Account Settings
   settings:
     rsi_interval_description: "After how much work do you want to take a break?"
     low_work: "Very little"

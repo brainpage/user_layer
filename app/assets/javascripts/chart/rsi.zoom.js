@@ -92,7 +92,7 @@ bp.rsi.ZoomChart.prototype.draw = function(data, app){
 	    .call(brush)
 	  	.selectAll("rect")
 	    .attr("y", -6)
-	    .attr("height", this.height2 + 7).attr("width", 50);
+	    .attr("height", this.height2 + 7);
 		
 	var x = this.x,
 	 	x2 = this.x2,

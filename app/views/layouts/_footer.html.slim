@@ -1,6 +1,7 @@
 .footer
   .pull-right
-    | Copyright 2012, Brainpage Inc.
+    | © 2012, Brainpage
+    = link_to t(:icp), "http://www.miibeian.gov.cn", :target => "_blank" if weibo?
   = link_to t(:home)
   = link_to t(:contact)
   = link_to t(:about)

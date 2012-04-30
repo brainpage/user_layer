@@ -1,4 +1,4 @@
-$font-size: 18px;
+$font-size: 16px;
 body{font-size:$font-size !important;}
 input, button, select, submit{font-size:16px;}
 p{font-size: $font-size * 0.9 !important}
@@ -8,7 +8,7 @@ p{font-size: $font-size * 0.9 !important}
 .f10{font-size: $font-size}
 .f9{font-size: $font-size * 0.9}
 
-.navbar{font-size:20px;}
+.navbar{font-size:18px;}
 .navbar .brand{font-size:24px !important; }
 .navbar .pull-right{font-size:18px; }
 
@@ -27,6 +27,8 @@ svg text{
 .nav-tabs li{font-size: 16px; }
 
 #land h1{font-size: 40px !important;}
-#land .sub{font-size:20px;}
+#land .sub{font-size:20px;margin:10px 0;}
 #land h2{font-size:28px !important}
 #land p{font-size:18px !important;line-height:25px;}
+
+.calendar div{font-size:14px}

@@ -13,8 +13,7 @@
     .clear
     .tab-content
   	  #time-trend.tab-pane
-  	    h3
-          = t :past_month
+  	    = t(:time_trend_desc).html_safe
   	    #time-chart.chart
 
   	  #detail.tab-pane.active
@@ -24,8 +23,7 @@
             .clear           
             #day-slider style="width:210px;margin:10px"
 
-          h3 
-            = t :daily_use       
+          = t(:detail_desc).html_safe       
           
           #line-chart.chart
           
@@ -41,7 +39,7 @@
                   = t :key_stroke
               li
                 a data-toggle="tab" href="#mouse-detail" 
-                  = t :mouse_clicks
+                  = t :mouse_intense
             .tab-content
           	#time-detail.tab-pane.active
                 .row-fluid
@@ -55,7 +53,7 @@
 
               #mouse-detail.tab-pane
                 .tabbable.tabs-left
-                  ul.nav.nav-tabs
+                  ul.nav.nav-tabs 
 	                li.active
 	                  a data-toggle="tab" href="#msclks-bar" 
 	                    = t :mouse_clicks
@@ -72,4 +70,4 @@
           
               script
                 | drawChart("#{@uuid}", 0, 0);
-                | $("#day-slider").slider({values: [0,0], min: 0, max:6, step: 1, range:true, slide: function(event, ui) {}, change: function(event, ui){drawChart("#{@uuid}", ui.values[0], ui.values[1])}});
+                | $("#day-slider").slider({values: [6,6], min: 0, max:6, step: 1, range:true, slide: function(event, ui) {}, change: function(event, ui){drawChart("#{@uuid}", 6 - ui.values[0], 6 - ui.values[1])}});

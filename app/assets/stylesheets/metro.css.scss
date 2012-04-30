@@ -6,8 +6,9 @@ $line-height: 25px;
 @mixin font{font-family: 'Marmelad', sans-serif;  }
 @mixin round{-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;}
 
-body{ margin:0; padding:0;height:100%; @include font; background: #fff; color: #222;}
+body{ margin:0; padding:0;height:100%; @include font; background: url('/assets/grid.png'); color: #222;}
 input, button, select, submit{@include font;}
+a{color: #3b77c3}
 li{list-style: none}
 img{vertical-align:middle; margin-top:-5px;}
 h2,h3,h4,h5,h6{font-weight: normal !important}
@@ -15,13 +16,21 @@ h2,h3,h4,h5,h6{font-weight: normal !important}
 .right{text-align: right}
 .clear{clear:both}
 
-.navbar-inner{@include high-opacity;}
-.navbar a{color: white}
+.navbar-inner{@include high-opacity; }
+.navbar a{color: white;}
+.navbar .nav > li > a{color: #eee;}
+.navbar .nav > li{border-top:2px solid transparent;}
+.navbar .nav > li.active{border-top:2px solid #35b1f1;}
 .navbar .dropdown-menu, .navbar .dropdown-menu a{color: #333;}
 
-.bg-logo{background: url('/assets/logo.png') no-repeat scroll left center; padding-left:40px !important;}
+.navbar-banner div{float:left; width:33%;height:4px;}
+.navbar-banner .blue{background-color: #35b1f1}
+.navbar-banner .yellow{background-color: #93d00d}
+.navbar-banner .green{background-color: #f1c416;width:34%}
 
-.main{background:#fff; min-height:600px; padding:25px 30px 40px 30px;
+.brand{background: url('/assets/logo.png') no-repeat scroll left center;height:40px; padding:0 !important; padding-left:60px !important;margin-left:-40px !important;}
+
+.main{background:#fff; min-height:600px; padding:25px 30px 40px 30px;border:1px solid #eee;
 -webkit-box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.125), inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
    -moz-box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.125), inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
         box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.125), inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
@@ -99,7 +108,7 @@ hr.soften {
 #wizard-step ul{margin-left:40px;}
 #wizard-step li{margin: 15px 0; list-style-type: decimal}
 #wizard-step .download{margin: 20px 0 10px 0;}
-#wizard-step .download a{margin-right: 20px;}
+#wizard-step .download a{margin:0 5px 0 20px;}
 
 #weibo-share form{margin: 0 !important}
 #weibo-share .modal-footer{padding:10px !important}
@@ -111,9 +120,13 @@ hr.soften {
 
 #line-chart{margin-bottom: 20px}
 
+.tabs-left .tab-content{width:80% !important; float:left}
+
 svg {
   @include font; 
 }
+
+svg .label{font-weight: normal !important;font-size:13px}
 
 #line-chart text{
   font-size: 12px;
@@ -173,7 +186,8 @@ svg {
 
 #land{margin-top: 50px}
 #land .sub, #land .sub2{color: #3b77c3}
-#land .sub{margin:10px 0; }
+#land .sub2{margin:5px; }
+#land .sub{margin-bottom:10px;}
 #land .ad-block{height:300px;}
 #land .c{margin:10px 0; color: white;padding:15px 20px;}
 #land .c1{background: #35b1f1}
@@ -184,6 +198,8 @@ svg {
 #land .company{margin-top:-15px}
 #land .account{text-align: right; margin-top:20px}
 #land .btn-super{height:40px !important;line-height:40px !important;}
+#land .logo{background:url('/assets/logo-big.png') no-repeat scroll left center; padding-left:65px; height:65px; padding-top:20px}
+#land .logo span{font-size:30px; }
 
 .your, .total{ @include font; padding: 10px;margin: 0 3px; width: 10px !important; text-align: center; }
 .your{background: steelblue}

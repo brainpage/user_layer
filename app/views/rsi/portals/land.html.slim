@@ -7,54 +7,64 @@ html
     = javascript_include_tag "application"
     = csrf_meta_tags
     link rel="shortcut icon" href="#{image_path("favicon.ico")}" type="image/x-icon"
-    link href='http://fonts.googleapis.com/css?family=Marmelad' rel='stylesheet' type='text/css'
+    - if !weibo?
+      link href='http://fonts.googleapis.com/css?family=Marmelad' rel='stylesheet' type='text/css'
 	
-  body 
+  body style="background:none"
     #land.container
       .row-fluid
         .span8
-          h1 Stop RSI, Work Better!
-          .sub Your personal assistant for healthier workstyle
+          h1 
+            = t :stop_rsi
+          .sub 
+            = t :stop_rsi_sub
           .row-fluid
             .span6
               .ad-block.c.c1
-                h2 Take Breaks When Needed
+                h2 
+                  = t :ad_1
                 p  
-                  | Our smart meter can learn your work intensity and notify you to take breaks when needed
-                      
+                  = t :ad_1_desc
             .span6
               .ad-block.c.c2
-          	    h2 Optimize Your Day
+          	    h2 = t :ad_2
                   .center = image_tag "line.png"
-                  p with our analysis of your time and application usage
+                  p 
+                    = t :ad_2_desc
           .row-fluid          
             .span6
               .ad-block
                 .c.c1
-          	      h2 Improve Professional Skills
+          	      h2 = t :ad_3
                     p
-                      | through understanding your learning curve
+                      = t :ad_3_desc
                 .center = image_tag "bar.png", :style=>"height:160px"
 	        .span6
 	          .ad-block.c.c3
 	            h2 
-	              | Learn Friends' App
-	            p to find out the most suitable one for yourself
+	              = t :ad_4
+	            p 
+	              = t :ad_4_desc
 	            .center = image_tag "pie.png"
-	      .ad-block.c.c4
-	        .row-fluid
-	          .span3 
-	            ul
-	              li What is RSI?
-	          .span9
-	            | Repetitive strain injury (RSI) (also known as repetitive stress injury, repetitive motion injuries, repetitive motion disorder (RMD), cumulative trauma disorder (CT), ...
+	      
+	      - if !weibo?
+	        .ad-block.c.c4
+	          .row-fluid
+	            .span3 
+	              ul
+	                li What is RSI?
+	            .span9
+	              | Repetitive strain injury (RSI) (also known as repetitive stress injury, repetitive motion injuries, repetitive motion disorder (RMD), cumulative trauma disorder (CT), ...
+	
         .span4.company    
           .page-header
             .pull-right
               = link_to(I18n.locale.to_s == "en" ? t(:chinese) : t(:english), locale_rsi_settings_path(:locale => (I18n.locale.to_s == "en" ? "zh" : "en")), :method => :post)
-            h2 
-              | Brainpage
-            .sub2 Your smart data
+            
+            .logo
+              span Brainpage
+              .sub2 
+                = t :smart_data
 
           - if session[:invite_token].blank?
 

@@ -4,6 +4,10 @@
 zh:
   email: 我的邮箱
   password: 密码
+  new_password: 新密码
+  confirmation: 新密码确认
+  change_pwd: 修改密码
+  password_confirmation: 密码确认
   logout: 退出
   login: 登录
   activerecord:
@@ -18,12 +22,28 @@ zh:
             password:
               blank: 不能为空！ 
               too_short: 太短！
+              confirmation: 不匹配！
   nav:
     feed: 状态更新
     my: 我的分析
     friend: 好友的应用
     setting: 设置
+  stop_rsi: '离远点，电脑职业病！'
+  stop_rsi_sub: 健康工作的贴心小助手
+  ad_1: 休息，休息一下！
+  ad_1_desc: 根据您的工作强度来提醒您何时该从忙碌的工作中伸个懒腰、活动一下
+  ad_2: 合理安排工作时间
+  ad_2_desc: 数据图表分析显示出您的电脑使用情况，帮助您合理规划工作时间
+  ad_3: 提高职业技能
+  ad_3_desc: 通过与其他人的对比分析，了解自己的水平并提高
+  ad_4: 找找朋友的宝贝
+  ad_4_desc: 朋友在用什么好东东，你也来试试吧！
+  smart_data: 智慧你的数据
   register: 马上注册
+  begin_journey: 安装向导
+  step1: 下载并安装客户端软件
+  step2: 安装完成后，从菜单栏点击"View charts"或"Settings"
+  step3: 设置完成!
   join: 加入我们
   home: 首页
   contact: 联系我们
@@ -32,17 +52,23 @@ zh:
   english: English
   chinese: 中文
   auth: 验证用户身份
+  auth_success: "验证通过，跳转页面 ..."
+  reg_success: "注册成功，跳转页面 ..."
+  reg: "提交信息"
+  no_mail: "邮箱不存在"
+  wrong_password: 密码错误，请重试
   login_with: ""
   blog: Blog
-  detail: 活动详细分析
-  time_trend: 时间曲线
-  past_month: 过去一个月的时间分布
-  daily_use: 按天查看活动记录 
-  time_percentile: 应用时间比例
-  key_stroke: 按键频率
-  mouse_clicks: 鼠标点击频率
-  mouse_move: 鼠标移动频率
-  mouse_scrll: 鼠标滚动频率
+  detail: 工作强度分析 
+  time_trend: 30天概览
+  time_trend_desc: 查看过去30天应用的时间分配情况<br />鼠标指向色块可查看详细信息
+  detail_desc: 帮助你了解每天的电脑使用情况；当能量消耗达到一定值时，客户端将提醒休息，预防电脑职业病<br />拖动右边的时间轴可查看过去一周数据
+  time_percentile: 应用时间占比
+  key_stroke: 键盘使用强度
+  mouse_intense: 鼠标使用强度
+  mouse_clicks: 鼠标点击
+  mouse_move: 鼠标移动
+  mouse_scrll: 鼠标滚动
   past_week: 过去一周
   past_month: 过去一个月
   all_time: 所有时间
@@ -53,6 +79,15 @@ zh:
     setup: "恭喜你已完成所有的设置 <br />"
     accept_request: '你接受了%{name}的好友请求'
     deny_request: '你拒绝了%{name}的好友请求'
+  break_setting: 提醒设置
+  account_setting: 账户设置
+  settings:
+    rsi_interval_description: "设置可连续工作的强度值（值越高，提醒的次数越少）"
+    low_work: "低"
+    high_work: "高"
+    turn_off_break: "关闭提醒功能"
+    turn_on_break: "开启提醒功能"
+    break_off_info: "提醒功能已关闭"
   see_cloud: 查看TA的应用
   accept: 接受
   deny: 拒绝
@@ -70,6 +105,7 @@ zh:
   download: 马上下载
   create_account: 创建 Brainpage 帐号
   already: 已注册过？
+  icp: 京ICP备11049443号
   datetime:
     distance_in_words:
       half_a_minute: 半分钟

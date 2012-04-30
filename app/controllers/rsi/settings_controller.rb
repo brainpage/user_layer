@@ -10,7 +10,7 @@ class Rsi::SettingsController < ApplicationController
   end
   
   def alert
-    current_user.change_settings(:send_alert => !current_user.setting.send_alert)
+    current_user.change_settings(:send_alert => !current_user.send_alert)
     redirect_to :action => :index
   end
   

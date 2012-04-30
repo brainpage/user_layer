@@ -1,5 +1,5 @@
 $font-size: 14px;
-body{font-size:$font-size;}
+body{font-size:$font-size !important;line-height:20px !important;}
 input, button, select, submit, a{font-size:$font-size;}
 p{font-size: 12px !important}
 .btn-large{font-size: 14px !important}
@@ -21,12 +21,13 @@ p{font-size: 12px !important}
 svg text{
   font-size: 12px;
 }
+.calendar div{font-size:12px;}
 
 .center-label{font-size: 20px !important; }
 
 .nav-tabs li{font-size: 14px; }
 
-#land h1{font-size: 40px !important;}
-#land .sub{font-size:20px;}
-#land h2{font-size:28px !important}
+#land h1{font-size: 28px !important;}
+#land .sub, #land .sub2{font-size:14px;}
+#land h2{font-size:22px !important; font-weight: bold !important}
 #land p{font-size:14px !important;line-height:25px;}
