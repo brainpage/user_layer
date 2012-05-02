@@ -15,7 +15,7 @@ en:
     my: My Analysis
     friend: Friends App
     setting: Settings
-  stop_rsi: 'Stop RSI, Work Better!'
+  stop_rsi: 'Stop <a href="#%{href}">RSI</a>, Work Better!'
   stop_rsi_sub: Your personal assistant for healthier workstyle
   ad_1: Take Breaks When Needed
   ad_1_desc: Our smart meter can learn your work intensity and notify you to take breaks when needed
