@@ -1,5 +1,5 @@
 function showMessageEffect(time, sensor_uuid){	
-	var url = "http://brainpage.com/db/query";
+	var url = "/db/query";
 	var pUrl = "/rsi/charts/percent"
 	var prefix = 'sensor.find("' + sensor_uuid + '").by_time(' + time + ').from_last(' + time + ')';
 	var app = prefix + '.by_feature(feature("app").aggregate)';
