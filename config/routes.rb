@@ -83,6 +83,7 @@ UserLayer::Application.routes.draw do
   match 'f/:token' => 'rsi/friends#follow'
   match 'db/query' => 'rsi/charts#data'
   match 'home' => 'rsi/portals#land'
+  match 'info' => 'rsi/portals#info'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

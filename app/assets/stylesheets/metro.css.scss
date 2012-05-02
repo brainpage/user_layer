@@ -3,15 +3,15 @@ $line-height: 25px;
 @mixin opacity{filter:alpha(Opacity= $opacity * 100);-moz-opacity: $opacity; opacity: $opacity;fill-opacity: $opacity;}
 @mixin low-opacity{filter:alpha(Opacity= $opacity * 0.5 * 100);-moz-opacity: $opacity * 0.5; opacity: $opacity * 0.5;}
 @mixin high-opacity{filter:alpha(Opacity= $opacity * 1.2 * 100) !important;-moz-opacity: $opacity * 1.2 !important; opacity: $opacity * 1.2 !important;fill-opacity: $opacity * 1.2 !important;}
-@mixin font{font-family: 'Marmelad', sans-serif;  }
+@mixin font{font-family: 'Carme', sans-serif;  }
 @mixin round{-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;}
 
-body{ margin:0; padding:0;height:100%; @include font; background: url('/assets/grid.png'); color: #222;}
+body{ margin:0; padding:0;height:100%; @include font; background: url('/assets/grid.png'); color: #000;}
 input, button, select, submit{@include font;}
 a{color: #3b77c3}
 li{list-style: none}
 img{vertical-align:middle; margin-top:-5px;}
-h2,h3,h4,h5,h6{font-weight: normal !important}
+h1,h2,h3,h4,h5,h6{font-weight: normal !important}
 .center{text-align: center}
 .right{text-align: right}
 .clear{clear:both}
@@ -19,7 +19,8 @@ h2,h3,h4,h5,h6{font-weight: normal !important}
 .navbar-inner{@include high-opacity; }
 .navbar a{color: white;}
 .navbar .nav > li > a{color: #eee;}
-.navbar .nav > li{border-top:2px solid transparent;}
+.navbar .nav > li{border-top:2px solid transparent; }
+.navbar .nav > li a{height:25px; line-height:25px}
 .navbar .nav > li.active{border-top:2px solid #35b1f1;}
 .navbar .dropdown-menu, .navbar .dropdown-menu a{color: #333;}
 
@@ -28,7 +29,9 @@ h2,h3,h4,h5,h6{font-weight: normal !important}
 .navbar-banner .yellow{background-color: #93d00d}
 .navbar-banner .green{background-color: #f1c416;width:34%}
 
-.brand{background: url('/assets/logo.png') no-repeat scroll left center;height:40px; padding:0 !important; padding-left:60px !important;margin-left:-40px !important;}
+.tabbable ul{background: #f3f3f3; padding:5px 10px 0 10px;}
+
+.brand{background: url('/assets/logo_white.png') no-repeat scroll left center;height:50px; padding:0 !important; padding-left:60px !important;margin-left:-20px !important;}
 
 .main{background:#fff; min-height:600px; padding:25px 30px 40px 30px;border:1px solid #eee;
 -webkit-box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.125), inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
@@ -52,7 +55,7 @@ h2,h3,h4,h5,h6{font-weight: normal !important}
 .login-form .modal-body{padding-bottom: 2px;}
 .login-form .modal-footer{padding: 8px 15px 5px 15px;}
 .login-form .control-group{margin-bottom:5px;}
-.login-form .control-label{width:100px; }
+.login-form .control-label{width:100px; line-height:30px;}
 .login-form .controls{margin-left:120px}
 .login-form .span2{width:150px;margin-right: 5px}
 .login-form .btn{margin-top:0}
@@ -62,10 +65,11 @@ h2,h3,h4,h5,h6{font-weight: normal !important}
 .login-form .input{height:30px; display:inline}
 #login-tip{line-height:32px}
 
-.calendar{width:240px;margin-bottom:-20px;}
+.calendar{width:270px;margin-bottom:-20px;}
 .calendar .month{font-size: 150%;}
-.calendar div{float:left;width:32px; text-align:center}
+.calendar div{float:left;width:38px; text-align:center}
 .calendar div.first{}
+ #day-slider{width:240px;margin:10px}
 
 hr.soften {
   height: 1px;
@@ -116,15 +120,23 @@ hr.soften {
 #weibo-share label{display: inline;margin-left:10px}
 #weibo-share p{padding-left:10px;}
 
+.bar-chart .tab-content{margin-top: 50px}
+
 #line-holder svg, #line-holder div{height: 160px !important}
 
 #line-chart{margin-bottom: 20px}
 
 .tabs-left .tab-content{width:80% !important; float:left}
+#land .tabs-left ul{width:20% !important;background:none !important}
+#land .tabs-left .tab-content{width:70% !important; float:left;}
+#land .desc a{color: white !important}
+#land .tabs-left ul .active a{color: black !important}
 
 svg {
   @include font; 
 }
+
+.side-label{fill: #3b77c3}
 
 svg .label{font-weight: normal !important;font-size:13px}
 
@@ -184,24 +196,35 @@ svg .label{font-weight: normal !important;font-size:13px}
 
 #zoom-line path{}
 
-#land{margin-top: 50px}
+#land{margin-top: 10px}
 #land .sub, #land .sub2{color: #3b77c3}
 #land .sub2{margin:5px; }
 #land .sub{margin-bottom:10px;}
-#land .ad-block{height:280px;}
-#land .c{margin:10px 0; color: white;padding:15px 20px;}
+#land .ad-block{height:320px; }
+#land .c{margin-bottom:20px; color: white;}
 #land .c1{background: #35b1f1}
 #land .c2{background: #93d00d}
 #land .c3{background: #f1c416}
-#land .c4{background: #3b77c3}
-#land img{margin-top:15px; @include opacity}
-#land .ad-block h2{color: white}
-#land p{text-align: right; margin-top:10px; width: 80%;margin-left:19%;}
-#land .company{margin-top:-45px}
-#land .account{text-align: right; margin-top:20px}
+#land .c4{background: #3b77c3;height:auto}
+#land h2{padding:15px;}
+
+#land .ad-block img{width: 100%; }
+#land h2{color: white}
+#land p{margin-top:10px;}
+#land .company{margin-top:-45px; }
+#land .company p{text-align:right}
+#land .company a{margin-left:10px}
+#land .account{ margin-top:20px}
 #land .btn-super{height:40px !important;line-height:40px !important;}
-#land .logo{background:url('/assets/logo-big.png') no-repeat scroll left center; padding-left:65px; height:65px; padding-top:20px}
+#land .logo{background:url('/assets/logo.png') no-repeat scroll left top; padding-left:45px; height:65px; }
 #land .logo span{font-size:30px; }
+.hover_caption h3{margin-top:-5px !important;padding:15px !important}
+#land .desc{padding:20px;}
+#land .arrow{display: block; text-align: right}
+#land .arrow img{width: 24px}
+#land .free{position: absolute; margin:-70px 0 0 -30px}
+#land .free img{width:160px}
+#info p{padding:0 10px;}
 
 .hover_caption {}
 .hover_caption h3{background:#000;margin-top:10px;padding:10px; width:340px; z-index:10; color:white; @include opacity}

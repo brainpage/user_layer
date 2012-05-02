@@ -7,8 +7,7 @@ html
     = javascript_include_tag "application"
     = csrf_meta_tags
     link rel="shortcut icon" href="#{image_path("favicon.ico")}" type="image/x-icon"
-    - if !weibo?
-      link href='http://fonts.googleapis.com/css?family=Marmelad' rel='stylesheet' type='text/css'
+    #link href='http://fonts.googleapis.com/css?family=Marmelad' rel='stylesheet' type='text/css'
 	
 	script
 	  | I18n.locale = "#{I18n.locale}";
@@ -75,7 +74,7 @@ html
             = image_tag "logo.png"
             | Brainpage
 
-      .main style="margin-top:#{current_user.blank? ? 10 : 60}px"
+      .main style="margin-top:#{current_user.blank? ? 10 : 80}px"
 
         = render "rsi/portals/wizard" unless current_user.blank?
         = yield

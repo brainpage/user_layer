@@ -55,7 +55,7 @@
             .find('h3')
             .addClass('hover_caption_caption') // use this hook for additional styling
             .css({
-              'width': width - 20,
+              'width': width - 30,
               'position': 'absolute'
             })
             .hide();

@@ -8,7 +8,11 @@ class Rsi::PortalsController < ApplicationController
   end
   
   def land
-    render :layout => false
+    render :layout => "land"
+  end
+  
+  def info
+    render :layout => "land"
   end
  
 end

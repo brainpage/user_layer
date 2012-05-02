@@ -1,89 +1,26 @@
-doctype html
-html 
-  head
-    title Smart data - Brainpage.com
-    = stylesheet_link_tag "locale/#{I18n.locale}"
-    = stylesheet_link_tag "application"
-    = javascript_include_tag "application"
-    = csrf_meta_tags
-    link rel="shortcut icon" href="#{image_path("favicon.ico")}" type="image/x-icon"
-    - if !weibo?
-      link href='http://fonts.googleapis.com/css?family=Marmelad' rel='stylesheet' type='text/css'
-	script
-	  | $(document).ready(function(){$('.ad-block img').hover_caption();});
+script
+  | $(document).ready(function(){$('.ad-block img').hover_caption();});
 	
-  body style="background:none"
-    #land.container
-      .row-fluid
-        .span8
-          h1 
-            = t :stop_rsi
-          .sub 
-            = t :stop_rsi_sub
-          .row-fluid
-            .span6
-              .ad-block.c.c1
-                h2 = t :ad_1
-                = image_tag "ad_1.jpg", :title => t(:ad_1_desc)
+.row-fluid
+  .span6
+    .ad-block.c.c1
+      h2 = t :ad_1
+      = image_tag "ad_1.jpg", :title => t(:ad_1_desc) + more_link("break")
 
-            .span6
-              .ad-block.c.c2
-          	    h2 = t :ad_2
-                  = image_tag("ad_2.jpg", :title => t(:ad_2_desc))
-          .row-fluid          
-            .span6
-              .ad-block.c.c1
-          	    h2 = t :ad_3
-                  = image_tag("ad_3.jpg", :title => t(:ad_3_desc))
-	        .span6
-	          .ad-block.c.c3
-	            h2 
-	              = t :ad_4
-	            = image_tag "ad_4.jpg", :title => t(:ad_4_desc)
-	      
-	      - if !weibo?
-	        .ad-block.c.c4
-	          .row-fluid
-	            .span3 
-	              ul
-	                li What is RSI?
-	            .span9
-	              | Repetitive strain injury (RSI) (also known as repetitive stress injury, repetitive motion injuries, repetitive motion disorder (RMD), cumulative trauma disorder (CT), ...
-	
-        .span4.company    
-          .page-header
-            .pull-right
-              = link_to(I18n.locale.to_s == "en" ? t(:chinese) : t(:english), locale_rsi_settings_path(:locale => (I18n.locale.to_s == "en" ? "zh" : "en")), :method => :post)
-            
-            .logo
-              span Brainpage
-              .sub2 
-                = t :smart_data
+  .span6
+    .ad-block.c.c2
+	    h2 = t :ad_2
+        = image_tag "ad_2.jpg", :title => t(:ad_2_desc) + more_link("optimize")
+.row-fluid          
+  .span6
+    .ad-block.c.c1
+	    h2 = t :ad_3
+        = image_tag "ad_3.jpg", :title => t(:ad_3_desc) + more_link("improve")
+  .span6
+    .ad-block.c.c3
+      h2 
+        = t :ad_4
+      = image_tag "ad_4.jpg", :title => t(:ad_4_desc) + more_link("learn")
 
-          - if session[:invite_token].blank?
-
-            .center 
-              = weibo? ? link_to(image_tag("weibo_login.png"), "/auth/weibo") : link_to("Login with ".html_safe + image_tag("facebook.png"), "/auth/facebook", :class => "btn btn-primary btn-large btn-super")
-            .account 
-              p 
-                = link_to t(:create_account), "#", :onclick => "$('#reg-form').modal('show');"
-              p
-                = t :already
-                = link_to t(:login), "#", :onclick => "$('#login-form').modal('show');"
-
-            #login-form.login-form.modal.hide
-			  = render "login_form"
-			
-			#reg-form.login-form.modal.hide
-			  = render "reg_form"
-
-          - else
- 		    .accept
-		      = link_to "Accept #{(@user = User.find_by_invite_token(session[:invite_token])).display_name}'s Invitation and Join", join_rsi_friend_path(@user.invite_token), :method => :post, :class => "btn btn-primary btn-large btn-super"
-		
-      = render "layouts/footer"
-
-
-
-
-
+- if !weibo?
+  = render "rsi"

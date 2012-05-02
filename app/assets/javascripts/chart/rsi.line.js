@@ -1,7 +1,7 @@
 bp.rsi.LineChart = function(domId, chart){
 	this.margin = {top: 10, right: 10, bottom: 10, left: 30};
 	this.width = chart.width - this.margin.left - this.margin.right;
-	this.height = 90;
+	this.height = 120;
 	
 	this.chart = chart;
 
@@ -25,11 +25,12 @@ bp.rsi.LineChart.prototype.draw = function(){
 		var stage = line.svg.append("g")
 	   		.attr("transform", "translate(" + line.margin.left + "," + (line.margin.top + line.height * (day - line.chart.fromDay)) + ")");
 	
+	
 		function padStr(i) {return (i < 10) ? "0" + i : "" + i;}
 		function getDayStr(offset){
 			var now = new Date();
 			now.setDate(now.getDate() - offset);
-			return padStr(now.getFullYear()) + "-" + padStr(1 + now.getMonth()) + "-" + padStr(now.getDate());
+			return (now.getMonth() + 1).toString() + "-" + padStr(now.getDate());
 		}		
 		var timeStr, from, to;
 		switch(day){
@@ -66,6 +67,7 @@ bp.rsi.LineChart.prototype.draw = function(){
 		}		
 		
 		function doDraw(data){
+			stage.append("text").attr("x", 10-line.height).attr("y", 10).attr("transform", "rotate(270)").attr("class", "side-label").text(timeStr);
 		
 			loadedData[dateStr] = $.extend(true, [], data);
 			

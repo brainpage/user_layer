@@ -20,13 +20,13 @@ en:
   ad_1: Take Breaks When Needed
   ad_1_desc: Our smart meter can learn your work intensity and notify you to take breaks when needed
   ad_2: Optimize Your Day
-  add_2_desc: with our analysis of your time and application usage
+  ad_2_desc: with our analysis of your time and application usage
   ad_3: Improve Professional Skills
   ad_3_desc: through understanding your learning curve
   ad_4: Learn Friends' App
   ad_4_desc: to find out the most suitable one for yourself
   smart_data: Your Smart Data
-  register: Start Now For Free
+  register: Register
   join: Join Now
   home: Home
   contact: Contact
@@ -89,5 +89,7 @@ en:
   ago: " ago"
   alert: You need to install client application to view your analysis.
   download: Download Now!
-  create_account: Create An Brainpage Account
+  create_account: Or create a Brainpage account
+  fb_name: "Protect your health"
+  fb_desc: "Compete with me to see who use facebook less. The loser will donate money to charity."
   
