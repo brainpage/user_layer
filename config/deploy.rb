@@ -128,7 +128,7 @@ end
 after 'deploy:setup', :custom_setup
 after 'deploy:update_code', 'deploy:symlink_shared'
 after 'deploy:update_code', :deploy_assets
-after 'deploy:update_code', 'depoy:symlink_downloads'
+after 'deploy:update_code', 'deploy:symlink_downloads'
 after 'deploy:restart', 'deploy:cleanup'
 
 #grant all privileges on user_layer_production.* to user_layer@'10.0.0.%' IDENTIFIED BY 'ap95734h7ksdfjlz'
