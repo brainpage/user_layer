@@ -18,13 +18,13 @@ en:
   stop_rsi: 'Stop RSI<sup><a href="#%{href}">[?]</a></sup>, Work Better!'
   stop_rsi_sub: Your personal assistant for healthier workstyle
   ad_1: Take Breaks When Needed
-  ad_1_desc: Our smart meter can learn your work intensity and notify you to take breaks when needed
+  ad_1_desc: Our smart meter monitors your work intensity and notifies you to take breaks at the optimum time.
   ad_2: Optimize Your Day
-  ad_2_desc: with our analysis of your time and application usage
+  ad_2_desc: Detailed analysis of your time and application usage increase productivity.
   ad_3: Improve Professional Skills
-  ad_3_desc: through understanding your learning curve
+  ad_3_desc: Understand how your computing skills compares to your peers.
   ad_4: Learn Friends' App
-  ad_4_desc: to find out the most suitable one for yourself
+  ad_4_desc: Find new apps by seeing what your friends and peers use!
   smart_data: Your Smart Data
   register: Register
   join: Join Now
@@ -37,7 +37,7 @@ en:
   auth: Authenticate
   auth_success: Success! Redirecting ...
   reg_success: Success! Redirecting ...
-  reg: Submitting
+  reg: Submitting...
   no_mail: "Email doesn't exist!"
   wrong_password: Wrong password!
   begin_journey: Begin your health journey
@@ -49,21 +49,21 @@ en:
   blog: Blog
   detail: Work Intensity Analysis
   time_trend: 30-Day Overview
-  detail_desc: "Help you understand your time distribution over computer usage, and how intense your work was during that period of time.<hr />When the BCI (Brainpage Computer Intensity) value summed up to a certain threshold, our RSIMeter will remind you to take a break." 
-  time_trend_desc: "Check up your time spenditure over apps for 30-Day period.<hr />Move your mouse over color blocks to see detail info."
+  detail_desc: "Understand the details of your computer usage, and how intense your work was during periods of the day.<hr />When the sum of the BCI (Brainpage Computer Intensity), graphed below, passes a certain threshold, you will be reminded to take a break." 
+  time_trend_desc: "Check up your time expenditure for the past 30-Day period.<hr />Move your mouse over the colored blocks to see details."
   past_month: Usage in the past 30 days
   daily_use: Daily Usage 
   time_percentile: Time Percentile
-  slider_desc: Drag to check up latest 7 days’ data  
+  slider_desc: Drag to check up to the lat 7 days data  
   kmr: Professional Skill Analysis
-  kmr_desc: "Professional Skill Analysis (PSA) can help understand professional software skill level. <hr />Proficient users normally use more keyboard (shortcuts) than mouse, while less proficient users click more. We measure your proficiency level based on such analysis and help you understand what your skill level is by comparing to global average, which is calculated based on global user performance."
+  kmr_desc: "Professional Skill Analysis (PSA) can help you understand your skill level when using professional software. <hr />Proficient users normally use more keyboard (shortcuts) than the mouse, while less proficient users click more. We measure your proficiency level based on this analysis and help you understand what your skill level is in comparison to global average."
   key_stroke: Keyboard Usage Intensity
-  key_stroke_desc: "The Keyboard Usage Intensity can help you to understand the speed of your keystrokes.<hr /> We also provide global average for your reference, to you understand your level of keyboard usage intensity comparing to other people. The global average value is calculated based on global user performance."
+  key_stroke_desc: "The Keyboard Usage Intensity can help you to understand the speed of your keystrokes.<hr /> We also provide global average of each application for your reference."
   mouse_intense: Mouse Usage Intensity
-  mouse_clicks_desc: "The Mouse Usage Intensity can help you understand your usage of mouse upon clicking, scrolling and moving.<hr /> You can also see your intensity level comparing to global average value, which is calculated based on global user performance."
+  mouse_clicks_desc: "The Mouse Usage Intensity helps you understand your mouse usage: clicking, scrolling and moving.<hr /> You can also compare your intensity level to the global average for each application."
   mouse_clicks: Mouse Clicks
   mouse_move: Move Distance
-  drag_chart_tip: Drag above chart to chose time period and see detailed usage
+  drag_chart_tip: Drag the above chart to chose a time period and see your detailed usage
   mouse_scrll: Scroll Distance
   past_week: Past Week
   past_month: Past Month
@@ -73,7 +73,7 @@ en:
   no_data: "No data for %{time}"
   today: today
   yesterday: yesterday
-  view_detail: Click pie chart to see detail of application.
+  view_detail: Click pie chart to see detail for each application.
   detail_of: "Detail of %{app}"
   load_app: Loading Apps...
   app: Apps
@@ -100,7 +100,7 @@ en:
   deny: Deny
   change_setting: Change Settings
   ago: " ago"
-  alert: You need to install client application to view your analysis.
+  alert: You need to install the client application to view your analysis.
   download: Download Now!
   create_account: Or create a Brainpage account
   fb_name: "Protect your health"
