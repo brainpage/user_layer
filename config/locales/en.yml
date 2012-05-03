@@ -54,7 +54,7 @@ en:
   past_month: Usage in the past 30 days
   daily_use: Daily Usage 
   time_percentile: Time Percentile
-  slider_desc: Drag to check up to the lat 7 days data  
+  slider_desc: Drag to check up to the last 7 days data  
   kmr: Professional Skill Analysis
   kmr_desc: "Professional Skill Analysis (PSA) can help you understand your skill level when using professional software. <hr />Proficient users normally use more keyboard (shortcuts) than the mouse, while less proficient users click more. We measure your proficiency level based on this analysis and help you understand what your skill level is in comparison to global average."
   key_stroke: Keyboard Usage Intensity
