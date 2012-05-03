@@ -105,4 +105,7 @@ en:
   create_account: Or create a Brainpage account
   fb_name: "Protect your health"
   fb_desc: "Compete with me to see who use facebook less. The loser will donate money to charity."
+  setup_done: Setup successfully
+  setup_done_desc: Congratulations! You have setup the SmartMeter client successfully.
+  learn: Learn how it works
   

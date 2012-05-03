@@ -1,0 +1,12 @@
+#setup-done.modal
+  .modal-header
+    a.close data-dismiss='modal' x
+    h3 
+      = t :setup_done
+  .modal-body
+    = t :setup_done_desc
+  .modal-footer     
+    = link_to(t(:learn), "/info", :class => "btn btn-large")
+    = link_to(t(:view_data), rsi_charts_path, :class => "btn btn-primary btn-large")
+script
+  | $(document).ready(function(){$('#setup-done').modal('show')});

@@ -1,6 +1,8 @@
 - if @uuid.blank?
   = download_rsi_client
 - else
+  = render "setup_done" if session.delete(:setup_done)
+
   .tabbable
     ul.nav.nav-tabs
       li.active

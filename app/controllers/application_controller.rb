@@ -25,6 +25,7 @@ class ApplicationController < ActionController::Base
       else
         current_user.add_sensor(uuid)
       end
+      session[:setup_done] = true
     end 
   end
   
