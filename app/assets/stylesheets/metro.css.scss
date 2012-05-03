@@ -30,6 +30,7 @@ h1,h2,h3,h4,h5,h6{font-weight: normal !important}
 .navbar-banner .green{background-color: #f1c416;width:34%}
 
 .tabbable ul{background: #f3f3f3; padding:5px 10px 0 10px;}
+.tabbable .tabs-left ul{background:none;padding:0;}
 
 .brand{background: url('/assets/logo_white.png') no-repeat scroll left center;height:50px; padding:0 !important; padding-left:60px !important;margin-left:-20px !important;}
 
@@ -65,11 +66,11 @@ h1,h2,h3,h4,h5,h6{font-weight: normal !important}
 .login-form .input{height:30px; display:inline}
 #login-tip{line-height:32px}
 
-.calendar{width:270px;margin-bottom:-20px;}
+.calendar{width:330px;margin-bottom:-20px;}
 .calendar .month{font-size: 150%;}
-.calendar div{float:left;width:38px; text-align:center}
+.calendar div{float:left;width:47px; text-align:center}
 .calendar div.first{}
- #day-slider{width:240px;margin:10px}
+ #day-slider{width:300px;margin:10px}
 
 hr.soften {
   height: 1px;
@@ -120,17 +121,19 @@ hr.soften {
 #weibo-share label{display: inline;margin-left:10px}
 #weibo-share p{padding-left:10px;}
 
-.bar-chart .tab-content{margin-top: 50px}
+.bar-chart .tab-content{margin-top: 20px}
 
 #line-holder svg, #line-holder div{height: 160px !important}
 
 #line-chart{margin-bottom: 20px}
 
 .tabs-left .tab-content{width:80% !important; float:left}
-#land .tabs-left ul{width:20% !important;background:none !important}
-#land .tabs-left .tab-content{width:70% !important; float:left;}
+#land .tabs-left ul{width:20% !important;background:none !important; padding:0}
+#land .tabs-left .tab-content{width:75% !important; float:left;}
 #land .desc a{color: white !important}
 #land .tabs-left ul .active a{color: black !important}
+
+sup a{font-size:50%;margin:0 3px;}
 
 svg {
   @include font; 
@@ -222,8 +225,9 @@ svg .label{font-weight: normal !important;font-size:13px}
 #land .desc{padding:20px;}
 #land .arrow{display: block; text-align: right}
 #land .arrow img{width: 24px}
-#land .free{position: absolute; margin:-70px 0 0 -30px}
-#land .free img{width:160px}
+#land .free{position: absolute; margin:-100px 0 0 -80px}
+#land .center .btn{margin-left:40px !important}
+#land .free img{width:250px}
 #info p{padding:0 10px;}
 
 .hover_caption {}
@@ -234,5 +238,9 @@ svg .label{font-weight: normal !important;font-size:13px}
 
 .logo img{@include opacity; width:40px; height:40px; margin-right: 10px;}
 .total{background: #003399}
+.detail-sub{width:60%;}
+
+.alert{color: #222 !important; line-height:20px !important;}
+.alert hr{border-top: 0 !important;border-bottom:0 !important; margin: 10px !important;}
 
 

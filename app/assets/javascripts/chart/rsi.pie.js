@@ -168,8 +168,6 @@ bp.rsi.PieChart.prototype.draw = function(data, fresh) {
 		});
 	this.lines.exit().remove();
 	
-	console.log(this.filteredPieData);
-	
 	//DRAW LABELS WITH PERCENTAGE VALUES
 	this.valueLabels = this.label_group.selectAll("text.value").data(this.filteredPieData);
 	

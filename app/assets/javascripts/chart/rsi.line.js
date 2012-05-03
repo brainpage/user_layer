@@ -30,7 +30,7 @@ bp.rsi.LineChart.prototype.draw = function(){
 		function getDayStr(offset){
 			var now = new Date();
 			now.setDate(now.getDate() - offset);
-			return (now.getMonth() + 1).toString() + "-" + padStr(now.getDate());
+			return (now.getMonth() + 1).toString() + " - " + padStr(now.getDate());
 		}		
 		var timeStr, from, to;
 		switch(day){
@@ -68,12 +68,13 @@ bp.rsi.LineChart.prototype.draw = function(){
 		
 		function doDraw(data){
 			stage.append("text").attr("x", 10-line.height).attr("y", 10).attr("transform", "rotate(270)").attr("class", "side-label").text(timeStr);
-		
+
 			loadedData[dateStr] = $.extend(true, [], data);
 			
 			stage.select("text").remove();
-			
-			if (data != null ){
+	
+			if (data != null && data.length > 0){
+				var hasData = false;
 				var xAxis = d3.svg.axis().scale(line.x).orient("bottom");
 
 			    var area = d3.svg.area()
@@ -83,9 +84,12 @@ bp.rsi.LineChart.prototype.draw = function(){
 			       	.y1(function(d) { return line.y(d.point); });
 	
 			    $.each(data, function(index, d) {
-			    	d.t = new Date(d.t * 1000);
-					
+			    	d.t = new Date(d.t * 1000);					
 			    	d.point = (isNaN(d.point) ? 0 : +d.point);
+					
+					if(!hasData && d.point > 0){
+						hasData = true;
+					}					
 			
 					if(d.apps != null){
 						$.each(d.apps, function(index, w){w.t = d.t; w.seconds = bp.chart.Utils.secondsOfDay(w.t); if(isNaN(w.point)){w.point = 0}})
@@ -98,8 +102,12 @@ bp.rsi.LineChart.prototype.draw = function(){
 		   		line.x.domain(line.chart.fit ? d3.extent($.map(data, function(d) { return d.t; })) : [bp.chart.Utils.beginningOfDay(data[0].t), bp.chart.Utils.endOfDay(data[0].t)]); 
 		   		line.y.domain([0, d3.max($.map(data, function(d) { return d.point; }))]);
 
-		   	    stage.append("path").data([data]).attr("d", area);
-				
+				if(hasData){
+					stage.append("path").data([data]).attr("d", area);
+				}else{
+					stage.append("text").attr("transform", "translate("+ line.width / 3 + ", " + line.height*2/3 + ")").attr("class", "side-label").text(I18n.t("no_data", {time: timeStr}));				
+				}
+		   	    				
 				if(!line.chart.fit){
 					stage.append("g")
 			   	         .attr("class", "x axis")
