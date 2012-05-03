@@ -103,9 +103,9 @@ en:
   alert: You need to install the client application to view your analysis.
   download: Download Now!
   create_account: Or create a Brainpage account
-  fb_name: "Protect your health"
-  fb_desc: "Compete with me to see who use facebook less. The loser will donate money to charity."
+  fb_name: "Use your computer better"
+  fb_desc: "Join me on BrainPage - a new tool that encourages us to use our computers in a more productive and healthy way."
   setup_done: Setup successfully
-  setup_done_desc: Congratulations! You have setup the SmartMeter client successfully.
+  setup_done_desc: Congratulations! You have setup the Brainpage client successfully.
   learn: Learn how it works
   
