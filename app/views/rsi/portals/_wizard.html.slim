@@ -3,9 +3,13 @@
     .modal-header
       a.close data-dismiss='modal' x
       h3 
-        = t :quick_start
+        = t :download
     .modal-body
-      = render "rsi/portals/quick_start"
+      p 
+        = link_to image_tag("apple.png") + " Mac OS", "/downloads/BrainpageInstaller.1.0.pkg"
+        | &nbsp;(195KB)
+        /= link_to image_tag("windows.png") + " Windows", "/downloads/rsi-windows.exe"
+        /| (418KB)
     .modal-footer     
   script
     | $(document).ready(function(){$('#wizard-step').modal('show')});

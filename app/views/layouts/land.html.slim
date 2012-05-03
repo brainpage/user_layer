@@ -43,7 +43,7 @@ html
             = weibo? ? link_to(image_tag("weibo_login.png"), "/auth/weibo") : link_to("Login with ".html_safe + image_tag("facebook.png"), "/auth/facebook", :class => "btn btn-primary btn-large btn-super")
             .account 
               p 
-                = link_to t(:create_account), "#", :onclick => "$('#reg-form').modal('show');"
+                = link_to t(:or).html_safe + t(:create_account).html_safe, "#", :onclick => "$('#reg-form').modal('show');"
               p
                 = t(:already).html_safe
                 = link_to t(:login), "#", :onclick => "$('#login-form').modal('show');"
