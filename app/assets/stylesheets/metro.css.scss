@@ -15,6 +15,7 @@ h1,h2,h3,h4,h5,h6{font-weight: normal !important}
 .center{text-align: center}
 .right{text-align: right}
 .clear{clear:both}
+.with-logo{background:url('/assets/logo.png') no-repeat scroll left center; padding-left: 45px}
 
 .navbar-inner{@include high-opacity; }
 .navbar a{color: white;}
@@ -109,11 +110,6 @@ hr.soften {
 .app-cloud .app div{float:left; padding:10px 0; text-align: center; overflow-x: hidden; margin-top: 10px;}
 
 .fb-link{background: url('/assets/facebook-small.png') no-repeat scroll left center; padding:10px 0 10px 40px;}
-
-#wizard-step ul{margin-left:40px;}
-#wizard-step li{margin: 15px 0; list-style-type: decimal}
-#wizard-step .download{margin: 20px 0 10px 0;}
-#wizard-step .download a{margin:0 5px 0 20px;}
 
 #weibo-share form{margin: 0 !important}
 #weibo-share .modal-footer{padding:10px !important}
@@ -214,18 +210,17 @@ svg .label{font-weight: normal !important;font-size:13px}
 #land .ad-block img{width: 100%; }
 #land h2{color: white}
 #land p{margin-top:10px;}
-#land .company{margin-top:-45px; }
-#land .company p{text-align:right}
-#land .company a{margin-left:10px}
+#land .company{margin-top:-35px; }
+
 #land .account{ margin-top:20px}
-#land .btn-super{height:40px !important;line-height:40px !important;}
+#land .btn-super{height:40px !important;line-height:40px !important; min-width:220px !important}
 #land .logo{background:url('/assets/logo.png') no-repeat scroll left top; padding-left:45px; height:65px; }
 #land .logo span{font-size:30px; }
 .hover_caption h3{margin-top:-5px !important;padding:15px !important}
 #land .desc{padding:20px;}
 #land .arrow{display: block; text-align: right}
 #land .arrow img{width: 24px}
-#land .free{position: absolute; margin:-100px 0 0 -80px}
+#land .free{position: absolute; margin:-76px 0 0 180px}
 #land .center .btn{margin-left:40px !important}
 #land .free img{width:250px}
 #info p{padding:0 10px;}
@@ -244,3 +239,8 @@ svg .label{font-weight: normal !important;font-size:13px}
 .alert hr{border-top: 0 !important;border-bottom:0 !important; margin: 10px !important;}
 
 
+.quick-start .step{margin:20px 0;}
+
+.quick-start .step .title span{ font-size:30px; margin-right:10px; width:50px; text-align:center;}
+.quick-start .step .content{padding: 10px 0 0 40px;}
+.quick-start .step a{margin-right:10px;}

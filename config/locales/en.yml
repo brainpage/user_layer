@@ -41,8 +41,9 @@ en:
   no_mail: "Email doesn't exist!"
   wrong_password: Wrong password!
   begin_journey: Begin your health journey
-  step1: Download and install client app.
-  step2: Click "View charts" or "Settings" from menu.
+  step1: Download and install SmartMeter client
+  step2: Bind client with your account
+  step2_desc: Run the client and login with your facebook account (or create a Brainpage account) in the opened web browser.
   step3: You are ready to go!
   login_with: Or Login With
   blog: Blog
@@ -67,7 +68,7 @@ en:
   past_week: Past Week
   past_month: Past Month
   all_time: All The Time
-  already: Already got one?
+  already: 'Already got one?&nbsp;'
   loading: "Loading data of %{time} ..."
   no_data: "No data for %{time}"
   today: today
@@ -78,6 +79,8 @@ en:
   app: Apps
   global: Global Average
   you: You
+  quick_start: Quick Start
+  view_data: View My Data
   feed:
     welcome: Welcome to Brainpage!
     accept_invite: 'Your friend %{name} just accepted your invitation.'

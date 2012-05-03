@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   helper_method :weibo?
   include UserHook
   
-  before_filter :set_locale 
+  #before_filter :set_locale 
 
   def log_activity
     #We log the user's IP and computer info.  For matching purposes.

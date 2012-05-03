@@ -1,0 +1,22 @@
+.quick-start
+  .step 
+    .title 
+      span 1.
+      = t :step1
+    .content
+      p 
+        = link_to image_tag("apple.png") + " Mac OS", "/BrainpageInstaller.pkg"
+        | (178KB)
+      p
+        = link_to image_tag("windows.png") + " Windows", "/rsi-windows.exe"
+        | (418KB)
+  .step
+    .title
+      span 2.
+      = t :step2
+    .content
+      = t(:step2_desc).html_safe
+  .step
+    .title
+      span 3.
+      = t :step3
