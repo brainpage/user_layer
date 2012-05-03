@@ -1,0 +1,59 @@
+doctype html
+html 
+  head
+    title Smart data - Brainpage.com
+    = stylesheet_link_tag "locale/#{I18n.locale}"
+    = stylesheet_link_tag "application"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+    link rel="shortcut icon" href="#{image_path("favicon.ico")}" type="image/x-icon"
+    link href='http://fonts.googleapis.com/css?family=Carme' rel='stylesheet' type='text/css'
+	
+  body style="background:none"
+    #land.container
+      .right
+        = link_to(I18n.locale.to_s == "en" ? t(:chinese) : t(:english), locale_rsi_settings_path(:locale => (I18n.locale.to_s == "en" ? "zh" : "en")), :method => :post)
+
+      .row-fluid style="margin: 20px 0 40px 0"
+        .span8
+          h1 
+            = t(:stop_rsi, :href => "rsi").html_safe
+          .sub 
+            i = t :stop_rsi_sub
+        .span4
+          .logo
+            span Brainpage
+            .sub2 
+              i = t :smart_data         
+
+      .row-fluid
+        .span8
+          
+          = yield
+	
+        .span4.company    
+          .page-header
+
+          - if session[:invite_token].blank?
+            .free 
+              = image_tag "free_#{I18n.locale}.png"
+            .center
+              = weibo? ? link_to(image_tag("weibo_login.png"), "/auth/weibo") : link_to("Login with ".html_safe + image_tag("facebook.png"), "/auth/facebook", :class => "btn btn-primary btn-large btn-super")
+            .account 
+              p 
+                = link_to t(:create_account), "#", :onclick => "$('#reg-form').modal('show');"
+              p
+                = t :already
+                = link_to t(:login), "#", :onclick => "$('#login-form').modal('show');"
+
+            #login-form.login-form.modal.hide
+			  = render "login_form"
+			
+			#reg-form.login-form.modal.hide
+			  = render "reg_form"
+
+          - else
+ 		    .accept
+		      = link_to "Accept #{(@user = User.find_by_invite_token(session[:invite_token])).display_name}'s Invitation and Join", join_rsi_friend_path(@user.invite_token), :method => :post, :class => "btn btn-primary btn-large btn-super"
+		
+      = render "layouts/footer"

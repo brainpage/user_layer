@@ -4,13 +4,13 @@ module Rsi::ChartsHelper
     month = nil
     6.downto(0) do |i|
       ti = i.days.ago
-      pre = "&nbsp;"
+      pre = content_tag(:span, "&nbsp;".html_safe, :class => "month")
       if ti.month != month
-        pre = "#{ti.month} "
+        pre = content_tag(:span, ti.month, :class=>"month")+"-"
         month = ti.month
       end
       
-      c << content_tag(:div,  content_tag(:span, pre.html_safe, :class=>"month") + ti.day.to_s, (i == 6 ? {:class => "first"} : {}))
+      c << content_tag(:div,  pre + ti.day.to_s, (i == 6 ? {:class => "first"} : {}))
     end
     c
   end

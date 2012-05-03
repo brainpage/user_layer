@@ -129,10 +129,11 @@ class User < ActiveRecord::Base
   def fb_invite_link
     options = {
       :app_id => Rails.configuration.fb_key,
-      :name => "Protect your health",
-      :description => "Compete with me to see who use facebook less. The loser will donate money to charity.",
+      :name => I18n.t(:fb_name),
+      :description => I18n.t(:fb_desc),
       :link => self.invite_link,
-      :redirect_uri => Rails.configuration.base_url + "rsi/friends"
+      :redirect_uri => Rails.configuration.base_url + "rsi/friends",
+      :picture => Rails.configuration.base_url + "assets/logo-big.png"
     }
   
     Rails.configuration.fb_send_url + "?" + options.to_param

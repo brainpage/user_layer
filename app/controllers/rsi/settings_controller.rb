@@ -18,4 +18,10 @@ class Rsi::SettingsController < ApplicationController
     session[:locale] = I18n.locale = params[:locale].to_sym
     redirect_to :back
   end
+  
+  def hide
+    hidden = cookies[:hidden_tips].to_s.split(";")
+    cookies[:hidden_tips] = { :value => (hidden << params[:key]).join(";"), :expires => 10.year.from_now }
+    render :nothing => true
+  end
 end

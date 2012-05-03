@@ -13,7 +13,7 @@
     .clear
     .tab-content
   	  #time-trend.tab-pane
-  	    = t(:time_trend_desc).html_safe
+          = alert_info "time_trend_desc", t(:time_trend_desc).html_safe
   	    #time-chart
 
   	  #detail.tab-pane.active
@@ -21,12 +21,13 @@
             .calendar
               = draw_calendar
             .clear           
-            #day-slider style="width:210px;margin:10px"
+            #day-slider
+            = alert_info "slider_day", t(:slider_desc)
 
-          = t(:detail_desc).html_safe       
-          
+          .detail-sub
+            = alert_info "detail_desc", t(:detail_desc).html_safe       
           #line-chart.chart
-          
+          = alert_info "drag_line_tip", t(:drag_chart_tip)
           hr.soften
           
           .tabbable.bar-chart
@@ -34,28 +35,34 @@
               li.active
                 a data-toggle="tab" href="#time-detail" 
                   = t :time_percentile
-              li 
-                a data-toggle="tab" href="#keys-bar" 
+		      li
+		        a data-toggle="tab" href="#kmr-content" 
+		          = t :kmr              
+		      li 
+                a data-toggle="tab" href="#keys-content" 
                   = t :key_stroke
               li
                 a data-toggle="tab" href="#mouse-detail" 
                   = t :mouse_intense
-			  li
-	            a data-toggle="tab" href="#kmr-bar" 
-	              = t :kmr
+
             .tab-content
           	#time-detail.tab-pane.active
-                .row-fluid
+                .row-fluid style="margin-top:30px"
 	              .span5
                     #pie-chart.chart
                   .span7
                     #app-detail
-                      = t :view_detail
+                      = alert_info "view_app_detail", t(:view_detail), :style=>"display:none"
                     #zoom-line.chart
-                
-              #keys-bar.tab-pane.chart
-              #kmr-bar.tab-pane.chart
+                    = alert_info "drag_zoom_tip", t(:drag_chart_tip), :style=>"display:none"
+              #keys-content.tab-pane
+                = alert_info "key_stroke_desc", t(:key_stroke_desc).html_safe
+                #keys-bar.chart
+              #kmr-content.tab-pane
+                = alert_info "kmr_desc",  t(:kmr_desc).html_safe
+                #kmr-bar.chart
               #mouse-detail.tab-pane
+                = alert_info "mouse_clicks_desc", t(:mouse_clicks_desc).html_safe
                 .tabbable.tabs-left
                   ul.nav.nav-tabs 
 	                li.active

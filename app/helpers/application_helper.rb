@@ -16,4 +16,14 @@ module ApplicationHelper
     return "" if user.blank?
     (user.image.blank? ? "".html_safe : image_tag(user.image)) + user.display_name
   end
+  
+  def alert_info(key, content, options = {})
+    c = "".html_safe
+    unless @js_called
+      c << javascript_tag("$(document).ready(function(){$('.alert').alert();$('.alert').bind('closed', function(){$.post('#{hide_rsi_settings_path}', {key: $(this).attr('id')})})});")
+      @js_called = true
+    end
+    return "" if cookies[:hidden_tips].to_s.split(";").include?(key)
+    c << content_tag(:div, {:class => "alert fade in", :id=>key}.merge(options)){'<a class="close" data-dismiss="alert" href="#">&times;</a>'.html_safe + content}
+  end
 end

@@ -1,6 +1,6 @@
-$font-size: 16px;
+$font-size: 18px;
 body{font-size:$font-size !important;}
-input, button, select, submit{font-size:16px;}
+input, button, select, submit, label{font-size:18px !important;}
 p{font-size: $font-size * 0.9 !important}
 .btn-large{font-size: 20px !important}
 
@@ -22,13 +22,21 @@ svg text{
   font-size: 14px;
 }
 
+.side-label{font-size:18px !important}
 .center-label{font-size: 20px !important; }
 
 .nav-tabs li{font-size: 16px; }
 
-#land h1{font-size: 40px !important;}
-#land .sub{font-size:20px;margin:10px 0;}
-#land h2{font-size:28px !important}
-#land p{font-size:18px !important;line-height:25px;}
+#land h1{font-size: 36px !important;}
+#land .sub{font-size:20px;margin:5px 0;}
+#land h2{font-size:24px !important}
+#land p{font-size:18px !important;line-height:20px;}
+.hover_caption h3{font-size:18px;}
+#land .logo span{line-height:40px; font-size:36px !important}
+#land .sub2{line-height:18px;font-size:18px;}
 
-.calendar div{font-size:14px}
+#land .desc p{font-size:14px !important}
+
+.calendar div{font-size:14px }
+
+.alert{font-size:16px !important}

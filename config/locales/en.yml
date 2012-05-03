@@ -15,18 +15,18 @@ en:
     my: My Analysis
     friend: Friends App
     setting: Settings
-  stop_rsi: 'Stop RSI, Work Better!'
+  stop_rsi: 'Stop RSI<sup><a href="#%{href}">[?]</a></sup>, Work Better!'
   stop_rsi_sub: Your personal assistant for healthier workstyle
   ad_1: Take Breaks When Needed
   ad_1_desc: Our smart meter can learn your work intensity and notify you to take breaks when needed
   ad_2: Optimize Your Day
-  add_2_desc: with our analysis of your time and application usage
+  ad_2_desc: with our analysis of your time and application usage
   ad_3: Improve Professional Skills
   ad_3_desc: through understanding your learning curve
   ad_4: Learn Friends' App
   ad_4_desc: to find out the most suitable one for yourself
   smart_data: Your Smart Data
-  register: Start Now For Free
+  register: Register
   join: Join Now
   home: Home
   contact: Contact
@@ -46,20 +46,30 @@ en:
   step3: You are ready to go!
   login_with: Or Login With
   blog: Blog
-  detail: Detail Analysis
-  time_trend: Time Trend
+  detail: Work Intensity Analysis
+  time_trend: 30-Day Overview
+  detail_desc: "Help you understand your time distribution over computer usage, and how intense your work was during that period of time.<hr />When the BCI (Brainpage Computer Intensity) value summed up to a certain threshold, our RSIMeter will remind you to take a break." 
+  time_trend_desc: "Check up your time spenditure over apps for 30-Day period.<hr />Move your mouse over color blocks to see detail info."
   past_month: Usage in the past 30 days
   daily_use: Daily Usage 
   time_percentile: Time Percentile
-  key_stroke: Key Strokes
+  slider_desc: Drag to check up latest 7 days’ data  
+  kmr: Professional Skill Analysis
+  kmr_desc: "Professional Skill Analysis (PSA) can help understand professional software skill level. <hr />Proficient users normally use more keyboard (shortcuts) than mouse, while less proficient users click more. We measure your proficiency level based on such analysis and help you understand what your skill level is by comparing to global average, which is calculated based on global user performance."
+  key_stroke: Keyboard Usage Intensity
+  key_stroke_desc: "The Keyboard Usage Intensity can help you to understand the speed of your keystrokes.<hr /> We also provide global average for your reference, to you understand your level of keyboard usage intensity comparing to other people. The global average value is calculated based on global user performance."
+  mouse_intense: Mouse Usage Intensity
+  mouse_clicks_desc: "The Mouse Usage Intensity can help you understand your usage of mouse upon clicking, scrolling and moving.<hr /> You can also see your intensity level comparing to global average value, which is calculated based on global user performance."
   mouse_clicks: Mouse Clicks
   mouse_move: Move Distance
+  drag_chart_tip: Drag above chart to chose time period and see detailed usage
   mouse_scrll: Scroll Distance
   past_week: Past Week
   past_month: Past Month
   all_time: All The Time
   already: Already got one?
   loading: "Loading data of %{time} ..."
+  no_data: "No data for %{time}"
   today: today
   yesterday: yesterday
   view_detail: Click pie chart to see detail of application.
@@ -89,5 +99,7 @@ en:
   ago: " ago"
   alert: You need to install client application to view your analysis.
   download: Download Now!
-  create_account: Create An Brainpage Account
+  create_account: Or create a Brainpage account
+  fb_name: "Protect your health"
+  fb_desc: "Compete with me to see who use facebook less. The loser will donate money to charity."
   

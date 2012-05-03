@@ -29,6 +29,7 @@ function drawChart(sensor_uuid, fromDay, toDay){
 	
 		var data = chart.dataByApp.filter(d.origin_key).top(Infinity);
 		zoomChart.draw(data, d);
+		if(data.length > 0){$('#drag_zoom_tip').show()}else{$('#drag_zoom_tip').hide()}
 	}
 	
 	var keysBarChart = new bp.rsi.BarChart("#keys-bar");
@@ -52,6 +53,8 @@ function drawChart(sensor_uuid, fromDay, toDay){
 		var data = getPieData(group, chart);
 		data = bp.chart.Utils.removeSmallData(data);
 		pieChart.draw(data, true);
+		
+		if(data.length > 0){$('#view_app_detail').show()}else{$('#view_app_detail').hide()}
 	
 		var visible = data.map(function(e){return e.key});
 		
