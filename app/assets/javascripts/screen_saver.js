@@ -19,7 +19,7 @@ function showMessageEffect(time, sensor_uuid){
 		$.ajax({url: pUrl, data: attrData[0], success: showMessage})
 	}
 	
-	$("#break").fadeIn(2000);
+	$("#break").fadeIn('slow');
 
 	function showMessage(data){
 		var messages = [];
