@@ -25,11 +25,9 @@ UserLayer::Application.routes.draw do
   devise_for :users
   as :user do
     get 'signin' => 'rsi/portals#land', :as => :new_user_session
-  end
+  end 
   
-  
-  root :to=>"apps#index"
-  
+  root :to=>"rsi/charts#index"
   
   namespace :rsi do
     resources :sessions, :relations
