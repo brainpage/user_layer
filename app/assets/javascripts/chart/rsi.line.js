@@ -67,7 +67,7 @@ bp.rsi.LineChart.prototype.draw = function(){
 		}		
 		
 		function doDraw(data){
-			stage.append("text").attr("x", 10-line.height).attr("y", 10).attr("transform", "rotate(270)").attr("class", "side-label").text(timeStr);
+			stage.append("text").attr("x", 10-line.height).attr("y", -10).attr("transform", "rotate(270)").attr("class", "side-label").text(timeStr);
 
 			loadedData[dateStr] = $.extend(true, [], data);
 			

@@ -3,11 +3,12 @@ $line-height: 25px;
 @mixin opacity{filter:alpha(Opacity= $opacity * 100);-moz-opacity: $opacity; opacity: $opacity;fill-opacity: $opacity;}
 @mixin low-opacity{filter:alpha(Opacity= $opacity * 0.5 * 100);-moz-opacity: $opacity * 0.5; opacity: $opacity * 0.5;}
 @mixin high-opacity{filter:alpha(Opacity= $opacity * 1.2 * 100) !important;-moz-opacity: $opacity * 1.2 !important; opacity: $opacity * 1.2 !important;fill-opacity: $opacity * 1.2 !important;}
-@mixin font{font-family: 'Carme', sans-serif;  }
+@mixin font{font-family: 'Carme', sans-serif !important;  }
 @mixin round{-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;}
 
 body{ margin:0; padding:0;height:100%; @include font; background: url('/assets/grid.png'); color: #000;}
 input, button, select, submit{@include font;}
+p{@include font}
 a{color: #3b77c3}
 li{list-style: none}
 img{vertical-align:middle; margin-top:-5px;}
@@ -239,8 +240,6 @@ svg .label{font-weight: normal !important;font-size:13px}
 .alert hr{border-top: 0 !important;border-bottom:0 !important; margin: 10px !important;}
 
 
-.quick-start .step{margin:20px 0;}
-
+.quick-start .step{margin:10px 0;}
 .quick-start .step .title span{ font-size:30px; margin-right:10px; width:50px; text-align:center;}
 .quick-start .step .content{padding-left:40px; margin-top:-20px; line-height:25px;}
-.quick-start .step a{margin-right:10px;}

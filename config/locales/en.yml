@@ -34,14 +34,14 @@ en:
   data: Data Policy
   english: English
   chinese: 中文
-  auth: Authenticate
+  auth: Authenticating
   auth_success: Success! Redirecting ...
   reg_success: Success! Redirecting ...
   reg: Submitting...
   no_mail: "Email doesn't exist!"
   wrong_password: Wrong password!
   begin_journey: Begin your health journey
-  step1: 'Login with your <a href="%{fb_link}">facebook</a>account or'
+  step1: 'Login with your <a href="%{fb_link}">facebook</a> account or '
   step2: Download and install Brainpage SmartMeter client.
   step3: Run the client and you are ready to go!
   login_with: Or Login With
@@ -101,12 +101,12 @@ en:
   ago: " ago"
   alert: You need to install the client application to view your analysis.
   download: Download Now!
-  create_account: '&nbsp;create a Brainpage account'
+  create_account: 'create a Brainpage account'
   fb_name: "Use your computer better"
   fb_desc: "Join me on BrainPage - a new tool that encourages us to use our computers in a more productive and healthy way."
   setup_done: Setup successfully
   setup_done_desc: Congratulations! You have setup the Brainpage client successfully.
   learn: Learn how it works
   download: Download SmartMeter Client
-  or: Or 
+  or: 'Or&nbsp;'
   

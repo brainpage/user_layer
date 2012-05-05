@@ -7,6 +7,7 @@ class Rsi::SessionsController < ApplicationController
       @error = I18n.t(:wrong_password)
     else
       sign_in @user
+      call_user_hook(@user)
     end
   end
 end
