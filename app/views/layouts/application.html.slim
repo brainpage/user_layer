@@ -31,6 +31,10 @@ html
                   - if controller_name == "settings"
                     li.active
                       = link_to t("nav.setting"), "#"
+                  - if current_user.is_a?(AdminUser)
+                    = li_for("users"){link_to "Users", rsi_admin_users_path}
+                  - if session[:inspector_id].present?
+                    li = link_to("Uninspect", uninspect_rsi_admin_users_path, :method => :post)
              
 	          ul.nav.pull-right
 	            - if current_user.image.present?

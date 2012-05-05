@@ -31,7 +31,14 @@ UserLayer::Application.routes.draw do
   
   namespace :rsi do
     namespace :admin do
-      resources :users
+      resources :users do
+        member do
+          post :inspect
+        end
+        collection do
+          post :uninspect
+        end
+      end
     end
     
     resources :sessions, :relations

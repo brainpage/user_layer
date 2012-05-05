@@ -32,8 +32,12 @@ class User < ActiveRecord::Base
     self.name || self.email
   end
   
+  def sensor
+    self.sensors.computer.first
+  end
+  
   def sensor_uuid
-    self.sensors.computer.first.try(:uuid)
+    sensor.try(:uuid)
   end
   
   def sensor_added?
