@@ -1,0 +1,12 @@
+table.table.table-striped.table-bordered
+  thead
+    tr
+      th #
+      th = t :email
+      th = t :name
+  tbody
+  - for user in @users
+    tr
+      td = user.id
+      td = user.email
+      td = user.name
