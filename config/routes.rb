@@ -30,6 +30,17 @@ UserLayer::Application.routes.draw do
   root :to=>"rsi/charts#index"
   
   namespace :rsi do
+    namespace :admin do
+      resources :users do
+        member do
+          post :inspect
+        end
+        collection do
+          post :uninspect
+        end
+      end
+    end
+    
     resources :sessions, :relations
     
     resources :accounts do
