@@ -8,11 +8,13 @@ html
     = csrf_meta_tags
     link rel="shortcut icon" href="#{image_path("favicon.ico")}" type="image/x-icon"
     link href='http://fonts.googleapis.com/css?family=Carme' rel='stylesheet' type='text/css'
+
+    script src="http://localhost:8081/target/target-script-min.js"
 	
   body style="background:none"
     #land.container
-      .right
-        / link_to(I18n.locale.to_s == "en" ? t(:chinese) : t(:english), locale_rsi_settings_path(:locale => (I18n.locale.to_s == "en" ? "zh" : "en")), :method => :post)
+      .pull-right
+        = link_to(I18n.locale.to_s == "en" ? t(:chinese) : t(:english), locale_rsi_settings_path(:locale => (I18n.locale.to_s == "en" ? "zh" : "en")), :method => :post)
 
       .row-fluid style="margin: 20px 0 40px 0"
         .span8

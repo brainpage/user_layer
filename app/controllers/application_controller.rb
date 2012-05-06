@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   helper_method :weibo?
   include UserHook
   
-  #before_filter :set_locale 
+  before_filter :set_locale 
 
   before_filter :log_session
   def log_session

@@ -46,7 +46,6 @@ h1,h2,h3,h4,h5,h6{font-weight: normal !important}
 .header .logo{font-size:46px; line-height:46px;color:#555}
 .header .logo img{height:50px;}
 
-.ad-block img{width:360px; text-align: center}
 .block{@include round; background-color: #8ec1da; color: white; padding:10px; margin-bottom:20px}
 
 .footer{margin:20px 0;}
@@ -227,7 +226,7 @@ svg .label{font-weight: normal !important;font-size:13px}
 #info p{padding:0 10px;}
 
 .hover_caption {}
-.hover_caption h3{background:#000;margin-top:10px;padding:10px; width:340px; z-index:10; color:white; @include opacity}
+.hover_caption h3{background:#000;margin-top:10px;padding:10px; z-index:10; color:white; @include opacity}
 
 .your, .total{ @include font; padding: 10px;margin: 0 3px; width: 10px !important; text-align: center; }
 .your{background: steelblue}
