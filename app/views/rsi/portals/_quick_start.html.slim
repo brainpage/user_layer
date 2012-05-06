@@ -2,20 +2,14 @@
   .step 
     .title 
       span 1.
-      = t :step1
-    .content
-      p 
-        = link_to image_tag("apple.png") + " Mac OS", "/downloads/BrainpageInstaller.1.0.pkg"
-        | (195KB)
-      p
-        /= link_to image_tag("windows.png") + " Windows", "/downloads/rsi-windows.exe"
-        /| (418KB)
+    .content 
+      = t(:step1, :fb_link => "/auth/facebook").html_safe 
+      = link_to t(:create_account).html_safe, "#", :onclick => "$('#reg-form').modal('show');"
   .step
     .title
       span 2.
-      = t :step2
     .content
-      = t(:step2_desc).html_safe
+      = t(:step2)
   .step
     .title
       span 3.

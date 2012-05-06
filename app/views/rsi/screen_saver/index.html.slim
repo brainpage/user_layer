@@ -1,10 +1,9 @@
 doctype html
 head
     title UserLayer
-    = javascript_include_tag "application"
+    = javascript_include_tag "jquery"
+    = javascript_include_tag "screen_saver"
     = csrf_meta_tags
-
-    link href='http://fonts.googleapis.com/css?family=Marmelad' rel='stylesheet' type='text/css'
 
 	style
 	  | body{background-color:black; color:white}
@@ -26,4 +25,4 @@ html
     #content style="display:none";
 
 script
-  | $(document).ready(showMessageEffect(#{params[:t]},"#{current_user.sensor_uuid}"));
+  | $(document).ready(function(){showMessageEffect(#{params[:t]},"#{@uuid}")});

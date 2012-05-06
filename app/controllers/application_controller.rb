@@ -5,12 +5,9 @@ class ApplicationController < ActionController::Base
   
   #before_filter :set_locale 
 
-  def log_activity
-    #We log the user's IP and computer info.  For matching purposes.
-   
-    if current_user
-      logger.info "not here"
-    end
+  before_filter :log_session
+  def log_session
+    logger.info "Session: #{session.inspect}"
   end
   
   def weibo?

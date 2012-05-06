@@ -1,0 +1,21 @@
+table.table.table-striped.table-bordered
+  thead
+    tr
+      th #
+      th = t :email
+      th = t :name
+      th Sensor 
+      th Created At
+      th Oper
+  tbody
+  - for user in @users
+    tr
+      td = user.id
+      td = user.email
+      td
+        = image_tag(user.image) if user.image.present? 
+        = user.name
+      td = user.sensor_uuid
+      td = user.created_at.to_s(:short)
+      td = link_to "Inspect", inspect_rsi_admin_user_path(user), :method => :post
+        
