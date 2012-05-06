@@ -16,7 +16,7 @@ en:
     friend: Friends App
     setting: Settings
   stop_rsi: 'Stop RSI<sup><a href="#%{href}">[?]</a></sup>, Work Better!'
-  stop_rsi_sub: Your personal assistant for healthier workstyle
+  stop_rsi_sub: Your personal assistant for a healthier workstyle
   ad_1: Take Breaks When Needed
   ad_1_desc: Our smart meter monitors your work intensity and notifies you to take breaks at the optimum time.
   ad_2: Optimize Your Day
@@ -53,7 +53,7 @@ en:
   past_month: Usage in the past 30 days
   daily_use: Daily Usage 
   time_percentile: Time Percentile
-  slider_desc: Drag to check up to the lat 7 days data  
+  slider_desc: Drag to check up to the last 7 days data  
   kmr: Professional Skill Analysis
   kmr_desc: "Professional Skill Analysis (PSA) can help you understand your skill level when using professional software. <hr />Proficient users normally use more keyboard (shortcuts) than the mouse, while less proficient users click more. We measure your proficiency level based on this analysis and help you understand what your skill level is in comparison to global average."
   key_stroke: Keyboard Usage Intensity
