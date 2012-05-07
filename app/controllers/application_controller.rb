@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  helper_method :weibo?
+  helper_method :weibo?, :current_sensor
   include UserHook
   
   before_filter :set_locale 
@@ -12,6 +12,10 @@ class ApplicationController < ActionController::Base
   
   def weibo?
     I18n.locale.to_s == "zh"
+  end
+  
+  def current_sensor
+    (id = session[:current_sensor_uuid]).blank? ? current_user.rsi_sensors.first : current_user.rsi_sensors.find_by_uuid(id)
   end
 
   protected

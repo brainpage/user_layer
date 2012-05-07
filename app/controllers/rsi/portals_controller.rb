@@ -4,7 +4,6 @@ class Rsi::PortalsController < ApplicationController
   
   def index
     @feeds = current_user.feeds
-    @uuid = current_user.sensor_uuid
   end
   
   def land

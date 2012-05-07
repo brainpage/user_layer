@@ -29,15 +29,22 @@ html
                   = li_for("portals"){link_to t("nav.feed"), rsi_portals_path}
                   = li_for("charts"){link_to t("nav.my"), rsi_charts_path}
 	  			= li_for("friends"){link_to t("nav.friend"), rsi_friends_path}
-                  - if controller_name == "settings"
-                    li.active
-                      = link_to t("nav.setting"), "#"
                   - if current_user.is_a?(AdminUser)
                     = li_for("users"){link_to "Users", rsi_admin_users_path}
                   - if session[:inspector_id].present?
                     li = link_to("Uninspect", uninspect_rsi_admin_users_path, :method => :post)
              
 	          ul.nav.pull-right
+	            - if current_user.rsi_sensors.size > 1
+	              li.dropdown id="sensors"
+	                a.dropdown-toggle href="#sensors" data-toggle="dropdown"
+	                  = current_sensor.description
+	                  b.caret
+	                ul.dropdown-menu
+	                  - for sensor in current_user.rsi_sensors
+	                    li
+	                      = link_to sensor.description, active_rsi_chart_path(sensor.uuid), {:method => :post}.merge(sensor==current_sensor ? {:class => "check"} : {})
+	            
 	            - if current_user.image.present?
 	              li = image_tag current_user.image
 	            li.dropdown id="menu"
@@ -45,11 +52,9 @@ html
 	                = current_user.display_name
 	                b.caret
 	              ul.dropdown-menu
-	                li 
-	                  = link_to t("nav.setting"), rsi_settings_path
-	                li.divider
 	                li
 	                  = link_to t(:logout), destroy_user_session_path, :method => :delete
+	            = li_for("settings"){link_to t("nav.setting"), rsi_settings_path} 
         .navbar-banner
           
           .green

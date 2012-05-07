@@ -72,6 +72,9 @@ UserLayer::Application.routes.draw do
       collection do
         get :data, :average, :percent
       end
+      member do
+        post :active
+      end
     end
     
     resources :friends do

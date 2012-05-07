@@ -3,12 +3,10 @@ $line-height: 25px;
 @mixin opacity{filter:alpha(Opacity= $opacity * 100);-moz-opacity: $opacity; opacity: $opacity;fill-opacity: $opacity;}
 @mixin low-opacity{filter:alpha(Opacity= $opacity * 0.5 * 100);-moz-opacity: $opacity * 0.5; opacity: $opacity * 0.5;}
 @mixin high-opacity{filter:alpha(Opacity= $opacity * 1.2 * 100) !important;-moz-opacity: $opacity * 1.2 !important; opacity: $opacity * 1.2 !important;fill-opacity: $opacity * 1.2 !important;}
-@mixin font{font-family: 'Carme', sans-serif !important;  }
+
 @mixin round{-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;}
 
-body{ margin:0; padding:0;height:100%; @include font; background: url('/assets/grid.png'); color: #000;}
-input, button, select, submit{@include font;}
-p{@include font}
+body{ margin:0; padding:0;height:100%; background: url('/assets/grid.png'); color: #000;}
 a{color: #3b77c3}
 li{list-style: none}
 img{vertical-align:middle; margin-top:-5px;}
@@ -131,9 +129,7 @@ hr.soften {
 
 sup a{font-size:50%;margin:0 3px;}
 
-svg {
-  @include font; 
-}
+
 
 .side-label{fill: #3b77c3}
 
@@ -225,10 +221,12 @@ svg .label{font-weight: normal !important;font-size:13px}
 #land .free img{width:250px}
 #info p{padding:0 10px;}
 
+.check{background: url('/assets/check.png') no-repeat scroll right center;padding-right:30px;}
+
 .hover_caption {}
 .hover_caption h3{background:#000;margin-top:10px;padding:10px; z-index:10; color:white; @include opacity}
 
-.your, .total{ @include font; padding: 10px;margin: 0 3px; width: 10px !important; text-align: center; }
+.your, .total{padding: 10px;margin: 0 3px; width: 10px !important; text-align: center; }
 .your{background: steelblue}
 
 .logo img{@include opacity; width:40px; height:40px; margin-right: 10px;}

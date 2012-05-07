@@ -1,6 +1,8 @@
 $font-size: 14px;
-body{font-size:$font-size !important;line-height:20px !important;}
-input, button, select, submit, a{font-size:$font-size;}
+@mixin font{font-family: '微软雅黑','宋体', sans-serif !important;  }
+
+body{font-size:$font-size !important;line-height:20px !important; @include font; }
+input, button, select, submit, a, p, svg{font-size:$font-size; @include font;}
 p{font-size: 12px !important}
 .btn-large{font-size: 14px !important}
 
@@ -9,7 +11,7 @@ p{font-size: 12px !important}
 .f9{font-size: $font-size * 0.9}
 
 .footer a{font-size:12px}
-
+.navbar a{font-size:16px !important}
 .navbar .brand{font-size:24px !important; }
 
 .footer{font-size: 12px}

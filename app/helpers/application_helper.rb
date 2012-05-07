@@ -26,4 +26,5 @@ module ApplicationHelper
     return "" if cookies[:hidden_tips].to_s.split(";").include?(key)
     c << content_tag(:div, {:class => "alert fade in", :id=>key}.merge(options)){'<a class="close" data-dismiss="alert" href="#">&times;</a>'.html_safe + content}
   end
+  
 end

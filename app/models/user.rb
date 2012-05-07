@@ -32,16 +32,12 @@ class User < ActiveRecord::Base
     self.name || self.email
   end
   
-  def sensor
-    self.sensors.computer.first
-  end
-  
-  def sensor_uuid
-    sensor.try(:uuid)
+  def rsi_sensors
+    self.sensors.computer
   end
   
   def sensor_added?
-    self.sensor_uuid.present?
+    self.rsi_sensors.present?
   end  
   
   def facebook
