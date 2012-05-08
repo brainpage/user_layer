@@ -54,7 +54,7 @@ bp.rsi.BarChart.prototype.draw = function(group, attr, chart, visible){
 			data.push(item);	
 
 			var item_avg = {key: bp.chart.Utils.trim(d.key)}
-			var avg = chart.global_avg.filter(function(w){return w.category == d.key + ":" + attr}).pop();		
+			var avg = chart.global_avg.filter(function(w){return w.category == bp.chart.Utils.trim(d.key).toLowerCase() + ":" + attr}).pop();		
 			if(avg != null){item_avg.average = avg.value;}
 			data.push(item_avg);
 		}				

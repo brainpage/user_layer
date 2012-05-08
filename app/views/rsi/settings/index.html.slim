@@ -6,12 +6,15 @@ tabbable
     li 
       a data-toggle="tab" href="#account_setting" 
         = t :account_setting
+    li 
+	  a data-toggle="tab" href="#language_setting" 
+	    = t :language_setting
   .tab-content
     #break_setting.tab-pane.active style="width:60%"
       .right
-        = link_to (current_user.send_alert ? t("settings.turn_off_break") : t("settings.turn_on_break")), alert_rsi_settings_path, :method => :post, :class => "btn btn-large"
+        = link_to (current_user.send_alert? ? t("settings.turn_off_break") : t("settings.turn_on_break")), alert_rsi_settings_path, :method => :post, :class => "btn btn-large"
       
-	  - if current_user.send_alert
+	  - if current_user.send_alert?
         div
           = t("settings.rsi_interval_description")
           div style="margin:10px; margin-top:30px"
@@ -47,6 +50,11 @@ tabbable
 	      .span4 &nbsp;
 	      .span8
 	        = submit_tag t(:change_pwd), :class => "btn btn-large"
- 
+	#language_setting.tab-pane
+	  p
+	    = link_to t(:english), locale_rsi_settings_path(:locale => "en"), {:method => :post}.merge(zh? ? {} : {:class=>"check"})
+	  p
+	    = link_to t(:chinese), locale_rsi_settings_path(:locale => "zh"), {:method => :post}.merge(zh? ? {:class=>"check"}: {})
+
 script
   | $("#interval-slider").slider({value: #{current_user.rsi_interval}, min: 10, max:60, step: 5, slide: function(event, ui) { $("#interval").text(ui.value)}, change: function(event, ui){$.post('#{rsi_settings_path.html_safe}', {value: ui.value})}});

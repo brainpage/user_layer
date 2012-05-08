@@ -31,13 +31,14 @@ class ApplicationController < ActionController::Base
   end
   
   def set_locale
-    puts "<<<<<<<<<<<<<<"
-    puts request.env['HTTP_USER_AGENT']
-    
     locale = session[:locale]
     if locale.blank?
-      @geoip ||= GeoIP.new(Rails.root.join("db/GeoIP.dat"))
-      locale = @geoip.country("123.125.114.144").try(:country_name) == "China" ? :zh : :en
+      if current_user.present? and current_user.locale.present?
+        locale = current_user.locale
+      else
+        @geoip ||= GeoIP.new(Rails.root.join("db/GeoIP.dat"))
+        locale = @geoip.country("123.125.114.144").try(:country_name) == "China" ? :zh : :en
+      end
     end
     I18n.locale = locale
   end

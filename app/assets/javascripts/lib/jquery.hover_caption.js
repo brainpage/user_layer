@@ -48,8 +48,7 @@
            .wrap('<div>')
            .parent()
             .css({
-              'width': width,
-              'height': height
+              'width': width
             })
             .prepend('<h3>'+ caption +'</h3>')
             .find('h3')

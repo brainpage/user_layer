@@ -62,7 +62,9 @@ zh:
   detail: 工作强度分析 
   time_trend: 30天概览
   time_trend_desc: 查看过去30天应用的时间分配情况<br />鼠标指向色块可查看详细信息
-  detail_desc: 帮助你了解每天的电脑使用情况；当能量消耗达到一定值时，客户端将提醒休息，预防电脑职业病<br />拖动右边的时间轴可查看过去一周数据
+  detail_desc: 帮助你了解每天的电脑使用情况；当能量消耗达到一定值时，客户端将提醒休息，预防电脑职业病
+  drag_chart_tip: 用鼠标拖动上图可选择时段查看使用情况
+  slider_desc: 拖动可查看过去一周数据
   time_percentile: 应用时间占比
   key_stroke: 键盘使用强度
   mouse_intense: 鼠标使用强度
@@ -82,6 +84,11 @@ zh:
   view_detail: 点击饼图可查看应用详情
   detail_of: "%{app} 使用详情"
   quick_start: 快速开始
+  kmr: 职业技能分析
+  kmr_desc: 通过对鼠标及键盘的使用情况，判断软件的使用熟练程度。熟练的软件使用者操作键盘更为普遍（快捷键让工作效率更高），而不太熟练的人使用鼠标更为寻常。我们的分析将您对软件的使用情况与其他用户进行对比查看，帮助了解您自身所处的技能水平。
+  key_stroke_desc: 键盘使用强度值帮助您了解自己的按键频率／按键速度，并提供全球平均参考值来帮助您对比在不同的应用中，您的按键速度是否高于平均值
+  mouse_clicks_desc: 鼠标使用强度值帮助您了解对鼠标的点击、滚动、以及移动距离的使用情况，您还可以通过与平均值的比较，了解您对鼠标的使用强度与其他人的对比。
+  no_data: "%{time} 没有数据"
   feed:
     welcome: 欢迎来到Brainpage!
     accept_invite: '%{name}接受了你的好友邀请'
@@ -91,6 +98,7 @@ zh:
     deny_request: '你拒绝了%{name}的好友请求'
   break_setting: 提醒设置
   account_setting: 账户设置
+  language_setting: 语言设置
   settings:
     rsi_interval_description: "设置可连续工作的强度值（值越高，提醒的次数越少）"
     low_work: "低"

@@ -10,4 +10,5 @@ class Rsi::SessionsController < ApplicationController
       call_user_hook(@user)
     end
   end
+
 end

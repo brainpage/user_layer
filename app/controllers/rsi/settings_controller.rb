@@ -10,12 +10,13 @@ class Rsi::SettingsController < ApplicationController
   end
   
   def alert
-    current_user.change_settings(:send_alert => !current_user.send_alert)
+    current_user.change_settings(:send_alert => !current_user.send_alert?)
     redirect_to :action => :index
   end
   
   def locale
     session[:locale] = I18n.locale = params[:locale].to_sym
+    current_user.try(:set_locale)
     redirect_to :back
   end
   

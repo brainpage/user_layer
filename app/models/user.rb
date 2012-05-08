@@ -20,9 +20,13 @@ class User < ActiveRecord::Base
   has_many :app_usages
   
   delegate :name, :image, :to => :active_oauth_account, :allow_nil => true
-  delegate :send_alert, :allow_stranger, :to => :setting, :allow_nil => true
+  delegate :allow_stranger, :to => :setting, :allow_nil => true
   
-  after_create :generate_welcome_feed, :reset_authentication_token!
+  after_create :generate_welcome_feed, :reset_authentication_token!, :set_locale
+  
+  def set_locale
+    self.update_attribute(:locale, I18n.locale) unless self.locale == I18n.locale.to_s
+  end
   
   def active_oauth_account
     I18n.locale.to_s == "zh" ? self.weibo : self.facebook
@@ -30,6 +34,10 @@ class User < ActiveRecord::Base
   
   def display_name
     self.name || self.email
+  end
+  
+  def send_alert?
+    self.setting.blank? or (self.setting.send_alert |= false)
   end
   
   def rsi_sensors

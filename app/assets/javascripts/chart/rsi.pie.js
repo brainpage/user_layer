@@ -1,5 +1,5 @@
 bp.rsi.PieChart = function(domId, width){
-	var w = width, h = width * 2/3,  ir = 45;
+	var w = width, h = width * 0.8,  ir = 45;
 	this.r = r = 120;
 	this.textOffset = 14;
 	this.tweenDuration = 300;

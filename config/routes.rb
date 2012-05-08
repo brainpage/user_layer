@@ -25,6 +25,7 @@ UserLayer::Application.routes.draw do
   devise_for :users
   as :user do
     get 'signin' => 'rsi/portals#land', :as => :new_user_session
+    delete "/logout" => "rsi/sessions#destroy"
   end 
   
   root :to=>"rsi/charts#index"
