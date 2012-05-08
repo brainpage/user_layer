@@ -31,6 +31,9 @@ class ApplicationController < ActionController::Base
   end
   
   def set_locale
+    puts "<<<<<<<<<<<<<<"
+    puts request.env['HTTP_USER_AGENT']
+    
     locale = session[:locale]
     if locale.blank?
       @geoip ||= GeoIP.new(Rails.root.join("db/GeoIP.dat"))

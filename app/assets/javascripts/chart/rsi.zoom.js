@@ -1,9 +1,8 @@
-bp.rsi.ZoomChart = function(domId){
+bp.rsi.ZoomChart = function(domId, domWidth){
 	this.domId = domId;
-	
 	var margin = {top: 10, right: 10, bottom: 100, left: 40},
 	    margin2 = {top: 230, right: 10, bottom: 20, left: 40},
-	    width = 600 - margin.left - margin.right,
+	    width = domWidth - margin.left - margin.right,
 	    height = 300 - margin.top - margin.bottom,
 	    height2 = 300 - margin2.top - margin2.bottom;
 
