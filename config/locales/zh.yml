@@ -41,8 +41,8 @@ zh:
   smart_data: 你的智慧数据
   register: 马上注册
   begin_journey: 安装向导
-  step1: 下载并安装客户端软件
-  step2: 安装完成后，从菜单栏点击"View charts"或"Settings"
+  step1: 创建Brainpage帐号
+  step2: 并安装
   step3: 设置完成!
   join: 加入我们
   home: 首页
@@ -81,6 +81,7 @@ zh:
   yesterday: 昨天
   view_detail: 点击饼图可查看应用详情
   detail_of: "%{app} 使用详情"
+  quick_start: 快速开始
   feed:
     welcome: 欢迎来到Brainpage!
     accept_invite: '%{name}接受了你的好友邀请'

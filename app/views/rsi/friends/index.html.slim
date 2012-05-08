@@ -18,7 +18,7 @@ script
   
 
 .center.invite
-  - if weibo?
+  - if zh?
     = link_to image_tag("weibo_share.gif"), "#", :onclick => "$('#weibo-share').modal('show')"
   - else
     = link_to content_tag(:span, :class => "fb-link"){" Invite Friends"}, invite_rsi_friends_path, :class=>"btn btn-large btn-primary"

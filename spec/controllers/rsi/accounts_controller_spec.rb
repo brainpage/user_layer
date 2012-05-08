@@ -7,13 +7,12 @@ describe Rsi::AccountsController do
     end
     
     it "should redirect to portals if success" do
-      lambda{post :create, :email => "new@test.com", :password => "111111"}.should change(User, :count).by(1)
-      response.should be_success
+      lambda{post :create, :email => "new@test.com", :password => "111111", :password_confirmation => "111111"}.should change(User, :count).by(1)
+      response.should be_redirect
     end
     
     it "should redirect to signin if fail" do
-      lambda{post :create, :email => "user@example.com"}.should change(User, :count).by(0)
-      response.should be_success
+      lambda{post :create, :email => "user@example.com"}.should change(User, :count).by(0), :formats => :js
     end
    
   end

@@ -1,0 +1,17 @@
+h1
+  = t :quick_start
+.quick-start
+  .step 
+    .page-header
+      span 1.
+      = t(:step1, :fb_link => "/auth/facebook").html_safe 
+    = render "reg_form", :inline => true
+    .right
+      = login_link
+  .step
+    span 2.
+    = download_link + t(:step2)
+  .step
+    span 3.
+    = t :step3
+

@@ -2,7 +2,7 @@ $font-size: 14px;
 @mixin font{font-family: '微软雅黑','宋体', sans-serif !important;  }
 
 body{font-size:$font-size !important;line-height:20px !important; @include font; }
-input, button, select, submit, a, p, svg{font-size:$font-size; @include font;}
+input, button, select, submit, a, p, svg{font-size:$font-size !important; @include font;}
 p{font-size: 12px !important}
 .btn-large{font-size: 14px !important}
 
@@ -30,9 +30,9 @@ svg .center-label{font-size:14px !important}
 .nav-tabs li{font-size: 14px; }
 
 #land h1{font-size: 28px !important;}
-#land .sub, #land .sub2{font-size:14px;}
-#land h2{font-size:22px !important; font-weight: bold !important}
-#land p{font-size:14px !important;line-height:25px;}
+
+#land h2{font-size:20px !important; }
+#land p{line-height:25px;}
 #land .logo{padding-top:20px;}
 #land h1{padding-top:10px;}
 #land .sub{padding-left:5px}

@@ -236,7 +236,14 @@ svg .label{font-weight: normal !important;font-size:13px}
 .alert{color: #222 !important; line-height:20px !important;}
 .alert hr{border-top: 0 !important;border-bottom:0 !important; margin: 10px !important;}
 
+.reg-inline .control-label{width:80px !important}
+.reg-inline .controls{margin-left:100px !important}
+.reg-inline .control-group{margin-bottom: 5px !important}
+.reg-inline .btn{margin-left:100px; min-width:120px;}
+#reg-tip{margin-bottom:10px;}
+
+.language{font-size:14px;}
 
 .quick-start .step{margin:10px 0;}
-.quick-start .step .title span{ font-size:30px; margin-right:10px; width:50px; text-align:center;}
+.quick-start .step span{ font-size:26px; margin-right:10px; width:50px; text-align:center;}
 .quick-start .step .content{padding-left:40px; margin-top:-20px; line-height:25px;}

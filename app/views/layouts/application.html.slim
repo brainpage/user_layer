@@ -86,7 +86,7 @@ html
 
       .main style="margin-top:#{current_user.blank? ? 10 : 80}px"
 
-        = render "rsi/portals/wizard" unless current_user.blank?
+        = render "rsi/portals/wizard" 
         = yield
 
       = render "layouts/footer"

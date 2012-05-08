@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  helper_method :weibo?, :current_sensor
+  helper_method :zh?, :current_sensor
   include UserHook
   
   before_filter :set_locale 
@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
     logger.info "Session: #{session.inspect}"
   end
   
-  def weibo?
+  def zh?
     I18n.locale.to_s == "zh"
   end
   

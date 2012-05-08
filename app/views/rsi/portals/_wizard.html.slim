@@ -10,7 +10,7 @@
       /= link_to image_tag("windows.png") + " Windows", "/downloads/rsi-windows.exe"
       /| (418KB)
   .modal-footer     
-- unless current_user.sensor_added? or controller_name == "friends"
+- if ["feeds", "charts"].include?(controller_name) and !current_user.try(:sensor_added?) 
   script
     | $(document).ready(function(){$('#wizard-step').modal('show')});
 

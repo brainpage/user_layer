@@ -1,9 +1,9 @@
 .footer
   .pull-right
     | © 2012, Brainpage
-    = link_to t(:icp), "http://www.miibeian.gov.cn", :target => "_blank" if weibo?
+    = link_to t(:icp), "http://www.miibeian.gov.cn", :target => "_blank" if zh?
   = link_to t(:home)
-  = link_to t(:download), "#", :onclick => "$('#wizard-step').modal('show')"
+  = download_link
   = link_to t(:contact)
   = link_to t(:about)
   = link_to t(:data)
