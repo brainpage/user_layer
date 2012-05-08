@@ -44,7 +44,7 @@ html
 	                  - for sensor in current_user.rsi_sensors
 	                    li
 	                      = link_to sensor.description, active_rsi_chart_path(sensor.uuid), {:method => :post}.merge(sensor==current_sensor ? {:class => "check"} : {})
-	            
+	            = li_for("settings"){link_to t("nav.setting"), rsi_settings_path} 
 	            - if current_user.image.present?
 	              li = image_tag current_user.image
 	            li.dropdown id="menu"
@@ -54,7 +54,7 @@ html
 	              ul.dropdown-menu
 	                li
 	                  = link_to t(:logout), destroy_user_session_path, :method => :delete
-	            = li_for("settings"){link_to t("nav.setting"), rsi_settings_path} 
+	            
         .navbar-banner
           
           .green
