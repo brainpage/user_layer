@@ -7,8 +7,8 @@
     p 
       = link_to image_tag("apple.png") + " Mac OS", "/downloads/BrainpageInstaller.1.0.pkg"
       | &nbsp;(195KB)
-      /= link_to image_tag("windows.png") + " Windows", "/downloads/rsi-windows.exe"
-      /| (418KB)
+       link_to image_tag("windows.png") + " Windows", "/downloads/BrainpageInstaller.1.0.msi"
+      | &nbsp;(699KB)
   .modal-footer     
 - if ["feeds", "charts"].include?(controller_name) and !current_user.try(:sensor_added?) 
   script
