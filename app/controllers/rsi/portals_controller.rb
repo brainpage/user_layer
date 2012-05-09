@@ -13,5 +13,13 @@ class Rsi::PortalsController < ApplicationController
   def info
     render :layout => "land"
   end
+  
+  def about
+    render :layout => "land"
+  end
+  
+  def policy
+    render :layout => "land"
+  end
  
 end

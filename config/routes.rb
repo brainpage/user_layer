@@ -97,6 +97,8 @@ UserLayer::Application.routes.draw do
   match 'db/query' => 'rsi/charts#data'
   match 'home' => 'rsi/portals#land'
   match 'info' => 'rsi/portals#info'
+  match 'about' => 'rsi/portals#about'
+  match 'policy' => 'rsi/portals#policy'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

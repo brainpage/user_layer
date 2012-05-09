@@ -2,7 +2,7 @@ $font-size: 16px;
 @mixin font{font-family: 'Carme', sans-serif !important;  }
 
 body{font-size:$font-size !important; @include font; }
-input, button, select, submit, svg{@include font;}
+input, button, select, submit, svg, p{@include font;}
 p{@include font}
 input, button, select, submit, label{font-size:$font-size !important;}
 p{font-size: $font-size * 0.9 !important}

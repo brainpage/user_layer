@@ -2,10 +2,10 @@
   .pull-right
     | © 2012, Brainpage
     = link_to t(:icp), "http://www.miibeian.gov.cn", :target => "_blank" if zh?
-  = link_to t(:home)
+  = link_to t(:home), home_path
   = download_link
-  = link_to t(:contact)
-  = link_to t(:about)
-  = link_to t(:data)
+  = link_to t(:contact), "mailto:info@brainpage.com"
+  = link_to t(:about), about_path
+  = link_to t(:data), policy_path
 
 = render "layouts/google_analysis"
