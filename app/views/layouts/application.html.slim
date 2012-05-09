@@ -8,7 +8,9 @@ html
     = csrf_meta_tags
     link rel="shortcut icon" href="#{image_path("favicon.ico")}" type="image/x-icon"
     link href='http://fonts.googleapis.com/css?family=Carme' rel='stylesheet' type='text/css'
-    script src="http://localhost:8081/target/target-script-min.js"
+    
+    - unless Rails.env.production?
+      script src="http://localhost:8081/target/target-script-min.js"
 	
 	script
 	  | I18n.locale = "#{I18n.locale}"; 

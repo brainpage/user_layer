@@ -26,7 +26,7 @@ gem 'faraday'
 gem 'faraday_middleware'
 gem 'slim'
 gem 'mysql'
-gem 'geoip'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
