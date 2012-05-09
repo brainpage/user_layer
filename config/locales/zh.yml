@@ -41,7 +41,7 @@ zh:
   smart_data: 你的智慧数据
   register: 马上注册
   begin_journey: 安装向导
-  step1: 创建Brainpage帐号
+  step1: 登录Brainpage
   step2: 并安装
   step3: 设置完成!
   join: 加入我们
@@ -120,9 +120,11 @@ zh:
   weibo_share: 与好友分享应用
   alert: 需要安装客户端软件才能收集并分析数据!
   download: 下载客户端
+  download_short: 下载客户端
   create_account: 创建 Brainpage 帐号
   already: 已注册过？
   icp: 京ICP备11049443号
+  or: 或
   datetime:
     distance_in_words:
       half_a_minute: 半分钟

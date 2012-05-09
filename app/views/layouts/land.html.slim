@@ -40,34 +40,17 @@ html
             = link_to t(:view_data).html_safe, rsi_charts_path, :class => "btn btn-primary btn-large btn-super"
 
           - elsif session[:invite_token].blank?
-            - if zh?
-              = render "zh_quick_start"
-            - else
-              .free 
-                = image_tag "free_#{I18n.locale}.png"
-              = link_to("Login with ".html_safe + image_tag("facebook.png"), "/auth/facebook", :class => "btn btn-primary btn-large btn-super")
-              .account 
-                p 
-                  = link_to t(:or).html_safe + t(:create_account).html_safe, "#", :onclick => "$('#reg-form').modal('show');"
-                p
-                  = login_link
+            = render "zh_quick_start"           
 
             #login-form.login-form.modal.hide
 			  = render "login_form"
 			
-			- unless zh?
-			  #reg-form.login-form.modal.hide
-			    = render "reg_form", :inline => false
+			#reg-form.login-form.modal.hide
+			  = render "reg_form", :inline => false
 
           - else
  		    .accept
 		      = link_to "Accept #{(@user = User.find_by_invite_token(session[:invite_token])).display_name}'s Invitation and Join", join_rsi_friend_path(@user.invite_token), :method => :post, :class => "btn btn-primary btn-large btn-super"
-		  
-		  - if current_user.blank? and !zh?
-		    .page-header 
-		    h1 style="margin-bottom:30px"
-		      = t :quick_start
-		    = render :partial => "rsi/portals/quick_start"
 		
 	  = render "rsi/portals/wizard"	
       = render "layouts/footer"

@@ -15,9 +15,12 @@ class Rsi::SettingsController < ApplicationController
   end
   
   def locale
-    session[:locale] = I18n.locale = params[:locale].to_sym
-    current_user.try(:set_locale)
-    redirect_to :back
+    if Rails.env.production?
+      redirect_to params[:locale] == "zh" ? Rails.configuration.base_url_zh : Rails.configuration.base_url     
+    else
+      session[:locale] = I18n.locale = params[:locale].to_sym
+      redirect_to :back
+    end
   end
   
   def hide

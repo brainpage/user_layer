@@ -12,7 +12,7 @@ module ApplicationHelper
   end
   
   def download_link
-    link_to(t(:download), "#", :onclick => "$('#wizard-step').modal('show')")
+    link_to(t(:download_short), "#", :onclick => "$('#wizard-step').modal('show')")
   end
   
   def user_tag(user)
