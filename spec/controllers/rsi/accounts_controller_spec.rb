@@ -12,7 +12,7 @@ describe Rsi::AccountsController do
     end
     
     it "should redirect to signin if fail" do
-      lambda{post :create, :email => "user@example.com"}.should change(User, :count).by(0), :formats => :js
+      lambda{post :create, :email => "user@example.com"}.should change(User, :count).by(0), :format => :js
     end
    
   end

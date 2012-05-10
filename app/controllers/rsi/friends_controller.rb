@@ -47,7 +47,7 @@ class Rsi::FriendsController < ApplicationController
   
   private 
   def accept_invite_and_redirect(inviter_token)
-    current_user.accept_invite(inviter_token)
+    current_user.follow_invite(inviter_token)
     redirect_to rsi_portals_path
   end
 end

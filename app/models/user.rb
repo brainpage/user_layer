@@ -22,11 +22,7 @@ class User < ActiveRecord::Base
   delegate :name, :image, :to => :active_oauth_account, :allow_nil => true
   delegate :allow_stranger, :to => :setting, :allow_nil => true
   
-  after_create :generate_welcome_feed, :reset_authentication_token!, :set_locale
-  
-  def set_locale
-    self.update_attribute(:locale, I18n.locale) unless self.locale == I18n.locale.to_s
-  end
+  after_create :generate_welcome_feed, :reset_authentication_token!
   
   def active_oauth_account
     I18n.locale.to_s == "zh" ? self.weibo : self.facebook
