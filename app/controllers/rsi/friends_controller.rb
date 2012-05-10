@@ -9,7 +9,7 @@ class Rsi::FriendsController < ApplicationController
   def invite
     if current_user.active_oauth_account.blank?
       session[:inviting_friend] = true
-      redirect_to weibo? ? "/auth/weibo" : "/auth/facebook"
+      redirect_to zh? ? "/auth/weibo" : "/auth/facebook"
     else
       redirect_to current_user.fb_invite_link
     end
