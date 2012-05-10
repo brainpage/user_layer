@@ -25,7 +25,7 @@ gem 'devise'
 gem 'faraday'
 gem 'faraday_middleware'
 gem 'slim'
-gem 'mysql'
+gem 'mysql2'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
