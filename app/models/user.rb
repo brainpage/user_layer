@@ -128,9 +128,9 @@ class User < ActiveRecord::Base
     self.update_attribute(:invite_token, Digest::SHA1.hexdigest(Time.now.to_s)[0,20]) if self.invite_token.blank?
   end
   
-  def invite_link
+  def invite_link(zh = false)
     generate_invite_token
-    Rails.configuration.base_url + "f/#{self.invite_token}"
+    (zh ? Rails.configuration.base_url_zh : Rails.configuration.base_url) + "f/#{self.invite_token}"
   end
   
   def fb_invite_link
@@ -148,7 +148,7 @@ class User < ActiveRecord::Base
   
   def send_weibo(content)
     return if self.weibo.blank?
-    options = {:access_token => self.weibo.token, :status => "#{content} #{self.invite_link}"}   
+    options = {:access_token => self.weibo.token, :status => "#{content} #{self.invite_link(true)}"}   
     RestClient.post Rails.configuration.weibo_create_url, options
   end
   
