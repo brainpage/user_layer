@@ -5,13 +5,8 @@ class OauthAccount < ActiveRecord::Base
   scope :with_uuid, lambda{|uuid| where(:uuid => uuid)}
   
   def self.build_for_user(user, auth_hash)
-    email = auth_hash.info.email
-    if user.blank?      
-      user = User.new(email.blank? ? {} : {:email => email}).tap{|u| u.save(:validate => false)} 
-    end
-   
+    email = auth_hash.info.email   
     data = {
-      :user => user,
       :provider => auth_hash.provider,
       :uuid => auth_hash.uid.to_s,
       :token => auth_hash.credentials.token,
@@ -22,8 +17,23 @@ class OauthAccount < ActiveRecord::Base
     }
     
     obj = self.with_provider(auth_hash.provider).with_uuid(auth_hash.uid.to_s).first
-    obj.blank? ? self.create(data) : obj.update_attributes(data)
+    if obj.blank? 
+      obj = self.create(data)
+    else
+      obj.update_attributes(data)
+    end
     
-    user
+    if obj.user.blank?
+      if user.blank?    
+        if email.blank?
+          user = User.new.tap{|u| u.save(:validate => false)}          
+        else
+          user = User.find_by_email(email) || User.new({:email => email}).tap{|u| u.save(:validate => false)}
+        end
+      end
+      obj.update_attribute(:user, user)
+    end
+    
+    obj.user
   end
 end
