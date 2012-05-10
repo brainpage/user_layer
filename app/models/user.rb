@@ -7,17 +7,17 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
   
-  has_many :oauth_accounts
+  has_many :oauth_accounts, :dependent => :destroy
   has_many :apps
-  has_many :feeds
+  has_many :feeds, :dependent => :destroy
   has_many :cares, :foreign_key=>:owner_id
-  has_many :sensors, :foreign_key=>:owner_id
+  has_many :sensors, :foreign_key=>:owner_id, :dependent => :destroy
   
   has_many :activity_users
   has_many :activities, :through => :activity_users
   has_many :own_activities, :class_name => "Activity", :foreign_key => :creator_id
-  has_one :setting, :class_name => "UserSetting"
-  has_many :app_usages
+  has_one :setting, :class_name => "UserSetting", :dependent => :destroy
+  has_many :app_usages, :dependent => :destroy
   
   delegate :name, :image, :to => :active_oauth_account, :allow_nil => true
   delegate :allow_stranger, :to => :setting, :allow_nil => true

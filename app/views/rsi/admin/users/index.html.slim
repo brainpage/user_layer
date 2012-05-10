@@ -17,5 +17,7 @@ table.table.table-striped.table-bordered
         = user.name
       td = user.rsi_sensors.map{|t| "#{t.description}: #{t.uuid}"}.join("<br />").html_safe
       td = user.created_at.to_s(:short)
-      td = link_to "Inspect", inspect_rsi_admin_user_path(user), :method => :post
-        
+      td 
+        = link_to "Inspect", inspect_rsi_admin_user_path(user), :method => :post
+        | &nbsp;&nbsp;&nbsp;
+        = link_to "Del", rsi_admin_user_path(user), :method => :delete, :confirm => "Are you sure?"

@@ -16,6 +16,11 @@ class Rsi::Admin::UsersController < ApplicationController
     redirect_to rsi_admin_users_path
   end
   
+  def destroy
+    User.find_by_id(params[:id]).try(:destroy)
+    redirect_to :action => :index
+  end
+  
   private
   def authenticate_admin!
     render :text => "Access Denied!", :status => :unauthorized unless session[:inspector_id].present? or current_user.is_a?(AdminUser)
