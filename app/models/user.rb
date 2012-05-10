@@ -19,6 +19,9 @@ class User < ActiveRecord::Base
   has_one :setting, :class_name => "UserSetting", :dependent => :destroy
   has_many :app_usages, :dependent => :destroy
   
+  has_many :user_relations, :dependent => :destroy
+  has_many :client_user_relations, :class_name => "UserRelation", :foreign_key => :client_user_id, :dependent => :destroy
+  
   delegate :name, :image, :to => :active_oauth_account, :allow_nil => true
   delegate :allow_stranger, :to => :setting, :allow_nil => true
   

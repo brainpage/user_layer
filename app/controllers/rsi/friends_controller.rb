@@ -5,7 +5,7 @@ class Rsi::FriendsController < ApplicationController
     @friends = [current_user] + current_user.friends
   end
   
-  # Force user to bind facebook account before inviting friends.
+  # Force user to bind social account before inviting friends.
   def invite
     if current_user.active_oauth_account.blank?
       session[:inviting_friend] = true
