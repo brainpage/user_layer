@@ -31,7 +31,7 @@ script
     h3 
       = t :weibo_share
   .modal-body
-    = text_area_tag :content, "Content"
+    = text_area_tag :content, t(:weibo_content)
     p 
       = radio_button_tag(:allow, 1, true) + label_tag(:allow_1, t(:allow_tip))
     p 
