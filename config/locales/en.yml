@@ -80,6 +80,7 @@ en:
   you: You
   quick_start: Quick Start
   view_data: View My Data
+  accept_invite: "Accept #{name}'s Invitation and Join"
   feed:
     welcome: Welcome to Brainpage!
     accept_invite: 'Your friend %{name} just accepted your invitation.'

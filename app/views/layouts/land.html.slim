@@ -51,7 +51,7 @@ html
 
           - else
  		    .accept
-		      = link_to "Accept #{(@user = User.find_by_invite_token(session[:invite_token])).display_name}'s Invitation and Join", join_rsi_friend_path(@user.invite_token), :method => :post, :class => "btn btn-primary btn-large btn-super"
+		      = link_to t(:accept_invite, :name => (@user = User.find_by_invite_token(session[:invite_token])).try(:display_name)), join_rsi_friend_path(@user.invite_token), :method => :post, :class => "btn btn-primary btn-large btn-super"
 		
 	  = render "rsi/portals/wizard"	
       = render "layouts/footer"

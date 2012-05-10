@@ -89,6 +89,7 @@ zh:
   key_stroke_desc: 键盘使用强度值帮助您了解自己的按键频率／按键速度，并提供全球平均参考值来帮助您对比在不同的应用中，您的按键速度是否高于平均值
   mouse_clicks_desc: 鼠标使用强度值帮助您了解对鼠标的点击、滚动、以及移动距离的使用情况，您还可以通过与平均值的比较，了解您对鼠标的使用强度与其他人的对比。
   no_data: "%{time} 没有数据"
+  accept_invite: "接受#{name}的邀请并加入"
   feed:
     welcome: 欢迎来到Brainpage!
     accept_invite: '%{name}接受了你的好友邀请'
