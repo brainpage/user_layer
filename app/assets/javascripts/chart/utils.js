@@ -1,10 +1,11 @@
-bp.chart.Utils.fullTime = function(time){
+bp.chart.Utils.fullTime = function(time, withSecond){
 	var appendZero = function(num){
 		return (num < 10 ? "0" : "") + num.toString();
 	}
 
 	var then = time.getFullYear() + '-' + appendZero(time.getMonth()+1) + '-' + appendZero(time.getDate()); 
-	return then + ' ' + appendZero(time.getHours()) + ':' + appendZero(time.getMinutes()) + ":" + appendZero(time.getSeconds());
+    then += ' ' + appendZero(time.getHours()) + ':' + appendZero(time.getMinutes())
+    return withSecond ? then + ":" + appendZero(time.getSeconds()) : then;
 }
 
 

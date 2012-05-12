@@ -3,6 +3,11 @@ var initFilterFields = function(){
 	$('#to').datetimepicker({dateFormat: 'yy-mm-dd'}); 
 	$("#fl").multiselect({selectedText: "# of # selected"});
 	$("#fl").multiselect("checkAll");
+	
+	var t = new Date();
+	t.setHours(t.getHours() - 1);
+	$('#from').val(bp.chart.Utils.fullTime(t), false);
+	$('#to').val(bp.chart.Utils.fullTime(new Date()), false);
 };
 
 var setFeaturesValue = function(){
@@ -11,7 +16,7 @@ var setFeaturesValue = function(){
 	$("#features").val(v);
 }
 
-var makeDataRequest = function(){
+var makeDataRequest = function(uuid){
 	var query = {};
 	if($("#from").val() != ""){
 		query.from = parseDateTime($("#from").val()).getTime()/1000;
@@ -23,7 +28,7 @@ var makeDataRequest = function(){
 		query.features = $("#features").val()
 	}
 	$("#data-list").html("<div class='center'><img src='/assets/spinner.gif'></img></div>");
-	$.get('/api/sensors/test_data', query, function(data){
+	$.get('/db/sensors/' + uuid, query, function(data){
 		console.log(data);
 		
 		var header = "<thead><tr><th>Time</th>";
@@ -34,7 +39,7 @@ var makeDataRequest = function(){
 		$.each(data.data, function(){
 			tbody += "<tr>";
 			
-			tbody += "<td>" + bp.chart.Utils.fullTime(new Date(this.ts * 1000)) + "</td>";
+			tbody += "<td>" + bp.chart.Utils.fullTime(new Date(this.ts * 1000), true) + "</td>";
 			var item = this;
 			$.each(data.columns, function(){
 				tbody += "<td>" + (item[this] ? item[this] : "") + "</td>";

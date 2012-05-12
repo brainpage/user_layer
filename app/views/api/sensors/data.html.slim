@@ -1,5 +1,5 @@
 script
-  | $(document).ready(function(){initFilterFields(); makeDataRequest()});
+  | $(document).ready(function(){initFilterFields(); makeDataRequest('#{@sensor.uuid}')});
 
 .data-filter
   | From:
@@ -9,7 +9,7 @@ script
   = hidden_field_tag :features
   | Features:
   = select_tag :fl, options_for_select(@sensor.features.map{|t| [t.name, t.num]}), :width => "300px"
-  = submit_tag "Filter Data", :class => "btn", :onclick=>%{setFeaturesValue();makeDataRequest();}
+  = submit_tag "Filter Data", :class => "btn", :onclick=>%{setFeaturesValue();makeDataRequest('#{@sensor.uuid}');}
   
 
 hr.soften
