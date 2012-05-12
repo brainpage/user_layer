@@ -59,11 +59,11 @@
                     = alert_info "drag_zoom_tip", t(:drag_chart_tip), :style=>"display:none"
               #keys-content.tab-pane
                 = alert_info "key_stroke_desc", t(:key_stroke_desc).html_safe
-                #keys-bar.chart
+                #keys-bar.chart.span11
               #kmr-content.tab-pane
                 = alert_info "kmr_desc",  t(:kmr_desc).html_safe
-                #kmr-bar.chart
-              #mouse-detail.tab-pane
+                #kmr-bar.chart.span11
+              #mouse-detail.tab-pane.span11
                 = alert_info "mouse_clicks_desc", t(:mouse_clicks_desc).html_safe
                 .tabbable.tabs-left
                   ul.nav.nav-tabs 
@@ -77,9 +77,9 @@
 		              a data-toggle="tab" href="#scrll-bar" 
 		                = t :mouse_scrll
 		          .tab-content
-                    #msclks-bar.active.tab-pane.chart
-                    #dst-bar.tab-pane.chart
-                    #scrll-bar.tab-pane.chart
+                    #msclks-bar.span9.active.tab-pane.chart
+                    #dst-bar.span9.tab-pane.chart
+                    #scrll-bar.span9.tab-pane.chart
           
               script
                 | drawChart("#{@uuid}", 0, 0);

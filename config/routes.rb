@@ -27,6 +27,7 @@ UserLayer::Application.routes.draw do
   devise_for :users
   as :user do
     get 'signin' => 'rsi/portals#land', :as => :new_user_session
+    delete "/logout" => "rsi/sessions#destroy"
   end 
   
   root :to=>"rsi/charts#index"
@@ -74,6 +75,9 @@ UserLayer::Application.routes.draw do
       collection do
         get :data, :average, :percent
       end
+      member do
+        post :active
+      end
     end
     
     resources :friends do
@@ -95,6 +99,8 @@ UserLayer::Application.routes.draw do
   match 'db/query' => 'rsi/charts#data'
   match 'home' => 'rsi/portals#land'
   match 'info' => 'rsi/portals#info'
+  match 'about' => 'rsi/portals#about'
+  match 'policy' => 'rsi/portals#policy'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

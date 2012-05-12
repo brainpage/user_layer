@@ -18,4 +18,9 @@ describe Rsi::PortalsController do
     get :index
     response.should be_success
   end 
+  
+  it "should respond to land" do
+    get :land
+    response.should be_success
+  end
 end

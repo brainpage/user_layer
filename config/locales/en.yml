@@ -41,8 +41,8 @@ en:
   no_mail: "Email doesn't exist!"
   wrong_password: Wrong password!
   begin_journey: Begin your health journey
-  step1: 'Login with your <a href="%{fb_link}">facebook</a> account or '
-  step2: Download and install Brainpage SmartMeter client.
+  step1: 'Login Brainpage'
+  step2: '&nbsp;and install Brainpage SmartMeter client.'
   step3: Run the client and you are ready to go!
   login_with: Or Login With
   blog: Blog
@@ -80,6 +80,7 @@ en:
   you: You
   quick_start: Quick Start
   view_data: View My Data
+  accept_invite: "Accept %{name}'s Invitation and Join"
   feed:
     welcome: Welcome to Brainpage!
     accept_invite: 'Your friend %{name} just accepted your invitation.'
@@ -100,7 +101,6 @@ en:
   change_setting: Change Settings
   ago: " ago"
   alert: You need to install the client application to view your analysis.
-  download: Download Now!
   create_account: 'create a Brainpage account'
   fb_name: "Use your computer better"
   fb_desc: "Join me on BrainPage - a new tool that encourages us to use our computers in a more productive and healthy way."
@@ -108,5 +108,6 @@ en:
   setup_done_desc: Congratulations! You have setup the Brainpage client successfully.
   learn: Learn how it works
   download: Download SmartMeter Client
+  download_short: Download
   or: 'Or&nbsp;'
   

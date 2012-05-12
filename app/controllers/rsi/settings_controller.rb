@@ -10,13 +10,17 @@ class Rsi::SettingsController < ApplicationController
   end
   
   def alert
-    current_user.change_settings(:send_alert => !current_user.send_alert)
+    current_user.change_settings(:send_alert => !current_user.send_alert?)
     redirect_to :action => :index
   end
   
   def locale
-    session[:locale] = I18n.locale = params[:locale].to_sym
-    redirect_to :back
+    if Rails.env.production?
+      redirect_to params[:locale] == "zh" ? Rails.configuration.base_url_zh : Rails.configuration.base_url     
+    else
+      session[:locale] = I18n.locale = params[:locale].to_sym
+      redirect_to :back
+    end
   end
   
   def hide

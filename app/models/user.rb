@@ -7,20 +7,23 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
   
-  has_many :oauth_accounts
+  has_many :oauth_accounts, :dependent => :destroy
   has_many :apps
-  has_many :feeds
+  has_many :feeds, :dependent => :destroy
   has_many :cares, :foreign_key=>:owner_id
-  has_many :sensors, :foreign_key=>:owner_id
+  has_many :sensors, :foreign_key=>:owner_id, :dependent => :destroy
   
   has_many :activity_users
   has_many :activities, :through => :activity_users
   has_many :own_activities, :class_name => "Activity", :foreign_key => :creator_id
-  has_one :setting, :class_name => "UserSetting"
-  has_many :app_usages
+  has_one :setting, :class_name => "UserSetting", :dependent => :destroy
+  has_many :app_usages, :dependent => :destroy
+  
+  has_many :user_relations, :dependent => :destroy
+  has_many :client_user_relations, :class_name => "UserRelation", :foreign_key => :client_user_id, :dependent => :destroy
   
   delegate :name, :image, :to => :active_oauth_account, :allow_nil => true
-  delegate :send_alert, :allow_stranger, :to => :setting, :allow_nil => true
+  delegate :allow_stranger, :to => :setting, :allow_nil => true
   
   after_create :generate_welcome_feed, :reset_authentication_token!
   
@@ -32,16 +35,16 @@ class User < ActiveRecord::Base
     self.name || self.email
   end
   
-  def sensor
-    self.sensors.computer.first
+  def send_alert?
+    self.setting.blank? or (self.setting.send_alert |= false)
   end
   
-  def sensor_uuid
-    sensor.try(:uuid)
+  def rsi_sensors
+    self.sensors.computer
   end
   
   def sensor_added?
-    self.sensor_uuid.present?
+    self.rsi_sensors.present?
   end  
   
   def facebook
@@ -125,9 +128,9 @@ class User < ActiveRecord::Base
     self.update_attribute(:invite_token, Digest::SHA1.hexdigest(Time.now.to_s)[0,20]) if self.invite_token.blank?
   end
   
-  def invite_link
+  def invite_link(zh = false)
     generate_invite_token
-    Rails.configuration.base_url + "f/#{self.invite_token}"
+    (zh ? Rails.configuration.base_url_zh : Rails.configuration.base_url) + "f/#{self.invite_token}"
   end
   
   def fb_invite_link
@@ -145,7 +148,7 @@ class User < ActiveRecord::Base
   
   def send_weibo(content)
     return if self.weibo.blank?
-    options = {:access_token => self.weibo.token, :status => "#{content} #{self.invite_link}"}   
+    options = {:access_token => self.weibo.token, :status => "#{content} #{self.invite_link(true)}"}   
     RestClient.post Rails.configuration.weibo_create_url, options
   end
   

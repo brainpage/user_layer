@@ -5,12 +5,12 @@ script
   .span6
     .ad-block.c.c1
       h2 = t :ad_1
-      = image_tag "ad_1.jpg", :title => t(:ad_1_desc) + more_link("break")
-
+      div = image_tag "ad_1.jpg", :title => t(:ad_1_desc) + more_link("break")
   .span6
     .ad-block.c.c2
 	    h2 = t :ad_2
         = image_tag "ad_2.jpg", :title => t(:ad_2_desc) + more_link("optimize")
+
 .row-fluid          
   .span6
     .ad-block.c.c1
@@ -22,5 +22,5 @@ script
         = t :ad_4
       = image_tag "ad_4.jpg", :title => t(:ad_4_desc) + more_link("learn")
 
-- if !weibo?
+- if !zh?
   = render "rsi"

@@ -7,9 +7,12 @@ module ApplicationHelper
   
   def download_rsi_client
     content_tag(:div, :class => "alert alert-error f10") do
-      t(:alert).html_safe +
-      link_to(t(:download), "#", :onclick => "$('#wizard-step').modal('show')")
+      t(:alert).html_safe + download_link
     end
+  end
+  
+  def download_link
+    link_to(t(:download_short), "#", :onclick => "$('#wizard-step').modal('show')")
   end
   
   def user_tag(user)
@@ -26,4 +29,5 @@ module ApplicationHelper
     return "" if cookies[:hidden_tips].to_s.split(";").include?(key)
     c << content_tag(:div, {:class => "alert fade in", :id=>key}.merge(options)){'<a class="close" data-dismiss="alert" href="#">&times;</a>'.html_safe + content}
   end
+  
 end

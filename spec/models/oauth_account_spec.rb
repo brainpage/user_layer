@@ -27,6 +27,11 @@ describe OauthAccount do
       lambda{OauthAccount.build_for_user(nil, @auth_hash)}.should change(OauthAccount, :count).by(1)
     end
     
+    it "should link user if with same email" do
+      user = Factory(:user, :email => "test@example.com")
+      OauthAccount.build_for_user(nil, @auth_hash).should == user
+    end
+    
     it "should update oauth_account if exist" do
       oa = Factory(:oauth_account, :provider => "google", :uuid => "113785386423313999712")
       lambda{OauthAccount.build_for_user(nil, @auth_hash)}.should_not change(OauthAccount, :count)

@@ -25,6 +25,11 @@ describe User do
     @user.reload.feeds.first.originator.should == sensor
   end
   
+  it "should delete oauth_accounts after destroy" do
+    Factory(:oauth_account, :user => @user)
+    lambda{@user.destroy}.should change(OauthAccount, :count).by(-1)   
+  end
+  
   describe "join_activity" do
     before do
       @act = @user.create_activity(5, 50)

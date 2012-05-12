@@ -1,7 +1,7 @@
-bp.rsi.BarChart = function(domId, short){
+bp.rsi.BarChart = function(domId, domWidth){
 	var margin = [30, 10, 30, 80];
-	
-	this.width = (short ? 950 : 1100) - margin[1] - margin[3];
+
+	this.width = domWidth - margin[1] - margin[3];
 	this.height = 250 - margin[0] - margin[2];
 
 	this.svg = d3.select(domId).append("svg")
@@ -54,7 +54,7 @@ bp.rsi.BarChart.prototype.draw = function(group, attr, chart, visible){
 			data.push(item);	
 
 			var item_avg = {key: bp.chart.Utils.trim(d.key)}
-			var avg = chart.global_avg.filter(function(w){return w.category == d.key + ":" + attr}).pop();		
+			var avg = chart.global_avg.filter(function(w){return w.category == bp.chart.Utils.trim(d.key).toLowerCase() + ":" + attr}).pop();		
 			if(avg != null){item_avg.average = avg.value;}
 			data.push(item_avg);
 		}				

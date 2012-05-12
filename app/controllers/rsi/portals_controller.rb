@@ -4,7 +4,6 @@ class Rsi::PortalsController < ApplicationController
   
   def index
     @feeds = current_user.feeds
-    @uuid = current_user.sensor_uuid
   end
   
   def land
@@ -12,6 +11,14 @@ class Rsi::PortalsController < ApplicationController
   end
   
   def info
+    render :layout => "land"
+  end
+  
+  def about
+    render :layout => "land"
+  end
+  
+  def policy
     render :layout => "land"
   end
  

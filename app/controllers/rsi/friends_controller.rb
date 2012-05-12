@@ -5,11 +5,11 @@ class Rsi::FriendsController < ApplicationController
     @friends = [current_user] + current_user.friends
   end
   
-  # Force user to bind facebook account before inviting friends.
+  # Force user to bind social account before inviting friends.
   def invite
     if current_user.active_oauth_account.blank?
       session[:inviting_friend] = true
-      redirect_to weibo? ? "/auth/weibo" : "/auth/facebook"
+      redirect_to zh? ? "/auth/weibo" : "/auth/facebook"
     else
       redirect_to current_user.fb_invite_link
     end
@@ -47,7 +47,7 @@ class Rsi::FriendsController < ApplicationController
   
   private 
   def accept_invite_and_redirect(inviter_token)
-    current_user.accept_invite(inviter_token)
+    current_user.follow_invite(inviter_token)
     redirect_to rsi_portals_path
   end
 end

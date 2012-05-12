@@ -18,7 +18,7 @@ set :bundle_flags, "--deployment --quiet --binstubs --shebang ruby-local-exec"
 set :user, "app"
 set :rvm_type, :user
 set :deploy_to, "/home/app/applications/user_layer"
-role :web, "50.112.132.214", "brainpage.cn"
+role :web, "50.112.132.214"#, "brainpage.cn"
 role :app, "50.112.132.214"
 role :db,  "50.112.132.214", :primary => true
 

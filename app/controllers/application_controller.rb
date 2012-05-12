@@ -1,17 +1,21 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  helper_method :weibo?
+  helper_method :zh?, :current_sensor
   include UserHook
   
-  #before_filter :set_locale 
+  before_filter :set_locale 
 
   before_filter :log_session
   def log_session
     logger.info "Session: #{session.inspect}"
   end
   
-  def weibo?
+  def zh?
     I18n.locale.to_s == "zh"
+  end
+  
+  def current_sensor
+    (id = session[:current_sensor_uuid]).blank? ? current_user.rsi_sensors.first : current_user.rsi_sensors.find_by_uuid(id)
   end
 
   protected
@@ -27,11 +31,10 @@ class ApplicationController < ActionController::Base
   end
   
   def set_locale
-    locale = session[:locale]
-    if locale.blank?
-      @geoip ||= GeoIP.new(Rails.root.join("db/GeoIP.dat"))
-      locale = @geoip.country("123.125.114.144").try(:country_name) == "China" ? :zh : :en
+    if Rails.env.production?
+      I18n.locale = request.domain == "brainpage.cn" ? :zh : :en      
+    else
+      I18n.locale = session[:locale] || :en
     end
-    I18n.locale = locale
   end
 end

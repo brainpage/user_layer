@@ -1,5 +1,9 @@
 $font-size: 16px;
-body{font-size:$font-size !important;}
+@mixin font{font-family: 'Carme', sans-serif !important;  }
+
+body{font-size:$font-size !important; @include font; }
+input, button, select, submit, svg, p{@include font;}
+p{@include font}
 input, button, select, submit, label{font-size:$font-size !important;}
 p{font-size: $font-size * 0.9 !important}
 .btn-large{font-size: 20px !important}
@@ -36,6 +40,8 @@ svg text{
 #land .sub2{line-height:18px;font-size:18px;}
 
 #land .desc p{font-size:14px !important}
+
+.quick-start .account p{margin-bottom: 20px;line-height:30px !important}
 
 .calendar div{font-size:14px }
 

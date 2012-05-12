@@ -18,8 +18,8 @@ script
   
 
 .center.invite
-  - if weibo?
-    = link_to image_tag("weibo_share.gif"), "#", :onclick => "$('#weibo-share').modal('show')"
+  - if zh?
+    = current_user.active_oauth_account.blank? ? link_to(image_tag("weibo_share.gif"), invite_rsi_friends_path) : link_to(image_tag("weibo_share.gif"), "#", :onclick => "$('#weibo-share').modal('show')")
   - else
     = link_to content_tag(:span, :class => "fb-link"){" Invite Friends"}, invite_rsi_friends_path, :class=>"btn btn-large btn-primary"
 
@@ -31,7 +31,7 @@ script
     h3 
       = t :weibo_share
   .modal-body
-    = text_area_tag :content, "Content"
+    = text_area_tag :content, t(:weibo_content)
     p 
       = radio_button_tag(:allow, 1, true) + label_tag(:allow_1, t(:allow_tip))
     p 

@@ -3,7 +3,7 @@ class Rsi::AccountsController < ApplicationController
     if request.env['omniauth.auth'].present?
       @user = OauthAccount.build_for_user(current_user, request.env['omniauth.auth'])
       if session.delete(:inviting_friend)
-        redirect_to (weibo? ? rsi_friends_path(:share => true) : @user.fb_invite_link) and return
+        redirect_to (zh? ? rsi_friends_path(:share => true) : @user.fb_invite_link) and return
       end
     else
       @user = User.create(:email => params[:email], :password => params[:password], :password_confirmation => params[:password_confirmation])

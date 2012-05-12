@@ -1,0 +1,27 @@
+h1
+  = t :quick_start
+.quick-start
+  .step 
+    .page-header
+      span 1.
+      = t(:step1).html_safe 
+    /= render "reg_form", :inline => true
+    .account
+      - if zh?
+        = link_to image_tag(zh? ? "weibo_login.png" : "facebook."), "/auth/weibo"
+      - else
+ 	    .free = image_tag "free_#{I18n.locale}.png"
+        
+      = link_to("Login with ".html_safe + image_tag("facebook.png"), "/auth/facebook", :class => "btn btn-primary btn-large btn-super") unless zh?
+      
+      p 
+        = reg_link
+        br
+        = login_link
+  .step
+    span 2.
+    .content = download_link + t(:step2).html_safe
+  .step
+    span 3.
+    .content = t :step3
+

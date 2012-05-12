@@ -3,31 +3,12 @@ class Rsi::ChartsController < ApplicationController
   before_filter :authenticate_user!, :only => [:index]
   
   def index
-    @uuid = current_user.sensor_uuid
+    @uuid = current_sensor.try(:uuid)
   end
   
-  def data
-    if params[:type] == "bar"
-      render :json => [{:name => "firefox", :value => 100}, {:name => "vmware", :value => 200}, {:name => "qq", :value => 150}].to_json
-    elsif params[:q].present?
-      if params[:q].include?("app-time")
-        apps = ["firefox", "qq", "textmate", "eclipse", "skype", "word"]
-        result = []
-        0.upto(3){|i|
-           w = [
-             [{:v => "firefox", :d => rand(200) * 60}, {:v => "qq", :d => rand(150) * 60}, {:v => "textmate", :d => rand(100)*60}, {:v => "skype", :d => rand(100) * 60}],
-             [{:v => "firefox", :d => rand(200) * 60}, {:v => "word", :d => rand(150) * 60}, {:v => "eclipse", :d => rand(100)*60}, {:v => "skype", :d => rand(100) * 60}],          
-             [{:v => "firefox", :d => rand(200) * 60}, {:v => "qq", :d => rand(150) * 60}, {:v => "eclipse", :d => rand(100)*60}, {:v => "word", :d => rand(100) * 60}],
-           ]
-           result << {:t => (Time.now - i.days).to_i, :app => w[rand(3)]}
-        }
-        render :json => result.to_json
-      else
-        
-        day = (params[:q] =~ /from\((\d+)\)/ ? Time.at($1.to_i) : 0)
-        render :json => ClientEvent.day(day).to_json
-      end
-    end
+  def active
+    session[:current_sensor_uuid] = params[:id] unless current_user.rsi_sensors.find_by_uuid(params[:id]).blank?
+    redirect_to :action => :index
   end
   
   def average

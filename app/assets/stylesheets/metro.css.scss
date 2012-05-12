@@ -3,12 +3,10 @@ $line-height: 25px;
 @mixin opacity{filter:alpha(Opacity= $opacity * 100);-moz-opacity: $opacity; opacity: $opacity;fill-opacity: $opacity;}
 @mixin low-opacity{filter:alpha(Opacity= $opacity * 0.5 * 100);-moz-opacity: $opacity * 0.5; opacity: $opacity * 0.5;}
 @mixin high-opacity{filter:alpha(Opacity= $opacity * 1.2 * 100) !important;-moz-opacity: $opacity * 1.2 !important; opacity: $opacity * 1.2 !important;fill-opacity: $opacity * 1.2 !important;}
-@mixin font{font-family: 'Carme', sans-serif !important;  }
+
 @mixin round{-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;}
 
-body{ margin:0; padding:0;height:100%; @include font; background: url('/assets/grid.png'); color: #000;}
-input, button, select, submit{@include font;}
-p{@include font}
+body{ margin:0; padding:0;height:100%; background: url('/assets/grid.png'); color: #000;}
 a{color: #3b77c3}
 li{list-style: none}
 img{vertical-align:middle; margin-top:-5px;}
@@ -46,7 +44,6 @@ h1,h2,h3,h4,h5,h6{font-weight: normal !important}
 .header .logo{font-size:46px; line-height:46px;color:#555}
 .header .logo img{height:50px;}
 
-.ad-block img{width:360px; text-align: center}
 .block{@include round; background-color: #8ec1da; color: white; padding:10px; margin-bottom:20px}
 
 .footer{margin:20px 0;}
@@ -132,9 +129,7 @@ hr.soften {
 
 sup a{font-size:50%;margin:0 3px;}
 
-svg {
-  @include font; 
-}
+
 
 .side-label{fill: #3b77c3}
 
@@ -200,7 +195,7 @@ svg .label{font-weight: normal !important;font-size:13px}
 #land .sub, #land .sub2{color: #3b77c3}
 #land .sub2{margin:5px; }
 #land .sub{margin-bottom:10px;}
-#land .ad-block{height:320px; }
+
 #land .c{margin-bottom:20px; color: white;}
 #land .c1{background: #35b1f1}
 #land .c2{background: #93d00d}
@@ -208,12 +203,13 @@ svg .label{font-weight: normal !important;font-size:13px}
 #land .c4{background: #3b77c3;height:auto}
 #land h2{padding:15px;}
 
+#land .ad-block{padding-bottom:10px }
 #land .ad-block img{width: 100%; }
 #land h2{color: white}
 #land p{margin-top:10px;}
 #land .company{margin-top:-35px; }
 
-#land .account{ margin-top:20px}
+#land .account{ margin-top:20px; margin-left:30px;}
 #land .btn-super{height:40px !important;line-height:40px !important; min-width:220px !important}
 #land .logo{background:url('/assets/logo.png') no-repeat scroll left top; padding-left:45px; height:65px; }
 #land .logo span{font-size:30px; }
@@ -224,12 +220,16 @@ svg .label{font-weight: normal !important;font-size:13px}
 #land .free{position: absolute; margin:-76px 0 0 180px}
 #land .center .btn{margin-left:40px !important}
 #land .free img{width:250px}
-#info p{padding:0 10px;}
+
+#info p{padding:8px;}
+#info li{padding:8px 0}
+
+.check{background: url('/assets/check.png') no-repeat scroll right center;padding-right:30px;}
 
 .hover_caption {}
-.hover_caption h3{background:#000;margin-top:10px;padding:10px; width:340px; z-index:10; color:white; @include opacity}
+.hover_caption h3{background:#000;margin-top:10px;padding:10px; z-index:10; color:white; @include opacity}
 
-.your, .total{ @include font; padding: 10px;margin: 0 3px; width: 10px !important; text-align: center; }
+.your, .total{padding: 10px;margin: 0 3px; width: 10px !important; text-align: center; }
 .your{background: steelblue}
 
 .logo img{@include opacity; width:40px; height:40px; margin-right: 10px;}
@@ -239,7 +239,14 @@ svg .label{font-weight: normal !important;font-size:13px}
 .alert{color: #222 !important; line-height:20px !important;}
 .alert hr{border-top: 0 !important;border-bottom:0 !important; margin: 10px !important;}
 
+.reg-inline .control-label{width:80px !important}
+.reg-inline .controls{margin-left:100px !important}
+.reg-inline .control-group{margin-bottom: 5px !important}
+.reg-inline .btn{margin-left:100px; min-width:120px;}
+#reg-tip{margin-bottom:10px;}
+
+.language{font-size:14px;}
 
 .quick-start .step{margin:10px 0;}
-.quick-start .step .title span{ font-size:30px; margin-right:10px; width:50px; text-align:center;}
-.quick-start .step .content{padding-left:40px; margin-top:-20px; line-height:25px;}
+.quick-start .step span{ font-size:26px; margin-right:10px; width:50px; text-align:center;}
+.quick-start .step .content{padding-left:30px; margin-top:-20px; line-height:25px;}

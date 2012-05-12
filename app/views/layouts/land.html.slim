@@ -8,11 +8,14 @@ html
     = csrf_meta_tags
     link rel="shortcut icon" href="#{image_path("favicon.ico")}" type="image/x-icon"
     link href='http://fonts.googleapis.com/css?family=Carme' rel='stylesheet' type='text/css'
+
+    - unless Rails.env.production?
+      script src="http://localhost:8081/target/target-script-min.js"
 	
   body style="background:none"
     #land.container
-      .right
-        / link_to(I18n.locale.to_s == "en" ? t(:chinese) : t(:english), locale_rsi_settings_path(:locale => (I18n.locale.to_s == "en" ? "zh" : "en")), :method => :post)
+      .pull-right
+        = link_to(I18n.locale.to_s == "en" ? t(:chinese) : t(:english), locale_rsi_settings_path(:locale => (I18n.locale.to_s == "en" ? "zh" : "en")), :method => :post, :class=>"language")
 
       .row-fluid style="margin: 20px 0 40px 0"
         .span8
@@ -38,30 +41,17 @@ html
             = link_to t(:view_data).html_safe, rsi_charts_path, :class => "btn btn-primary btn-large btn-super"
 
           - elsif session[:invite_token].blank?
-            .free 
-              = image_tag "free_#{I18n.locale}.png"
-            = weibo? ? link_to(image_tag("weibo_login.png"), "/auth/weibo") : link_to("Login with ".html_safe + image_tag("facebook.png"), "/auth/facebook", :class => "btn btn-primary btn-large btn-super")
-            .account 
-              p 
-                = link_to t(:or).html_safe + t(:create_account).html_safe, "#", :onclick => "$('#reg-form').modal('show');"
-              p
-                = t(:already).html_safe
-                = link_to t(:login), "#", :onclick => "$('#login-form').modal('show');"
+            = render "zh_quick_start"           
 
             #login-form.login-form.modal.hide
 			  = render "login_form"
 			
 			#reg-form.login-form.modal.hide
-			  = render "reg_form"
+			  = render "reg_form", :inline => false
 
           - else
  		    .accept
-		      = link_to "Accept #{(@user = User.find_by_invite_token(session[:invite_token])).display_name}'s Invitation and Join", join_rsi_friend_path(@user.invite_token), :method => :post, :class => "btn btn-primary btn-large btn-super"
-		  
-		  - if current_user.blank?
-		    .page-header style="margin-top:50px"
-		    h1 style="margin-bottom:30px"
-		      = t :quick_start
-		    = render :partial => "rsi/portals/quick_start"
+		      = link_to t(:accept_invite, :name => (@user = User.find_by_invite_token(session[:invite_token])).try(:display_name)), join_rsi_friend_path(@user.invite_token), :method => :post, :class => "btn btn-primary btn-large btn-super"
 		
+	  = render "rsi/portals/wizard"	
       = render "layouts/footer"

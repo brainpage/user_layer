@@ -15,7 +15,9 @@ table.table.table-striped.table-bordered
       td
         = image_tag(user.image) if user.image.present? 
         = user.name
-      td = user.sensor_uuid
+      td = user.rsi_sensors.map{|t| "#{t.description}: #{t.uuid}"}.join("<br />").html_safe
       td = user.created_at.to_s(:short)
-      td = link_to "Inspect", inspect_rsi_admin_user_path(user), :method => :post
-        
+      td 
+        = link_to "Inspect", inspect_rsi_admin_user_path(user), :method => :post
+        | &nbsp;&nbsp;&nbsp;
+        = link_to "Del", rsi_admin_user_path(user), :method => :delete, :confirm => "Are you sure?"

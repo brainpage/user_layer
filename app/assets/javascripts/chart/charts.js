@@ -11,14 +11,14 @@ function drawChart(sensor_uuid, fromDay, toDay){
 	$(".chart").empty();
 	
 	var chart = new bp.rsi.ChartObject({fromDay: fromDay, toDay: toDay});
-	chart.width = 1100;
+	chart.width = $("#line-chart").width();
 	chart.sensor_uuid = sensor_uuid
 	
 	getGlobalAverage(chart);
 	
 	var timeChart = new bp.rsi.TimeChart("#time-chart");
-	var zoomChart = new bp.rsi.ZoomChart("#zoom-line");
-	var pieChart = new bp.rsi.PieChart("#pie-chart");
+	var zoomChart = new bp.rsi.ZoomChart("#zoom-line", $("#zoom-line").width());
+	var pieChart = new bp.rsi.PieChart("#pie-chart", $("#pie-chart").width());
 	
 	pieChart.mousedown = function(d){
 		$('#app-detail').text(I18n.t("detail_of", {app: d.key}));
@@ -32,11 +32,13 @@ function drawChart(sensor_uuid, fromDay, toDay){
 		if(data.length > 0){$('#drag_zoom_tip').show()}else{$('#drag_zoom_tip').hide()}
 	}
 	
-	var keysBarChart = new bp.rsi.BarChart("#keys-bar");
-	var msclksBarChart = new bp.rsi.BarChart("#msclks-bar", true);
-	var dstBarChart = new bp.rsi.BarChart("#dst-bar", true);
-	var scrllBarChart = new bp.rsi.BarChart("#scrll-bar", true);
-	var kmrBarChart = new bp.rsi.BarChart("#kmr-bar", true);
+	var kmrBarChart = new bp.rsi.BarChart("#kmr-bar", $("#kmr-bar").width());
+	var keysBarChart = new bp.rsi.BarChart("#keys-bar", $("#keys-bar").width());
+	
+	var msclksBarChart = new bp.rsi.BarChart("#msclks-bar", $("#msclks-bar").width());
+	var dstBarChart = new bp.rsi.BarChart("#dst-bar", $("#dst-bar").width());
+	var scrllBarChart = new bp.rsi.BarChart("#scrll-bar", $("#scrll-bar").width());
+	
 	
 	var lineChart = new bp.rsi.LineChart("#line-chart", chart);
 	

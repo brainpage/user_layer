@@ -1,10 +1,11 @@
 = form_tag rsi_accounts_path, :class => "form-horizontal", :remote => true
-.modal-header
-  a.close data-dismiss='modal' x
-  h3 
-    = t(:create_account).html_safe.capitalize
+- unless inline
+  .modal-header
+    a.close data-dismiss='modal' x
+    h3 
+      = t(:create_account).html_safe.capitalize
 
-.modal-body 
+div class="#{inline ? "reg-inline" : "modal-body"}" 
   .control-group
     label.control-label 
       = t :email
@@ -22,7 +23,7 @@
       = password_field_tag :password_confirmation, "", :class => "input"
   #reg-tip.controls
 
-.modal-footer
+div class="#{inline ? "reg-inline" : "modal-footer"}"
   = submit_tag t(:register), :class => "btn btn-primary btn-large", :onclick => "$('#reg-tip').html('#{t :reg} ...')" 
 
 | </form>

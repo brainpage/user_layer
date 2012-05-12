@@ -1,16 +1,17 @@
-- unless current_user.sensor_added? or controller_name == "friends"
-  #wizard-step.modal
-    .modal-header
-      a.close data-dismiss='modal' x
-      h3 
-        = t :download
-    .modal-body
-      p 
-        = link_to image_tag("apple.png") + " Mac OS", "/downloads/BrainpageInstaller.1.0.pkg"
-        | &nbsp;(195KB)
-        /= link_to image_tag("windows.png") + " Windows", "/downloads/rsi-windows.exe"
-        /| (418KB)
-    .modal-footer     
+#wizard-step.modal.hide
+  .modal-header
+    a.close data-dismiss='modal' x
+    h3 
+      = t :download
+  .modal-body
+    p 
+      = link_to image_tag("apple.png") + " Mac OS", "/downloads/BrainpageInstaller.1.0.pkg"
+      | &nbsp;(195KB)
+    p
+      = link_to image_tag("windows.png") + " Windows", "/downloads/BrainpageInstaller.1.0.msi"
+      | &nbsp;(699KB)
+  .modal-footer     
+- if ["feeds", "charts"].include?(controller_name) and !current_user.try(:sensor_added?) 
   script
     | $(document).ready(function(){$('#wizard-step').modal('show')});
 
