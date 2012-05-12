@@ -32,14 +32,10 @@ var makeDataRequest = function(uuid, csv){
 		query.format = "csv";
 	}
 	$("#data-list").html("<div class='center'><img src='/assets/spinner.gif'></img></div>");
-	$.get('/db/sensors/' + uuid, query, function(data){
-		console.log("+============");
-		console.log(data);
-		bp.chart.Utils.returnData = data;
-		console.log(data.columns);
+	$.ajax({url: '/db/sensors/' + uuid, data: query, dataType: 'json', success: function(data){
 	
-		console.log(data["columns"])
-		console.log(data.data);
+		bp.chart.Utils.returnData = data;
+	
 		var header = "<thead><tr><th>Time</th>";
 		$.each(data.columns, function(){header += "<th>" + this + "</th>"});
 		header += "</tr></thead>"
@@ -58,7 +54,7 @@ var makeDataRequest = function(uuid, csv){
 		tbody += "</tbody>"
 		
 		$("#data-list").html(header + tbody);
-	});
+	}});
 }
 
 var parseDateTime = function(str){
