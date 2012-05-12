@@ -16,7 +16,7 @@ var setFeaturesValue = function(){
 	$("#features").val(v);
 }
 
-var makeDataRequest = function(uuid){
+var makeDataRequest = function(uuid, csv){
 	var query = {};
 	if($("#from").val() != ""){
 		query.from = parseDateTime($("#from").val()).getTime()/1000;
@@ -25,11 +25,13 @@ var makeDataRequest = function(uuid){
 		query.to = parseDateTime($("#to").val()).getTime()/1000;
 	}
 	if($("#features").val() != ""){
-		query.features = $("#features").val()
+		query.features = $("#features").val();
+	}
+	if(csv){
+		query.format = "csv";
 	}
 	$("#data-list").html("<div class='center'><img src='/assets/spinner.gif'></img></div>");
 	$.get('/db/sensors/' + uuid, query, function(data){
-		console.log(data);
 		
 		var header = "<thead><tr><th>Time</th>";
 		$.each(data.columns, function(){header += "<th>" + this + "</th>"});
