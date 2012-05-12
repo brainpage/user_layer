@@ -26,6 +26,7 @@ gem 'faraday'
 gem 'faraday_middleware'
 gem 'slim'
 gem 'mysql2'
+gem "paperclip", "~> 3.0"
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
