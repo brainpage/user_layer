@@ -1,4 +1,6 @@
 UserLayer::Application.routes.draw do
+  get "sensors/index"
+
   resources :feeds, :mobile_users
 
   resources :cares do 
