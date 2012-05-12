@@ -1,3 +1,14 @@
+bp.chart.Utils.fullTime = function(time, withSecond){
+	var appendZero = function(num){
+		return (num < 10 ? "0" : "") + num.toString();
+	}
+
+	var then = time.getFullYear() + '-' + appendZero(time.getMonth()+1) + '-' + appendZero(time.getDate()); 
+    then += ' ' + appendZero(time.getHours()) + ':' + appendZero(time.getMinutes())
+    return withSecond ? then + ":" + appendZero(time.getSeconds()) : then;
+}
+
+
 bp.chart.Utils.removeSmallData = function(data){
 	var total = 0, other = 0;
 	data.map(function(d){total += d.value});

@@ -11,6 +11,6 @@ class Api::SensorsController < ApplicationController
   end
 
   def test_data
-    render :json => Feature.all.to_json
+    render :json => {:columns => ["one", "two", "three"], :data => [{:ts => 1.hour.ago.to_i, :one => "hello", :two => "world"}, {:ts=>2.hour.ago.to_i, :one => "again", :three => "hahaha"}]}.to_json
   end
 end

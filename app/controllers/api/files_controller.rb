@@ -6,7 +6,7 @@ class Api::FilesController < ApplicationController
   before_filter :find_sensor
   
   def index
-    @files = @sensor.uploaded_files.paginate(:page => params[:page], :per_page => 3)
+    @files = @sensor.uploaded_files.paginate(:page => params[:page], :per_page => 30)
   end
   
   def create
