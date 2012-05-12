@@ -1,0 +1,4 @@
+<%= form_for UploadedFile.new, :as => :file, :url => api_files_path, :html => { :multipart => true } do |f| %>
+  <%= f.file_field :content %>
+  <%= f.submit "submit" %>
+<% end %>

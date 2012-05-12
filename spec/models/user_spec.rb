@@ -45,8 +45,17 @@ describe User do
       lambda{@new_user.join_activity(@act.token)}.should change(@user.feeds, :count).by(1)
       @user.reload.feeds.first.referer.should == @new_user
     end
+  end
+  
+  describe "find_api_user" do
+    before do
+      @user.update_attributes!(:api_token => "111", :api_secret_key => "222")
+    end
     
-    
+    it "should find user by api_token and api_secret_key" do
+      User.find_api_user("111", "222").should == @user
+      User.find_api_user("111","wrong").should be_nil
+    end
   end
   
   describe "sensor_added" do

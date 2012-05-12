@@ -6,9 +6,20 @@ UserLayer::Application.routes.draw do
   resources :cares do 
     resources :apps
   end
+  
   namespace :api do
-    resource :feeds
+    resources :feeds
+    resources :sensors do
+      resources :files
+      member do
+        get :data
+      end
+      collection do
+        get :test_data
+      end
+    end
   end
+  
   resources :sensors do
       collection do
           get "sensocol_demo"

@@ -65,6 +65,14 @@ class User < ActiveRecord::Base
     self.setting.try(:rsi_interval) || UserSetting.default_rsi_interval
   end
   
+  def api_user?
+    self.api_token.present? and self.api_secret_key.present?
+  end
+  
+  def self.find_api_user(api_token, api_secret_key)
+    self.where({:api_token => api_token, :api_secret_key => api_secret_key}).first
+  end
+  
   def self.create_mobile_user
     User.new.tap do |user|
       user.save(:validate => false)

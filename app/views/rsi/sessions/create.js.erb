@@ -2,5 +2,5 @@
   $("#login-tip").html("<span class='error'><%= @error %></span>");
 <% else %>
   $("#login-tip").html("<%= t :auth_success %>");
-  window.location.href = '<%= rsi_charts_path %>';
+  window.location.href = '<%= @user.api_user? ? api_sensors_path : rsi_charts_path %>';
 <% end %>

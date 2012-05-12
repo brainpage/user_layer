@@ -1,0 +1,12 @@
+- for file in @files
+  .info.img-block
+    .row-fluid
+      .span6
+        = link_to(image_tag(url = file.content.url), url, :target => "_blank") if file.image?
+      .span6.desc
+        p = file.content_file_name       
+        p = file.created_at.to_s(:short)
+        p = file.content_file_size.to_s + " bytes"
+        p = link_to file.image? ? "View" : "Download", url, :target => "_blank"
+
+= will_paginate @files

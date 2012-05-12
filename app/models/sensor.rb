@@ -4,6 +4,7 @@ class Sensor < ActiveRecord::Base
   has_many :sensor_subscribers
   has_many :apps, :through => :sensor_subscribers
   has_many :features
+  has_many :uploaded_files
   
   scope :computer, where(:stype => "computer")
   
@@ -20,8 +21,8 @@ class Sensor < ActiveRecord::Base
     self.owner.feeds.create(:text => "Added to your things!", :originator => self)
 
     if self.stype == "computer"
-        app = App.create(:user_id => user_id, app_list_id => AppList.find_by_url("rsi").id)
-        SensorSubscriber.create(:sensor_id => self.id, :app_id => app.id)
+      app = App.create(:user_id => user_id, app_list_id => AppList.find_by_url("rsi").id)
+      SensorSubscriber.create(:sensor_id => self.id, :app_id => app.id)
     end
   end   
 
