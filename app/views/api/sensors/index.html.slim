@@ -10,7 +10,7 @@ table.table.table-striped.sensor
       tr
         td = sensor.id
         td = sensor.uuid
-        td = sensor.created_at.to_s(:short)
+        td = (sensor.created_at ? sensor.created_at.to_s(:short) : "")
         td 
           = link_to "View Data", data_api_sensor_path(sensor.uuid)
           = link_to "View Files", api_sensor_files_path(sensor.uuid)
