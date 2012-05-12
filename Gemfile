@@ -25,6 +25,7 @@ gem 'devise'
 gem 'faraday'
 gem 'faraday_middleware'
 gem 'slim'
+gem 'redis'
 gem 'mysql2'
 gem "paperclip", "~> 3.0"
 
