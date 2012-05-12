@@ -33,7 +33,10 @@ var makeDataRequest = function(uuid, csv){
 	}
 	$("#data-list").html("<div class='center'><img src='/assets/spinner.gif'></img></div>");
 	$.get('/db/sensors/' + uuid, query, function(data){
-		
+		console.log("+============");
+		console.log(data);
+		console.log(data.columns);
+		console.log(data.data);
 		var header = "<thead><tr><th>Time</th>";
 		$.each(data.columns, function(){header += "<th>" + this + "</th>"});
 		header += "</tr></thead>"
