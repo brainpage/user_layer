@@ -8,6 +8,7 @@ var initFilterFields = function(){
 	t.setHours(t.getHours() - 1);
 	$('#from').val(bp.chart.Utils.fullTime(t), false);
 	$('#to').val(bp.chart.Utils.fullTime(new Date()), false);
+	setFeaturesValue();
 };
 
 var setFeaturesValue = function(){
