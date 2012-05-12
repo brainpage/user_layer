@@ -35,7 +35,11 @@ var makeDataRequest = function(uuid, csv){
 	$.get('/db/sensors/' + uuid, query, function(data){
 		console.log("+============");
 		console.log(data);
+		var t = data;
+		console.log(t);
 		console.log(data.columns);
+		console.log(t.columns);
+		console.log(data["columns"]);
 		console.log(data.data);
 		var header = "<thead><tr><th>Time</th>";
 		$.each(data.columns, function(){header += "<th>" + this + "</th>"});
