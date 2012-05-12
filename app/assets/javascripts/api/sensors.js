@@ -12,10 +12,48 @@ var setFeaturesValue = function(){
 }
 
 var makeDataRequest = function(){
-console.log($.datepicker.parseDate('yy-mm-dd', '2007-01-26'))
-	$.get('/api/sensors/test_data', {}, function(data){
+	var query = {};
+	if($("#from").val() != ""){
+		query.from = parseDateTime($("#from").val()).getTime()/1000;
+	}
+	if($("#to").val() != ""){
+		query.to = parseDateTime($("#to").val()).getTime()/1000;
+	}
+	if($("#features").val() != ""){
+		query.features = $("#features").val()
+	}
+	$("#data-list").html("<div class='center'><img src='/assets/spinner.gif'></img></div>");
+	$.get('/api/sensors/test_data', query, function(data){
 		console.log(data);
+		
+		var header = "<thead><tr><th>Time</th>";
+		$.each(data.columns, function(){header += "<th>" + this + "</th>"});
+		header += "</tr></thead>"
+		
+		var tbody = "<tbody>";
+		$.each(data.data, function(){
+			tbody += "<tr>";
+			
+			tbody += "<td>" + bp.chart.Utils.fullTime(new Date(this.ts * 1000)) + "</td>";
+			var item = this;
+			$.each(data.columns, function(){
+				tbody += "<td>" + (item[this] ? item[this] : "") + "</td>";
+			})
+			tbody += "</tr>";
+		});
+		tbody += "</tbody>"
+		
+		$("#data-list").html(header + tbody);
 	});
+}
+
+var parseDateTime = function(str){
+	var a = str.split(" "),
+	    time = a[1].split(":");
+	var t = $.datepicker.parseDate('yy-mm-dd', a[0]);
+	t.setHours(parseInt(time[0]));
+	t.setMinutes(parseInt(time[1]));
+	return t;
 }
 
 

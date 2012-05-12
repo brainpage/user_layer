@@ -270,6 +270,22 @@ svg .label{font-weight: normal !important;font-size:13px}
 
 .data-filter input, .data-filter select, .data-filter button{margin: 0 10px;}
 
+.pagination{text-align: center !important}
+.pagination .previous_page{
+  border-left: 1px solid #DDD;
+}
+.pagination .disabled, .pagination .current {
+  float: left;
+  padding: 0 14px;
+  line-height: 34px;
+  text-decoration: none;
+  border: 1px solid #DDD;
+  border-left-width: 0;
+}
+.pagination .current{
+  background-color: #f5f5f5;
+}
+
 /* css for timepicker */
 .ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
 .ui-timepicker-div dl { text-align: left; }

@@ -22,7 +22,14 @@ html
             a.brand href="#" 
             .nav-collapse
               ul.nav
-                  = li_for("sensors"){link_to t("sensors"), api_sensors_path}
+                li class="#{controller_name == "sensors" && action_name != "data" ? "active" : ""}"
+                  = link_to "Sensor List", api_sensors_path
+                - if action_name == "data"
+                  li.active
+                    = link_to "Data of Sensor", "#"
+                - if controller_name == "files"
+	              li.active
+	                = link_to "Files of Sensor", "#"
              
 	          ul.nav.pull-right
 	            - if current_user.image.present?
