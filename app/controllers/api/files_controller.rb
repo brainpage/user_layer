@@ -32,7 +32,8 @@ class Api::FilesController < ApplicationController
     else
       @sensor = @user.sensors.find_by_uuid(params[:sensor_id])
       if @sensor.blank?
-        render :text => "Sensor not found", :status => :not_found
+        @sensor = Sensor.create(:owner_id => @user.id, :uuid => params[:sensor_id], :stype => 'api')
+        #render :text => "Sensor not found", :status => :not_found
       end
     end
   end
