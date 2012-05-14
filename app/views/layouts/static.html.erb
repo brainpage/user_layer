@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Your smart data - Brainpage.com</title>
+    <link href="<%= image_path("favicon.ico") %>" rel="shortcut icon" type="image/x-icon" />
+    <%= stylesheet_link_tag "static" %>
+    <link href="http://fonts.googleapis.com/css?family=Carme" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="container">
+        <div class="right blog">
+            <a href="http://brainpage-co.tumblr.com" target="_blank">Blog</a>
+        </div>
+        <div class="logo">
+            <div class="brainpage">
+                Brainpage</div>
+            <div class="data">
+                Your smart data</div>
+        </div>
+        <div class="bar">
+            <div class="yellow">
+            </div>
+            <div class="green">
+            </div>
+            <div class="blue" style="width: 34%">
+            </div>
+        </div>
+        <div class="clear">
+            &nbsp;
+        </div>
+        <div class="main">
+            <%= yield %>
+        </div>
+        <div class="footer">
+            <a href="/">Home</a> <a href="/about">About Us</a> <a href="/policy">Data Policy</a>
+            <a href="mailto:info@brainpage.com">Contact</a>
+            <div class="right">
+                © 2012, Brainpage.com
+            </div>
+        </div>
+    </div>
+</body>
+</html>

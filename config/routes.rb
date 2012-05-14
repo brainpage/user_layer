@@ -41,7 +41,9 @@ UserLayer::Application.routes.draw do
     delete "/logout" => "rsi/sessions#destroy"
   end 
   
-  root :to=>"rsi/charts#index"
+  root :to=>"static#home"
+  match 'about' => 'static#about'
+  match 'policy' => 'static#policy'
   
   namespace :rsi do
     namespace :admin do
@@ -110,8 +112,7 @@ UserLayer::Application.routes.draw do
   match 'db/query' => 'rsi/charts#data'
   match 'home' => 'rsi/portals#land'
   match 'info' => 'rsi/portals#info'
-  match 'about' => 'rsi/portals#about'
-  match 'policy' => 'rsi/portals#policy'
+
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
