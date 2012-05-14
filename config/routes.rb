@@ -41,7 +41,7 @@ UserLayer::Application.routes.draw do
     delete "/logout" => "rsi/sessions#destroy"
   end 
   
-  root :to=>"/index.html"
+  root :to=>"rsi/charts#index"
   
   namespace :rsi do
     namespace :admin do
