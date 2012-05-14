@@ -40,9 +40,7 @@ UserLayer::Application.routes.draw do
     get 'signin' => 'rsi/portals#land', :as => :new_user_session
     delete "/logout" => "rsi/sessions#destroy"
   end 
-  
-  root :to=>"rsi/charts#index"
-  
+    
   namespace :rsi do
     namespace :admin do
       resources :users do
