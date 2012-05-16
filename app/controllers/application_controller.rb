@@ -32,7 +32,7 @@ class ApplicationController < ActionController::Base
   
   def set_locale
     if Rails.env.production?
-      I18n.locale = (request.domain =~ /brainpage.cn/ or request.domain =~ /http:\/\/rsi/) ? :zh : :en      
+      I18n.locale = (request.domain =~ /brainpage.cn/ or request.domain =~ /^rsi$/) ? :zh : :en      
     else
       I18n.locale = session[:locale] || :en
     end
