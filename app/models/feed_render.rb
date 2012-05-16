@@ -19,7 +19,7 @@ module FeedRender
   def xtype_welcome(feed)
     {
       :content => t("feed.welcome"),
-      :sub => link_to(t(:about))
+      :sub => link_to(t(:about), zh? ? "http://www.brainpage.cn/about.html" : "/about")
     }
   end
   
