@@ -1,0 +1,40 @@
+= stylesheet_link_tag "prettify"
+script
+  | $(document).ready(function(){prettyPrint();})
+
+= docs_content do
+  h3 
+    | What's client API?
+  p Client API is for developers to post data to Brainpage server.
+  p 
+    | It provides two ways to post data: http and websocket. WebSocket is recommended as it's faster.
+  p 
+    | Steps to post data:
+    ol
+      li 
+        | Establish a connection with your develop key and secket. 
+        = link_to "Get my key/secket"
+      li Send data whatever makes sense to you through the connection.
+  h3 Code Examples
+  .tabbable
+    ul.nav.nav-tabs
+      li.active
+        = link_to "Java/Android", "#java", "data-toggle" => "tab"
+      li
+        = link_to "Ruby", "#ruby", "data-toggle" => "tab"
+
+    .tab-content
+      #java.tab-pane.active
+        h3 Download
+        p 
+          = link_to "brainpage-client-java-1.0.0.jar"
+        pre.prettyprint.linenums        
+          p Connection socket = Connection.open("guolei", "111111"); 
+		  p DataPoint dataPoint = new DataPoint();
+		  p dataPoint.add("h", 1);
+		  p dataPoint.setSensorID("sensor_uuid");
+          p 
+		  p socket.send(dataPoint);
+      #ruby.tab-pane
+        | ruby
+  

@@ -1,0 +1,66 @@
+body
+{
+    font-family: 'Carme', sans-serif !important;
+    font-size: 16px;
+    background-image: url("/assets/grid.png");
+}
+img{vertical-align:middle; margin-top:-5px; border:none;}
+h1, h2{font-weight:normal;}
+h3{margin:15px 0;}
+small{margin-left:10px;}
+p, li{line-height:20px}
+
+.align-center{text-align: center}
+
+.header .logo
+{
+    height:60px;
+    background: url("/assets/logo-big.png") no-repeat scroll left center;
+    padding-left: 65px;
+    margin: 20px 0;
+}
+
+.header .logo .name
+{
+    font-weight: bold;
+    font-size: 40px;
+    padding: 10px 0 15px 0;
+    color: #333;
+}
+
+.header .logo .sub
+{
+    font-size: 16px;
+    color: #3B77C3;
+}
+
+.header input{margin-right:5px}
+.brand{background: url('/assets/logo_white.png') no-repeat scroll left center;height:25px;width:10px;}
+.navbar .nav > li a{height:30px; line-height:30px}
+
+.color-bar div
+{
+    float: left;
+    width: 33%;
+    height: 4px;
+}
+.color-bar .yellow{ background: #F1C416;}
+.color-bar .green{ background: #93D00D;}
+.color-bar .blue{ background: #35B1F1;}
+
+.form-compact .control-group{margin-bottom: 10px !important;}
+
+.main
+{
+	margin-top:70px;
+	background: #fff;	
+}
+.main .thumbnail{min-height:450px;}
+
+.thumbnail{background: #fff; padding:10px 20px; margin-top:20px}
+
+.footer
+{
+    padding: 35px 0 36px;
+}
+.footer a{margin-right:15px}

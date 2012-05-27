@@ -1,0 +1,35 @@
+.thumbnail
+  .page-header
+    h2 Create new account
+  = form_tag user_accounts_path, :class => "form-horizontal"
+  fieldset
+    h3 Account Info
+    .control-group
+      label.control-label Email
+      .controls
+        = text_field :user, :email
+    .control-group
+      label.control-label Password
+      .controls
+        = password_field :user, :password, :class => "input-medium"
+    .control-group
+      label.control-label Confirmation
+      .controls
+        = password_field :user, :password_confirmation, :class => "input-medium"
+    hr
+    h3 
+	  | Company Info
+	  small optional
+	.control-group
+	  label.control-label Comany Name
+	  .controls
+	    = text_field :profile, :company_name
+	.control-group
+	  label.control-label Domain
+	  .controls
+	    = text_field :profile, :domains, :class => "input-xlarge"
+	    p.help-block
+	      | Separte with "," for multiple domains
+    .form-actions
+      = submit_tag "Create account", :class => "btn-primary btn-large"
+  | </form>

@@ -1,0 +1,44 @@
+doctype html
+html 
+  head
+    meta http-equiv="Content-Type" content="text/html;charset=UTF-8"
+    title Your smart data - Brainpage.com
+    link href="#{image_path("favicon.ico")}" rel="shortcut icon" type="image/x-icon"
+    = javascript_include_tag "application"
+    = stylesheet_link_tag "application", "data", "locale/data-#{I18n.locale}"
+    link href="http://fonts.googleapis.com/css?family=Carme" rel="stylesheet" type="text/css"
+  body
+    .container
+      .header
+        .pull-right
+          - if current_user.blank?
+	        = form_tag user_sessions_path, :class => "form-inline", :remote => true
+	        .control-group
+	          = text_field_tag :email, "", :class => "input-medium", :placeholder => "Email"
+	          = password_field_tag :password, "", :class => "input-small", :placeholder => "Password"
+	          = submit_tag "Login", :class=>"btn btn-primary span1", :onclick => "$('#login-tip').html('#{t :auth} ...')"
+	        .control-group
+	          div
+	            .pull-right
+	              #login-tip
+		        label class="checkbox inline "
+		          = check_box_tag :remember
+		          |Remember me
+		      div.pull-right
+	            = link_to "Can't access account?", "/", :class=>"f-small"
+		    | </form>
+		  - else
+		    = link_to t(:dashboard), dashboard_path
+        .logo
+          .name
+            | Brainpage
+          .sub
+            | Your smart data
+        .color-bar
+          .yellow
+          .green
+          .blue style="width: 34%"
+      .clearfix
+      = yield 
+      
+      = render "layouts/footer"

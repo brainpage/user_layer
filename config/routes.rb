@@ -20,6 +20,26 @@ UserLayer::Application.routes.draw do
     end
   end
   
+  match 'dashboard' => 'data/portals#index'
+  match 'api' => 'data/docs#index'
+  namespace :data do
+    resources :portals do
+      collection do
+        get :land
+      end
+    end
+    
+    resources :docs do
+      collection do
+        get :client
+      end
+    end
+  end
+  
+  namespace :user do
+    resources :sessions, :accounts
+  end
+  
   resources :sensors do
       collection do
           get "sensocol_demo"

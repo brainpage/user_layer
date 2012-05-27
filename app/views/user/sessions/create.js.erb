@@ -1,0 +1,6 @@
+<% if @error.present? %>
+  $("#login-tip").html("<span class='error'><%= @error %></span>");
+<% else %>
+  $("#login-tip").html("<%= t :auth_success %>");
+  window.location.href = '<%= dashboard_path %>';
+<% end %>

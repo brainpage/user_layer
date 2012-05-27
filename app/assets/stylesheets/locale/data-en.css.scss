@@ -1,0 +1,6 @@
+$font-size: 16px;
+@mixin font{font-family: 'Carme', sans-serif;  }
+
+body, input, button, select, submit, label, p{font-size:$font-size; @include font; }
+
+.f-small{font-size: $font-size * 0.8}

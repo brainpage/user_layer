@@ -27,6 +27,8 @@ class User < ActiveRecord::Base
   
   after_create :generate_welcome_feed, :reset_authentication_token!
   
+  has_one :profile, :class_name => "UserProfile"
+  
   def active_oauth_account
     I18n.locale.to_s == "zh" ? self.weibo : self.facebook
   end

@@ -5,6 +5,12 @@ module ApplicationHelper
     content_tag(:li, :class => [cnames].flatten.include?(controller_name) ? "active" : nil){block.call}
   end
   
+  def li_link_to(text, controller, action)
+    content_tag(:li, :class => (controller_name == controller.split("/").last and action_name == action) ? "active" : nil){
+      link_to text, url_for(:controller => controller, :action => action)
+    }
+  end
+  
   def download_rsi_client
     content_tag(:div, :class => "alert alert-error f10") do
       t(:alert).html_safe + download_link
