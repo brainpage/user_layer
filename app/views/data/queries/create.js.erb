@@ -1,0 +1,6 @@
+<% if @error.present? %>
+  $("#save-tip").html("<span class='error'><%= @error %></span>");
+<% else %>
+  $("#save-tip").html("Save successfully! Redirecting ...");
+  window.location.href = '<%= data_query_path(@query) %>';
+<% end %>

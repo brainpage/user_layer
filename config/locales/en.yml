@@ -16,6 +16,10 @@ en:
     my: My Analysis
     friend: Friends App
     setting: Settings
+    query: Queries
+    api: Develop Guide
+  add_new: Add New
+  new_query: Create new data query clause
   stop_rsi: 'Stop RSI<sup><a href="#%{href}">[?]</a></sup>, Work Better!'
   stop_rsi_sub: Your personal assistant for a healthier workstyle
   ad_1: Take Breaks When Needed

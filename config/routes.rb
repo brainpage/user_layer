@@ -34,6 +34,8 @@ UserLayer::Application.routes.draw do
         get :client
       end
     end
+    
+    resources :queries
   end
   
   namespace :user do

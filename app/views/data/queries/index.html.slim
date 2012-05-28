@@ -1,0 +1,34 @@
+script
+  | $(document).ready(function(){$('#query-clause').attr('contentEditable', true); $('#query-clause').focus()});
+.row-fluid
+  .span8
+    .page-header
+      h2 Make a new query
+    .query-clause
+      .marker bql>
+      #query-clause &nbsp;
+    
+    .pull-right
+      a data-toggle="modal" href="#save-form" class="btn" Save
+      
+    = link_to "Run Query", "#", :class => "btn btn-primary"
+
+    .page-header
+      h2 Saved Query Clauses
+
+    ol
+      - for query in @queries
+        li
+          p = link_to query.name, data_query_path(query)
+          p 
+            |bql>&nbsp;
+            = query.query_clause
+
+  .span4
+    .page-header
+      h2 My Data Schema
+    
+    .page-header
+      h2 BQL Help
+
+= render "form"

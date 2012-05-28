@@ -1,1 +1,10 @@
-| hello
+.row-fluid
+  .span6
+    .page-header
+      h2 Data Statistic
+
+  .span6
+    .page-header
+      .pull-right
+        = link_to "<i class='icon-plus'></i>".html_safe + t(:add_new), data_queries_path
+      h2 Queries

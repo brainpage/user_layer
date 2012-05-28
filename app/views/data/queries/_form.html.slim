@@ -1,0 +1,39 @@
+= form_tag @query.blank? ? data_queries_path : data_query_path(@query), {:class => "form-horizontal", :remote => true}.merge(@query.blank? ? {} : {:method => :put})
+#save-form.modal.hide
+  
+  .modal-header
+    a.close data-dismiss='modal' x
+    h2 
+      | Save query clause
+  
+  .modal-body
+    .control-group
+      label.control-label 
+        | Description
+      .controls
+        = text_field :query, :name, :class => "input-xlarge"
+        p.help-block
+	      | Describe the meaning of query clause
+    .control-group
+      label.control-label 
+        | Identifier (optional)
+      .controls
+        = text_field :query, :identifier
+        p.help-block
+          | Identifier to call when integrating this query with your system.
+  
+    - if @query.blank?
+      = hidden_field :query, :query_clause, :id => "clause"
+    - else
+      .control-group
+        label.control-label 
+          | Query Clause
+        .controls
+          = text_area :query, :query_clause, :class => "input-xlarge"
+    #save-tip.controls
+  
+  .modal-footer
+    = submit_tag "Save Query", :class => "btn btn-primary btn-large", :onclick => (@query.blank? ? "$('#clause').val($('#query-clause').html());" : "") + "$('#save-tip').html('Saving ...')" 
+  
+| </form>
+

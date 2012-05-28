@@ -20,9 +20,12 @@ html
           a.brand href="#" 
           .nav-collapse
             ul.nav
-                = li_for("portals"){link_to t("dashboard"), data_portals_path}
-                
-           
+              = li_link_to(t("dashboard"), "data/portals", "index")
+              = li_link_to(t("nav.query"), "data/queries", "index", true)
+              li.divider-vertical
+              li
+                = link_to(t("nav.api"), api_path)
+
 	        ul.nav.pull-right
 	          = li_for("settings"){link_to t("nav.setting"), rsi_settings_path} 
 	          li.dropdown id="menu"
