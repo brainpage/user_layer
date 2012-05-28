@@ -28,11 +28,15 @@ html
 	            = link_to "Can't access account?", "/", :class=>"f-small"
 		    | </form>
 		  - else
-		    .align-right
-		      p
-		        = link_to t(:dashboard), dashboard_path
-		      p 
+		    .row-fluid.header-menu
+		      .span4
+		        p = link_to t(:dashboard), dashboard_path
+		        p Operation panel
+		      .span4
+		        = link_to t("nav.query"), data_queries_path
+		      .span4
 		        = link_to t("nav.setting"), user_settings_path
+		        
         .logo
           .name
             | Brainpage

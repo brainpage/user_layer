@@ -47,6 +47,8 @@ textarea{height:80px}
     color: #3B77C3;
 }
 
+.header-menu{width:500px}
+
 .header input{margin-right:5px}
 .brand{background: url('/assets/logo_white.png') no-repeat scroll left center;height:25px;width:20px;}
 .navbar .nav > li a{height:30px; line-height:30px}
@@ -62,7 +64,7 @@ textarea{height:80px}
 .color-bar .blue{ background: #35B1F1;}
 
 .navbar .nav > li{border-top:2px solid transparent; }
-.navbar .nav > li a{height:25px; line-height:25px}
+.navbar .nav > li a{height:25px; line-height:25px; font-weight: bold; color: #ddd;}
 .navbar .nav > li.active{border-top:2px solid #35b1f1;}
 .navbar .dropdown-menu, .navbar .dropdown-menu a{color: #111;}
 
