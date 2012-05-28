@@ -1,14 +1,22 @@
 .page-header
   .pull-right
-    p = link_to "Query List", data_queries_path
     p 
-      a data-toggle="modal" href="#save-form" Edit
+      = link_to "Query List", data_queries_path, :class=>"img-link list"
     p 
-      = link_to "Delete", data_query_path(@query), :method => :delete, :confirm => "Are you sure?"
+      a data-toggle="modal" href="#save-form" class="img-link edit" Edit
+    p 
+      = link_to "Delete", data_query_path(@query), :class=>"img-link del", :method => :delete, :confirm => "Are you sure?"
   h2 
     = @query.name
   p 
     |bql>&nbsp;
     = @query.query_clause
+
+ul.nav.nav-tabs
+  li.active
+    = link_to "Charts"
+  li 
+    = link_to "Data List"
+  
 
 = render "form"

@@ -39,7 +39,7 @@ UserLayer::Application.routes.draw do
   end
   
   namespace :user do
-    resources :sessions, :accounts
+    resources :sessions, :accounts, :settings
   end
   
   resources :sensors do

@@ -1,0 +1,10 @@
+.control-group
+  label.control-label Comany Name
+  .controls
+    = text_field :profile, :company_name
+.control-group
+  label.control-label Domain
+  .controls
+    = text_field :profile, :domains, :class => "input-xlarge"
+    p.help-block
+      | Separte with "," for multiple domains

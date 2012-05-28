@@ -1,0 +1,47 @@
+.row-fluid
+  .span3
+    .page-header.no-border
+      h2
+        = current_user.email
+    .tabbable.tabs-left
+	  ul.nav.nav-tabs	    
+	    li.active
+	      a href="#dev" data-toggle="tab" Developer Info
+	    li
+	      a href="#account" data-toggle="tab" Account Info
+	
+  .span9
+    .tab-content
+      #dev.tab-pane.active
+        .page-header
+          h2 Key and Secket
+
+        .form-horizontal
+          fieldset
+            .control-group
+              label.control-label API Key
+              .controls 
+                span.input-xlarge.uneditable-input
+                  = current_user.api_secret_key
+	        .control-group
+	          label.control-label API Token
+	          .controls 
+	            span.input-xlarge.uneditable-input
+	              = current_user.api_token
+
+        .page-header
+          h2 Company Info
+        
+        - unless flash[:info].blank?
+          .alert
+            = flash[:info]
+
+        = form_tag user_settings_path, :class => "form-horizontal" 
+        = render "user/accounts/profile_form"
+        .form-actions
+          = submit_tag "Save Changes", :class => "btn btn-large btn-primary"
+        | </form>
+
+      #account.tab-pane
+        | account
+      

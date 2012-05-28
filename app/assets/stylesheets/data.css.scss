@@ -7,7 +7,7 @@ body
     font-size: $font-size;
     background-image: url("/assets/grid.png");
 }
-input, textarea, button, select, submit, label, a{font-size:$font-size; @include font;}
+input, textarea, button, select, submit, label, a, span, .uneditable-input{font-size:$font-size; @include font;}
 img{vertical-align:middle; margin-top:-5px; border:none;}
 h1, h2{font-weight:normal;}
 h3{margin:15px 0;}
@@ -17,7 +17,13 @@ textarea{height:80px}
 .pull-right{margin-left: 15px;}
 
 .align-center{text-align: center}
+.align-right{text-align: right}
 .no-border{border-bottom:none;}
+
+.img-link{background:#ffffff no-repeat scroll left center; padding-left:20px; height: 16px}
+.edit{background-image:url("/assets/edit.png")}
+.del{background-image:url("/assets/delete.png")}
+.list{background-image:url("/assets/list.png")}
 
 .header .logo
 {

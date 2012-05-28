@@ -27,7 +27,7 @@ html
                 = link_to(t("nav.api"), api_path)
 
 	        ul.nav.pull-right
-	          = li_for("settings"){link_to t("nav.setting"), rsi_settings_path} 
+	          = li_link_to(t("nav.setting"), "user/settings", "index")
 	          li.dropdown id="menu"
 	            a.dropdown-toggle href="#menu" data-toggle="dropdown"
 	              = current_user.display_name
