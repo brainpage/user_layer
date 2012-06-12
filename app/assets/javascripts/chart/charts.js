@@ -17,7 +17,7 @@ function drawChart(sensor_uuid, fromDay, toDay){
 	getGlobalAverage(chart);
 	
 	var timeChart = new bp.rsi.TimeChart("#time-chart");
-	var zoomChart = new bp.rsi.ZoomChart("#zoom-line", $("#zoom-line").width());
+	var zoomChart = new bp.rsi.ZoomChart("#zoom-line", $("#zoom-line").width()-10);
 	var pieChart = new bp.rsi.PieChart("#pie-chart", $("#pie-chart").width());
 	
 	pieChart.mousedown = function(d){
@@ -32,10 +32,10 @@ function drawChart(sensor_uuid, fromDay, toDay){
 		if(data.length > 0){$('#drag_zoom_tip').show()}else{$('#drag_zoom_tip').hide()}
 	}
 	
-	var kmrBarChart = new bp.rsi.BarChart("#kmr-bar", $("#kmr-bar").width());
+	var kmrBarChart = new bp.rsi.BarChart("#kmr-bar", $("#kmr-bar").width() );
 	var keysBarChart = new bp.rsi.BarChart("#keys-bar", $("#keys-bar").width());
 	
-	var msclksBarChart = new bp.rsi.BarChart("#msclks-bar", $("#msclks-bar").width());
+	var msclksBarChart = new bp.rsi.BarChart("#msclks-bar", $("#msclks-bar").width() );
 	var dstBarChart = new bp.rsi.BarChart("#dst-bar", $("#dst-bar").width());
 	var scrllBarChart = new bp.rsi.BarChart("#scrll-bar", $("#scrll-bar").width());
 	
@@ -60,7 +60,7 @@ function drawChart(sensor_uuid, fromDay, toDay){
 	
 		var visible = data.map(function(e){return e.key});
 		
-		keysBarChart.draw(group, "keys", chart, visible);
+		keysBarChart.draw(group, "msclks", chart, visible);
 	    msclksBarChart.draw(group, "msclks", chart, visible);
 	    dstBarChart.draw(group, "dst", chart, visible);		
 		scrllBarChart.draw(group, "scrll", chart, visible);

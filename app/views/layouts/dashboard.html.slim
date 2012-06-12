@@ -3,13 +3,13 @@ html
   head
     meta http-equiv="Content-Type" content="text/html;charset=UTF-8"
     title Your smart data - Brainpage.com
-    = stylesheet_link_tag "application", "data", "locale/data-#{I18n.locale}"
+    = stylesheet_link_tag "application", "data", "locale/data-#{I18n.locale}", "prettify"
     = javascript_include_tag "application"
     = csrf_meta_tags
     link rel="shortcut icon" href="#{image_path("favicon.ico")}" type="image/x-icon"
     link href='http://fonts.googleapis.com/css?family=Carme' rel='stylesheet' type='text/css'
 	
-  body
+  body onload="prettyPrint();"
     .navbar.navbar-fixed-top
       .navbar-inner
         .container

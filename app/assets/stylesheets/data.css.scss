@@ -20,10 +20,12 @@ textarea{height:80px}
 .align-right{text-align: right}
 .no-border{border-bottom:none;}
 
-.img-link{background:#ffffff no-repeat scroll left center; padding-left:20px; height: 16px}
+.img-link{background-repeat: no-repeat;  background-position:left center; padding-left:20px; height: 16px}
 .edit{background-image:url("/assets/edit.png")}
 .del{background-image:url("/assets/delete.png")}
 .list{background-image:url("/assets/list.png")}
+.run{background-image:url("/assets/run.png")}
+.save{background-image:url("/assets/save.png")}
 
 .header .logo
 {

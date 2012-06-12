@@ -55,7 +55,7 @@
                   .span7
                     #app-detail
                       = alert_info "view_app_detail", t(:view_detail), :style=>"display:none"
-                    #zoom-line.chart
+                    #zoom-line.chart style="min-height:360px"
                     = alert_info "drag_zoom_tip", t(:drag_chart_tip), :style=>"display:none"
               #keys-content.tab-pane
                 = alert_info "key_stroke_desc", t(:key_stroke_desc).html_safe

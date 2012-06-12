@@ -18,7 +18,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
-gem 'twitter-bootstrap-rails', '~>2.0'
+gem 'twitter-bootstrap-rails'
 #gem 'simple_form'
 gem 'rest-client'
 gem 'devise'

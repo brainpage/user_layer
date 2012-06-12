@@ -10,7 +10,7 @@ en:
   change_pwd: Change Password
   logout: Logout
   login: Login
-  dashboard: My Dashboard
+  dashboard: Dashboard
   nav:
     feed: Feeds
     my: My Analysis
